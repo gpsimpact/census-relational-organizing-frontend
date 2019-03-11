@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import Index from '../Index';
+import Index from '../index';
 import toJSON from 'enzyme-to-json';
 
 describe('<Index/>', () => {
