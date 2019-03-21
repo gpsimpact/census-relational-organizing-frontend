@@ -1,16 +1,20 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
-import { RegisterComponent } from "../../generated/apolloComponents";
+import { UpdateMeComponent } from "../../generated/apolloComponents";
 import { TextField } from '../Util/Forms/TextField';
 import SubmitButton from '../Util/Forms/SubmitButton';
 import { submitMutation, destructResponse } from "../../lib/apolloHelpers";
 import { FormError } from '../Util/Forms/FormError';
+import { FormSuccess } from '../Util/Forms/FormSuccess';
 import { LoadingBar } from '../Util/Loading/LoadingBar';
+import { CURRENT_USER_QUERY } from "../../graphql/user/queries/me";
 
 export default ({currentUser}) => {
     return(
-        <RegisterComponent>
+        <UpdateMeComponent
+            refetchQueries={[{query: CURRENT_USER_QUERY}]}
+        >
             {(mutation, { data, loading, error}) => (
                 <Formik 
                 initialValues={{ 
@@ -24,7 +28,6 @@ export default ({currentUser}) => {
                 }}
                 validationSchema={
                     Yup.object().shape({
-                        email: Yup.string().email('Valid Email Required').required('Valid Email Required'),
                         firstName: Yup.string().required(),
                         lastName: Yup.string().required(),
                         address: Yup.string().required(),
@@ -47,7 +50,7 @@ export default ({currentUser}) => {
                         }
                     }
                     let response = await submitMutation(mutation, payload);
-                    const result = await destructResponse(response, 'register');
+                    const result = await destructResponse(response, 'updateUser');
                     if(!result.success){
                         actions.setStatus({
                             form: {
@@ -57,13 +60,23 @@ export default ({currentUser}) => {
                         })
                         return;
                     }
+                    actions.setStatus({
+                        form: {
+                            code: "Success",
+                            message: "Profile Updated"
+                        }
+                    })
+
                 }}
                 render={({status}) => (
                     <Form noValidate>
                         <LoadingBar active={loading}/>
 
                         {
-                            status && status.form && <FormError error={status.form}/>
+                            status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
+                        }
+                        {
+                            status && status.form && status.form.code === 'Success' && <FormSuccess message={status.form}/>
                         }
 
                         <fieldset>
@@ -163,6 +176,6 @@ export default ({currentUser}) => {
                 )}
                 />
             )}
-        </RegisterComponent>
+        </UpdateMeComponent>
     )
 }

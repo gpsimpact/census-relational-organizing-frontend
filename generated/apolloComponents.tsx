@@ -375,6 +375,38 @@ export type RegisterRegister = {
   securityCode: Maybe<string>;
 };
 
+export type UpdateMeVariables = {
+  input: UpdateUserInput;
+};
+
+export type UpdateMeMutation = {
+  __typename?: "Mutation";
+
+  updateUser: UpdateMeUpdateUser;
+};
+
+export type UpdateMeUpdateUser = {
+  __typename?: "UpdateUserResult";
+
+  code: MutationCodeEnum;
+
+  success: boolean;
+
+  message: string;
+
+  item: Maybe<UpdateMeItem>;
+};
+
+export type UpdateMeItem = {
+  __typename?: "User";
+
+  id: string;
+
+  firstName: string;
+
+  email: string;
+};
+
 export type MeVariables = {};
 
 export type MeQuery = {
@@ -636,6 +668,57 @@ export function RegisterHOC<TProps, TChildProps = any>(
     RegisterVariables,
     RegisterProps<TChildProps>
   >(RegisterDocument, operationOptions);
+}
+export const UpdateMeDocument = gql`
+  mutation updateMe($input: UpdateUserInput!) {
+    updateUser(input: $input) {
+      code
+      success
+      message
+      item {
+        id
+        firstName
+        email
+      }
+    }
+  }
+`;
+export class UpdateMeComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<UpdateMeMutation, UpdateMeVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<UpdateMeMutation, UpdateMeVariables>
+        mutation={UpdateMeDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type UpdateMeProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<UpdateMeMutation, UpdateMeVariables>
+> &
+  TChildProps;
+export type UpdateMeMutationFn = ReactApollo.MutationFn<
+  UpdateMeMutation,
+  UpdateMeVariables
+>;
+export function UpdateMeHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UpdateMeMutation,
+        UpdateMeVariables,
+        UpdateMeProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UpdateMeMutation,
+    UpdateMeVariables,
+    UpdateMeProps<TChildProps>
+  >(UpdateMeDocument, operationOptions);
 }
 export const MeDocument = gql`
   query Me {
