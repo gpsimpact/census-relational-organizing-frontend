@@ -59,8 +59,10 @@ class Index extends React.Component<any> {
 
     render() {
 
-        let currentUser = new CurrentUser(this.props.currentUser.me);
-        
+        let currentUser:any = null;
+        if(this.props.currentUser.me){
+            currentUser = new CurrentUser(this.props.currentUser.me);
+        }
 
         return(
             <Page
