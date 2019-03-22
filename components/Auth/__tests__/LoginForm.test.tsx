@@ -56,7 +56,7 @@ describe('<LoginForm/>', () => {
         const form = wrapper.find('Formik');
         form.simulate('submit');
         wrapper.update();
-        await wait(100);
+        await wait(500);
         expect(routeResponse).toHaveBeenCalled();
     });
 });
