@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Index/> Renders hello world 1`] = `
-<h1>
-   Hello World
-</h1>
-`;
