@@ -10,12 +10,19 @@ const Footer = styled('footer')`
     text-align: center;
     margin-top: 75px;
 `;
+
+const PageContent = styled('div')`
+    min-height: 55vh;
+`;
 export default class Page extends React.Component<any> {
     render(){
         return(
             <>
                 <NavBar currentUser={this.props.currentUser}/>
-                {this.props.children}
+                
+                <PageContent>
+                     {this.props.children}
+                </PageContent>
 
                 <Footer>
                     <h3> Brand </h3>

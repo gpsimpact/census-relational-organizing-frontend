@@ -99,7 +99,7 @@ export default ({routeResponse}) => {
                                         id="email"
                                         name="email"
                                         label="Email"
-                                        placeholder="email"
+                                        placeholder="Email"
                                         component={TextField}
                                     />
                                 </div>
