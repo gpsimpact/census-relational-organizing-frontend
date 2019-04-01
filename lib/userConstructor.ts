@@ -1,6 +1,13 @@
 import _ from "lodash";
 
-export class CurrentUser {
+export const CurrentUser = (props) => {
+    if(props.currentUser.me){
+        return new UserObject(props.currentUser.me);
+    }
+    return null;
+}
+
+export class UserObject {
     id: string;
     name: string;
     email: string;

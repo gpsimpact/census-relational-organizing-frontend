@@ -17,10 +17,7 @@ class CheckEmail extends React.Component<any> {
     }
 
     render() {
-        let currentUser:any = null;
-        if(this.props.currentUser.me){
-            currentUser = new CurrentUser(this.props.currentUser.me);
-        }
+        let currentUser = CurrentUser(this.props);
 
         return(
             <Page

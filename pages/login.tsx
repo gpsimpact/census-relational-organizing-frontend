@@ -6,7 +6,6 @@ import { routeResponse } from '../lib/routeResponse';
 import { Box } from '../components/Util/Layout/Box';
 import { MainTitle } from '../components/Util/Typography/Titles';
 import LoginForm from '../components/Auth/LoginForm';
-import { CenteredContainer } from '../components/Util/Layout/CenteredContainer';
 
 class Login extends React.Component<any> {
     static async getInitialProps({
@@ -21,10 +20,8 @@ class Login extends React.Component<any> {
 
     }
     render(){
-        let currentUser:any = null;
-        if(this.props.currentUser.me){
-            currentUser = new CurrentUser(this.props.currentUser.me);
-        }
+        let currentUser = CurrentUser(this.props);
+
         return(
             <Page currentUser={currentUser}>
                     <div className="container">
