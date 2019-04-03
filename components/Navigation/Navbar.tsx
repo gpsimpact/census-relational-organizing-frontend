@@ -3,6 +3,8 @@ import { LoginNav } from './LoginNav';
 import { AuthedNav } from './AuthedNav';
 import { NavA } from '../Util/Typography/Navs';
 import Link from 'next/link';
+import { NavToggler } from './NavToggler';
+import { CurrentUserInterface } from '../../interfaces/CurrentUserInterface';
 
 const NavHeader = styled('div')`
     background: ${props => props.theme.colors.g2};
@@ -17,7 +19,6 @@ const NavBarContainer = styled('nav')`
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
 `
 const LeftNav = styled('div')`
     margin-right: auto;
@@ -25,6 +26,7 @@ const LeftNav = styled('div')`
     display: flex !important;
     align-items: center;
     justify-content: space-between;
+    padding-left: 2rem;
 `;
 const RightNav = styled('div')`
     margin-left: auto;
@@ -32,15 +34,23 @@ const RightNav = styled('div')`
     display: flex !important;
     justify-content: space-between;
     align-items: center;
+    padding-right: calc(2rem + 50px);
 
 `;
-export const NavBar = (props:any) => {
+
+interface NavBarInterface{
+    currentUser: CurrentUserInterface;
+    disableSideNav?: boolean;
+}
+export const NavBar = (props:NavBarInterface) => {
     return(
         <NavHeader>
-        <div className="container">
+
 
         <NavBarContainer>
             <LeftNav>
+                <NavToggler disableSideNav={props.disableSideNav}/>
+
                 <Link href="/"><NavA>BRAND</NavA></Link>
             </LeftNav>
 
@@ -50,7 +60,6 @@ export const NavBar = (props:any) => {
             </RightNav>
           
         </NavBarContainer>
-        </div>
         </NavHeader>
 
     )

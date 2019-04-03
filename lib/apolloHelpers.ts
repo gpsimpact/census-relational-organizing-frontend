@@ -1,3 +1,4 @@
+import { SIDENAV_OPEN_QUERY } from '../graphql/local/sidenav';
 
 export const submitMutation = async (mutation:any, payload:any) => {
     let response:any;
@@ -30,4 +31,15 @@ export const destructResponse = async (response:any, returnName: string) => {
         }
     }
     return response['data'][returnName];
+}
+
+export const toggleSideNav = (_, variables, { cache }) => {
+    const { sideNavOpen } = cache.readQuery({
+      query: SIDENAV_OPEN_QUERY,
+    });
+    const data = {
+      data: { sideNavOpen: !sideNavOpen },
+    };
+    cache.writeData(data);
+    return data;
 }
