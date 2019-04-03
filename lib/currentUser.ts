@@ -1,4 +1,4 @@
-import { CURRENT_USER_QUERY } from '../graphql/user/queries/me';
+import { CURRENT_USER_QUERY } from '../graphql/server/user/queries/me';
 
 export default apolloClient =>
   apolloClient

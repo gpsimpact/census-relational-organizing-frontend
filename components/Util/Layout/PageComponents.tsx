@@ -7,11 +7,11 @@ export const Footer = styled('footer')`
     background-color: ${props => props.theme.colors.black};
     color: ${props => props.theme.colors.white};
     text-align: center;
-    margin-top: 75px;
 `;
 
 export const PageContent = styled('div')`
     min-height: 55vh;
+    position: relative;
 `;
 
 
@@ -28,8 +28,7 @@ const StyledPageContainer = styled('div')<{sideNavOpen:boolean}>`
     min-height: 100%;
     width: 100%;
     left: 0%;
-    margin-bottom: 100px;
-    padding: 83px 20px 50px;
+    padding: 20px 20px 50px;
     position: relative;
     border-top: 1px solid ${props => props.theme.colors.g3};
     -ms-overflow-style: scrollbar;
@@ -55,3 +54,5 @@ export const PageContainerInner = (props:any) => {
         </Query>
     )
 }
+
+

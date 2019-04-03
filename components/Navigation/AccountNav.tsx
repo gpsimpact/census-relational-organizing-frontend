@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from '../../lib/styled';
 import { NavLI, NavA } from '../Util/Typography/Navs';
 import { LogoutComponent } from '../../generated/apolloComponents';
-import { CURRENT_USER_QUERY } from '../../graphql/user/queries/me';
+import { CURRENT_USER_QUERY } from '../../graphql/server/user/queries/me';
 import  Router  from 'next/router';
 import Link from 'next/link';
 

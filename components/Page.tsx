@@ -1,7 +1,7 @@
 import React from "react";
 import { NavBar } from './Navigation/Navbar';
 import { CurrentUserInterface } from '../interfaces/CurrentUserInterface';
-import { PageContainer, PageContent, Footer } from './Util/Layout/PageComponents';
+import { PageContainer, PageContent, Footer, PageContainerInner } from './Util/Layout/PageComponents';
 import { SideNav } from "./Navigation/SideNav";
 
 
@@ -15,10 +15,12 @@ export default class Page extends React.Component<PageInterface> {
         return(
             <PageContainer>
                 <NavBar currentUser={this.props.currentUser} disableSideNav={this.props.navComponent ? false : true}/>
-                {this.props.navComponent && <SideNav navComponent={this.props.navComponent} />}
 
                 <PageContent>
-                     {this.props.children}
+                    {this.props.navComponent && <SideNav navComponent={this.props.navComponent} />}
+                     <PageContainerInner>
+                            {this.props.children}
+                     </PageContainerInner>
                 </PageContent>
 
                 <Footer>

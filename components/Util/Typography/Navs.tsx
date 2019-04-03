@@ -31,3 +31,33 @@ export const NavA = styled('a')`
         }
 
 `;
+
+export const SNavUL = styled('ul')`
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+            flex-direction: column;
+`;
+
+export const SNavLI = styled('li')`
+`;
+
+export const SNavA = styled('a')`
+         padding: .5rem 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: .9rem;
+        color: ${props => props.theme.colors.black};
+        font-weight: 700;
+        &:hover,
+        &:focus,
+        &:active {
+            color: ${props => props.theme.colors.white};
+            cursor: pointer;
+        }
+
+`;

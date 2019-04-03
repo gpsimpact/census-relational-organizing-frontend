@@ -5,11 +5,11 @@ import { SIDENAV_OPEN_QUERY } from '../../graphql/local/sidenav';
 
 
 const SideNavContainer = styled('div')<{sideNavOpen: boolean}>`
-    height: calc(100% - 63px);
-    position:fixed;
+    height: 100%;
     padding-top: 30px;
     overflow-y:scroll;
     overflow-x:hidden;
+    position: absolute;
     width: 200px;
     left: -200px;
     background: ${props => props.theme.colors.green};
