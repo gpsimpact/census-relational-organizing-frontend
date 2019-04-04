@@ -1,13 +1,14 @@
 import _ from "lodash";
+import { CurrentUserInterface } from '../interfaces/CurrentUserInterface';
 
-export const CurrentUser = (props) => {
-    if(props.currentUser.me){
+export const CurrentUser = (props:any) => {
+    if(props.currentUser && props.currentUser.me){
         return new UserObject(props.currentUser.me);
     }
     return null;
 }
 
-export class UserObject {
+export class UserObject implements CurrentUserInterface {
     id: string;
     name: string;
     email: string;

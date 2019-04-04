@@ -216,6 +216,14 @@ export interface RegisterInput {
   phone: string;
 }
 
+export interface GrantTeamPermissionInput {
+  teamId: string;
+
+  userId: string;
+
+  permission: ObjectLevelPermissionEnum;
+}
+
 export interface DateRange {
   startDate: Date;
 
@@ -251,7 +259,8 @@ export enum GlobalPermissionsEnum {
   AdminTeams = "ADMIN_TEAMS",
   AdminTeamsCrud = "ADMIN_TEAMS_CRUD",
   AdminUsers = "ADMIN_USERS",
-  AdminUsersCrud = "ADMIN_USERS_CRUD"
+  AdminUsersCrud = "ADMIN_USERS_CRUD",
+  AdminTeamsAssignpermissions = "ADMIN_TEAMS_ASSIGNPERMISSIONS"
 }
 
 export enum SortDirection {
@@ -267,6 +276,12 @@ export enum MutationCodeEnum {
   Ok = "OK"
 }
 
+export enum ObjectLevelPermissionEnum {
+  Applicant = "APPLICANT",
+  Assignpermissions = "ASSIGNPERMISSIONS",
+  Member = "MEMBER"
+}
+
 /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 export type DateTime = any;
 
@@ -279,6 +294,164 @@ export type Time = any;
 // ====================================================
 // Documents
 // ====================================================
+
+export type CreateTeamAdminVariables = {
+  input: CreateTeamInput;
+};
+
+export type CreateTeamAdminMutation = {
+  __typename?: "Mutation";
+
+  createTeam: CreateTeamAdminCreateTeam;
+};
+
+export type CreateTeamAdminCreateTeam = {
+  __typename?: "CreateTeamResult";
+
+  code: MutationCodeEnum;
+
+  success: boolean;
+
+  message: string;
+
+  item: Maybe<CreateTeamAdminItem>;
+};
+
+export type CreateTeamAdminItem = {
+  __typename?: "Team";
+
+  id: string;
+
+  name: string;
+
+  slug: string;
+
+  description: Maybe<string>;
+};
+
+export type UpdateTeamAdminVariables = {
+  id: string;
+  input: UpdateTeamInput;
+};
+
+export type UpdateTeamAdminMutation = {
+  __typename?: "Mutation";
+
+  updateTeam: UpdateTeamAdminUpdateTeam;
+};
+
+export type UpdateTeamAdminUpdateTeam = {
+  __typename?: "UpdateTeamResult";
+
+  code: MutationCodeEnum;
+
+  success: boolean;
+
+  message: string;
+
+  item: Maybe<UpdateTeamAdminItem>;
+};
+
+export type UpdateTeamAdminItem = {
+  __typename?: "Team";
+
+  id: string;
+
+  name: string;
+
+  slug: string;
+
+  description: Maybe<string>;
+};
+
+export type GetTeamAdminVariables = {
+  id?: Maybe<string>;
+  slug?: Maybe<string>;
+};
+
+export type GetTeamAdminQuery = {
+  __typename?: "Query";
+
+  team: Maybe<GetTeamAdminTeam>;
+};
+
+export type GetTeamAdminTeam = {
+  __typename?: "Team";
+
+  id: string;
+
+  name: string;
+
+  description: Maybe<string>;
+
+  active: Maybe<boolean>;
+
+  userPermissions: Maybe<GetTeamAdminUserPermissions[]>;
+
+  slug: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+};
+
+export type GetTeamAdminUserPermissions = {
+  __typename?: "OLTeamPerms";
+
+  user: Maybe<GetTeamAdminUser>;
+
+  permissions: string[];
+};
+
+export type GetTeamAdminUser = {
+  __typename?: "User";
+
+  id: string;
+
+  firstName: string;
+
+  lastName: string;
+
+  email: string;
+};
+
+export type GetTeamsAdminVariables = {
+  input?: Maybe<TeamsInput>;
+};
+
+export type GetTeamsAdminQuery = {
+  __typename?: "Query";
+
+  teams: GetTeamsAdminTeams;
+};
+
+export type GetTeamsAdminTeams = {
+  __typename?: "TeamsResults";
+
+  hasMore: boolean;
+
+  totalCount: number;
+
+  items: GetTeamsAdminItems[];
+};
+
+export type GetTeamsAdminItems = {
+  __typename?: "Team";
+
+  id: string;
+
+  name: string;
+
+  description: Maybe<string>;
+
+  active: Maybe<boolean>;
+
+  slug: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+};
 
 export type ConfirmLoginVariables = {
   token: string;
@@ -474,6 +647,219 @@ import gql from "graphql-tag";
 // Components
 // ====================================================
 
+export const CreateTeamAdminDocument = gql`
+  mutation createTeamAdmin($input: CreateTeamInput!) {
+    createTeam(input: $input) {
+      code
+      success
+      message
+      item {
+        id
+        name
+        slug
+        description
+      }
+    }
+  }
+`;
+export class CreateTeamAdminComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<CreateTeamAdminMutation, CreateTeamAdminVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<CreateTeamAdminMutation, CreateTeamAdminVariables>
+        mutation={CreateTeamAdminDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type CreateTeamAdminProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<CreateTeamAdminMutation, CreateTeamAdminVariables>
+> &
+  TChildProps;
+export type CreateTeamAdminMutationFn = ReactApollo.MutationFn<
+  CreateTeamAdminMutation,
+  CreateTeamAdminVariables
+>;
+export function CreateTeamAdminHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        CreateTeamAdminMutation,
+        CreateTeamAdminVariables,
+        CreateTeamAdminProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    CreateTeamAdminMutation,
+    CreateTeamAdminVariables,
+    CreateTeamAdminProps<TChildProps>
+  >(CreateTeamAdminDocument, operationOptions);
+}
+export const UpdateTeamAdminDocument = gql`
+  mutation updateTeamAdmin($id: String!, $input: UpdateTeamInput!) {
+    updateTeam(id: $id, input: $input) {
+      code
+      success
+      message
+      item {
+        id
+        name
+        slug
+        description
+      }
+    }
+  }
+`;
+export class UpdateTeamAdminComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<UpdateTeamAdminMutation, UpdateTeamAdminVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<UpdateTeamAdminMutation, UpdateTeamAdminVariables>
+        mutation={UpdateTeamAdminDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type UpdateTeamAdminProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<UpdateTeamAdminMutation, UpdateTeamAdminVariables>
+> &
+  TChildProps;
+export type UpdateTeamAdminMutationFn = ReactApollo.MutationFn<
+  UpdateTeamAdminMutation,
+  UpdateTeamAdminVariables
+>;
+export function UpdateTeamAdminHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UpdateTeamAdminMutation,
+        UpdateTeamAdminVariables,
+        UpdateTeamAdminProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UpdateTeamAdminMutation,
+    UpdateTeamAdminVariables,
+    UpdateTeamAdminProps<TChildProps>
+  >(UpdateTeamAdminDocument, operationOptions);
+}
+export const GetTeamAdminDocument = gql`
+  query getTeamAdmin($id: String, $slug: String) {
+    team(id: $id, slug: $slug) {
+      id
+      name
+      description
+      active
+      userPermissions {
+        user {
+          id
+          firstName
+          lastName
+          email
+        }
+        permissions
+      }
+      slug
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export class GetTeamAdminComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetTeamAdminQuery, GetTeamAdminVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetTeamAdminQuery, GetTeamAdminVariables>
+        query={GetTeamAdminDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetTeamAdminProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetTeamAdminQuery, GetTeamAdminVariables>
+> &
+  TChildProps;
+export function GetTeamAdminHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetTeamAdminQuery,
+        GetTeamAdminVariables,
+        GetTeamAdminProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetTeamAdminQuery,
+    GetTeamAdminVariables,
+    GetTeamAdminProps<TChildProps>
+  >(GetTeamAdminDocument, operationOptions);
+}
+export const GetTeamsAdminDocument = gql`
+  query getTeamsAdmin($input: TeamsInput) {
+    teams(input: $input) {
+      hasMore
+      totalCount
+      items {
+        id
+        name
+        description
+        active
+        slug
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export class GetTeamsAdminComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetTeamsAdminQuery, GetTeamsAdminVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetTeamsAdminQuery, GetTeamsAdminVariables>
+        query={GetTeamsAdminDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetTeamsAdminProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetTeamsAdminQuery, GetTeamsAdminVariables>
+> &
+  TChildProps;
+export function GetTeamsAdminHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetTeamsAdminQuery,
+        GetTeamsAdminVariables,
+        GetTeamsAdminProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetTeamsAdminQuery,
+    GetTeamsAdminVariables,
+    GetTeamsAdminProps<TChildProps>
+  >(GetTeamsAdminDocument, operationOptions);
+}
 export const ConfirmLoginDocument = gql`
   mutation confirmLogin($token: String!) {
     confirmLogin(token: $token) {

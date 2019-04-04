@@ -12,10 +12,6 @@ export const GlobalStyle = css`
         -moz-box-sizing: border-box;
         -o-box-sizing: border-box;
         box-sizing: border-box;    
-        -webkit-transition: .25s ease-in-out;
-        -moz-transition: .25s ease-in-out;
-        -o-transition: .25s ease-in-out;
-        transition: .25s ease-in-out;
         margin: 0;
         padding: 0;
         -webkit-text-size-adjust: none;

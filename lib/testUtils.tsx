@@ -42,10 +42,12 @@ const createWrapper = (mocks, Component) => {
     return wrapper;
 };
 
-const fakeCurrentUser = new CurrentUser(fakeUser())
+const fakeCurrentUser = CurrentUser({currentUser: {me: fakeUser()}})
+
+
 
 export {
     createWrapper,
     fakeUser,
-    fakeCurrentUser
+    fakeCurrentUser,
 }

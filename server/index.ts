@@ -1,5 +1,6 @@
 import * as express from "express";
 import * as next from "next";
+import { AdminPaths } from '../paths';
 
 const PORT = process.env.PORT || 5000;
 
@@ -11,7 +12,11 @@ app
   .prepare()
   .then(() => {
     const server = express();
-
+    server.get(`${AdminPaths.teams.detail}/:teamSlug`, (req, res) => {
+      const actualPage = '/a/teams/detail';
+      const queryParams = { teamSlug: req.params.teamSlug};
+      app.render(req, res, actualPage, queryParams);
+    })
     server.get("*", (req, res) => {
       return handle(req, res);
     });

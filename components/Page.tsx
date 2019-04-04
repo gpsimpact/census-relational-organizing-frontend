@@ -1,27 +1,28 @@
 import React from "react";
 import { NavBar } from './Navigation/Navbar';
-import styled from '../lib/styled';
+import { CurrentUserInterface } from '../interfaces/CurrentUserInterface';
+import { PageContainer, PageContent, Footer, PageContainerInner } from './Util/Layout/PageComponents';
+import { SideNav } from "./Navigation/SideNav";
 
 
-const Footer = styled('footer')`
-    padding: 75px 0px;
-    background-color: ${props => props.theme.colors.black};
-    color: ${props => props.theme.colors.white};
-    text-align: center;
-    margin-top: 75px;
-`;
+interface PageInterface {
+    currentUser: CurrentUserInterface;
+    navComponent?: any;
+    crudNavComponent?: any;
+}
 
-const PageContent = styled('div')`
-    min-height: 55vh;
-`;
-export default class Page extends React.Component<any> {
+export default class Page extends React.Component<PageInterface> {
     render(){
         return(
-            <>
-                <NavBar currentUser={this.props.currentUser}/>
-                
+            <PageContainer>
+                <NavBar currentUser={this.props.currentUser} disableSideNav={this.props.navComponent ? false : true}/>
+
                 <PageContent>
-                     {this.props.children}
+                    {this.props.navComponent && <SideNav navComponent={this.props.navComponent} />}
+                     <PageContainerInner disableSideNav={this.props.navComponent ? false : true}>
+                            {this.props.crudNavComponent && this.props.crudNavComponent}
+                            {this.props.children}
+                     </PageContainerInner>
                 </PageContent>
 
                 <Footer>
@@ -31,7 +32,7 @@ export default class Page extends React.Component<any> {
                     <p> Disclaimer? </p>
                 </Footer>
 
-            </>
+            </PageContainer>
         )
     }
 }
