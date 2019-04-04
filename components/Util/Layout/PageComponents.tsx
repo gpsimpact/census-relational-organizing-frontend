@@ -28,11 +28,14 @@ const StyledPageContainer = styled('div')<{sideNavOpen:boolean}>`
     min-height: 100%;
     width: 100%;
     left: 0%;
-    padding: 20px 20px 50px;
+    padding-bottom: 50px;
     position: relative;
     border-top: 1px solid ${props => props.theme.colors.g3};
     -ms-overflow-style: scrollbar;
-
+    -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
 ${({sideNavOpen}) => sideNavOpen && `
      width: calc(100% - 200px);
      left: 200px;

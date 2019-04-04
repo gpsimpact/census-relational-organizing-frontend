@@ -7,6 +7,7 @@ const BoxContainer = styled.div`
     width: 100%;
     border: 1px solid ${props => props.theme.colors.g2};
     box-shadow: 0px 2px 5px 0px ${props => props.theme.colors.g3};
+    margin-bottom: ${props => props.theme.spacing[3]};
 `;
 export const Box = (props) => (
     <BoxContainer>

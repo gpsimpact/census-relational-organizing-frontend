@@ -8,7 +8,7 @@ import { submitMutation, destructResponse } from "../../lib/apolloHelpers";
 import { FormError } from '../Util/Forms/FormError';
 import { FormSuccess } from '../Util/Forms/FormSuccess';
 import { LoadingBar } from '../Util/Loading/LoadingBar';
-import { CURRENT_USER_QUERY } from "../../graphql/user/queries/me";
+import { CURRENT_USER_QUERY } from "../../graphql/server/user/queries/me";
 
 export default ({currentUser}) => {
     return(

@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as next from "next";
-import { AdminTeamPath } from '../paths';
+import { AdminPaths } from '../paths';
 
 const PORT = process.env.PORT || 5000;
 
@@ -12,8 +12,8 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    server.get(`${AdminTeamPath}:teamSlug`, (req, res) => {
-      const actualPage = '/a/dash/teams/detail';
+    server.get(`${AdminPaths.teams.detail}/:teamSlug`, (req, res) => {
+      const actualPage = '/a/teams/detail';
       const queryParams = { teamSlug: req.params.teamSlug};
       app.render(req, res, actualPage, queryParams);
     })

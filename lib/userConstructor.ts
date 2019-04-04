@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { CurrentUserInterface } from '../interfaces/CurrentUserInterface';
 
-export const CurrentUser = (props) => {
+export const CurrentUser = (props:any) => {
     if(props.currentUser && props.currentUser.me){
         return new UserObject(props.currentUser.me);
     }

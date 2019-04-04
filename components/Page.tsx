@@ -8,6 +8,7 @@ import { SideNav } from "./Navigation/SideNav";
 interface PageInterface {
     currentUser: CurrentUserInterface;
     navComponent?: any;
+    crudNavComponent?: any;
 }
 
 export default class Page extends React.Component<PageInterface> {
@@ -18,7 +19,8 @@ export default class Page extends React.Component<PageInterface> {
 
                 <PageContent>
                     {this.props.navComponent && <SideNav navComponent={this.props.navComponent} />}
-                     <PageContainerInner>
+                     <PageContainerInner disableSideNav={this.props.navComponent ? false : true}>
+                            {this.props.crudNavComponent && this.props.crudNavComponent}
                             {this.props.children}
                      </PageContainerInner>
                 </PageContent>

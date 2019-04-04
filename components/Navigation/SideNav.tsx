@@ -12,6 +12,10 @@ const SideNavContainer = styled('div')<{sideNavOpen: boolean}>`
     position: absolute;
     width: 200px;
     left: -200px;
+    -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
     background: ${props => props.theme.colors.green};
 
     ${({sideNavOpen}) => sideNavOpen && `left: 0px;`}
