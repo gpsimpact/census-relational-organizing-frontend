@@ -12,7 +12,8 @@
     "refresh": "bash cmds/refresh.sh",
     "grab": "bash cmds/grab.sh",
     "branch": "bash cmds/branch.sh",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "yarn build",
+    "prestart": "yarn build"
   },
   "dependencies": {
     "@types/base-64": "^0.1.3",
