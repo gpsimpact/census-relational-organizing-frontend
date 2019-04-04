@@ -5,7 +5,7 @@ import Page from '../../../components/Page';
 import { AdminDashNav } from '../../../components/Navigation/Admin/AdminDashNav';
 import { AdminTeamNav } from '../../../components/Navigation/Admin/TeamNav';
 import { Box } from '../../../components/Util/Layout/Box';
-import { MainTitle, MainTitleSpan, SubTitle, PageTitle } from '../../../components/Util/Typography/Titles';
+import { PageTitle } from '../../../components/Util/Typography/Titles';
 import { GetTeamAdminComponent } from '../../../generated/apolloComponents';
 import { LoadingBar } from '../../../components/Util/Loading/LoadingBar';
 import { ErrorMessage } from '../../../components/Util/Loading/ErrorMessage';

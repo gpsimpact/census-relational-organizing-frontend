@@ -1,7 +1,7 @@
 import wait from 'waait';
 import { createWrapper, fakeUser } from '../../../lib/testUtils';
 import LoginForm from '../LoginForm';
-import { LOGIN_MUTATION } from '../../../graphql/user/mutations/login';
+import { LOGIN_MUTATION } from '../../../graphql/server/user/mutations/login';
 
 import Router from 'next/router' 
 const mockedRouter = { push: () => {}, prefetch: () => {} } 
