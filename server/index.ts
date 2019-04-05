@@ -12,6 +12,19 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
+    if(process.env.NODE_ENV === "production"){
+      server.enable('trust proxy');
+      server.use((req, res, next) => {
+          if (req.secure) {
+              next();
+          } else {
+              res.redirect('https://' + req.headers.host + req.url);
+          }
+      });
+    }
+
+    
     server.get(`${AdminPaths.teams.detail}/:teamSlug`, (req, res) => {
       const actualPage = '/a/teams/detail';
       const queryParams = { teamSlug: req.params.teamSlug};
