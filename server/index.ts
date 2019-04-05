@@ -13,8 +13,8 @@ app
   .then(() => {
     const server = express();
 
+    server.enable('trust proxy');
     if(process.env.NODE_ENV === "production"){
-      server.enable('trust proxy');
       server.use((req, res, next) => {
           if (req.secure) {
               next();
@@ -24,7 +24,7 @@ app
       });
     }
 
-    
+
     server.get(`${AdminPaths.teams.detail}/:teamSlug`, (req, res) => {
       const actualPage = '/a/teams/detail';
       const queryParams = { teamSlug: req.params.teamSlug};
