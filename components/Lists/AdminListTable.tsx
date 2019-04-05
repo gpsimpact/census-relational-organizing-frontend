@@ -73,7 +73,7 @@ export class AdminListTable extends React.Component<AdminTableProps> {
             <AdminTableContainer>
                 {
                     items.map((item, idx) => {
-                        const editPath = `${AdminPaths.teams.detail}/${item[pk]}`;
+                        const editPath = `${path}/${item[pk]}`;
                         return(
                            
                             <AdminList key={idx}>

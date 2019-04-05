@@ -77,7 +77,7 @@ class AdminIndexTeam extends React.Component<any> {
                                                     ['name', 'description']
                                                 }
                                                 itemMinWidth="30%"
-                                                path={AdminPaths.teams.index}
+                                                path={AdminPaths.teams.detail}
                                                 pk='slug'
                                             />
                                         }
