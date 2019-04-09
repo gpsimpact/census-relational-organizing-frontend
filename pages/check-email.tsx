@@ -4,6 +4,7 @@ import getCurrentUser from '../lib/currentUser';
 import { CurrentUser } from '../lib/userConstructor';
 import { MainTitle } from '../components/Util/Typography/Titles';
 import { Box } from '../components/Util/Layout/Box';
+import { VertPadTop } from '../components/Util/Layout/Separators';
 
 class CheckEmail extends React.Component<any> {
     static async getInitialProps({
@@ -23,6 +24,7 @@ class CheckEmail extends React.Component<any> {
             <Page
                 currentUser={currentUser}
             >
+            <VertPadTop/>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6">

@@ -5,6 +5,7 @@ import { CurrentUser } from '../lib/userConstructor';
 import { MainTitle } from '../components/Util/Typography/Titles';
 import { Box } from '../components/Util/Layout/Box';
 import UpdateProfileForm from '../components/Auth/UpdateProfileForm';
+import { VertPadTop } from '../components/Util/Layout/Separators';
 
 class Profile extends React.Component<any> {
 
@@ -30,6 +31,8 @@ class Profile extends React.Component<any> {
             <Page
                 currentUser={currentUser}
             >
+            <VertPadTop/>
+
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6">

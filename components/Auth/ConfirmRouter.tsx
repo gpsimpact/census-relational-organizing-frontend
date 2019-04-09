@@ -1,33 +1,25 @@
 import React from 'react';
 import  Router  from 'next/router';
 import {LoadingBar} from '../Util/Loading/LoadingBar';
+import { VertPadTop } from '../Util/Layout/Separators';
 
 
-export default class ConfirmRouter extends React.Component<any> {
+interface ConfirmRouterInterface {
+    token: string;
+    routeResponse: any;
+    nextPage: string;
+    mutation: any;
+}
+export default class ConfirmRouter extends React.Component<ConfirmRouterInterface> {
     async componentDidMount() {
-        try {
-            const confirmRes = await this.props.mutation({variables:{token:this.props.token}});
-            if(confirmRes && confirmRes.data && confirmRes.data.confirmLogin && confirmRes.data.confirmLogin.success){
-                if(this.props.nextPage){
-                    //@ts-ignore
-                    Router.push(this.props.nextPage);
-                }
-                //@ts-ignore
-                Router.push('/');
-            } else {
-                //@ts-ignore
-                Router.push('/uh-oh');
-            }
-        }
-        catch (e){
-            //@ts-ignore
-            Router.push('/uh-oh');
-        }
-      
+        let confirmRes = await this.props.mutation({variables:{token:this.props.token}});
+        console.log(confirmRes);
+
     }
 
     render(){
         return (
+            
             <LoadingBar active={true}/>
         )
     }

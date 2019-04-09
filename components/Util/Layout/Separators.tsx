@@ -6,3 +6,9 @@ export const VertBarSeparator = styled('div')`
     width: 5px;
     background-color: ${props => props.theme.colors.black};
 `;
+
+
+export const VertPadTop = styled('div')`
+    width: 100%;
+    height: ${props => props.theme.spacing[4]};
+`;

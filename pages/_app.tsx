@@ -39,7 +39,7 @@ class MyApp extends App<any> {
             <Normalize/>
             <AddGlobals/>
             <Meta/>
-            <Component {...pageProps} />
+            <Component {...pageProps}/>
             </>
           </ThemeProvider>
         </ApolloProvider>

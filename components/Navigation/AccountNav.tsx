@@ -2,7 +2,7 @@
 import * as React from "react";
 import styled from '../../lib/styled';
 import { NavLI, NavA } from '../Util/Typography/Navs';
-import { LogoutComponent } from '../../generated/apolloComponents';
+import Logout from "../Auth/Logout";
 import { CURRENT_USER_QUERY } from '../../graphql/server/user/queries/me';
 import  Router  from 'next/router';
 import Link from 'next/link';
@@ -47,6 +47,10 @@ export class AccountNav extends React.Component<any> {
         this.setState({accountNavOpen: !this.state.accountNavOpen})
     }
 
+    logout(){
+        client
+    }
+
     render(){
         return (
             
@@ -56,19 +60,11 @@ export class AccountNav extends React.Component<any> {
                     <AccountDropDownInner accountNavOpen={this.state.accountNavOpen}>
                         <NavLI>
                              <Link href="/profile"><NavA>Profile</NavA></Link>
-
                          </NavLI>
 
-                        <LogoutComponent
-                                refetchQueries={[{query: CURRENT_USER_QUERY}]}
-                            >
-                            {(mutate) => {
-                                return(
-                                    // @ts-ignore
-                                    <NavLI onClick={async () => {await mutate(); Router.push('/login');}}><NavA>Logout</NavA></NavLI>
-                                )
-                            }}
-                        </LogoutComponent> 
+                         <NavLI><NavA><Logout/></NavA></NavLI>
+
+                         
                     </AccountDropDownInner>
                 
                 </AccountNavDropDown>
