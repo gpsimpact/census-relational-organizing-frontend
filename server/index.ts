@@ -21,13 +21,6 @@ app
       app.render(req, res, actualPage, queryParams);
     })
     server.get("*", (req, res) => {
-      console.log('REQUESTTTTTTTTTT\n\n')
-      // console.log(req.rawHeaders);
-      // console.log(req.headers);
-      console.log(res);
-      console.log('RESPONSE\n\n\n\n\n\n')
-      console.log('REQUESTTTTTTTTTT\n\n\n\n\n\n')
-
       return handle(req, res);
     });
 

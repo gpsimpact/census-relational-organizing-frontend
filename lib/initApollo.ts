@@ -51,20 +51,6 @@ import { ApolloLink } from "apollo-link";
       };
     });
   
-    // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
-    
-    // const httpLink = createHttpLink({
-    //   uri: process.env.GRAPHQL_API_ENDPOINT,
-    //   credentials: 'same-origin'
-    // })
-  
-    // return new ApolloClient({
-    //   connectToDevTools: process.browser,
-    //   ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    //   link: authLink.concat(httpLink),
-    //   cache: new InMemoryCache().restore(initialState || {})
-    // })
-    
     return new ApolloClient({
       connectToDevTools: isBrowser,
       ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
