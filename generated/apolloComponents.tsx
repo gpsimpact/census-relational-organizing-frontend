@@ -111,7 +111,7 @@ export interface TeamsInput {
 
   offset?: Maybe<number>;
 
-  sort?: Maybe<TeamsWhere>;
+  sort?: Maybe<TeamsSort>;
 }
 
 export interface TeamsWhere {
@@ -144,6 +144,16 @@ export interface TeamPermissionsWhere {
   teamId?: Maybe<StringWhere>;
 
   permission?: Maybe<StringWhere>;
+}
+
+export interface TeamsSort {
+  id?: Maybe<SortDirection>;
+
+  name?: Maybe<SortDirection>;
+
+  createdAt?: Maybe<SortDirection>;
+
+  updatedAt?: Maybe<SortDirection>;
 }
 
 export interface CreateUserInput {
@@ -224,6 +234,14 @@ export interface GrantTeamPermissionInput {
   permission: ObjectLevelPermissionEnum;
 }
 
+export interface RemoveTeamPermissionInput {
+  teamId: string;
+
+  userId: string;
+
+  permission: ObjectLevelPermissionEnum;
+}
+
 export interface DateRange {
   startDate: Date;
 
@@ -242,16 +260,6 @@ export interface StringRange {
   start: string;
 
   end: string;
-}
-
-export interface TeamsSort {
-  id?: Maybe<SortDirection>;
-
-  name?: Maybe<SortDirection>;
-
-  createdAt?: Maybe<SortDirection>;
-
-  updatedAt?: Maybe<SortDirection>;
 }
 
 export enum GlobalPermissionsEnum {
@@ -472,17 +480,7 @@ export type ConfirmLoginConfirmLogin = {
 
   message: string;
 
-  item: Maybe<ConfirmLoginItem>;
-};
-
-export type ConfirmLoginItem = {
-  __typename?: "User";
-
-  id: string;
-
-  firstName: string;
-
-  email: string;
+  token: Maybe<string>;
 };
 
 export type RequestLoginVariables = {
@@ -506,24 +504,6 @@ export type RequestLoginRequestLogin = {
   message: string;
 
   securityCode: Maybe<string>;
-};
-
-export type LogoutVariables = {};
-
-export type LogoutMutation = {
-  __typename?: "Mutation";
-
-  logout: LogoutLogout;
-};
-
-export type LogoutLogout = {
-  __typename?: "LogoutResult";
-
-  code: MutationCodeEnum;
-
-  success: boolean;
-
-  message: string;
 };
 
 export type RegisterVariables = {
@@ -866,11 +846,7 @@ export const ConfirmLoginDocument = gql`
       code
       success
       message
-      item {
-        id
-        firstName
-        email
-      }
+      token
     }
   }
 `;
@@ -961,52 +937,6 @@ export function RequestLoginHOC<TProps, TChildProps = any>(
     RequestLoginVariables,
     RequestLoginProps<TChildProps>
   >(RequestLoginDocument, operationOptions);
-}
-export const LogoutDocument = gql`
-  mutation logout {
-    logout {
-      code
-      success
-      message
-    }
-  }
-`;
-export class LogoutComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<LogoutMutation, LogoutVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<LogoutMutation, LogoutVariables>
-        mutation={LogoutDocument}
-        {...(this as any)["props"] as any}
-      />
-    );
-  }
-}
-export type LogoutProps<TChildProps = any> = Partial<
-  ReactApollo.MutateProps<LogoutMutation, LogoutVariables>
-> &
-  TChildProps;
-export type LogoutMutationFn = ReactApollo.MutationFn<
-  LogoutMutation,
-  LogoutVariables
->;
-export function LogoutHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        LogoutMutation,
-        LogoutVariables,
-        LogoutProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    LogoutMutation,
-    LogoutVariables,
-    LogoutProps<TChildProps>
-  >(LogoutDocument, operationOptions);
 }
 export const RegisterDocument = gql`
   mutation register($input: RegisterInput!) {

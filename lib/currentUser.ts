@@ -8,7 +8,9 @@ export default apolloClient =>
     .then(({ data }) => {
       return { currentUser: data }
     })
-    .catch(() => {
+    .catch((e) => {
       // Fail gracefully
+      console.log('failing')
+      console.log(e)
       return { currentUser: {} }
     })

@@ -7,11 +7,7 @@ mutation confirmLogin($token: String!) {
     code
     success
     message
-    item {
-      id
-      firstName
-      email
-    }
+    token
   }
 }
 `;

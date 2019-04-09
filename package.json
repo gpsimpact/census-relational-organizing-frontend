@@ -6,6 +6,7 @@
     "test": "NODE_ENV=test jest",
     "test_watch": "NODE_ENV=test jest --watch",
     "dev": "nodemon",
+    "devnext": "next -p 5000",
     "build": "rimraf /dist && next build && ./node_modules/typescript/bin/tsc --project tsconfig.server.json",
     "start": "NODE_ENV=production node dist/server/index.js",
     "generate": "gql-gen --config codegen.yml",

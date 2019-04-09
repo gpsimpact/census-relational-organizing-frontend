@@ -14,6 +14,8 @@ export const AuthedNav = (props:AuthedNavInterface) => {
                 {currentUser.hasGlobalPermission('ADMIN') && <NavLI><Link href={AdminPaths.index}><NavA>Admin</NavA></Link></NavLI>}
 
                 <AccountNav currentUser={currentUser}/>
+
+            
         </NavUL>
     )
 }

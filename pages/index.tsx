@@ -48,6 +48,7 @@ class Index extends React.Component<any> {
     static async getInitialProps({
         ...ctx
     }) {
+        console.log(ctx);
         const { currentUser } = await getCurrentUser(ctx.apolloClient);
         let nextPage: string;
 
