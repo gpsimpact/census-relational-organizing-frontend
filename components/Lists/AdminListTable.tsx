@@ -62,29 +62,31 @@ interface AdminTableProps {
     items: any;
     columns: string[];
     itemMinWidth?: string;
-    path?: string;
+    editPath?: string;
+    dashPath?: string;
     pk?: string;
 }
 
 export class AdminListTable extends React.Component<AdminTableProps> {
     render(){
-        const { items, columns, itemMinWidth, path, pk } = this.props;
+        const { items, columns, itemMinWidth, editPath, dashPath, pk } = this.props;
         return(
             <AdminTableContainer>
                 {
                     items.map((item, idx) => {
-                        const editPath = `${path}/${item[pk]}`;
+                        const constructedEditPath = `${editPath}/${item[pk]}`;
+                        const constructedDashPath = `${dashPath}/${item[pk]}`;
                         return(
                            
                             <AdminList key={idx}>
                                 <AdminListDetailLI>
-                                    <Link href={editPath}>
+                                    <Link href={constructedEditPath}>
                                         <a><i className="far fa-edit"></i></a>
                                     </Link>
                                 </AdminListDetailLI>
                                 <AdminListDetailLI>
 
-                                    <Link href={''}>
+                                    <Link href={constructedDashPath}>
                                         <a><i className="fas fa-tachometer-alt"></i></a>
                                     </Link>
                                 </AdminListDetailLI>

@@ -33,6 +33,7 @@ class AdminDetailTeam extends React.Component<any> {
                             }
                         }>
                             {({data, loading, error}) => {
+                                console.log(data);
                                 if(loading) return(<LoadingBar active={loading}/>)
                                 if(error) return( <ErrorMessage error={error}/>)
                                 return(

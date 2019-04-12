@@ -11,3 +11,7 @@ export const AdminPaths = {
         detail: '/a/users/detail'
     }
 }
+
+export const TeamPaths = {
+    index: '/t'
+}
