@@ -7,6 +7,7 @@ import { PageTitle } from '../../components/Util/Typography/Titles';
 import { Box } from '../../components/Util/Layout/Box';
 import { LoadingBar } from '../../components/Util/Loading/LoadingBar';
 import { VertPadTop } from '../../components/Util/Layout/Separators';
+import { AdminSummaryCount } from '../../components/Sums/Admin/AdminSummaryCount';
 
 class AdminDash extends React.Component<any> {
 
@@ -22,7 +23,11 @@ class AdminDash extends React.Component<any> {
                                 <Box>
                                     <PageTitle>Admin</PageTitle>
                                     <LoadingBar active={false}/>
-                                    <p>Reserved for admin level statistics </p>
+                                    <div className="row">
+                                        <div className="col-md-3">
+                                            <AdminSummaryCount/>
+                                        </div>
+                                    </div>
                                 </Box>
                                 </div>
                             </div>

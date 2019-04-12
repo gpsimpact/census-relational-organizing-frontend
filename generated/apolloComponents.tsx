@@ -372,6 +372,14 @@ export type UpdateTeamAdminItem = {
   description: Maybe<string>;
 };
 
+export type AdminGetTeamCountsVariables = {};
+
+export type AdminGetTeamCountsQuery = {
+  __typename?: "Query";
+
+  summaryCountTeams: number;
+};
+
 export type GetTeamAdminVariables = {
   id?: Maybe<string>;
   slug?: Maybe<string>;
@@ -734,6 +742,46 @@ export function UpdateTeamAdminHOC<TProps, TChildProps = any>(
     UpdateTeamAdminVariables,
     UpdateTeamAdminProps<TChildProps>
   >(UpdateTeamAdminDocument, operationOptions);
+}
+export const AdminGetTeamCountsDocument = gql`
+  query adminGetTeamCounts {
+    summaryCountTeams
+  }
+`;
+export class AdminGetTeamCountsComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<AdminGetTeamCountsQuery, AdminGetTeamCountsVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<AdminGetTeamCountsQuery, AdminGetTeamCountsVariables>
+        query={AdminGetTeamCountsDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type AdminGetTeamCountsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<AdminGetTeamCountsQuery, AdminGetTeamCountsVariables>
+> &
+  TChildProps;
+export function AdminGetTeamCountsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        AdminGetTeamCountsQuery,
+        AdminGetTeamCountsVariables,
+        AdminGetTeamCountsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    AdminGetTeamCountsQuery,
+    AdminGetTeamCountsVariables,
+    AdminGetTeamCountsProps<TChildProps>
+  >(AdminGetTeamCountsDocument, operationOptions);
 }
 export const GetTeamAdminDocument = gql`
   query getTeamAdmin($id: String, $slug: String) {

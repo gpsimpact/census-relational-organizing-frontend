@@ -9,7 +9,7 @@ import { ErrorMessage } from '../../../components/Util/Loading/ErrorMessage';
 import { GetTeamsAdminComponent } from '../../../generated/apolloComponents';
 import { Box } from '../../../components/Util/Layout/Box';
 import { PageTitle } from '../../../components/Util/Typography/Titles';
-import { AdminPaths } from '../../../paths/index';
+import { AdminPaths, TeamPaths } from '../../../paths/index';
 import { Pagination } from '../../../components/Lists/Pagination';
 import { LoadingBar } from '../../../components/Util/Loading/LoadingBar';
 import { AdminListTable } from '../../../components/Lists/AdminListTable';
@@ -26,7 +26,6 @@ class AdminIndexTeam extends React.Component<any> {
                 navComponent={<AdminDashNav currentUser={currentUser}/>}
                 crudNavComponent={<AdminTeamNav currentUser={currentUser}/>}
                 >
-                
                 <GetTeamsAdminComponent variables={
                         {
                             input: {
@@ -65,6 +64,7 @@ class AdminIndexTeam extends React.Component<any> {
                                                     currentPage={currentQuery.pageNumber}
                                                     perPage={currentQuery.perPage}
                                                     path={AdminPaths.teams.index}
+                                                   
                                                 />}
                                             </div>
                                         </div>
@@ -77,7 +77,8 @@ class AdminIndexTeam extends React.Component<any> {
                                                     ['name', 'description']
                                                 }
                                                 itemMinWidth="30%"
-                                                path={AdminPaths.teams.detail}
+                                                editPath={AdminPaths.teams.detail}
+                                                dashPath={TeamPaths.index}
                                                 pk='slug'
                                             />
                                         }
@@ -88,6 +89,8 @@ class AdminIndexTeam extends React.Component<any> {
                                                     currentPage={currentQuery.pageNumber}
                                                     perPage={currentQuery.perPage}
                                                     path={AdminPaths.teams.index}
+
+
                                                 />}
                                     </Box>
                                 </div>
@@ -95,15 +98,7 @@ class AdminIndexTeam extends React.Component<any> {
                         </div>
                     )
                 }}
-                
-                
-                
-                
                 </GetTeamsAdminComponent>
-
-
-
-                
             </Page>
         )
     }
