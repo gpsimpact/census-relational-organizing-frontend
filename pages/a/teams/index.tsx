@@ -19,7 +19,6 @@ class AdminIndexTeam extends React.Component<any> {
     render(){
         let currentUser = CurrentUser(this.props);
         let currentQuery = CurrentQuery(this.props);
-        console.log(currentQuery);
         return(
             <Page
                 currentUser={currentUser}

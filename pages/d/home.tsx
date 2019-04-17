@@ -7,14 +7,14 @@ import { LoadingBar } from '../../components/Util/Loading/LoadingBar';
 import { VertPadTop } from '../../components/Util/Layout/Separators';
 import { AdminSummaryCount } from '../../components/Sums/Admin/AdminSummaryCount';
 import getCurrentUser from '../../lib/currentUser';
+import { withTeamAuth } from '../../components/Auth/withTeamAuth';
 
 class TeamDash extends React.Component<any>{
     static async getInitialProps({
         ...ctx
     }) {
-        console.log(ctx);
         const { currentUser } = await getCurrentUser(ctx.apolloClient);
-        let nextPage: string;
+        let nextPage: string = null;
 
       
         return { currentUser, nextPage };
@@ -24,7 +24,9 @@ class TeamDash extends React.Component<any>{
     render(){
         let currentUser = CurrentUser(this.props);
         return(
-            <Page currentUser={currentUser}>
+            <Page currentUser={currentUser}
+            
+            >
                 <VertPadTop/>
 
                 <div className="container">
@@ -44,4 +46,4 @@ class TeamDash extends React.Component<any>{
     }
 }
 
-export default TeamDash;
+export default withTeamAuth(TeamDash, {team:['TEAM'], global:['ADMIN']});

@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as next from "next";
-import { AdminPaths, TeamPaths } from '../paths';
+import { AdminPaths, TeamPaths, PublicPaths } from '../paths';
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,7 +22,13 @@ app
     })
 
     server.get(`${TeamPaths.index}/:teamSlug`, (req, res) => {
-      const actualPage = '/t/home';
+      const actualPage = '/d/home';
+      const queryParams = { teamSlug: req.params.teamSlug };
+      app.render(req, res, actualPage, queryParams);
+    })
+
+    server.get(`${PublicPaths.team}/:teamSlug`, (req, res) => {
+      const actualPage = '/teams/team';
       const queryParams = { teamSlug: req.params.teamSlug };
       app.render(req, res, actualPage, queryParams);
     })
@@ -31,7 +37,7 @@ app
       return handle(req, res);
     });
 
-    server.listen(PORT, err => {
+    server.listen(PORT, (err: any) => {
       if (err) throw err;
       console.log(`> Ready on http://localhost:${PORT}`);
     });
