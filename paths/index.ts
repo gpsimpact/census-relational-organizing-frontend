@@ -13,5 +13,10 @@ export const AdminPaths = {
 }
 
 export const TeamPaths = {
-    index: '/t'
+    index: '/d'
+}
+
+export const PublicPaths = {
+    team: '/team',
+    teams: '/teams'
 }

@@ -469,6 +469,44 @@ export type GetTeamsAdminItems = {
   updatedAt: DateTime;
 };
 
+export type GetTeamsPublicVariables = {
+  input?: Maybe<TeamsInput>;
+};
+
+export type GetTeamsPublicQuery = {
+  __typename?: "Query";
+
+  teams: GetTeamsPublicTeams;
+};
+
+export type GetTeamsPublicTeams = {
+  __typename?: "TeamsResults";
+
+  hasMore: boolean;
+
+  totalCount: number;
+
+  items: GetTeamsPublicItems[];
+};
+
+export type GetTeamsPublicItems = {
+  __typename?: "Team";
+
+  id: string;
+
+  name: string;
+
+  description: Maybe<string>;
+
+  active: Maybe<boolean>;
+
+  slug: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+};
+
 export type ConfirmLoginVariables = {
   token: string;
 };
@@ -887,6 +925,56 @@ export function GetTeamsAdminHOC<TProps, TChildProps = any>(
     GetTeamsAdminVariables,
     GetTeamsAdminProps<TChildProps>
   >(GetTeamsAdminDocument, operationOptions);
+}
+export const GetTeamsPublicDocument = gql`
+  query getTeamsPublic($input: TeamsInput) {
+    teams(input: $input) {
+      hasMore
+      totalCount
+      items {
+        id
+        name
+        description
+        active
+        slug
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export class GetTeamsPublicComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetTeamsPublicQuery, GetTeamsPublicVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetTeamsPublicQuery, GetTeamsPublicVariables>
+        query={GetTeamsPublicDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetTeamsPublicProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetTeamsPublicQuery, GetTeamsPublicVariables>
+> &
+  TChildProps;
+export function GetTeamsPublicHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetTeamsPublicQuery,
+        GetTeamsPublicVariables,
+        GetTeamsPublicProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetTeamsPublicQuery,
+    GetTeamsPublicVariables,
+    GetTeamsPublicProps<TChildProps>
+  >(GetTeamsPublicDocument, operationOptions);
 }
 export const ConfirmLoginDocument = gql`
   mutation confirmLogin($token: String!) {

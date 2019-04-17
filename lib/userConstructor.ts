@@ -49,6 +49,8 @@ export class UserObject implements CurrentUserInterface {
         if(teamPerms && teamPerms.permissions){
             permArray = teamPerms.permissions;
         }
+        console.log('TRUE?')
+        console.log(_.includes(permArray, perm));
         return _.includes(permArray, perm)
     }
 
