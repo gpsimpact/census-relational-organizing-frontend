@@ -44,7 +44,7 @@ export class AuthedHome extends React.Component<AuthedHomeInterface>{
     filterList = (e) => {
         let perms:any = this.state.originalPerms;
         let filteredPerms:any = [];
-        _.filter(perms, (perm) => {
+        _.filter(perms, (perm, idx) => {
             let name = perm.team.name.toLowerCase();
             let comp = e.target.value.toLowerCase();
             if(name.indexOf(comp) !== -1){

@@ -13,7 +13,9 @@ import { AdminPaths, TeamPaths } from '../../../paths/index';
 import { Pagination } from '../../../components/Lists/Pagination';
 import { LoadingBar } from '../../../components/Util/Loading/LoadingBar';
 import { AdminListTable } from '../../../components/Lists/AdminListTable';
-
+import { FilterForm } from "../../../components/Util/Filters/FilterForm";
+import { routeResponse } from '../../../lib/routeResponse';
+import { TeamsWhere,TeamsSort } from '../../../filters/TeamFilters';
 
 class AdminIndexTeam extends React.Component<any> {
     render(){
@@ -69,6 +71,13 @@ class AdminIndexTeam extends React.Component<any> {
                                         </div>
 
                                         <LoadingBar active={loading}/>
+                                        <FilterForm 
+                                                routeResponse={routeResponse} 
+                                                primaryFilters={TeamsWhere}
+                                                sortFilters={TeamsSort}
+                                                path={AdminPaths.teams.index}
+                                                currentQuery={currentQuery}
+                                            />
                                         {
                                             data && data.teams && <AdminListTable
                                                 items={data.teams.items}

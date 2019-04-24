@@ -9,10 +9,7 @@ export const GET_TEAMS_PUBLIC_QUERY = gql`
                 id
                 name
                 description
-                active
                 slug
-                createdAt
-                updatedAt
             }
         }
     }

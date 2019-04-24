@@ -224,6 +224,8 @@ export interface RegisterInput {
   zip5: string;
 
   phone: string;
+
+  teamId?: Maybe<string>;
 }
 
 export interface GrantTeamPermissionInput {
@@ -240,6 +242,20 @@ export interface RemoveTeamPermissionInput {
   userId: string;
 
   permission: ObjectLevelPermissionEnum;
+}
+
+export interface WriteValuesInput {
+  data: WriteValuesDataPoint[];
+}
+
+export interface WriteValuesDataPoint {
+  fieldId: string;
+
+  value: string;
+
+  userId: string;
+
+  targetId: string;
 }
 
 export interface DateRange {
@@ -498,13 +514,7 @@ export type GetTeamsPublicItems = {
 
   description: Maybe<string>;
 
-  active: Maybe<boolean>;
-
   slug: string;
-
-  createdAt: DateTime;
-
-  updatedAt: DateTime;
 };
 
 export type ConfirmLoginVariables = {
@@ -935,10 +945,7 @@ export const GetTeamsPublicDocument = gql`
         id
         name
         description
-        active
         slug
-        createdAt
-        updatedAt
       }
     }
   }
