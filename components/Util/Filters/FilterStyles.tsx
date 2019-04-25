@@ -28,15 +28,18 @@ display: inline-block;
   color: ${props => props.theme.colors.red};  
   cursor: pointer;
   margin: 10px 5px;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  margin-left: 20px;
 `;
 
 export const AddButton = styled('span')`
 display: inline-block;
-
+  text-transform: uppercase;
   color: ${props => props.theme.colors.green};  
   cursor: pointer;
   margin: 10px 5px;
-  font-size: 2rem;
+  font-weight: bold;
+      font-size: 1.2rem;
+
 
 `;

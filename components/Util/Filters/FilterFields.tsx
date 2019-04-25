@@ -48,7 +48,7 @@ export const FilterFields = ({ fieldVals, idx, name, primaryFilters, parentHelpe
                     </div>
   
                   <div className="col-md-2 justify-content-end">
-                      <AddButton onClick={() => subArrayHelpers.push({key:"", op:"", val:""})}><i className="fas fa-plus-circle"></i></AddButton>
+                      <AddButton onClick={() => subArrayHelpers.push({key:"", op:"", val:""})}>And <i className="fas fa-plus-circle"></i></AddButton>
                      
                       {
                         filterVals.length > 1

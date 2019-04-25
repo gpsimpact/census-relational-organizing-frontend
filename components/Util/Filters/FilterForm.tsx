@@ -24,6 +24,21 @@ const QueryButton = styled('button')`
     cursor: pointer;
 }
 `;
+
+const filterValidationSchema = Yup.object().shape({
+    OR: Yup.array().of(
+      Yup.object().shape({
+        AND: Yup.array().of(
+          Yup.object().shape({
+            key: Yup.string().required('A key is required'),
+            op: Yup.string().required('An operation is required'),
+            val: Yup.string().required('A value is required')
+
+          })
+        )
+      })
+    )
+})
 interface FilterFormInterface {
     primaryFilters: any;
     sortFilters: any;
@@ -72,6 +87,7 @@ export class FilterForm extends React.Component<FilterFormInterface> {
             sortOrder: currentSortOrder
         }
       }
+      validationSchema={filterValidationSchema}
       onSubmit={async (values, actions) => {
         let lens:any = ConstructNewQuery(values);
         let page:any = values.page ? parseInt(values.page) : 1;
@@ -86,9 +102,10 @@ export class FilterForm extends React.Component<FilterFormInterface> {
         this.props.routeResponse(nextPath);
 
       }}
-      render={({ values }) => (
+      render={({ values, errors }) => (
         <Form noValidate>
             <fieldset>
+
               <div className="row">
    
                 <div className="col-md-3">
@@ -148,7 +165,8 @@ export class FilterForm extends React.Component<FilterFormInterface> {
                     <PrimaryFilter
                           arrayHelpers={arrayHelpers} 
                           fieldVals={values} 
-                          name="OR" 
+                          name="OR"
+                          errors={errors} 
                           primaryFilters={this.props.primaryFilters}
                       />
                   )}

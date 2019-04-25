@@ -25,7 +25,7 @@ const AddFilterButton = styled('a')`
     cursor: pointer;
 }`;
 
-export const PrimaryFilter = ({arrayHelpers, fieldVals, name, primaryFilters}) => {
+export const PrimaryFilter = ({arrayHelpers, fieldVals, name, primaryFilters, errors}) => {
     if(fieldVals && fieldVals.OR && fieldVals.OR.length > 0) {
       return(
         <div className="row justify-content-center">
@@ -33,7 +33,7 @@ export const PrimaryFilter = ({arrayHelpers, fieldVals, name, primaryFilters}) =
               return(
                 <div className="col-md-12" key={`${name}.${idx}.AND`}>
                   <AndBlock >
-                      <FilterFields fieldVals={fieldVals} idx={idx} name={`${name}.${idx}.AND`} primaryFilters={primaryFilters} parentHelpers={arrayHelpers}/>
+                      <FilterFields errors={errors} fieldVals={fieldVals} idx={idx} name={`${name}.${idx}.AND`} primaryFilters={primaryFilters} parentHelpers={arrayHelpers}/>
 
                       <ORButton type="button" onClick={() => arrayHelpers.push(
                       {
