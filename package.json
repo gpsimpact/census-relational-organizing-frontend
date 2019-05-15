@@ -9,7 +9,7 @@
     "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production next start -p $PORT",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "npm run build"
 
   },
   "dependencies": {
