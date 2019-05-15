@@ -1,0 +1,47 @@
+{
+  "name": "with-apollo-auth",
+  "version": "0.0.0",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "NODE_ENV=test jest",
+    "test_watch": "NODE_ENV=test jest --watch",
+    "dev": "next",
+    "build": "next build",
+    "start": "NODE_ENV=production next start -p $PORT",
+    "heroku-postbuild": "yarn build"
+
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.6",
+    "apollo-link-context": "^1.0.8",
+    "base-64": "^0.1.0",
+    "cookie": "^0.3.1",
+    "dotenv": "^8.0.0",
+    "dotenv-webpack": "^1.7.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
+    "faker": "^4.1.0",
+    "formik": "^1.5.4",
+    "graphql": "14.0.2",
+    "https-proxy-agent": "^2.2.1",
+    "isomorphic-unfetch": "^2.0.0",
+    "jest": "^24.8.0",
+    "next": "^8.1.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.8.6",
+    "react-addons-test-utils": "^15.6.2",
+    "react-apollo": "^2.1.4",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "sinon": "^7.3.2",
+    "styled-components": "^4.2.0",
+    "styled-normalize": "^8.0.6",
+    "waait": "^1.0.4",
+    "yup": "^0.27.0"
+  },
+  "engines": {
+    "node": "11.10.0"
+  }
+}
