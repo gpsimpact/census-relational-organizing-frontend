@@ -7,7 +7,7 @@ import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { FormError, FormSuccess,TextField,SubmitButton, TextAreaField } from '../Util/Forms';
 import { LoadingBar } from '../Util/Loading';
 import redirect from '../../lib/redirect'
-import { AdminPaths } from '../../paths';
+import { DashPaths } from '../../paths';
 
 
 export const CREATE_TEAM_ADMIN_MUTATION = gql`
