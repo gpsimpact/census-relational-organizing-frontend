@@ -9,6 +9,9 @@
     "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production next start -p $PORT",
+    "refresh": "bash cmds/refresh.sh",
+    "grab": "bash cmds/grab.sh",
+    "branch": "bash cmds/branch.sh",
     "heroku-postbuild": "npm run build"
 
   },
