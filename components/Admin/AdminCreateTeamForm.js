@@ -58,7 +58,7 @@ export const AdminCreateTeamForm = () => {
                             });
                             return;
                         }
-                        redirect({}, `${AdminPaths.teams.detail}?team=${result.item.slug}`);                        
+                        redirect({}, `${DashPaths.index}?team=${result.item.slug}`);                        
 
                     }}
                     render={({status}) => (
