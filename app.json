@@ -1,9 +1,0 @@
-{
-    "environments": {
-      "test": {
-        "env": {
-            "GRAPHQL_API_ENDPOINT": "https://census-ro-backend-staging.herokuapp.com/graphql"
-        }
-      }
-    }
-  }

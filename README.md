@@ -1,2 +1,0 @@
-# Census Relational Organizing Frontned
-
