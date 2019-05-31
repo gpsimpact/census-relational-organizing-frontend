@@ -7,6 +7,7 @@ import { AnonHome } from '../components/Pub/AnonHome';
 import { gql } from "apollo-boost";
 import { Query } from 'react-apollo';
 import Link from "next/link";
+import redirect from '../lib/redirect';
 
 import { CurrentQuery } from '../lib/constructors/BaseQueryConstructor';
 import { InjectMiddleWhere } from '../lib/constructors/InjectMiddleWhere';
@@ -40,7 +41,13 @@ export const GET_USER_TEAMS = gql`
 class Index extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
-    return { currentUser };
+    console.log(currentUser);
+    let nextPage;
+
+    if(currentUser && currentUser.me && currentUser.me.teamPermissions === null){
+       nextPage='/teams';
+    };
+    return { currentUser, nextPage };
   }
 
   render(){

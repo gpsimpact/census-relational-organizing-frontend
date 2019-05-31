@@ -54,28 +54,24 @@ class Confirm extends React.Component {
                                 if(loading) {
                                 return (<LoadingBar active={true}/>);
                                 }
-                                if(error) {
-                                    return(
-                                    <React.Fragment>
-                                        <LoadingBar active={false}/>
-                                        <ErrorMessage error={error}/>
-                                    </React.Fragment>
-                                    );
-                                }
-                                if(data && !data.confirmLogin.success) {
+                                // if(error) {
+                                //     return(
+                                //     <React.Fragment>
+                                //         <LoadingBar active={false}/>
+                                //         <ErrorMessage error={error}/>
+                                //     </React.Fragment>
+                                //     );
+                                // }
                                 return(
                                     <React.Fragment>
                                         <LoadingBar active={false}/>
-                                         <FormError error={{code: data.confirmLogin.code, message:data.confirmLogin.message}}/>
+                                         {/* <FormError error={{code: data.confirmLogin.code, message:data.confirmLogin.message}}/> */}
                                     </React.Fragment>
 
                                     );
-                                }
+
 
             
-
-                                return null;
-
                                 
 
                             
