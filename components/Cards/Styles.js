@@ -43,7 +43,7 @@ export const CardTitle = styled('h2')`
     line-height: 1.65rem;
 `;
 export const CardSubTitle = styled('h4')`
-    background-color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.secondary};
     text-transform: uppercase;
     color: ${props => props.theme.colors.white};
     padding: .25rem .5rem;
@@ -63,7 +63,7 @@ export const IconLink = styled('a')`
     display: inline-block;
     padding: 10px 30px;
     background-color: ${props => props.theme.colors.g0};
-    color: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.tertiary};
     border-bottom: 1px solid ${props => props.theme.colors.g2};
     text-align: center;
     text-transform: uppercase;
@@ -72,7 +72,7 @@ export const IconLink = styled('a')`
     &:hover,
     &:active,
     &:focus {
-        background-color: ${props=>props.theme.colors.green};
+        background-color: ${props=>props.theme.colors.primary};
         color: ${props => props.theme.colors.white};
     }
 `;

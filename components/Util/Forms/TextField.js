@@ -1,5 +1,7 @@
-import styled from 'styled-components';
 import { InputContainer, Label, TextInput, ErrorContainer } from './Styles';
+import { Row, Col } from '../Grid';
+import { FormIcon } from './FormIcon';
+
 
 
 export const TextField = ({field, form: {touched, errors}, ...props}) => {

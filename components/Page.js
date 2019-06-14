@@ -23,6 +23,12 @@ export const Footer = styled('footer')`
     background-color: ${props => props.theme.colors.black};
     color: ${props => props.theme.colors.white};
     text-align: center;
+    .footer-logo {
+        display: block;
+        margin: 15px auto;
+        width: 200px;
+        max-width: 100%;
+    }
 `;
 
 export default class Page extends React.Component {
@@ -46,11 +52,8 @@ export default class Page extends React.Component {
                 </PageContent>
 
 
-            <Footer hi={true}>
-                    <h3> Brand </h3>
-                    <p> Footer info?</p>
-                    <p> Social links? </p>
-                    <p> Disclaimer? </p>
+            <Footer>
+                   <img className="footer-logo" src="https://civic-promotor.s3-us-west-2.amazonaws.com/images/CivicPromotor_Logo_V_White.png"/>
             </Footer>
 
         </PageContainer>

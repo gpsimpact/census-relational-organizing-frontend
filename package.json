@@ -13,7 +13,6 @@
     "grab": "bash cmds/grab.sh",
     "branch": "bash cmds/branch.sh",
     "heroku-postbuild": "npm run build"
-
   },
   "dependencies": {
     "apollo-boost": "^0.1.6",
@@ -35,6 +34,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.8.6",
     "react-addons-test-utils": "^15.6.2",
+    "react-adopt": "^0.6.0",
     "react-apollo": "^2.1.4",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",

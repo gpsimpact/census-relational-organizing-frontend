@@ -13,7 +13,7 @@ import { ErrorMessage } from '../Util/Loading';
 
 const ApplicationPending = styled('h4')`
     text-align: center;
-    background-color: ${props => props.theme.colors.red};
+    background-color: ${props => props.theme.colors.tertiary};
     text-transform: uppercase;
     font-style: italic;
     padding: 10px 30px;

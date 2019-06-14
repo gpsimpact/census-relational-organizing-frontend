@@ -13,14 +13,15 @@ import { CurrentQuery } from '../lib/constructors/BaseQueryConstructor';
 import { InjectMiddleWhere } from '../lib/constructors/InjectMiddleWhere';
 
 import { Container, Row, Col } from '../components/Util/Grid';
-import { Box, TextRight } from '../components/Util/Layout';
-import { MainTitle, ButtonAnchor } from '../components/Util/Typography';
+import { Box } from '../components/Util/Layout';
+import { MainTitle } from '../components/Util/Typography';
 import {TeamsWhere, TeamsSort } from '../lib/filters';
 import { FilterForm, FilterToggler } from "../components/Filters";
 import { Pagination } from '../components/Util/ListsAndPagination';
 import { LoadingBar } from '../components/Util/Loading';
 import { ErrorMessage } from '../components/Util/Loading';
 import { TeamPermissionCard } from '../components/Cards';
+import { CrudNavUl, CrudNavLi, CrudNavA } from '../components/Util/Navigation';
 
 export const GET_USER_TEAMS = gql`
     query getUserTeams($input: TeamsInput!){
@@ -41,7 +42,6 @@ export const GET_USER_TEAMS = gql`
 class Index extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
-    console.log(currentUser);
     let nextPage;
 
     if(currentUser && currentUser.me && currentUser.me.teamPermissions === null){
@@ -94,11 +94,18 @@ class Index extends React.Component {
                                     }
                                     </Col>
                                     <Col classNames={"col-md-3"}>
-                                        <TextRight>
-                                               <Link href={'/teams'}><ButtonAnchor href={'/teams'}>All Teams</ButtonAnchor></Link>
-                                                <FilterToggler />
 
-                                        </TextRight>
+
+                                        <CrudNavUl>
+                                                <CrudNavLi>
+                                                    <Link href={'/teams'}><CrudNavA href={'/teams'}>All Teams</CrudNavA></Link>
+                                                </CrudNavLi>
+                                               
+                                               <CrudNavLi>
+                                                        <FilterToggler />
+                                                </CrudNavLi>
+
+                                        </CrudNavUl>
                                     </Col>
         
                                 </Row>

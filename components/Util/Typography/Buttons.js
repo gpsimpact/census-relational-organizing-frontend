@@ -8,7 +8,7 @@ export const Button = styled('button')`
         transition: .25s ease-in-out;
     padding: 10px 30px;
     background-color: ${props => props.theme.colors.g0};
-    color: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.tertiary};
     border: 1px solid ${props => props.theme.colors.g2};
     text-transform: uppercase;
     font-weight: 700;
@@ -16,7 +16,7 @@ export const Button = styled('button')`
     &:hover,
     &:active,
     &:focus {
-        background-color: ${props=>props.theme.colors.green};
+        background-color: ${props=>props.theme.colors.primary};
         color: ${props => props.theme.colors.white};
         cursor: pointer;
     }

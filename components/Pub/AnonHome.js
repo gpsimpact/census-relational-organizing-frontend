@@ -10,7 +10,7 @@ const Hero = styled('section')`
     padding-top: 100px;
     position: relative;
     z-index: 1;
-    background-image: url('https://s3-us-west-2.amazonaws.com/gps-relational-organizing/images/flag.jpg');
+    background-image: url('https://civic-promotor.s3-us-west-2.amazonaws.com/images/flag.jpg');
     padding: 250px 0px;
     -webkit-background-size: cover;
     -moz-background-size: cover;

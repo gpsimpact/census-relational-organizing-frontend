@@ -16,7 +16,7 @@ left: -200px;
     -moz-transition: .25s ease-in-out;
     -o-transition: .25s ease-in-out;
     transition: .25s ease-in-out;
-background: ${props => props.theme.colors.green};
+background: ${props => props.theme.colors.tertiary};
 
 ${({sideNavOpen}) => sideNavOpen && `left: 0px;`}
 `;

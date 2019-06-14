@@ -45,7 +45,7 @@ export const NavBar = (props) => (
             <LeftNav>
                 <NavUl>
                     <NavToggler disableSideNav={props.disableSideNav}/>
-                    <Link href="/"><NavLi><NavA> Brand </NavA></NavLi></Link>
+                    <Link href="/"><NavLi><NavA href="/" className="brand"> <img src="https://civic-promotor.s3-us-west-2.amazonaws.com/images/CivicPromotor_Logo_H_FullColor.png" alt="Civic Promotor" /> </NavA></NavLi></Link>
                 </NavUl>
             </LeftNav>
             <RightNav>

@@ -7,6 +7,8 @@ const NavIconContainer = styled('a')`
     display: flex;
     align-items: center;
     justify-content: center;
+    color: ${props => props.theme.colors.tertiary};
+    
     cursor: pointer;
     ${({ sideNavOpen }) => (sideNavOpen) && `
         

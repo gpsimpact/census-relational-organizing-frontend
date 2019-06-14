@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const SumWrapper = styled('div')`
-    border: 3px solid ${props => props.theme.colors.green};
+    border: 3px solid ${props => props.theme.colors.primary};
 `;
 export const SumCountTitle = styled('h3')`
-    background-color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.primary};
     color: ${props => props.theme.colors.white};
     text-transform: uppercase;
     text-align: center;

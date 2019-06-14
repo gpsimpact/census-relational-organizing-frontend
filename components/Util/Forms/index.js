@@ -1,6 +1,11 @@
 export { TextField } from './TextField';
 export { SubmitButton } from './Submit';
+export { IconSubmitButton } from './IconSubmitButton';
+export { IconDeleteButton } from './IconDeleteButton';
 export { FormError } from './FormError';
 export { SelectField } from './SelectField';
 export { FormSuccess } from './FormSuccess';
 export { TextAreaField } from './TextAreaField';
+export { CheckBox } from './CheckBox';
+export { FormIcon } from './FormIcon';
+export { CheckBoxArrayField} from './CheckBoxArrayField';

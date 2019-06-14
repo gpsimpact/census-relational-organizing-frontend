@@ -8,14 +8,17 @@ import { Grid } from './Grid';
 
 export const theme = {
     fonts: {
-        title: "'Roboto Condensed', sans-serif",
-        body: "'Roboto', sans-serif"
+        title: "'alternate-gothic-no-2-d', sans-serif;",
+        body: "'Raleway', sans-serif;"
     },
     colors: {
       g0: "#FAFAFA",
       g1: "#f6f6f6",
       g2: "#eaeaea",
       g3: "#D7DADB",
+      primary: "#faa339",
+      secondary: "#cd5928",
+      tertiary: "#58595b",
       green: "#00b894",
       blue: "#0984e3",
       red: "#d63031",
@@ -29,6 +32,7 @@ export const GlobalStyle = css`
         font-family: ${theme.fonts.body};
         font-size: 18px;
         line-height: 1.65;
+        font-weight: normal;
         background-color: ${theme.colors.g1};
     }
     * {
@@ -45,12 +49,12 @@ export const GlobalStyle = css`
         outline: none;
     }
     a {
-        color: ${theme.colors.blue};
+        color: ${theme.colors.tertiary};
         text-decoration: none;
         &:hover,
         &:focus,
         &:active {
-            color: ${theme.colors.green};
+            color: ${theme.colors.primary};
             cursor: pointer;
         }
     }
@@ -79,6 +83,18 @@ export const GlobalStyle = css`
         position: absolute;
         width: 1px;
         word-wrap: normal !important;
+    }
+    .brand {
+        width: 275px;
+        max-width: 100%;
+        padding: 0;
+        display: block;
+        margin: 3px auto;
+        height: auto;
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 `;
 

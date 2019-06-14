@@ -9,9 +9,23 @@ export const AdminPaths = {
         index: '/a/users',
         create: '/a/users/create',
         detail: '/a/users/detail'
+    },
+    gtibs: {
+        index:'/a/gtibs'
     }
 }
 
 export const DashPaths = {
     index: '/dash',
+    vols: {
+        index: '/dash/vols'
+    },
+    ttibs: {
+        index: '/dash/ttibs'
+    },
+    targets: {
+        index: '/dash/targets',
+        create: '/dash/targets/create',
+        detail: '/dash/targets/detail'
+    }
 }

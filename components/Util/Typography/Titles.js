@@ -14,3 +14,10 @@ export const MainTitle = styled("h1")`
     margin-bottom: 0rem;
 
 `;
+
+export const SectionTitle = styled("h3")`
+  text-transform: uppercase;
+    color: ${props => props.theme.colors.black};
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+`

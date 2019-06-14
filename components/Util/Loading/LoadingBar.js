@@ -8,7 +8,7 @@ export const LoadingBarContainer = styled('div')`
     height: 10px;
     width: 100%;
     display: block;
-    background-image: linear-gradient(to right, ${props => props.theme.colors.green} 0%, ${props => props.theme.colors.black} 50%, ${props => props.theme.colors.green} 100%);
+    background-image: linear-gradient(to right, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.black} 50%, ${props => props.theme.colors.primary} 100%);
     ${({active}) => active && `
         background-size: 50% auto;
         animation: loading 0.75s linear infinite;

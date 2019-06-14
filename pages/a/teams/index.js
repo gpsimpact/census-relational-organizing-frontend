@@ -8,8 +8,8 @@ import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
 
 import {Container, Row, Col} from '../../../components/Util/Grid';
-import { Box, TextRight } from '../../../components/Util/Layout';
-import { MainTitle, ButtonAnchor } from '../../../components/Util/Typography';
+import { Box } from '../../../components/Util/Layout';
+import { MainTitle } from '../../../components/Util/Typography';
 import { LoadingBar } from '../../../components/Util/Loading';
 import { SideNav } from '../../../components/Admin';
 import { withGlobalAuth } from "../../../components/Auth";
@@ -19,6 +19,7 @@ import { AdminPaths } from '../../../paths/index';
 import { AdminTeamCard } from '../../../components/Cards';
 import {TeamsWhere, TeamsSort } from '../../../lib/filters';
 import { FilterForm, FilterToggler } from "../../../components/Filters";
+import { CrudNavUl, CrudNavLi, CrudNavA } from '../../../components/Util/Navigation';
 
 export const GET_TEAMS_ADMIN_QUERY = gql`
     query getTeamsAdmin($input: TeamsInput){
@@ -85,14 +86,20 @@ class AdminTeamIndex extends React.Component {
                                                 }
                                                 </Col>
                                                 <Col classNames={"col-md-3"}>
-                                                <TextRight>
-                                                     <Link href={`${AdminPaths.teams.create}`}>
-                                                            <ButtonAnchor> 
+                                         
+                                                <CrudNavUl>
+                                                    <CrudNavLi>
+                                                    <Link href={`${AdminPaths.teams.create}`}>
+                                                            <CrudNavA href={`${AdminPaths.teams.create}`}> 
                                                                 <i className="fas fa-plus-circle"></i> New Team
-                                                            </ButtonAnchor>
+                                                            </CrudNavA>
                                                         </Link>
-                                                     <FilterToggler />
-                                                </TextRight>
+                                                    </CrudNavLi>
+                                                    <CrudNavLi>
+                                                        <FilterToggler />
+                                                    </CrudNavLi>
+
+                                                </CrudNavUl>
 
                                                 </Col>
                                             </Row>

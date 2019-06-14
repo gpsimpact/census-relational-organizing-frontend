@@ -11,14 +11,14 @@ const AddFilterButton = styled('a')`
     padding: 10px 30px;
     text-transform: uppercase;
     border: none;
-    color: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.tertiary};
     font-weight: 700;
     margin-bottom: 1.25rem;
     width: 100%;
     text-align: center;
 :hover,
 :focus {
-    color: ${props=>props.theme.colors.green};
+    color: ${props=>props.theme.colors.primary};
     cursor: pointer;
 }`;
 

@@ -69,3 +69,88 @@ export const StyledSelectInput = styled('select')`
             border-bottom: 2px solid ${theme.colors.red};
     `}
 `;
+
+
+
+
+export const CheckBoxWrapper = styled('div')`
+    input[type='checkbox'] {
+        display: none;
+    }
+`;
+export const CheckBoxLabel = styled(`label`)`
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    padding-left: 70px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+
+        span{
+            opacity: .5;
+            transition: .25s;
+            display: block;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 7px;
+            font-size: .75rem;
+            padding-left: .5rem;
+            ${({checked}) => checked && `
+                opacity: 1;
+            `}
+        }
+
+
+`;
+export const CheckBoxLabelText = styled('span')`
+    display: block;
+    text-transform: uppercase;
+    font-size: .75rem;
+    padding-left: .5rem;
+`;
+export const CheckBoxInput = styled('input')`
+    display: none;
+`;
+export const CheckBoxToggler = styled('div')`
+        background-color: ${props => props.theme.colors.g3};
+        bottom: 0;
+        left: 0;
+        top: 0;
+        width: 60px;
+        position: absolute;
+
+        cursor: pointer;
+        border-radius: 5px;
+        transition: .25s;
+        .checkem {
+            transition: .25s;
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            z-index: 50;
+            opacity: 0;
+            color: ${props => props.theme.colors.primary};
+        }
+        ${({checked, theme}) => checked && `
+            background-color: ${theme.colors.primary};
+            .checkem {
+                opacity: 1;
+            }
+        `}
+    :before {
+        background-color: ${props => props.theme.colors.white};
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        border-radius: 5px;
+        transition: .25s;
+        width: 26px;
+        ${({checked}) => checked && `
+            transform: translateX(26px);
+        `}
+    }
+`;

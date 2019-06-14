@@ -51,8 +51,10 @@ export const DisabledPaginationAnchor = styled(PaginationAnchor)`
         }
 
 `;
-export const PaginationLeft = styled('h3')``;
-export const PaginationRight = styled('h3')``;
+export const PaginationLeft = styled('h3')`
+`;
+export const PaginationRight = styled('h3')`
+`;
 
 export const VertBarSeparator = styled('div')`
     margin: 0px 1rem;
@@ -61,18 +63,25 @@ export const VertBarSeparator = styled('div')`
 `;
 
 export class Pagination extends React.Component {
-    paginate(totalCount, currentPage, perPage, path) {
+    paginate(totalCount, currentPage, perPage, path, teamSlug) {
+        let nextPage = `${path}?page=${currentPage + 1}&perpage=${perPage}`;
+        let previousPage = `${path}?page=${currentPage - 1}&perpage=${perPage}`;
+
+        if(teamSlug) {
+            nextPage += `&team=${teamSlug}`;
+            previousPage += `&team=${teamSlug}`;
+        }
         return {
-            nextPage: `${path}?page=${currentPage + 1}&perpage=${perPage}`,
-            previousPage: `${path}?page=${currentPage - 1}&perpage=${perPage}`,
+            nextPage: nextPage,
+            previousPage: previousPage,
             hasNext: (currentPage * perPage) < totalCount,
             hasPrevious: currentPage > 1,
             totalPages: Math.ceil(totalCount / perPage)
         }
     }
     render(){
-        const { totalCount, currentPage, perPage, justify, path} = this.props;
-        const pages = this.paginate(totalCount, currentPage, perPage, path);
+        const { totalCount, currentPage, perPage, justify, path, teamSlug} = this.props;
+        const pages = teamSlug ? this.paginate(totalCount, currentPage, perPage, path, teamSlug) : this.paginate(totalCount, currentPage, perPage, path);
         return(
             <PaginationContainer>
                 <PaginationLeft>

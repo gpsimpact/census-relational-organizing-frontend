@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const AndBlock = styled('div')`
-border: 3px solid ${props => props.theme.colors.black};
+border: 3px solid ${props => props.theme.colors.tertiary};
 padding: 15px;
 margin-bottom: 30px;
 
 `;
 export const ORButton = styled('button')`
   position: absolute;
-  background-color: ${props => props.theme.colors.green};
+  background-color: ${props => props.theme.colors.primary};
   bottom: 15px;
   border: none;
   border-radius: 100px;
@@ -17,7 +17,7 @@ export const ORButton = styled('button')`
   :hover,
   :active,
   :focus {
-    background-color: ${props => props.theme.colors.black};
+    background-color: ${props => props.theme.colors.tertiary};
     cursor: pointer;
 
   }
@@ -25,7 +25,7 @@ export const ORButton = styled('button')`
 
 export const RemoveButton = styled('span')`
 display: inline-block;
-  color: ${props => props.theme.colors.red};  
+  color: ${props => props.theme.colors.secondary};  
   cursor: pointer;
   margin: 10px 5px;
   font-size: 1.2rem;
@@ -35,7 +35,7 @@ display: inline-block;
 export const AddButton = styled('span')`
 display: inline-block;
   text-transform: uppercase;
-  color: ${props => props.theme.colors.green};  
+  color: ${props => props.theme.colors.primary};  
   cursor: pointer;
   margin: 10px 5px;
   font-weight: bold;
@@ -51,16 +51,17 @@ export const QueryButton = styled('button')`
         transition: .25s ease-in-out;
     padding: 10px 30px;
     background-color: ${props => props.theme.colors.g0};
-    color: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.secondary};
     border: 1px solid ${props => props.theme.colors.g2};
     text-transform: uppercase;
     font-weight: 700;
-    font-size: .8rem;
+    font-size: 1rem;
     margin-top: 1.2rem;
+    width: 100%;
     &:hover,
     &:active,
     &:focus {
-        background-color: ${props=>props.theme.colors.green};
+        background-color: ${props=>props.theme.colors.primary};
         color: ${props => props.theme.colors.white};
         cursor: pointer;
     }

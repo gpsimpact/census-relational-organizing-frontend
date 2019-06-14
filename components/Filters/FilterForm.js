@@ -43,7 +43,7 @@ export class FilterForm extends React.Component {
 
 
     render(){
-      const {currentQuery, primaryFilters, sortFilters, routeResponse, path} = this.props;
+      const {currentQuery, primaryFilters, sortFilters, routeResponse, path, teamSlug} = this.props;
      
         return(
           <Query query={FILTERS_OPEN_QUERY}>
@@ -70,6 +70,9 @@ export class FilterForm extends React.Component {
                           
                           if(lens){
                             nextPath += `&lens=${lens}`
+                          }
+                          if(teamSlug) {
+                            nextPath += `&team=${teamSlug}`
                           }
                           Router.push(nextPath);
                         }}
