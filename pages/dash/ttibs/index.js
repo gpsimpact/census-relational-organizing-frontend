@@ -3,25 +3,20 @@ import Page from "../../../components/Page";
 import { withTeamAuth } from '../../../components/Auth';
 import { DashSideNav } from '../../../components/Dash';
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
-import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
 import {Container, Row, Col} from '../../../components/Util/Grid';
-import { gql } from "apollo-boost";
 import { adopt } from 'react-adopt';
 import { Query } from 'react-apollo';
-import Link from "next/link";
 import { Box } from '../../../components/Util/Layout';
 import { MainTitle, SectionTitle } from '../../../components/Util/Typography';
 import { LoadingBar,ErrorMessage } from '../../../components/Util/Loading';
-import { Pagination } from "../../../components/Util/ListsAndPagination";
-import { DashPaths } from "../../../paths";
 import { GET_GTIBS } from '../../../components/QueryComponents/GTIBS';
 import { GET_TTIBS } from '../../../components/QueryComponents/TTIBS';
 import { Info } from '../../../components/Util/Typography';
-import { SingleGTIBtoTTIB, SingleTTIB, CreateTTIB } from '../../../components/TIBS';
+import { SingleTIBContainer, SingleTTIB, CreateTTIB } from '../../../components/TIBS';
 
 
 const TIBS = adopt({
-        gTibs: ({render}) => <Query query={GET_GTIBS}>{render}</Query>,
+gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{visible: true}}}>{render}</Query>,
         tTibs: ({teamId, render}) => <Query query={GET_TTIBS} variables={{input:{teamId: teamId}}}>{render}</Query>
     })
 
@@ -46,23 +41,28 @@ class DashTTIBSIndex extends React.Component {
                                 const error = (gTibs.error || tTibs.error);
                                 const gtibs = gTibs && gTibs.data && gTibs.data.gtibs ? gTibs.data.gtibs : [];
                                 const ttibs = tTibs && tTibs.data && tTibs.data.ttibs ? tTibs.data.ttibs : [];
-                                console.log(gtibs);
-                                console.log(ttibs);
                                 return(
                                   <Box>
                                       <MainTitle>Target Intake Booleans</MainTitle>
                                       <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
                                         <Info>These fields will be present for all targets.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
-                                            <SectionTitle>Global Target Intake Booleans (recommended)</SectionTitle>
+                                            <SectionTitle>Default Target Intake Booleans</SectionTitle>
                                             {gtibs && gtibs.map((item, idx) =>{
                                                 const inTTIBS = false;
                                                 return(
-                                                        <SingleGTIBtoTTIB gtib={item} key={idx} inTTIBS={inTTIBS} />
+                                                    <SingleTIBContainer key={idx}>
+                                                        <Row>
+                                                            <Col>
+                                                                {item.text}
+                                                            </Col>
+                                                        </Row>
+
+                                                    </SingleTIBContainer>
                                                     )
                                                 })
                                             }
-                                            <SectionTitle>Team Target Intake Booleans</SectionTitle>
+                                            <SectionTitle>Additional Target Intake Booleans</SectionTitle>
 
                                             {ttibs && ttibs.map((item, idx) =>{
                                                     return(

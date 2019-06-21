@@ -7,7 +7,7 @@ import { MainTitle } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
 import { DashSideNav } from '../../components/Dash';
 import { withTeamAuth } from '../../components/Auth';
-
+import { DashAdminHome, DashVolHome } from "../../components/Dash";
 
 class TeamDashboard extends React.Component {
     render(){
@@ -26,6 +26,13 @@ class TeamDashboard extends React.Component {
                         <Box>
                             <MainTitle>{currentTeam.name}</MainTitle>
                             <LoadingBar active={false}/>
+                            {
+                                (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&
+                                <DashAdminHome currentTeam={currentTeam} currentUser={currentUser}/>
+                            }
+
+                            <DashVolHome currentTeam={currentTeam} currentUser={currentUser}/>
+                            
 
                         </Box>
                     </Col>

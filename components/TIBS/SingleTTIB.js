@@ -47,16 +47,17 @@ export class SingleTTIB extends React.Component{
                             variables={{
                                 id: ttib.id,
                                 input: {
-                                    active: !ttib.active
+                                    visible: !ttib.visible
                                 }
                             }}
+
                         >
                             {(toggleTTIB, { data, loading, error}) => {
                                 return(
                                     <Row>
                                         {error && <Col><FormError error={{code: "Uh Oh", message: error.message}}/></Col>}
                                         <Col classNames={'col-md-2'}>
-                                            <ToggleButton active={ttib.active} disabled={loading} 
+                                            <ToggleButton visible={ttib.visible} disabled={loading} 
                                                 onClick={() => {
                                                     toggleTTIB();
                                                 }}

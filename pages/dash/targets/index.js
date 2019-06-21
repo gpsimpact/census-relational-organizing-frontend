@@ -19,8 +19,8 @@ import {TargetsWhere, TargetsSort } from '../../../lib/filters';
 import { TargetCard } from '../../../components/Cards';
 
 export const GET_USER_TARGETS = gql`
-    query getUserTargets($id: String, $teamId: String!, $input:TargetsInput){
-        userTargets(id: $id, teamId: $teamId, input: $input){
+    query getUserTargets($userId: String, $teamId: String!, $input:TargetsInput){
+        userTargets(userId: $userId, teamId: $teamId, input: $input){
             hasMore
             totalCount
             items {

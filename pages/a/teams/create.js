@@ -1,8 +1,6 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { Query, Mutation } from "react-apollo";
-
-
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import Page from "../../../components/Page";
 import { SideNav, AdminCreateTeamForm } from '../../../components/Admin';

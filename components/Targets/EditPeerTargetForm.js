@@ -4,49 +4,62 @@ import { Mutation } from "react-apollo";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBoxBlock, CheckBox } from '../Util/Forms';
-import { LoadingBar } from '../Util/Loading';
 import { FormTitle } from '../Util/Typography';
-import redirect from '../../lib/redirect'
-import { DashPaths } from '../../paths';
 import { Row, Col } from '../Util/Grid';
-import PropTypes from 'prop-types';
+import { FormError, FormSuccess,TextField,SubmitButton, FormIcon, CheckBox } from '../Util/Forms';
 
-export const CREATE_PEER_TARGET = gql`
-    mutation createPeer($input:CreateTargetInput!){
-        createTarget(input:$input){
+export const EDIT_PEER_TARGET = gql`
+    mutation updateTarget($id:String!, $input:UpdateTargetInput!){
+        updateTarget(id:$id, input:$input) {
             code
             success
             message
             item {
                 id
+                firstName
+                lastName
+                email
+                address
+                city
+                state
+                zip5
+                phone
+                twitterHandle
+                facebookProfile
+                householdSize
+                tibs {
+                    id
+                    text
+                    isApplied
+                }
+                active
             }
         }
     }
 `;
 
-export const CreatePeerTargetForm = (props) => {
-    const { team, currentUser, tibs } = props;
+export const EditPeerTargetForm = (props) => {
+    let {target} = props;
     return(
-        <Mutation mutation={CREATE_PEER_TARGET}>
-            {(mutation, { data, loading, error}) => (
+        <Mutation mutation={EDIT_PEER_TARGET}>
+            {(mutation, {data, loading, error}) => (
                 <Formik
                     initialValues={
                         {
-                            firstName:"", 
-                            lastName:"",
-                            email:"",
-                            address:"",
-                            city:"",
-                            state:"",
-                            zip5:"",
-                            phone:"",
-                            twitterHandle:"",
-                            facebookProfile:"",
-                            householdSize:1,
-                            tibIds:[],
+                            firstName: target.firstName ? target.firstName : "",
+                            lastName: target.lastName ? target.lastName : "",
+                            email: target.email ? target.email : "", 
+                            address: target.address ? target.address : "",
+                            city: target.city ? target.city : "",
+                            state: target.state ? target.state : "",
+                            zip5: target.zip5 ? target.zip5 : "",
+                            phone: target.phone ? target.phone : "",
+                            twitterHandle: target.twitterHandle ? target.twitterHandle : "",
+                            facebookProfile: target.facebookProfile ? target.facebookProfile : "",
+                            householdSize: target.householdSize ? target.householdSize : "",
                             retainAddress: true
                         }
+                
                     }
                     validationSchema={
                         Yup.object().shape({
@@ -66,6 +79,7 @@ export const CreatePeerTargetForm = (props) => {
                     }
                     onSubmit={ async (values, actions) => {
                         let payload = {
+                            id: target.id,
                             input: {
                                 firstName: values.firstName,
                                 lastName: values.lastName,
@@ -78,34 +92,28 @@ export const CreatePeerTargetForm = (props) => {
                                 twitterHandle: values.twitterHandle,
                                 facebookProfile: values.facebookProfile,
                                 householdSize: values.householdSize,
-                                activeTibs: values.tibIds,
                                 retainAddress: values.retainAddress,
-                                teamId: team.id,
                             }
                         }
-                        let response = await submitMutation(mutation, payload);
-                        const result = await marshallMutationResponse(response, 'createTarget')
+                        let response = await submitMutation( mutation, payload);
+                        let result = await marshallMutationResponse(response, 'updateTarget');
                         if(!result.success){
                             actions.setStatus({
-                                form:{
+                                form: {
                                     code: result.code,
-                                    message: result.message
+                                    message: result.message,
                                 }
-                            });
+                            })
                             return;
                         }
-                        redirect({}, `${DashPaths.targets.detail}?team=${team.slug}&target=${result.item.id}`)                        
 
                     }}
                     render={({status}) => (
                         <Form noValidate>
-                            <LoadingBar active={loading}/>
                             {
                                 status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
                             }
-                            {
-                                status && status.form && status.form.code === 'Success' && <FormSuccess message={status.form}/>
-                            }
+                          
                             <FormTitle>General Information</FormTitle>
                             <Row classNames={'align-items-center'}>
                                 <Col classNames={'col-lg-1 d-none d-lg-block'}>
@@ -262,37 +270,14 @@ export const CreatePeerTargetForm = (props) => {
                                 </Col>
                               
                             </Row>
-                            <SectionTitle>To the best of your knowledge mark all that are true</SectionTitle>
-
-                            {tibs.map((tib, idx) => {
-                                console.log(tib);
-                                return(
-                                    <Row key={idx}>
-                                        <Col>
-                                            <CheckBoxArrayField id={tib.id} name="tibIds" value={tib.id} label={tib.text}/>
-                                        </Col>
-                                    </Row>
-                                )
-                            })}
-
-                                <SubmitButton 
+                            <SubmitButton 
                                     loading={loading}
-                                    value="Create"
+                                    value={loading ? "Saving" : "Save"}
                                 />
-                        
-
-
-
                         </Form>
                     )}
                 />
             )}
         </Mutation>
     )
-}
-
-CreatePeerTargetForm.propTypes = {
-    team: PropTypes.object.isRequired,
-    currentUser: PropTypes.object.isRequired,
-    tibs: PropTypes.array.isRequired
 }

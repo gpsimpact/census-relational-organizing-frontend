@@ -27,7 +27,7 @@ class AdminGTIBS extends React.Component {
             <Container>
                 <Row classNames={"justify-content-center"}>
                     <Col classNames={'col-md-8'}>
-                        <Query query={GET_GTIBS}>
+                        <Query query={GET_GTIBS} variables={{input:{active:true}}}>
                         {({data,loading,error}) => {
                             return(
                                 <Box>

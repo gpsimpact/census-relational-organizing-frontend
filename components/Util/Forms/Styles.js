@@ -95,8 +95,8 @@ export const CheckBoxLabel = styled(`label`)`
             text-transform: uppercase;
             font-weight: bold;
             margin-top: 7px;
-            font-size: .75rem;
-            padding-left: .5rem;
+            font-size: .65rem;
+            padding-left: .25rem;
             ${({checked}) => checked && `
                 opacity: 1;
             `}

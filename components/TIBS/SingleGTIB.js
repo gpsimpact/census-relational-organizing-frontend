@@ -37,6 +37,7 @@ export class SingleGTIB extends React.Component {
     }
     render(){
         const { gtib } = this.props;
+        console.log(gtib);
         return(
             <SingleTIBContainer>
             <Row>
@@ -46,7 +47,8 @@ export class SingleGTIB extends React.Component {
                         variables={{
                             id: gtib.id,
                             input: {
-                                active: !gtib.active
+                                visible: !gtib.visible,
+                                active: true
                             }
                         }}
                     >
@@ -55,8 +57,9 @@ export class SingleGTIB extends React.Component {
                             <Row>
                                 {error && <Col><FormError error={{code: "Uh Oh", message: error.message}}/></Col>}
                                 <Col classNames={'col-md-2'}>
-                                    <ToggleButton active={gtib.active} disabled={loading}
+                                    <ToggleButton visible={gtib.visible} disabled={loading}
                                         onClick={() => {
+                                            console.log('hi')
                                             toggleGTIB();
                                         }}
                                     ><i className="checkem fas fa-check"></i></ToggleButton>
@@ -86,7 +89,7 @@ export class SingleGTIB extends React.Component {
                                 visible: false,
                             }
                         }}
-                        refetchQueries={[{query: GET_GTIBS}]}
+                        refetchQueries={[{query: GET_GTIBS, variables:{input:{active:true}}}]}
                     >
                         {(deleteGTIB, {data,loading,error}) => {
                             return(

@@ -22,7 +22,7 @@ export const ToggleButton = styled('button')`
             opacity: 0;
             color: ${props => props.theme.colors.primary};
         }
-        ${({active, theme}) => active && `
+        ${({visible, theme}) => visible && `
             background-color: ${theme.colors.primary};
             .checkem {
                 opacity:1;
@@ -38,7 +38,7 @@ export const ToggleButton = styled('button')`
         border-radius: 5px;
         transition: .25s;
         width: 26px;
-        ${({active}) => active && `
+        ${({visible}) => visible && `
             transform: translateX(26px);
         `}
     }

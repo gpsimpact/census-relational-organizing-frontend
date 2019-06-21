@@ -7,9 +7,16 @@ import { Box } from '../../../components/Util/Layout';
 import { MainTitle } from '../../../components/Util/Typography';
 import Page from "../../../components/Page";
 import { CreatePeerTargetForm } from '../../../components/Targets';
-import { GET_TTIBS } from '../../../components/QueryComponents/TTIBS';
 import { Query } from 'react-apollo';
+import { GET_TTIBS } from '../../../components/QueryComponents/TTIBS';
+import { GET_GTIBS } from '../../../components/QueryComponents/GTIBS';
 import { ErrorMessage } from '../../../components/Util/Loading';
+import { adopt } from 'react-adopt';
+
+const TIBS = adopt({
+    gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, visible:true}}}>{render}</Query>,
+    tTibs: ({teamId, render}) => <Query query={GET_TTIBS} variables={{input:{teamId: teamId, active:true, visible:true}}}>{render}</Query>
+})
 
 class DashTargetCreate extends React.Component {
     render(){
@@ -27,21 +34,25 @@ class DashTargetCreate extends React.Component {
                         <Col classNames={'col-md-8'}>
                             <Box>
                                 <MainTitle>Create New Peer Target</MainTitle>
-                                <Query query={GET_TTIBS} variables={{input:{teamId:currentTeam.id}}}>
-                                    {({data,error,loading}) => {
-                                            const tibs = data && data.ttibs ? data.ttibs : [];
-                                            return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    <CreatePeerTargetForm team={currentTeam} currentUser={currentUser} tibs={tibs}/>
-    
-                                                </React.Fragment>
-    
-    
-                                            )
-                                       
+                                <TIBS teamId={currentTeam.id}>
+                                    {({gTibs, tTibs}) => {
+                                        const loading = (gTibs.loading || tTibs.loading);
+                                        const error = (gTibs.error || tTibs.error);
+                                        const gtibs = gTibs && gTibs.data && gTibs.data.gtibs ? gTibs.data.gtibs : [];
+                                        const ttibs = tTibs && tTibs.data && tTibs.data.ttibs ? tTibs.data.ttibs : [];
+                                        const tibs = [...gtibs, ...ttibs];
+                                        return(
+                                            <React.Fragment>
+                                                {error && <ErrorMessage error={error}/>}
+                                                <CreatePeerTargetForm team={currentTeam} currentUser={currentUser} tibs={tibs}/>
+
+                                            </React.Fragment>
+                                        )
                                     }}
-                                </Query>
+
+
+                                </TIBS>
+                         
                             </Box>
                         
                         </Col>
