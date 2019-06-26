@@ -20,7 +20,7 @@ export const withTeamAuth = (Component, permissions) => {
             let authed = false; 
 
             if(!currentUser || !currentUser.me) {
-                nextPage = `/login?next=${ctx.req.url}`;
+                nextPage = `/?next=${ctx.req.url}`;
                 return { nextPage };
             }
 

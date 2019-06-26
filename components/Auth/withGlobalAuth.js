@@ -12,7 +12,7 @@ export const withGlobalAuth = (Component, baseGlobalPermission) => {
         const userProps = {currentUser: currentUser};
 
         if(!currentUser || !currentUser.me) {
-          nextPage = `/login?next=${ctx.req.url}`;
+          nextPage = `/?next=${ctx.req.url}`;
           return { nextPage };
         }
 

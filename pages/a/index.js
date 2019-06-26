@@ -71,7 +71,7 @@ class AdminDash extends React.Component {
                                                     <SumCountTitle>Total Teams</SumCountTitle>
                                                     {teams.error && <ErrorIcon error={teams.error}/>}
                                                     
-                                                        <SumCountNum>{teams.data.summaryCountTeams ? teams.data.summaryCountTeams : 0}</SumCountNum>
+                                                        <SumCountNum>{teams && teams.data && teams.data.summaryCountTeams ? teams.data.summaryCountTeams : 0}</SumCountNum>
                                                     
                                                 </SumWrapper>
                                             </Col>
@@ -87,7 +87,7 @@ class AdminDash extends React.Component {
                                                 <SumWrapper loading={targetCount.loading}>
                                                     <SumCountTitle>Total Targets</SumCountTitle>
                                                     {targetCount.error && <ErrorIcon error={targetCount.error}/>}
-                                                    <SumCountNum>{targetCount.data.summaryCountAllTargets ? targetCount.data.summaryCountAllTargets : 0}</SumCountNum>
+                                                    <SumCountNum>{targetCount && targetCount.data && targetCount.data.summaryCountAllTargets ? targetCount.data.summaryCountAllTargets : 0}</SumCountNum>
                                                     
                                                 </SumWrapper>
                                             </Col>
@@ -96,7 +96,7 @@ class AdminDash extends React.Component {
                                                 <SumWrapper loading={householdCount.loading}>
                                                     <SumCountTitle>Total Household Size</SumCountTitle>
                                                     {householdCount.error && <ErrorIcon error={householdCount.error}/>}
-                                                    <SumCountNum>{householdCount.data.summaryTotalAllHouseholdSize ? householdCount.data.summaryTotalAllHouseholdSize : 0}</SumCountNum>
+                                                    <SumCountNum>{householdCount && householdCount.data && householdCount.data.summaryTotalAllHouseholdSize ? householdCount.data.summaryTotalAllHouseholdSize : 0}</SumCountNum>
 
                                                 </SumWrapper>
                                             </Col>
