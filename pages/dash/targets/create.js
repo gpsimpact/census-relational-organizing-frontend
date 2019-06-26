@@ -14,8 +14,8 @@ import { ErrorMessage } from '../../../components/Util/Loading';
 import { adopt } from 'react-adopt';
 
 const TIBS = adopt({
-    gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, visible:true}}}>{render}</Query>,
-    tTibs: ({teamId, render}) => <Query query={GET_TTIBS} variables={{input:{teamId: teamId, active:true, visible:true}}}>{render}</Query>
+    gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, visible:true, tibType:"QUESTION"}}}>{render}</Query>,
+    tTibs: ({teamId, render}) => <Query query={GET_TTIBS} variables={{input:{teamId: teamId, active:true, visible:true, tibType:"QUESTION"}}}>{render}</Query>
 })
 
 class DashTargetCreate extends React.Component {

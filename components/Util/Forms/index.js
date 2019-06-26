@@ -9,3 +9,4 @@ export { TextAreaField } from './TextAreaField';
 export { CheckBox } from './CheckBox';
 export { FormIcon } from './FormIcon';
 export { CheckBoxArrayField} from './CheckBoxArrayField';
+export { DirtyFormMessage } from './DirtyFormMessage'; 

@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo'
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 
-import { SelectField, SubmitButton } from '../Util/Forms';
+import { SelectField, SubmitButton, DirtyFormMessage } from '../Util/Forms';
 
 import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
 import { Row, Col } from '../Util/Grid';
@@ -86,7 +86,7 @@ export const TeamVolCard = (props) => {
                                     return;
                                 }
                             }}
-                            render={({status}) => (
+                            render={props => (
                                 <Form noValidate>
                                     <Field 
                                         id="permission"
@@ -100,6 +100,8 @@ export const TeamVolCard = (props) => {
                                         loading={loading}
                                     value={loading ? "Saving" : "Save"}
                                 />
+
+                        
                                 </Form>
                             )}
                         />

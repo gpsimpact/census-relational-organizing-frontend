@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { FormTitle } from '../Util/Typography';
 import { Row, Col } from '../Util/Grid';
-import { FormError, FormSuccess,TextField,SubmitButton, FormIcon, CheckBox } from '../Util/Forms';
+import { FormError, FormSuccess,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage } from '../Util/Forms';
 
 export const EDIT_PEER_TARGET = gql`
     mutation updateTarget($id:String!, $input:UpdateTargetInput!){
@@ -105,13 +105,30 @@ export const EditPeerTargetForm = (props) => {
                                 }
                             })
                             return;
+                        } else {
+                            let currentVals = {
+                                firstName: result.item.firstName ? result.item.firstName : "",
+                                lastName: result.item.lastName ? result.item.lastName : "",
+                                email: result.item.email ? result.item.email : "", 
+                                address: result.item.address ? result.item.address : "",
+                                city: result.item.city ? result.item.city : "",
+                                state: result.item.state ? result.item.state : "",
+                                zip5: result.item.zip5 ? result.item.zip5 : "",
+                                phone: result.item.phone ? result.item.phone : "",
+                                twitterHandle: result.item.twitterHandle ? result.item.twitterHandle : "",
+                                facebookProfile: result.item.facebookProfile ? result.item.facebookProfile : "",
+                                householdSize: result.item.householdSize ? result.item.householdSize : "",
+                                retainAddress: values.retainAddress,
+                            }
+                            actions.resetForm(currentVals);
+
                         }
 
                     }}
-                    render={({status}) => (
+                    render={props => (
                         <Form noValidate>
                             {
-                                status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
+                                props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
                             }
                           
                             <FormTitle>General Information</FormTitle>
@@ -274,6 +291,9 @@ export const EditPeerTargetForm = (props) => {
                                     loading={loading}
                                     value={loading ? "Saving" : "Save"}
                                 />
+                                 {props && props.dirty &&
+                                    <DirtyFormMessage> This form has unsaved changes </DirtyFormMessage>
+                                }
                         </Form>
                     )}
                 />

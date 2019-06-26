@@ -34,6 +34,7 @@ export const GET_TARGET = gql`
                 id
                 text
                 isApplied
+                tibType
             }
             active
         }
@@ -75,10 +76,10 @@ class DashTargetDetail extends React.Component {
                                         <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
                                             <Row>
-                                                <Col classNames={'col-md-6'}>
+                                                <Col classNames={'col-md-8'}>
                                                         {target && <EditPeerTargetForm target={target}/>}
                                                 </Col>
-                                                <Col classNames={'col-md-6'}>
+                                                <Col classNames={'col-md-4'}>
                                                         <TargetCompletions  target={target}/>
 
                                                 </Col>
@@ -86,11 +87,9 @@ class DashTargetDetail extends React.Component {
                                             <HR/>
 
                                             <Row>
-                                                <Col classNames={'col-md-6'}>
+                                                <Col classNames={'col-md-12'}>
                                                         <EditTargetTibs target={target}/>
-                                                </Col>
-                                                <Col classNames={'col-md-6'}>
-                                                    <TargetTasks target={target}/>
+                                               
                                                 </Col>
                                             </Row>
 

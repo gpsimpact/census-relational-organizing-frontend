@@ -5,7 +5,7 @@ import { gql } from "apollo-boost";
 import { Mutation } from 'react-apollo'
 import { Row, Col } from '../Util/Grid';
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBoxBlock, CheckBox } from '../Util/Forms';
+import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBoxBlock, CheckBox,DirtyFormMessage } from '../Util/Forms';
 import { Formik, Form, Field, FieldArray } from "formik";
 import { FormTitle, Info } from '../Util/Typography';
 
@@ -31,6 +31,9 @@ export class EditTargetTibs extends React.Component {
     render(){
         let { target } = this.props;
         let activeTibs = _.map(_.filter(target.tibs, {isApplied: true}), 'id');
+        let questionTibs = _.filter(target.tibs, {tibType: 'QUESTION'});
+        let actionTibs = _.filter(target.tibs, {tibType: 'ACTION'});
+        
         return(
             <Mutation mutation={UPDATE_TARGET_TIBS}>
                 {(mutation, {data,loading,error}) => (
@@ -55,36 +58,67 @@ export class EditTargetTibs extends React.Component {
                                     }
                                 });
                                 return;
+                            } else {
+                                let currentTibs = _.map(_.filter(result.item.tibs, {isApplied: true}), 'id');
+                                actions.resetForm({tibIds: currentTibs});
                             }
                         }}
-                        render={({status}) =>(
+                        render={props =>{
+                            return(
                             <Form noValidate>
-                                 {
-                                         status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
+                                    {
+                                        props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
                                     }
                                     {
-                                        status && status.form && status.form.code === 'Success' && <FormSuccess message={status.form}/>
+                                        props.status && props.status.form && props.status.form.code === 'Success' && <FormSuccess message={props.status.form}/>
                                     }
-                                <FormTitle>About {target.firstName}</FormTitle>
-                                <Info>Please check all of the statements below that you know are true about {target.firstName}</Info>
-                                {target && target.tibs && target.tibs.map((tib, idx) => {
-                                console.log(tib);
-                                return(
-                                    <Row key={idx}>
-                                        <Col>
-                                            <CheckBoxArrayField id={tib.id} name="tibIds" value={tib.id} label={tib.text}/>
-                                        </Col>
-                                    </Row>
-                                )
-                            })}
+                                <Row>
+                                    <Col classNames={'col-md-6'}>
 
+                                        <FormTitle>About</FormTitle>
+                                        <Info>Please check all of the statements below that you know are true about {target.firstName}</Info>
+                                            {questionTibs.map((tib, idx) => {
+                                            return(
+                                                    <Row key={idx}>
+                                                        <Col>
+                                                            <CheckBoxArrayField id={tib.id} name="tibIds" value={tib.id} label={tib.text}/>
+                                                        </Col>
+                                                    </Row>
+                                                )
+                                            })}
+
+                                    </Col>
+
+                                    <Col classNames={'col-md-6'}>
+
+                                        <FormTitle>Actions</FormTitle>
+                                        <Info>Please mark if you have completed the following actions for {target.firstName}</Info>
+                                            {actionTibs.map((tib, idx) => {
+                                            return(
+                                                    <Row key={idx}>
+                                                        <Col>
+                                                            <CheckBoxArrayField id={tib.id} name="tibIds" value={tib.id} label={tib.text}/>
+                                                        </Col>
+                                                    </Row>
+                                                )
+                                            })}
+
+                                        </Col>
+
+
+                                </Row>
+                                
                                 <SubmitButton 
                                     loading={loading}
                                     value={loading ? "Saving" : "Save"}
                                 />
+
+                                {props && props.dirty &&
+                                    <DirtyFormMessage> This form has unsaved changes </DirtyFormMessage>
+                                }
                         
                             </Form>
-                        )}
+                        )}}
                     
                     />
                 )}
