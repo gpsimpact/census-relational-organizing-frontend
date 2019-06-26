@@ -91,12 +91,7 @@ class AdminDash extends React.Component {
                                                     
                                                 </SumWrapper>
                                             </Col>
-                                            <Col classNames={'col-md-4'}>
-                                                <SectionTitle> True Questions: 2 / 10</SectionTitle>
-                                                <ProgressBar percent={"20%"}/>
-                                                <small>Not currently dynamic</small>
-
-                                            </Col>
+                                       
                                             <Col classNames={'col-md-4'}>
                                                 <SectionTitle> Actions Completed: 5 / 10</SectionTitle>
                                                 <ProgressBar percent={"50%"}/>
