@@ -2,7 +2,7 @@ import React from "react";
 import Page from "../../components/Page";
 import { CurrentUser } from '../../lib/constructors/UserConstructor';
 import {Container, Row, Col} from '../../components/Util/Grid';
-import { Box } from '../../components/Util/Layout';
+import { Box, HR } from '../../components/Util/Layout';
 import { MainTitle } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
 import { DashSideNav } from '../../components/Dash';
@@ -28,7 +28,11 @@ class TeamDashboard extends React.Component {
                             <LoadingBar active={false}/>
                             {
                                 (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&
-                                <DashAdminHome currentTeam={currentTeam} currentUser={currentUser}/>
+                                <React.Fragment>
+                                    <DashAdminHome currentTeam={currentTeam} currentUser={currentUser}/>
+                                    <HR/>
+                                </React.Fragment>
+
                             }
 
                             <DashVolHome currentTeam={currentTeam} currentUser={currentUser}/>

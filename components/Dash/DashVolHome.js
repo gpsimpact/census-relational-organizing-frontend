@@ -5,7 +5,7 @@ import { gql } from "apollo-boost";
 import PropTypes from 'prop-types';
 
 import { Row, Col } from '../Util/Grid';
-import { SumWrapper, SumCountTitle, SumCountNum } from '../Util/Layout';
+import { SumWrapper, SumCountTitle, SumCountNum,ProgressBar } from '../Util/Layout';
 import { ErrorIcon } from '../Util/Loading';
 import { SectionTitle } from '../Util/Typography';
 
@@ -36,6 +36,7 @@ export class DashVolHome extends React.Component {
             {({targetCount, householdCount}) => {
              
                 return(
+                    <React.Fragment>
                     <Row>
                         <Col>
                             <SectionTitle>My Counts</SectionTitle>
@@ -58,9 +59,22 @@ export class DashVolHome extends React.Component {
 
                             </SumWrapper>
                         </Col>
+                        </Row>
+                        <Row>
+                        <Col classNames={'col-md-4'}>
+                                                <SectionTitle> True Questions: 2 / 10</SectionTitle>
+                                                <ProgressBar percent={"20%"}/>
+                                                <small>Not currently dynamic</small>
 
+                                            </Col>
+                                            <Col classNames={'col-md-4'}>
+                                                <SectionTitle> Actions Completed: 5 / 10</SectionTitle>
+                                                <ProgressBar percent={"50%"}/>
+                                                <small>Not currently dynamic</small>
+                                            </Col>
                         
                     </Row>
+                    </React.Fragment>
                 )
             }}
         </SUMS>

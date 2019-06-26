@@ -9,8 +9,8 @@ import Page from "../../components/Page";
 
 import { CurrentUser } from '../../lib/constructors/UserConstructor';
 import {Container, Row, Col} from '../../components/Util/Grid';
-import { Box } from '../../components/Util/Layout';
-import { MainTitle } from '../../components/Util/Typography';
+import { Box,ProgressBar } from '../../components/Util/Layout';
+import { MainTitle, SectionTitle, FormTitle } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
 import { SideNav } from '../../components/Admin';
 
@@ -90,6 +90,17 @@ class AdminDash extends React.Component {
                                                     <SumCountNum>{targetCount && targetCount.data && targetCount.data.summaryCountAllTargets ? targetCount.data.summaryCountAllTargets : 0}</SumCountNum>
                                                     
                                                 </SumWrapper>
+                                            </Col>
+                                            <Col classNames={'col-md-4'}>
+                                                <SectionTitle> True Questions: 2 / 10</SectionTitle>
+                                                <ProgressBar percent={"20%"}/>
+                                                <small>Not currently dynamic</small>
+
+                                            </Col>
+                                            <Col classNames={'col-md-4'}>
+                                                <SectionTitle> Actions Completed: 5 / 10</SectionTitle>
+                                                <ProgressBar percent={"50%"}/>
+                                                <small>Not currently dynamic</small>
                                             </Col>
 
                                             <Col classNames={'col-md-4'}>
