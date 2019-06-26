@@ -46,18 +46,16 @@ export class DashVolHome extends React.Component {
                             <SumWrapper loading={targetCount.loading}>
                                 <SumCountTitle>Total Targets</SumCountTitle>
                                 {targetCount.error && <ErrorIcon error={targetCount.error}/>}
-                                {targetCount.data && targetCount.data.summaryCountMyTeamTargets &&
-                                    <SumCountNum>{targetCount.data.summaryCountMyTeamTargets}</SumCountNum>
-                                }
+                                <SumCountNum>{targetCount.data.summaryCountMyTeamTargets ? targetCount.data.summaryCountMyTeamTargets : 0}</SumCountNum>
+
                             </SumWrapper>
                         </Col>
                         <Col classNames={'col-md-4'}>
                             <SumWrapper loading={householdCount.loading}>
                                 <SumCountTitle>Total Household Size</SumCountTitle>
                                 {householdCount.error && <ErrorIcon error={householdCount.error}/>}
-                                {householdCount.data && householdCount.data.summaryTotalMyTeamHouseholdSize &&
-                                    <SumCountNum>{householdCount.data.summaryTotalMyTeamHouseholdSize}</SumCountNum>
-                                }
+                                <SumCountNum>{householdCount.data.summaryTotalMyTeamHouseholdSize ? householdCount.data.summaryTotalMyTeamHouseholdSize : 0}</SumCountNum>
+
                             </SumWrapper>
                         </Col>
 

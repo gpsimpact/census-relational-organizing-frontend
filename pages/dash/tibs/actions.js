@@ -47,7 +47,7 @@ class DashQuestionsIndex extends React.Component {
                                       <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
                                         <Info>These fields will be present for all targets.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
-                                            <SectionTitle>Default Target Intake Booleans</SectionTitle>
+                                            {gtibs && <SectionTitle>Default Target Intake Actions</SectionTitle> }
                                             {gtibs && gtibs.map((item, idx) =>{
                                                 const inTTIBS = false;
                                                 return(
@@ -62,7 +62,7 @@ class DashQuestionsIndex extends React.Component {
                                                     )
                                                 })
                                             }
-                                            <SectionTitle>Additional Target Intake Booleans</SectionTitle>
+                                            <SectionTitle>Additional Target Intake Actions</SectionTitle>
 
                                             {ttibs && ttibs.map((item, idx) =>{
                                                     return(

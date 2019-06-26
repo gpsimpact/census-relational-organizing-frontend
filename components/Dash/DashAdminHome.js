@@ -56,27 +56,22 @@ export class DashAdminHome extends React.Component {
                                 <SumWrapper loading={vols.loading}>
                                     <SumCountTitle>Total Volunteers</SumCountTitle>
                                     {vols.error && <ErrorIcon error={vols.error}/>}
-                                    {vols.data && vols.data.teamUsers && vols.data.teamUsers.totalCount &&
-                                        <SumCountNum>{vols.data.teamUsers.totalCount}</SumCountNum>
-                                    }
+                                    <SumCountNum>{vols.data.teamUsers.totalCount ? vols.data.teamUsers.totalCount : 0}</SumCountNum>
+
                                 </SumWrapper>
                             </Col>
                             <Col classNames={'col-md-4'}>
                                 <SumWrapper loading={targetCount.loading}>
                                     <SumCountTitle>Total Targets</SumCountTitle>
                                     {targetCount.error && <ErrorIcon error={targetCount.error}/>}
-                                    {targetCount.data && targetCount.data.summaryCountAllTeamTargets &&
-                                        <SumCountNum>{targetCount.data.summaryCountAllTeamTargets}</SumCountNum>
-                                    }
+                                        <SumCountNum>{targetCount.data.summaryCountAllTeamTargets ? targetCount.data.summaryCountAllTeamTargets : 0}</SumCountNum>
                                 </SumWrapper>
                             </Col>
                             <Col classNames={'col-md-4'}>
                                 <SumWrapper loading={householdCount.loading}>
                                     <SumCountTitle>Total Household Size</SumCountTitle>
                                     {householdCount.error && <ErrorIcon error={householdCount.error}/>}
-                                    {householdCount.data && householdCount.data.summaryTotalAllTeamHouseholdSize &&
-                                        <SumCountNum>{householdCount.data.summaryTotalAllTeamHouseholdSize}</SumCountNum>
-                                    }
+                                        <SumCountNum>{householdCount.data.summaryTotalAllTeamHouseholdSize ? householdCount.data.summaryTotalAllTeamHouseholdSize : 0}</SumCountNum>
                                 </SumWrapper>
                             </Col>
 
