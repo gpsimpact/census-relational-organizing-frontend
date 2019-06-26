@@ -18,6 +18,7 @@ export const TOGGLE_GTIB = gql`
                 text
                 active
                 visible
+                tibType
             }
         }
     }
@@ -36,8 +37,7 @@ export class SingleGTIB extends React.Component {
         this.setState({open: !this.state.open})
     }
     render(){
-        const { gtib } = this.props;
-        console.log(gtib);
+        const { gtib, tipType } = this.props;
         return(
             <SingleTIBContainer>
             <Row>
@@ -48,9 +48,20 @@ export class SingleGTIB extends React.Component {
                             id: gtib.id,
                             input: {
                                 visible: !gtib.visible,
-                                active: true
+                                active: true,
+                                tibType: gtib.tibType
                             }
                         }}
+                        refetchQueries={
+                            [
+                                {
+                                    query: GET_GTIBS,
+                                    variables: {
+                                        input:{active:true, tibType:gtib.tibType}
+                                    }
+                                }
+                            ]
+                        }
                     >
                         {(toggleGTIB, {data,loading,error}) => {
                         return(
@@ -89,7 +100,7 @@ export class SingleGTIB extends React.Component {
                                 visible: false,
                             }
                         }}
-                        refetchQueries={[{query: GET_GTIBS, variables:{input:{active:true}}}]}
+                        refetchQueries={[{query: GET_GTIBS, variables:{input:{active:true, tibType:gtib.tibType}}}]}
                     >
                         {(deleteGTIB, {data,loading,error}) => {
                             return(

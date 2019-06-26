@@ -12,6 +12,10 @@ export const AdminPaths = {
     },
     gtibs: {
         index:'/a/gtibs'
+    },
+    tibs:{
+        questions: '/a/tibs/questions',
+        actions: '/a/tibs/actions',
     }
 }
 
@@ -27,5 +31,9 @@ export const DashPaths = {
         index: '/dash/targets',
         create: '/dash/targets/create',
         detail: '/dash/targets/detail'
+    },
+    tibs:{
+        questions: '/dash/tibs/questions',
+        actions: '/dash/tibs/actions',
     }
 }

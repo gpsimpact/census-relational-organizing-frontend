@@ -8,7 +8,7 @@ export const GET_TTIBS = gql`
             active
             visible
             userId
-            gtibLink
+            tibType
         }
     }
 `;

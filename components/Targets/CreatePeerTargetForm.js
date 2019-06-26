@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBoxBlock, CheckBox } from '../Util/Forms';
 import { LoadingBar } from '../Util/Loading';
-import { FormTitle } from '../Util/Typography';
+import { FormTitle, SectionTitle } from '../Util/Typography';
 import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
 import { Row, Col } from '../Util/Grid';

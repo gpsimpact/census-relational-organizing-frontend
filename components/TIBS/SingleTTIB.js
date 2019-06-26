@@ -20,7 +20,7 @@ export const TOGGLE_TTIB = gql`
                 active
                 visible
                 userId
-                gtibLink
+                tibType
             }
         }
     }
@@ -38,7 +38,7 @@ export class SingleTTIB extends React.Component{
     }
 
     render(){
-        const { ttib, teamId } = this.props;
+        const { ttib, teamId, tibType } = this.props;
         return(
             <SingleTIBContainer>
                 <Row>
@@ -47,10 +47,12 @@ export class SingleTTIB extends React.Component{
                             variables={{
                                 id: ttib.id,
                                 input: {
-                                    visible: !ttib.visible
+                                    visible: !ttib.visible,
+                                    active: true,
+                                    tibType: tibType
                                 }
                             }}
-
+                            refetchQueries={[{query: GET_TTIBS, variables:{input: {teamId: teamId, active:true, tibType:tibType}}}]}
                         >
                             {(toggleTTIB, { data, loading, error}) => {
                                 return(
@@ -91,7 +93,7 @@ export class SingleTTIB extends React.Component{
                                         visible: false
                                     }
                                 }}
-                                refetchQueries={[{query: GET_TTIBS, variables:{input: {teamId}}}]}
+                                refetchQueries={[{query: GET_TTIBS, variables:{input: {teamId: teamId, active:true, tibType:tibType}}}]}
                             >
                                 {(deleteTTIB, {data,loading,error}) => {
                                     return(

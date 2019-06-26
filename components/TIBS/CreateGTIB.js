@@ -23,13 +23,16 @@ export const CREATE_GTIB = gql`
         }
     }
 `;
-export const CreateGTIB = () => {
+export const CreateGTIB = ({tibType}) => {
     return(
         <Mutation mutation={CREATE_GTIB}
             refetchQueries={
                 [
                     {
                         query: GET_GTIBS,
+                        variables: {
+                            input:{active:true, tibType:tibType}
+                        }
                     }
                 ]
             }
@@ -41,7 +44,8 @@ export const CreateGTIB = () => {
                     onSubmit={ async (values, actions) => {
                         let payload = {
                             input:{
-                                text: values.text
+                                text: values.text,
+                                tibType: tibType
                             }
                         }
                         let response = await submitMutation(mutation, payload);

@@ -16,8 +16,11 @@ export const SideNav = (props) => {
             {currentUser.hasGlobalPermission('ADMIN') &&
                 <SNavLi> <Link href={AdminPaths.teams.index}><SNavA href={AdminPaths.teams.index}>Teams</SNavA></Link></SNavLi>
             }
-              {currentUser.hasGlobalPermission('ADMIN') &&
-                <SNavLi> <Link href={AdminPaths.gtibs.index}><SNavA href={AdminPaths.gtibs.index}>GTIBS</SNavA></Link></SNavLi>
+            {currentUser.hasGlobalPermission('ADMIN') &&
+                <SNavLi> <Link href={AdminPaths.tibs.questions}><SNavA href={AdminPaths.tibs.questions}>Questions</SNavA></Link></SNavLi>
+            }
+            {currentUser.hasGlobalPermission('ADMIN') &&
+                <SNavLi> <Link href={AdminPaths.tibs.actions}><SNavA href={AdminPaths.tibs.actions}>Actions</SNavA></Link></SNavLi>
             }
         </SNavUl>
     )

@@ -22,20 +22,21 @@ export const CREATE_TTIB = gql`
                 active
                 visible
                 userId
-                gtibLink
+                tibType
             }
         }
     }
 `;
 
-export const CreateTTIB = (teamId) => {
+export const CreateTTIB = ({teamId, tibType}) => {
+    console.log(teamId)
     return(
         <Mutation mutation={CREATE_TTIB}
             refetchQueries={
                 [
                     {
                         query: GET_TTIBS,
-                        variables: {input:{...teamId}}
+                        variables: {input:{teamId:teamId, active:true, tibType:tibType}}
                     }
                 ]
             }
@@ -47,8 +48,9 @@ export const CreateTTIB = (teamId) => {
                     onSubmit={ async (values, actions) => {
                         let payload = {
                             input:{
-                                ...teamId,
-                                text: values.text
+                                teamId: teamId,
+                                text: values.text,
+                                tibType: tibType,
                             }
                         }
                         let response = await submitMutation(mutation, payload);
