@@ -1,1 +1,3 @@
-export { NavUl, NavLi, NavA, SNavUl, SNavLi, SNavA, CrudNavUl, CrudNavLi, CrudNavA } from './Styles';
+export { MainNavigation } from './MainNavigation';
+export { SideNav } from './SideNav';
+export { ActionNav } from './Styles';

@@ -1,16 +1,18 @@
-import { Mutation, withApollo } from 'react-apollo'
+import { Mutation } from 'react-apollo';
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import Link from 'next/link';
 
+import { H2, BlockAnchor } from '../Util/Typography';
+import { LoadingBar } from '../Util/Loading';
 import { TextField, SubmitButton, FormError } from '../Util/Forms';
 import { Box } from '../Util/Layout';
-import { LoadingBar } from '../Util/Loading'; 
-import { FormTitle, BlockAnchor } from '../Util/Typography';
-import { Row, Col } from '../Util/Grid';
-import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import redirect from '../../lib/redirect'
+import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
+
 
 export const LOGIN_MUTATION = gql`
 mutation requestLogin($email: String!, $nextPage: String) {
@@ -22,7 +24,10 @@ mutation requestLogin($email: String!, $nextPage: String) {
     }
   }
 `;
-const LoginForm = (props) => {
+
+
+
+export const LoginForm = (props) => {
     return(
         <Mutation mutation={LOGIN_MUTATION}>
             {(mutation, { data, loading, error }) => (
@@ -45,13 +50,13 @@ const LoginForm = (props) => {
                             })
                             return;
                         }
-                        redirect({}, `/check-email?code=${response.data.requestLogin.securityCode || null}`)                        
+                        redirect({}, `/check-email?code=${response.data.requestLogin.securityCode || null}`)                    
                     }}
                     render={({status, error}) => (
                         
                         <Form noValidate>
                             <Box>
-                                <FormTitle>Login</FormTitle>
+                                <H2 uppercase black>Login</H2>
                                 <LoadingBar active={loading}/>
                                     {
                                         status && status.form && <FormError error={status.form}/>
@@ -59,14 +64,14 @@ const LoginForm = (props) => {
 
                                 <Field id="email" name="email" label={"Email"}component={TextField}/>
                           
-                                <Row classNames="align-items-center">
-                                    <Col classNames="col">
+                                <Row>
+                                    <Col>
                                         <SubmitButton 
                                             loading={loading}
                                             value="Login"
                                         />
                                     </Col>
-                                    <Col classNames="col">                                
+                                    <Col>                                
                                         <Link href="/register"><BlockAnchor>Need to register?</BlockAnchor></Link>
                                     </Col>
 
@@ -80,5 +85,3 @@ const LoginForm = (props) => {
         </Mutation>
     )
 }
-
-export default LoginForm;

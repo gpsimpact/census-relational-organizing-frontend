@@ -3,4 +3,4 @@ export { CreateGTIB } from './CreateGTIB';
 export { SingleTTIB } from './SingleTTIB';
 export { CreateTTIB } from './CreateTTIB';
 
-export { SingleTIBContainer } from './Styles';
+export { SingleTIBContainer, DefaultTib } from './Styles';

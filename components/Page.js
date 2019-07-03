@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
 import styled from 'styled-components';
-import { PageContainerInner } from './QueryComponents/SideNavContainer';
-import { NavBar } from './Util/Navigation/NavBar';
-import { SideNav } from './Util/Navigation/SideNav';
+import { MainNavigation, SideNav } from "./Util/Navigation";
+import PropTypes from 'prop-types';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 
 export const PageContainer = styled('div')`
@@ -12,12 +14,9 @@ export const PageContainer = styled('div')`
     position: relative;
     -ms-overflow-style: scrollbar;
 `;
-
-export const PageContent = styled('div')`
-    min-height: 55vh;
+export const PageContent = styled('main')`
     position: relative;
 `;
-
 export const Footer = styled('footer')`
     padding: 75px 0px;
     background-color: ${props => props.theme.colors.black};
@@ -31,33 +30,41 @@ export const Footer = styled('footer')`
     }
 `;
 
+
 export default class Page extends React.Component {
     render(){
         return(
-
             <PageContainer>
-            <NavBar 
-                currentUser={this.props.currentUser} 
-                disableSideNav={this.props.navComponent ? false : true}/>
-        
-                <PageContent >
-                    {this.props.navComponent && <SideNav navComponent={this.props.navComponent} />}
-                        <PageContainerInner 
-                                padTop={this.props.padTop ? this.props.padTop : false}
-                                disableSideNav={this.props.navComponent ? false : true}
-                            >
-                                {this.props.crudNavComponent && this.props.crudNavComponent}
-                                {this.props.children}
-                        </PageContainerInner>
+                <MainNavigation currentUser={this.props.currentUser}/>
+
+                <PageContent>
+                    {this.props.sideNavComponent ?
+                        <Container bsPrefix="container-fluid h-100 no-gutters px-0">
+                            <Row bsPrefix="row h-100 no-gutters">
+                                <Col xs={12} md={3} xl={2}>
+                                    <SideNav sideNavComponent={this.props.sideNavComponent}/>
+                                </Col> 
+                                <Col xs={12} md={9} xl={10}>
+                                    {this.props.children}
+                                </Col>
+                            </Row>
+                        </Container>
+                    :
+                    <React.Fragment>
+                        {this.props.children}
+                    </React.Fragment>
+                    }
                 </PageContent>
 
-
-            <Footer>
+                <Footer>
                    <img className="footer-logo" src="https://civic-promotor.s3-us-west-2.amazonaws.com/images/CivicPromotor_Logo_V_White.png"/>
-            </Footer>
+                </Footer>
 
-        </PageContainer>
-
-)
+            </PageContainer>
+        )
     }
+}
+
+Page.propTypes = {
+    currentUser: PropTypes.object,
 }

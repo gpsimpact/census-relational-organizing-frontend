@@ -7,11 +7,15 @@ import Page from "../../../components/Page";
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
 
-import {Container, Row, Col} from '../../../components/Util/Grid';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+
 import { Box } from '../../../components/Util/Layout';
-import { MainTitle } from '../../../components/Util/Typography';
+import { H1 } from '../../../components/Util/Typography';
 import { LoadingBar } from '../../../components/Util/Loading';
-import { SideNav } from '../../../components/Admin';
+import { AdminSideNav } from '../../../components/SideNavs';
 import { withGlobalAuth } from "../../../components/Auth";
 import { ErrorMessage } from '../../../components/Util/Loading';
 import { Pagination } from '../../../components/Util/ListsAndPagination';
@@ -19,7 +23,7 @@ import { AdminPaths } from '../../../paths/index';
 import { AdminTeamCard } from '../../../components/Cards';
 import {TeamsWhere, TeamsSort } from '../../../lib/filters';
 import { FilterForm, FilterToggler } from "../../../components/Filters";
-import { CrudNavUl, CrudNavLi, CrudNavA } from '../../../components/Util/Navigation';
+import { ActionNav } from '../../../components/Util/Navigation'
 
 export const GET_TEAMS_ADMIN_QUERY = gql`
     query getTeamsAdmin($input: TeamsInput){
@@ -48,12 +52,11 @@ class AdminTeamIndex extends React.Component {
         let currentQuery = CurrentQuery(this.props);
         return(
             <Page 
-                padTop
                 currentUser={currentUser}
-                navComponent={<SideNav currentUser={currentUser}/>}
+                sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
             >
                 <Container>
-                    <Row>
+                    <Row bsPrefix="row py-5">
                         <Col>
                            
                                 <Query 
@@ -71,11 +74,11 @@ class AdminTeamIndex extends React.Component {
                                         return(
                                             <React.Fragment>
                                             <Box>
-                                            <Row classNames="align-items-center">
-                                                <Col classNames={"col-md-3"}>
-                                                     <MainTitle> Teams </MainTitle>
+                                            <Row bsPrefix="row align-items-center">
+                                                <Col md={3}>
+                                                     <H1> Teams </H1>
                                                 </Col>
-                                                <Col classNames="col-md-6">
+                                                <Col md={6}>
                                                 {data && data.teams && 
                                                     <Pagination
                                                         totalCount={data.teams.totalCount}
@@ -85,21 +88,15 @@ class AdminTeamIndex extends React.Component {
                                                     />
                                                 }
                                                 </Col>
-                                                <Col classNames={"col-md-3"}>
+                                                <Col md={3}>
                                          
-                                                <CrudNavUl>
-                                                    <CrudNavLi>
-                                                    <Link href={`${AdminPaths.teams.create}`}>
-                                                            <CrudNavA href={`${AdminPaths.teams.create}`}> 
-                                                                <i className="fas fa-plus-circle"></i> New Team
-                                                            </CrudNavA>
-                                                        </Link>
-                                                    </CrudNavLi>
-                                                    <CrudNavLi>
-                                                        <FilterToggler />
-                                                    </CrudNavLi>
+                                                        <ActionNav className='justify-content-end'>
+                                                            <Link href={AdminPaths.teams.create}>
+                                                                <Nav.Link href={AdminPaths.teams.create}> New Team </Nav.Link>
+                                                            </Link>
+                                                            <FilterToggler />
 
-                                                </CrudNavUl>
+                                                        </ActionNav>
 
                                                 </Col>
                                             </Row>
@@ -124,7 +121,7 @@ class AdminTeamIndex extends React.Component {
                                                         data && data.teams && data.teams.items && 
                                                         data.teams.items.map((item,idx) => {
                                                             return(
-                                                                <Col classNames={'col-lg-4'} key={idx}>
+                                                                <Col lg={4} key={idx}>
                                                                     <AdminTeamCard team={item}/>
                                                                 </Col>
                                                             )

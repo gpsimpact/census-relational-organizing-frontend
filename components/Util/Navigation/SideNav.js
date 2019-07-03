@@ -1,36 +1,36 @@
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { SIDENAV_OPEN_QUERY } from '../../QueryComponents/SideNavContainer';
-import { Query } from 'react-apollo';
-
-
+import Navbar from 'react-bootstrap/Navbar';
+import { SideNavbar, SideCNav } from './Styles';
+import  MenuIcon  from '@material-ui/icons/Menu';
 const SideNavContainer = styled('div')`
-height: 100%;
-padding-top: 30px;
-overflow-y:scroll;
-overflow-x:hidden;
-position: absolute;
-width: 200px;
-left: -200px;
--webkit-transition: .25s ease-in-out;
-    -moz-transition: .25s ease-in-out;
-    -o-transition: .25s ease-in-out;
-    transition: .25s ease-in-out;
-background: ${props => props.theme.colors.tertiary};
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: ${props => props.theme.colors.tertiary};
+    @media (min-width: 1200px){
+        min-height: 80vh;
+    }
 
-${({sideNavOpen}) => sideNavOpen && `left: 0px;`}
 `;
 
-export const SideNav = (props) => {
+export const SideNav = ({...props})=> {
     return(
-        <Query query={SIDENAV_OPEN_QUERY}>
-        {({data: {sideNavOpen}})=>{
-                    return(
-                        <SideNavContainer sideNavOpen={sideNavOpen}>
-                            {props.navComponent}
-                        </SideNavContainer>
-                    )
-                }}
-        </Query>
+        <SideNavContainer>
+            <SideNavbar expand="md">
+                <Navbar.Toggle bsPrefix={'navbar-toggler ml-auto'} aria-controls="sidenav" label={'Menu'}> Dash Menu <MenuIcon/></Navbar.Toggle>
+                <Navbar.Collapse id='sidenav'>
+                    <SideCNav className="flex-column">
+                            {props.sideNavComponent}
+                  
+                    </SideCNav>
+                </Navbar.Collapse>
+            </SideNavbar>
+
+        </SideNavContainer>
     )
+}
+SideNav.propTypes = {
+    sideNavComponent: PropTypes.any
 }

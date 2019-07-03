@@ -16,7 +16,7 @@ const ApplicationPending = styled('h4')`
     background-color: ${props => props.theme.colors.tertiary};
     text-transform: uppercase;
     font-style: italic;
-    padding: 10px 30px;
+    padding: 14px 30px;
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};
@@ -24,10 +24,10 @@ const ApplicationPending = styled('h4')`
 
 const SuccessPending = styled('h4')`
     text-align: center;
-    background-color: ${props => props.theme.colors.blue};
+    background-color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
     font-style: italic;
-    padding: 10px 30px;
+    padding: 14px 30px;
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};

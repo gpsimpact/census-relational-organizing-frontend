@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const DefaultTib = styled('p')`
+    border-left: 3px solid ${props => props.theme.colors.primary};
+    padding-left: 15px;
+    font-weight: 300;
+    color: ${props => props.theme.colors.black};
+    margin: 5px 0px;
+`;
 export const SingleTIBContainer = styled('div')`
     margin: 5px 0px 20px;
 `;
@@ -16,8 +23,8 @@ export const ToggleButton = styled('button')`
         .checkem {
             transition: .25s;
             position: absolute;
-            right: 8px;
-            bottom: 8px;
+            right: 5px;
+            bottom: 5px;
             z-index: 50;
             opacity: 0;
             color: ${props => props.theme.colors.primary};

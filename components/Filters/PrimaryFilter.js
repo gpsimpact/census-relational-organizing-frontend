@@ -4,6 +4,7 @@ import { AndBlock, ORButton, RemoveButton, AddButton } from "./Styles";
 import { FilterFields } from "./FilterFields";
 import styled from 'styled-components';
 
+import AddCircle from '@material-ui/icons/AddCircle';
 
 const AddFilterButton = styled('a')`
     position: relative;
@@ -37,7 +38,7 @@ export const PrimaryFilter = ({arrayHelpers, fieldVals, name, primaryFilters, er
                         "AND": 
                             [{key:"", op:"", val:""}]
                       }
-                      )}> <span> OR <i className="fas fa-plus-circle"></i></span></ORButton>
+                      )}> <span> OR <AddCircle/> </span></ORButton>
 
                   </AndBlock>
       

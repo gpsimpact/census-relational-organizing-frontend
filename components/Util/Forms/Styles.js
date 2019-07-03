@@ -30,8 +30,8 @@ export const TextInput = styled('input')`
 
     }
     ${({ error, theme }) => error && `
-            border-left: 3px solid ${theme.colors.red};
-            border-bottom: 2px solid ${theme.colors.red};
+            border-left: 3px solid ${theme.colors.secondary};
+            border-bottom: 2px solid ${theme.colors.secondary};
     `}
 `;
 
@@ -41,7 +41,7 @@ export const ErrorContainer = styled('div')`
     text-transform: uppercase;
     font-size: .75rem;
     padding-left: .5rem;
-    color: ${props => props.theme.colors.red};
+    color: ${props => props.theme.colors.secondary};
 `;
 
 export const StyledSelectInput = styled('select')`
@@ -65,8 +65,8 @@ export const StyledSelectInput = styled('select')`
 
     }
     ${({ error, theme }) => error && `
-            border-left: 3px solid ${theme.colors.red};
-            border-bottom: 2px solid ${theme.colors.red};
+            border-left: 3px solid ${theme.colors.secondary};
+            border-bottom: 2px solid ${theme.colors.secondary};
     `}
 `;
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AndBlock = styled('div')`
-border: 3px solid ${props => props.theme.colors.tertiary};
+border: 1px solid ${props => props.theme.colors.tertiary};
 padding: 15px;
 margin-bottom: 30px;
 
@@ -50,19 +50,20 @@ export const QueryButton = styled('button')`
         -o-transition: .25s ease-in-out;
         transition: .25s ease-in-out;
     padding: 10px 30px;
-    background-color: ${props => props.theme.colors.g0};
-    color: ${props => props.theme.colors.secondary};
-    border: 1px solid ${props => props.theme.colors.g2};
+    background-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.white};
+    border: 1px solid ${props => props.theme.colors.primary};
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1rem;
-    margin-top: 1.2rem;
+    margin-top: 25px;
     width: 100%;
     &:hover,
     &:active,
     &:focus {
-        background-color: ${props=>props.theme.colors.primary};
+        background-color: ${props=>props.theme.colors.secondary};
         color: ${props => props.theme.colors.white};
+        border: 1px solid ${props => props.theme.colors.secondary};
         cursor: pointer;
     }
 `;

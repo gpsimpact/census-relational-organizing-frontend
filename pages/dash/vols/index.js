@@ -1,21 +1,25 @@
 import React from "react";
 import Page from "../../../components/Page";
 import { withTeamAuth } from '../../../components/Auth';
-import { DashSideNav } from '../../../components/Dash';
+import { DashSideNav } from '../../../components/SideNavs';
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
-import {Container, Row, Col} from '../../../components/Util/Grid';
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+
 import { gql } from "apollo-boost";
 import { Query } from 'react-apollo';
 import Link from "next/link";
 import { Box } from '../../../components/Util/Layout';
-import { MainTitle } from '../../../components/Util/Typography';
+import { H1 } from '../../../components/Util/Typography';
 import { LoadingBar,ErrorMessage } from '../../../components/Util/Loading';
 import { Pagination } from "../../../components/Util/ListsAndPagination";
 import { DashPaths } from "../../../paths";
 import {UsersWhere, UsersSort } from '../../../lib/filters';
 import { FilterForm, FilterToggler } from "../../../components/Filters";
-import { CrudNavUl, CrudNavLi } from '../../../components/Util/Navigation';
+import { ActionNav } from '../../../components/Util/Navigation'
 import { TeamVolCard } from '../../../components/Cards';
 
 export const GET_USERS_TEAM_DASH_QUERY = gql`
@@ -55,16 +59,16 @@ class DashVolIndex extends React.Component {
 
         return(
             <Page
-            padTop
             currentUser={currentUser}
-            navComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+            sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
             >
                 <Container>
-                    <Row>
-                        <Col>
+                    <Row bsPrefix="row py-5">
+                        <Col md={12}>
 
                         <Query
                             query={GET_USERS_TEAM_DASH_QUERY}
+                            fetchPolicy="cache-and-network"
                             variables={{
                                 input:{
                                     limit: currentQuery.perPage,
@@ -80,11 +84,11 @@ class DashVolIndex extends React.Component {
                             return(
                                 <React.Fragment>
                                     <Box>
-                                        <Row classNames="align-items-center">
-                                            <Col classNames={"col-md-3"}>
-                                                <MainTitle> Volunteers </MainTitle>
+                                        <Row bsPrefix="row align-items-center">
+                                            <Col md={3}>
+                                                <H1 uppercase> Volunteers </H1>
                                             </Col>
-                                            <Col classNames={"col-md-6"}>
+                                            <Col md={6}>
                                                 {data && data.teamUsers &&
                                                     <Pagination
                                                         totalCount={data.teamUsers.totalCount}
@@ -96,13 +100,12 @@ class DashVolIndex extends React.Component {
                                                     />
                                                 }
                                             </Col>
-                                            <Col classNames={"col-md-3"}>
-                                                <CrudNavUl>
-                                                    <CrudNavLi>
-                                                        <FilterToggler />
-                                                    </CrudNavLi>
+                                            <Col md={3}>
+                                                <ActionNav className='justify-content-end'>
+                                                  
+                                                    <FilterToggler />
 
-                                                </CrudNavUl>
+                                                </ActionNav>
                                             </Col>
                                         </Row>
                                         <LoadingBar active={loading}/>
@@ -124,7 +127,7 @@ class DashVolIndex extends React.Component {
                                         {data && data.teamUsers && data.teamUsers.items && 
                                             data.teamUsers.items.map((item,idx) => {
                                                 return(
-                                                    <Col classNames={'col-lg-4'} key={idx}>
+                                                    <Col lg={4} key={idx}>
                                                         <TeamVolCard vol={item} team={currentTeam}/>
                                                     </Col>
                                                 )

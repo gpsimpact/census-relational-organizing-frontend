@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import { gql } from "apollo-boost";
 import { Mutation } from 'react-apollo'
 
-import { SingleTIBContainer, ToggleButton, DeleteTIB, ConfirmDelete,BoolButton,ConfirmDeleteButton } from './Styles';
-import { Row, Col } from '../Util/Grid';
-import { FormError } from '../Util/Forms';
-import { GET_TTIBS } from "../QueryComponents/TTIBS";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
+
+import { SingleTIBContainer, ToggleButton, DeleteTIB, ConfirmDelete,BoolButton,ConfirmDeleteButton } from './Styles';
+
+
+import { FormError } from '../Util/Forms';
+import { GET_TTIBS } from "../Queries/TTIBS";
+import DeleteForever from '@material-ui/icons/DeleteForever';
+import Check from '@material-ui/icons/Check';
 export const TOGGLE_TTIB = gql`
     mutation toggleTtib($id: String!, $input: UpdateTtibInput!){
         updateTtib(id:$id, input:$input){
@@ -42,7 +48,7 @@ export class SingleTTIB extends React.Component{
         return(
             <SingleTIBContainer>
                 <Row>
-                    <Col>
+                    <Col md={12}>
                         <Mutation mutation={TOGGLE_TTIB}
                             variables={{
                                 id: ttib.id,
@@ -52,27 +58,28 @@ export class SingleTTIB extends React.Component{
                                     tibType: tibType
                                 }
                             }}
-                            refetchQueries={[{query: GET_TTIBS, variables:{input: {teamId: teamId, active:true, tibType:tibType}}}]}
                         >
                             {(toggleTTIB, { data, loading, error}) => {
                                 return(
                                     <Row>
                                         {error && <Col><FormError error={{code: "Uh Oh", message: error.message}}/></Col>}
-                                        <Col classNames={'col-md-2'}>
+                                        <Col xs={2}>
                                             <ToggleButton visible={ttib.visible} disabled={loading} 
                                                 onClick={() => {
                                                     toggleTTIB();
                                                 }}
                                             >
-                                                <i className="checkem fas fa-check"></i>
+                                                <span class="checkem">
+                                                    <Check/>
+                                                </span>
                                             </ToggleButton>
                                         </Col>
-                                        <Col classNames={'col-md-8'}>
+                                        <Col xs={8}>
                                             {ttib.text}
                                         </Col>
-                                        <Col classNames={'col-md-2'}>
+                                        <Col xs={2}>
                                             <DeleteTIB type="button" onClick={() => this.toggle()}>
-                                                    <i className="far fa-trash-alt"></i>
+                                                   <DeleteForever/>
                                             </DeleteTIB>
                                         </Col>
                                     </Row>
@@ -97,12 +104,12 @@ export class SingleTTIB extends React.Component{
                             >
                                 {(deleteTTIB, {data,loading,error}) => {
                                     return(
-                                        <Row classNames="align-items-center justify-content-center">
-                                            <Col classNames={'col-md-8'}>
+                                        <Row bsPrefix="row align-items-center justify-content-center">
+                                            <Col md={8}>
                                                 <h3>Are you sure you want to delete:</h3> 
                                                 <p>{ttib.text}</p>
                                             </Col>
-                                            <Col classNames={'col-md-2'}>
+                                            <Col md={2}>
                                                 <ConfirmDeleteButton type="button" onClick={() => {
                                                     this.toggle();
                                                     deleteTTIB();
@@ -110,7 +117,7 @@ export class SingleTTIB extends React.Component{
                                                     Confirm
                                                 </ConfirmDeleteButton>
                                             </Col>
-                                            <Col classNames={'col-md-2'}>
+                                            <Col md={2}>
                                                 <BoolButton type="button" onClick={()=>this.toggle()}>Cancel</BoolButton>
                                             </Col>
                                             {error && <Col><FormError error={{code: "Uh Oh", message: error.message}}/></Col>}

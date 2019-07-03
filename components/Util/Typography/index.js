@@ -1,4 +1,3 @@
-export { FormTitle, MainTitle, SectionTitle } from './Titles';
+export { H1, H2, H3, H4, H5, H6 } from './Titles';
 export { BlockAnchor } from './Anchors';
-export { Button } from './Buttons';
-export { Info } from './Text';
+export { Info } from './Info';

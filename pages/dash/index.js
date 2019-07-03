@@ -1,11 +1,14 @@
 import React from "react";
 import Page from "../../components/Page";
 import { CurrentUser } from '../../lib/constructors/UserConstructor';
-import {Container, Row, Col} from '../../components/Util/Grid';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+
 import { Box, HR } from '../../components/Util/Layout';
-import { MainTitle } from '../../components/Util/Typography';
+import { H1 } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
-import { DashSideNav } from '../../components/Dash';
+import { DashSideNav } from '../../components/SideNavs';
 import { withTeamAuth } from '../../components/Auth';
 import { DashAdminHome, DashVolHome } from "../../components/Dash";
 
@@ -16,15 +19,14 @@ class TeamDashboard extends React.Component {
 
         return(
             <Page
-                padTop
                 currentUser={currentUser}
-                navComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
             >
             <Container>
-                <Row>
-                    <Col>
+                <Row bsPrefix="row py-5">
+                    <Col md={12}>
                         <Box>
-                            <MainTitle>{currentTeam.name}</MainTitle>
+                            <H1 uppercase>{currentTeam.name}</H1>
                             <LoadingBar active={false}/>
                             {
                                 (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&

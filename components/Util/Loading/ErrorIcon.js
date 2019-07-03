@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import ErrorOutline from '@material-ui/icons/ErrorOutline'
 
 
 export const ErrorIconContainer= styled('div')`
@@ -8,7 +8,7 @@ export const ErrorIconContainer= styled('div')`
         display: block;
         margin: .5rem auto;
         text-align: center;
-        i {
+        svg,i {
             color: ${props => props.theme.colors.red}
         }
         .hover {
@@ -44,7 +44,7 @@ export const ErrorIcon = (props) => {
     <ErrorIconContainer>
         <div className="hover">{props.error.message}</div>
         <span className="sr-only">{props.error.message}</span>
-        <i className="fas fa-exclamation-circle"></i>
+        <ErrorOutline/>
     </ErrorIconContainer>
 )}
 

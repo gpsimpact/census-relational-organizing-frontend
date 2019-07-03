@@ -25,12 +25,12 @@ export const PermContainer = styled('div')`
     padding: .5rem;
     border: 1px solid ${props => props.theme.colors.g2};
 `;
-export const PermTitle = styled('h5')`
+export const PermTitle = styled('h4')`
     text-transform: uppercase;
     font-size: .9rem;
 `;
 
-export const PermCount = styled('div')`
+export const PermCount = styled('h4')`
     text-align: right;
 `;
 

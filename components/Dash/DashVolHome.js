@@ -4,10 +4,12 @@ import { adopt } from 'react-adopt';
 import { gql } from "apollo-boost";
 import PropTypes from 'prop-types';
 
-import { Row, Col } from '../Util/Grid';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import { SumWrapper, SumCountTitle, SumCountNum,ProgressBar } from '../Util/Layout';
 import { ErrorIcon } from '../Util/Loading';
-import { SectionTitle } from '../Util/Typography';
+import { H3 } from '../Util/Typography';
 
 
 const MY_TARGETS_COUNT = gql`
@@ -38,12 +40,12 @@ export class DashVolHome extends React.Component {
                 return(
                     <React.Fragment>
                     <Row>
-                        <Col>
-                            <SectionTitle>My Counts</SectionTitle>
+                        <Col md={12}>
+                            <H3>My Counts</H3>
                         </Col>
                     
                      
-                        <Col classNames={'col-md-4'}>
+                        <Col md={4}>
                             <SumWrapper loading={targetCount.loading}>
                                 <SumCountTitle>Total Targets</SumCountTitle>
                                 {targetCount.error && <ErrorIcon error={targetCount.error}/>}
@@ -51,7 +53,7 @@ export class DashVolHome extends React.Component {
 
                             </SumWrapper>
                         </Col>
-                        <Col classNames={'col-md-4'}>
+                        <Col md={4}>
                             <SumWrapper loading={householdCount.loading}>
                                 <SumCountTitle>Total Household Size</SumCountTitle>
                                 {householdCount.error && <ErrorIcon error={householdCount.error}/>}
@@ -62,8 +64,8 @@ export class DashVolHome extends React.Component {
                         </Row>
                         <Row>
                     
-                                            <Col classNames={'col-md-4'}>
-                                                <SectionTitle> Actions Completed: 5 / 10</SectionTitle>
+                                            <Col md={4}>
+                                                <H3> Actions Completed: 5 / 10</H3>
                                                 <ProgressBar percent={"50%"}/>
                                                 <small>Not currently dynamic</small>
                                             </Col>

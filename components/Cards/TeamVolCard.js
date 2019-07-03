@@ -7,12 +7,13 @@ import { Formik, Form, Field } from "formik";
 import { SelectField, SubmitButton, DirtyFormMessage } from '../Util/Forms';
 
 import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
-import { Row, Col } from '../Util/Grid';
-import { DashPaths } from '../../paths';
 import { CardInfoPoint } from './CardInfoPoint';
 import { LoadingBar } from '../Util/Loading'; 
-import { FormTitle } from '../Util/Typography';
 import { submitMutation, marshallMutationResponse } from "../../lib/helpers";
+
+import Phone from '@material-ui/icons/Phone';
+import Email from '@material-ui/icons/Email';
+import Place from '@material-ui/icons/Place';
 
 export const TOGGLE_TEAM_PERMISSION = gql`
     mutation toggleTeamPermission($input:ToggleTeamPermissionInput!){
@@ -58,9 +59,9 @@ export const TeamVolCard = (props) => {
             <CardInner>
                 <CardTitle>{vol.firstName} {vol.lastName}</CardTitle>
                 <LoadingBar active={loading}/>
-                <CardInfoPoint icon={'fas fa-phone'} infoPoint={vol.phone}/>
-                <CardInfoPoint icon={'far fa-envelope'} infoPoint={vol.email}/>
-                <CardInfoPoint icon={'fas fa-map-marker-alt'} infoPoint={`${vol.address}`} infoPoint2={`${vol.city}, ${vol.state} ${vol.zip5}`}/>
+                <CardInfoPoint icon={<Phone/>} infoPoint={vol.phone}/>
+                <CardInfoPoint icon={<Email/>} infoPoint={vol.email}/>
+                <CardInfoPoint icon={<Place/>} infoPoint={`${vol.address}`} infoPoint2={`${vol.city}, ${vol.state} ${vol.zip5}`}/>
                         <Formik 
                             initialValues={{
                                 permission: currentPerm,

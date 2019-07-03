@@ -1,4 +1,4 @@
-import { Mutation, withApollo } from 'react-apollo'
+import { Mutation } from 'react-apollo'
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
@@ -6,10 +6,12 @@ import * as Yup from 'yup';
 import { TextField, SubmitButton, FormError, FormSuccess } from '../Util/Forms';
 import { Box } from '../Util/Layout';
 import { LoadingBar } from '../Util/Loading'; 
-import { FormTitle, BlockAnchor } from '../Util/Typography';
-import { Row, Col } from '../Util/Grid';
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { CURRENT_USER_QUERY } from '../QueryComponents/Me';
+import { CURRENT_USER_QUERY } from '../Queries/Me';
+import { H1 } from '../Util/Typography';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 
 export const UPDATE_ME_MUTATION = gql`
@@ -20,7 +22,6 @@ mutation updateMe($input: UpdateUserInput!) {
     message
     item {
         id
-        firstName
         email
     }
   }
@@ -83,9 +84,9 @@ export const UpdateProfileForm = ({currentUser}) => {
                 })
             }}
             render={({status}) => (
-                <Form noValidate>
+                <Form noValidate className="py-5">
                 <Box>
-                    <FormTitle> Profile </FormTitle>
+                    <H1> Profile </H1>
                     <LoadingBar active={loading}/>
                         {
                             status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
@@ -95,7 +96,7 @@ export const UpdateProfileForm = ({currentUser}) => {
                         }
                     <fieldset>
                     <Row>
-                        <Col classNames={'col-md-6'}>
+                        <Col md={6}>
                             <Field
                                 id="firstName"
                                 name="firstName"
@@ -104,7 +105,7 @@ export const UpdateProfileForm = ({currentUser}) => {
                                 component={TextField}
                             />
                         </Col>
-                        <Col classNames={'col-md-6'}>
+                        <Col md={6}>
                             <Field
                                     id="lastName"
                                     name="lastName"
@@ -128,7 +129,7 @@ export const UpdateProfileForm = ({currentUser}) => {
                     </Row>
 
                     <Row>
-                        <Col classNames={'col-md-5'}>
+                        <Col md={5}>
                         <Field
                                 id="city"
                                 name="city"
@@ -138,7 +139,7 @@ export const UpdateProfileForm = ({currentUser}) => {
                             />
                         </Col>
 
-                        <Col classNames={'col-md-3'}>
+                        <Col md={4}>
                         <Field
                                 id="state"
                                 name="state"
@@ -148,7 +149,7 @@ export const UpdateProfileForm = ({currentUser}) => {
                             />
                         </Col>
 
-                        <Col classNames={'col-md-4'}>
+                        <Col md={3}>
                         <Field
                                 id="zip5"
                                 name="zip5"

@@ -1,3 +1,9 @@
+export const PublicPaths = {
+    register: '/register',
+    profile: '/profile',
+    teams: '/teams',
+}
+
 export const AdminPaths = {
     index: '/a',
     teams: {
@@ -24,13 +30,10 @@ export const DashPaths = {
     vols: {
         index: '/dash/vols'
     },
-    ttibs: {
-        index: '/dash/ttibs'
-    },
-    targets: {
-        index: '/dash/targets',
-        create: '/dash/targets/create',
-        detail: '/dash/targets/detail'
+    contacts: {
+        index: '/dash/contacts',
+        create: '/dash/contacts/create',
+        detail: '/dash/contacts/detail'
     },
     tibs:{
         questions: '/dash/tibs/questions',

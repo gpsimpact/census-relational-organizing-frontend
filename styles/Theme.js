@@ -1,9 +1,5 @@
 
 import { createGlobalStyle, css } from 'styled-components';
-import { Animations } from './Animations';
-import { Grid } from './Grid';
-
-
 
 
 export const theme = {
@@ -96,10 +92,12 @@ export const GlobalStyle = css`
             height: auto;
         }
     }
+    .mw-1200 {
+        max-width: 1200px;
+    }
+   
 `;
 
 export const AddGlobals = createGlobalStyle`
-  ${Grid};
   ${GlobalStyle};
-  ${Animations};
 `;

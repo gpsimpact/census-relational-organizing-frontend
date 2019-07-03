@@ -2,13 +2,11 @@ import React from "react";
 import Link from "next/link";
 import _ from "lodash";
 import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
-import { Row, Col } from '../Util/Grid';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { DashPaths, AdminPaths } from '../../paths';
 
 export const AdminTeamCard = (props) => {
-    if(!props.team){
-        return null;
-    }
     const { team } = props;
     const allowedPerms = ["APPLICANT", "MEMBER", "ADMIN"]
 
@@ -40,10 +38,10 @@ export const AdminTeamCard = (props) => {
                         
                             return(
                                 <Row key={idx}>
-                                    <Col classNames={'col-8'}>
+                                    <Col xs={8}>
                                         <PermTitle>{perm.permission}</PermTitle>
                                     </Col>
-                                    <Col classNames={'col-4'}>
+                                    <Col xs={4}>
                                         <PermCount>{perm.count}</PermCount>
                                     </Col>
                                 </Row>

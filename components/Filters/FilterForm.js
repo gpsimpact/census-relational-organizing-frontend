@@ -8,7 +8,7 @@ import { ConstructNewQuery } from '../../lib/constructors/BaseQueryConstructor';
 import { PageFilters } from './PageFilters.js';
 import { TopLevelOR } from './TopLevelOR';
 import  Router  from "next/router";
-import { FILTERS_OPEN_QUERY} from '../QueryComponents/FilterContainer';
+import { FILTERS_OPEN_QUERY} from '../Queries/FilterContainer';
 
 const filterValidationSchema = Yup.object().shape({
     OR: Yup.array().of(

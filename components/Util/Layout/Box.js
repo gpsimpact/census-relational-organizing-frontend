@@ -8,6 +8,7 @@ const BoxContainer = styled.div`
     border: 1px solid ${props => props.theme.colors.g2};
     border-bottom: 2px solid ${props => props.theme.colors.g2};
     margin-bottom: 1rem;
+    color: ${props => props.theme.colors.black};
 `;
 export const Box = (props) => {
     return(

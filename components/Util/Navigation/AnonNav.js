@@ -1,10 +1,13 @@
-import {NavUl, NavLi, NavA } from './Styles';
 import Link from 'next/link';
+import { PublicPaths } from '../../../paths';
+import Nav from 'react-bootstrap/Nav'
 
-export const AnonNav = (props) => {
+export const AnonNav = () => {
     return(
-        <NavUl>
-            <Link href="/register"><NavLi><NavA> Register </NavA></NavLi></Link>
-        </NavUl>
+       <Link href={`${PublicPaths.register}`}>
+           <Nav.Link href={`${PublicPaths.register}`}>
+               Register
+           </Nav.Link>
+        </Link>
     )
 }

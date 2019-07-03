@@ -2,16 +2,16 @@ import React from "react";
 import cookie from "cookie";
 import { withApollo } from "react-apollo";
 import { gql } from "apollo-boost";
-
-import Page from '../components/Page';
-import { Container, Row, Col } from '../components/Util/Grid';
-import { Box } from '../components/Util/Layout';
-import { FormTitle } from '../components/Util/Typography';
-import MutationOnMount from '../components/MutationOnMount';
-import { LoadingBar, ErrorMessage } from '../components/Util/Loading';
-import { FormError } from '../components/Util/Forms';
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import { Box } from "../components/Util/Layout";
+import { H1 } from "../components/Util/Typography";
+import MutationOnMount from "../components/MutationOnMount";
+import { LoadingBar } from "../components/Util/Loading";
+import { FormError } from "../components/Util/Forms";
 import redirect from '../lib/redirect';
-
+import Page from "../components/Page";
 
 export const CONFIRM_LOGIN_MUTATION = gql`
 mutation confirmLogin($token: String!) {
@@ -23,65 +23,51 @@ mutation confirmLogin($token: String!) {
   }
 }
 `;
-
 class Confirm extends React.Component {
     render(){
         return(
-        <Page padTop>
-            <Container>
-                <Row classNames={'justify-content-center'}>
-                    <Col classNames={"col-md-6"}>
-                        <Box>
-                            <FormTitle>Logging In</FormTitle>
-                            <MutationOnMount 
-                                mutation={CONFIRM_LOGIN_MUTATION} 
-                                variables={{token:this.props.query.token}}
-                                onCompleted={async data => {
-                                    console.log(data);
-                                    if(data && data.confirmLogin && data.confirmLogin.token && data.confirmLogin.success){
-                                    document.cookie = cookie.serialize('token', data.confirmLogin.token, {
-                                        maxAge: 30 * 24 * 60 * 60 // 30 days
-                                    })
-                                    // Force a reload of all the current queries now that the user is
-                                    // logged in
-                                    this.props.client.cache.reset().then(() => {
-                                        redirect({}, '/')
-                                    })
-                                    }
-                                }}
+            <Page>
+                <Container>
+                    <Row bsPrefix={"row justify-content-center py-5"}>
+                        <Col md={6}>
+                            <Box>
+                                <H1 uppercase>Logging In</H1>
+                                <MutationOnMount 
+                                    mutation={CONFIRM_LOGIN_MUTATION} 
+                                    variables={{token:this.props.query.token}}
+                                    onCompleted={async data => {
+                                        if(data && data.confirmLogin && data.confirmLogin.token && data.confirmLogin.success){
+                                        document.cookie = cookie.serialize('token', data.confirmLogin.token, {
+                                            maxAge: 30 * 24 * 60 * 60 // 30 days
+                                        })
+                                        // Force a reload of all the current queries now that the user is
+                                        // logged in
+                                        let nextPage = '/';
+                                        if(this.props.query.next){
+                                            nextPage=this.props.query.next;
+                                        }
+                                        this.props.client.cache.reset().then(() => {
+                                            redirect({}, nextPage);
+                                        })
+                                        }
+                                    }}
                                 >
-                            {(mutate, { data, loading, error}) => {
-                                if(loading) {
-                                return (<LoadingBar active={true}/>);
-                                }
-                                // if(error) {
-                                //     return(
-                                //     <React.Fragment>
-                                //         <LoadingBar active={false}/>
-                                //         <ErrorMessage error={error}/>
-                                //     </React.Fragment>
-                                //     );
-                                // }
-                                return(
-                                    <React.Fragment>
-                                        <LoadingBar active={false}/>
-                                         {/* <FormError error={{code: data.confirmLogin.code, message:data.confirmLogin.message}}/> */}
-                                    </React.Fragment>
+                                    {(mutate, { data, loading, error}) => {
+                                        return(
+                                            <React.Fragment>
+                                                <LoadingBar active={loading}/>
+                                                {error && <FormError error={error}/>}
+                                            </React.Fragment>
+                                        )
+                                    }}
 
-                                    );
+                                </MutationOnMount>
+                            </Box>
 
-
-            
-                                
-
-                            
-                            }}
-                            </MutationOnMount>
-                        </Box>
-                    </Col>
-                </Row>
-            </Container>
-        </Page>
+                        </Col>
+                    </Row>
+                </Container>
+            </Page>
         )
     }
 }

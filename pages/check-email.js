@@ -3,9 +3,11 @@ import React from "react";
 import Page from "../components/Page";
 import  {GetCurrentUser}  from '../lib/serverQueries/CurrentUser';
 import { CurrentUser } from '../lib/constructors/UserConstructor';
-import { Container, Row, Col } from '../components/Util/Grid';
 import { Box } from '../components/Util/Layout';
-import { MainTitle } from '../components/Util/Typography';
+import { MainTitle, H1, H3 } from '../components/Util/Typography';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class CheckEmail extends React.Component {
     static async getInitialProps({...ctx}) {
@@ -17,13 +19,13 @@ class CheckEmail extends React.Component {
         return(
             <Page currentUser={currentUser} padTop>
                 <Container>
-                    <Row classNames={'justify-content-center'}>
-                        <Col classNames={'col-md-6'}>
+                    <Row bsPrefix="row justify-content-center py-5">
+                        <Col md={6}>
                             <Box> 
-                            <MainTitle>Welcome</MainTitle>
+                            <H1 uppercase>Welcome</H1>
                             <p>Check your email to complete your login.</p>
                                 {this.props && this.props.query && this.props.query.code &&
-                                    <h2>Verification Code:  <span>{this.props.query.code}</span> </h2>   
+                                    <H3 uppercase>Verification Code:  <span>{this.props.query.code}</span> </H3>   
                                 }
 
 

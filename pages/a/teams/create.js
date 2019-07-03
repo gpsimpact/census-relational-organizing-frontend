@@ -1,30 +1,32 @@
 import React from "react";
-import { gql } from "apollo-boost";
-import { Query, Mutation } from "react-apollo";
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import Page from "../../../components/Page";
-import { SideNav, AdminCreateTeamForm } from '../../../components/Admin';
-import {Container, Row, Col} from '../../../components/Util/Grid';
+import { AdminSideNav } from '../../../components/SideNavs';
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+
+import { AdminCreateTeamForm } from '../../../components/Admin';
+
 import { Box } from '../../../components/Util/Layout';
-import { MainTitle } from '../../../components/Util/Typography';
-import { LoadingBar } from '../../../components/Util/Loading';
+import { H1 } from '../../../components/Util/Typography';
 import { withGlobalAuth } from "../../../components/Auth";
-import { ErrorMessage } from '../../../components/Util/Loading';
 
 
 class AdminTeamCreate extends React.Component {
     render(){
         let currentUser = CurrentUser(this.props);
         return(
-            <Page padTop
+            <Page 
                 currentUser={currentUser}
-                navComponent={<SideNav currentUser={currentUser}/>}
+                sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
             >
                   <Container>
-                        <Row classNames={'justify-content-center'}>
-                            <Col classNames={'col-md-6'}>
+                        <Row bsPrefix={'row justify-content-center py-5'}>
+                            <Col md={6}>
                                 <Box>
-                                    <MainTitle>Create New Team</MainTitle>
+                                    <H1>Create New Team</H1>
                                     <AdminCreateTeamForm/>
                                 </Box>
 

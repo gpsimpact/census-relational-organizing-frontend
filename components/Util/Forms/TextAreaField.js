@@ -10,6 +10,7 @@ const TextArea = styled('textarea')`
     border-left: 3px solid ${props => props.theme.colors.g1};
     border-bottom: 2px solid ${props => props.theme.colors.g3};
     background: ${props => props.theme.colors.g1};
+    min-height: 150px;
     :focus {
         background: ${props => props.theme.colors.g2};
         border-left: 3px solid ${props => props.theme.colors.g3};

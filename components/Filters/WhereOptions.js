@@ -1,29 +1,5 @@
 export const StringWhereOptions = [
     {
-        value: "eq",
-        label: "=="
-    },
-    {
-        value: "neq",
-        label: "!="
-    },
-    {
-        value: 'lt',
-        label: '<'
-    },
-    {
-        value: 'lte',
-        label: '<='
-    },
-    {
-        value: 'gt',
-        label: '>'
-    },
-    {
-        value: 'gte',
-        label: '>='
-    },
-    {
         value: 'contains',
         label: 'Contains'
     },
@@ -55,6 +31,31 @@ export const StringWhereOptions = [
         value: 'notIn',
         label: 'Not In List'
     },
+    {
+        value: "eq",
+        label: "=="
+    },
+    {
+        value: "neq",
+        label: "!="
+    },
+    {
+        value: 'lt',
+        label: '<'
+    },
+    {
+        value: 'lte',
+        label: '<='
+    },
+    {
+        value: 'gt',
+        label: '>'
+    },
+    {
+        value: 'gte',
+        label: '>='
+    },
+
 ]
 
 export const BooleanWhereOptions = [

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const Button = styled('button')`
-    margin-top: 20px;
+    margin-top: 25px;
     position: relative;
     width: 38px;
     height: 38px;
@@ -24,7 +24,7 @@ const Button = styled('button')`
 `;
 export const IconSubmitButton = ({loading, icon}) => (
     <Button disabled={loading} type="submit">
-      <i className={icon}></i>
+      {icon}
     </Button>
 )
 

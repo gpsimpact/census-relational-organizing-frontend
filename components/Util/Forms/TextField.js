@@ -1,6 +1,5 @@
 import { InputContainer, Label, TextInput, ErrorContainer } from './Styles';
-import { Row, Col } from '../Grid';
-import { FormIcon } from './FormIcon';
+
 
 
 

@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Link from 'next/link';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 export const PaginationContainer = styled('div')`
     margin: 0;
@@ -11,10 +14,14 @@ export const PaginationContainer = styled('div')`
     flex-wrap: wrap;
     justify-content: center;
     text-transform: uppercase;  
+   
     .title {
+        font-size: 1rem;
+        @media(min-width: 1200px) {
+            font-size: 1.8rem;
+        }
         span {
             display: inline-block;
-            margin-left: .5rem;
         }
     }
 
@@ -52,14 +59,21 @@ export const DisabledPaginationAnchor = styled(PaginationAnchor)`
 
 `;
 export const PaginationLeft = styled('h3')`
+            margin-left: .45rem;
+            margin-right: .45rem;
+  
 `;
 export const PaginationRight = styled('h3')`
+ margin-left: .45rem;
+            margin-right: .45rem;
 `;
 
 export const VertBarSeparator = styled('div')`
-    margin: 0px 1rem;
-    width: 5px;
-    background-color: ${props => props.theme.colors.black};
+    margin: 0px .2rem;
+    height: 15px;
+    margin-top: 10px;
+    width: 2px;
+    background-color: ${props => props.theme.colors.secondary};
 `;
 
 export class Pagination extends React.Component {
@@ -83,6 +97,7 @@ export class Pagination extends React.Component {
         const { totalCount, currentPage, perPage, justify, path, teamSlug} = this.props;
         const pages = teamSlug ? this.paginate(totalCount, currentPage, perPage, path, teamSlug) : this.paginate(totalCount, currentPage, perPage, path);
         return(
+
             <PaginationContainer>
                 <PaginationLeft>
                         <span className="links">
@@ -92,7 +107,7 @@ export class Pagination extends React.Component {
                         <span className="title">Total Count: <span>{totalCount}</span></span>
 
                 </PaginationLeft>
-                    <VertBarSeparator/>
+                &middot;
                 <PaginationRight>
                         <span className="title">Page: <span>{currentPage} of {pages.totalPages}</span></span>
                         <span className="links">

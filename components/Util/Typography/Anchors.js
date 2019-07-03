@@ -6,4 +6,12 @@ export const BlockAnchor = styled('a')`
     font-style: italic;
     margin: .5rem 0rem;
     text-transform: uppercase;
+    color: ${props => props.theme.colors.tertiary} !important;
+    &:hover,
+    &:focus,
+    &:active {
+            color: ${props=>props.theme.colors.primary} !important;
+            cursor: pointer;
+        }
+
 `;

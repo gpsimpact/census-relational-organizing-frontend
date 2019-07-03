@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Row, Col } from '../Util/Grid';
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const CardInfoPointContainer = styled('div')`
     margin: 30px 0px;
@@ -14,13 +14,13 @@ export const CardInfoPointContainer = styled('div')`
 export const CardInfoPoint = (props) => {
     return(
         <CardInfoPointContainer>
-            <Row classNames={'align-items-center'}>
+            <Row bsPrefix={'row align-items-center'}>
                 {props.icon &&
-                    <Col classNames={'col col-2'}>
-                         <i className={props.icon}></i>
+                    <Col xs={2}>
+                         {props.icon}
                     </Col>
                 }
-                <Col classNames={'col col-10'}>
+                <Col xs={10}>
                     {props.infoPoint}
                     {props.infoPoint2 && <> <br/> {props.infoPoint2}</>}
                 

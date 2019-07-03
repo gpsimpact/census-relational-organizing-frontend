@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import * as Yup from "yup";
 import { Mutation } from 'react-apollo'
 import { gql } from "apollo-boost";
-import { Row, Col } from "../Util/Grid";
+
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import { FormError, FormSuccess,TextField,IconSubmitButton } from '../Util/Forms';
 import { submitMutation, marshallMutationResponse } from "../../lib/helpers";
-import { GET_TTIBS } from '../QueryComponents/TTIBS';
+import { GET_TTIBS } from '../Queries/TTIBS';
+import AddCircle from '@material-ui/icons/AddCircle';
 
 export const CREATE_TTIB = gql`
     mutation createTTIB($input: CreateTtibInput!){
@@ -74,7 +78,7 @@ export const CreateTTIB = ({teamId, tibType}) => {
                                 status && status.form && <FormError error={status.form}/>
                             }
                             <Row>
-                                <Col classNames={'col col-10'}>
+                                <Col xs={10}>
                                     <Field 
                                         id="text"
                                         name="text"
@@ -83,10 +87,10 @@ export const CreateTTIB = ({teamId, tibType}) => {
                                         component={TextField}
                                     />
                                 </Col>
-                                <Col classNames={'col col-2'}>
+                                <Col xs={2}>
                                     <IconSubmitButton 
                                         loading={loading}
-                                        icon="fas fa-plus"
+                                        icon={<AddCircle/>}
                                     />
                                 </Col>
 

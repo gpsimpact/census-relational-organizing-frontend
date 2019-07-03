@@ -12,7 +12,7 @@ const IconWrapper = styled('div')`
 export const FormIcon = ({icon}) => {
     return(
         <IconWrapper>
-            <i className={icon}></i>
+            {icon}
         </IconWrapper>
     )
 }

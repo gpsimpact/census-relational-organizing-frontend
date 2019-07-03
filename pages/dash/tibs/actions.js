@@ -1,19 +1,23 @@
 import React from "react";
 import Page from "../../../components/Page";
 import { withTeamAuth } from '../../../components/Auth';
-import { DashSideNav } from '../../../components/Dash';
+import { DashSideNav } from '../../../components/SideNavs';
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
-import {Container, Row, Col} from '../../../components/Util/Grid';
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+
+
 import { adopt } from 'react-adopt';
 import { Query } from 'react-apollo';
 import { Box } from '../../../components/Util/Layout';
-import { MainTitle, SectionTitle } from '../../../components/Util/Typography';
+import { H1, H3 } from '../../../components/Util/Typography';
 import { LoadingBar,ErrorMessage } from '../../../components/Util/Loading';
-import { GET_GTIBS } from '../../../components/QueryComponents/GTIBS';
-import { GET_TTIBS } from '../../../components/QueryComponents/TTIBS';
+import { GET_GTIBS } from '../../../components/Queries/GTIBS';
+import { GET_TTIBS } from '../../../components/Queries/TTIBS';
 import { Info } from '../../../components/Util/Typography';
-import { SingleTIBContainer, SingleTTIB, CreateTTIB } from '../../../components/TIBS';
-
+import { SingleTIBContainer, SingleTTIB, CreateTTIB, DefaultTib } from '../../../components/TIBS';
 
 const TIBS = adopt({
         gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, tibType:'ACTION'}}}>{render}</Query>,
@@ -28,13 +32,12 @@ class DashQuestionsIndex extends React.Component {
     
         return(
             <Page
-                padTop
                 currentUser={currentUser}
-                navComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
             >
                 <Container>
-                 <Row classNames={"justify-content-center"}>
-                        <Col classNames={'col-md-8'}>
+                 <Row bsPrefix={"row justify-content-center py-5"}>
+                        <Col md={8}>
                         <TIBS teamId={currentTeam.id}>
                             {({gTibs, tTibs}) => {
                                 const loading = (gTibs.loading || tTibs.loading);
@@ -43,18 +46,18 @@ class DashQuestionsIndex extends React.Component {
                                 const ttibs = tTibs && tTibs.data && tTibs.data.ttibs ? tTibs.data.ttibs : [];
                                 return(
                                   <Box>
-                                      <MainTitle>Target Intake Booleans</MainTitle>
+                                      <H1>Target Intake Booleans</H1>
                                       <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
                                         <Info>These fields will be present for all targets.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
-                                            {gtibs && <SectionTitle>Default Target Intake Actions</SectionTitle> }
+                                            {gtibs && <H3>Default Target Intake Actions</H3> }
                                             {gtibs && gtibs.map((item, idx) =>{
                                                 const inTTIBS = false;
                                                 return(
                                                     <SingleTIBContainer key={idx}>
                                                         <Row>
-                                                            <Col>
-                                                                {item.text}
+                                                            <Col md={12}>
+                                                                <DefaultTib>{item.text}</DefaultTib>
                                                             </Col>
                                                         </Row>
 
@@ -62,7 +65,7 @@ class DashQuestionsIndex extends React.Component {
                                                     )
                                                 })
                                             }
-                                            <SectionTitle>Additional Target Intake Actions</SectionTitle>
+                                            <H3>Additional Target Intake Actions</H3>
 
                                             {ttibs && ttibs.map((item, idx) =>{
                                                     return(
