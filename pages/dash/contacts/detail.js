@@ -59,7 +59,7 @@ class DashContactDetail extends React.Component {
                 <Container>
                     <Row bsPrefix={'row justify-content-center py-5'}>
                         <Col md={12}>
-                            <Query query={GET_TARGET} variables={{id:this.props.query.target}}>
+                            <Query query={GET_TARGET} variables={{id:this.props.query.target}} fetchPolicy={'network-only'}>
                                 {({data,loading,error}) => {
                                     let target = data && data.target ? data.target : {};
                                      if(loading){

@@ -27,7 +27,7 @@ class TeamDashboard extends React.Component {
                     <Col md={12}>
                         <Box>
                             <H1 uppercase>{currentTeam.name}</H1>
-                            <LoadingBar active={false}/>
+                            <LoadingBar/>
                             {
                                 (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&
                                 <React.Fragment>

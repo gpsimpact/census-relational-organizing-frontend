@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBox } from '../Util/Forms';
 import { LoadingBar } from '../Util/Loading';
-import { H2, H3 } from '../Util/Typography';
+import { H2, H3, FormDisclaimer } from '../Util/Typography';
 import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
 import Row from 'react-bootstrap/Row';
@@ -168,13 +168,17 @@ export const CreateContactForm = (props) => {
                                     />
                                 </Col>
                                 <Col md={12} lg={5}>
+                                    <FormDisclaimer>Retain address dislcaimer/explainer</FormDisclaimer>
                                     <Field
                                         id="retainAddress"
                                         name="retainAddress"
                                         label="Retain Address"
                                         component={CheckBox}
                                     />
+
+
                                 </Col>
+                              
                               
                             </Row>
 

@@ -48,6 +48,17 @@ export const DashSideNav = (props) => {
                     </Nav.Link>
                 </Link>
             }
+            {
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.tasks.index}`, query: {team: currentTeam.slug}}}>
+                    <Nav.Link href={`${DashPaths.tasks.index}?team=${currentTeam.slug}`}>
+                        Tasks
+                    </Nav.Link>
+                </Link>
+            }
+
+
+            
 
 
         </React.Fragment>

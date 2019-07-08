@@ -36,6 +36,13 @@ export const AdminSideNav = (props) => {
                     </Nav.Link>
                 </Link>
             }
+              {currentUser.hasGlobalPermission('ADMIN') &&
+                <Link href={AdminPaths.tasks.index}>
+                    <Nav.Link href={AdminPaths.tasks.index}>
+                        Tasks
+                    </Nav.Link>
+                </Link>
+            }
 
         </React.Fragment>
     )

@@ -44,6 +44,9 @@ export const GlobalStyle = css`
     *:focus {
         outline: none;
     }
+    img {
+        max-width: 100%;
+    }
     a {
         color: ${theme.colors.tertiary};
         text-decoration: none;

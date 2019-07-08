@@ -4,7 +4,7 @@ import { Mutation } from "react-apollo";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { H2 } from '../Util/Typography';
+import { H2,FormDisclaimer } from '../Util/Typography';
 import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage } from '../Util/Forms';
 
 import Row from 'react-bootstrap/Row';
@@ -196,6 +196,8 @@ export const EditContactForm = (props) => {
                                     />
                                 </Col>
                                 <Col md={12} lg={5}>
+                                <FormDisclaimer>Retain address dislcaimer/explainer</FormDisclaimer>
+
                                     <Field
                                         id="retainAddress"
                                         name="retainAddress"

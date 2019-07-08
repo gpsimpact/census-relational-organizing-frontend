@@ -117,3 +117,20 @@ export const ConfirmDeleteButton = styled(BoolButton)`
         cursor: pointer;
     }
 `;
+
+
+export const ProgTitle = styled('h6')`
+    text-transform: uppercase;
+    margin-top: -1px;
+    margin-bottom: 10px;
+    font-style: italic;
+    z-index: 50;
+    position: relative;
+    font-weight: 300;
+    span {
+        font-weight: bold;
+    }
+`;
+export const ProgTitleRight = styled(ProgTitle)`
+    text-align: right;
+`;

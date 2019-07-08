@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SumWrapper = styled('div')`
     border: 3px solid ${props => props.theme.colors.primary};
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 `;
 export const SumCountTitle = styled('h3')`
     background-color: ${props => props.theme.colors.primary};

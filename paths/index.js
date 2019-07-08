@@ -22,6 +22,9 @@ export const AdminPaths = {
     tibs:{
         questions: '/a/tibs/questions',
         actions: '/a/tibs/actions',
+    },
+    tasks: {
+        index: '/a/tasks',
     }
 }
 
@@ -38,5 +41,9 @@ export const DashPaths = {
     tibs:{
         questions: '/dash/tibs/questions',
         actions: '/dash/tibs/actions',
+    },
+    tasks: {
+        index: '/dash/tasks',
+
     }
 }

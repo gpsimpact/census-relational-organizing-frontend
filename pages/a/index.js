@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Query } from 'react-apollo';
-import { adopt } from 'react-adopt';
 import { gql } from "apollo-boost";
 
 
@@ -9,23 +8,30 @@ import Page from "../../components/Page";
 
 import { CurrentUser } from '../../lib/constructors/UserConstructor';
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-import { Box,ProgressBar } from '../../components/Util/Layout';
+import { Box, HR } from '../../components/Util/Layout';
 import { H1, H3 } from '../../components/Util/Typography';
-import { LoadingBar } from '../../components/Util/Loading';
+import { LoadingBar, ErrorMessage } from '../../components/Util/Loading';
 import { AdminSideNav } from '../../components/SideNavs';
 
 import { withGlobalAuth } from '../../components/Auth/withGlobalAuth';
 import { SumWrapper, SumCountTitle, SumCountNum } from '../../components/Util/Layout';
 import { ErrorIcon } from '../../components/Util/Loading';
 import NotInterested from '@material-ui/icons/NotInterested';
+import { TotalActions, SingleActionProgress, SingleQuestionProgress } from '../../components/TIBS';
+
 export const ADMIN_TEAM_COUNTS= gql`
     query adminGetTeamCounts{
         summaryCountTeams
+    }
+`;
+const ADMIN_VOLS_COUNT = gql`
+    query summaryCountAllUsers{
+        summaryCountAllUsers
     }
 `;
 
@@ -41,14 +47,29 @@ const ADMIN_HOUSEHOLD_COUNT = gql`
     }
 `;
 
+const ADMIN_TIBS_ACTION_COUNT = gql`
+    query summaryCountAllTibs($tibType: TibType){
+        summaryCountAllTibs(tibType: $tibType){
+            id
+            appliedCount
+            unappliedCount
+            text
+            tibType
+        }
+    }
+`;
 
-const SUMS = adopt({
-    teams: ({render}) => <Query query={ADMIN_TEAM_COUNTS} fetchPolicy={'cache-and-network'}>{render}</Query>,
-    targetCount:({render}) => <Query query={ADMIN_TARGETS_COUNT} fetchPolicy={'cache-and-network'}>{render}</Query>,
-    householdCount:({render}) => <Query query={ADMIN_HOUSEHOLD_COUNT} fetchPolicy={'cache-and-network'}>{render}</Query>
-
-})
-
+const ADMIN_TIBS_QUESTION_COUNT = gql`
+    query summaryCountAllTibs($tibType: TibType){
+        summaryCountAllTibs(tibType: $tibType){
+            id
+            appliedCount
+            unappliedCount
+            text
+            tibType
+        }
+    }
+`;
 
 
 class AdminDash extends React.Component {
@@ -66,56 +87,132 @@ class AdminDash extends React.Component {
                             <H1>Admin</H1>
                             <LoadingBar active={false}/>
 
-                            <SUMS>
-                                {({teams, targetCount, householdCount}) => {
-                                    console.log(householdCount)
-                                    return(
+                    
                                         <Row>
-                                            <Col xl={4}>
-                                                <SumWrapper>
-                                                    <SumCountTitle>Total Teams</SumCountTitle>
-                                                    {teams.error && <ErrorIcon error={teams.error}/>}
-                                                    
-                                                        <SumCountNum>{teams && teams.data && teams.data.summaryCountTeams ? teams.data.summaryCountTeams : <NotInterested/>}</SumCountNum>
-                                                    
-                                                </SumWrapper>
-                                            </Col>
+                                          <Col md={12}>
+                                              <H3 uppercase>Site Totals</H3>
+                                          </Col>
+                                                        <Col xl={3}>
+                                                        <Query query={ADMIN_TEAM_COUNTS} fetchPolicy={'cache-and-network'}>
+                                                            {({data, error, loading}) => (
+                                                                <SumWrapper>
+                                                                    <SumCountTitle>Teams</SumCountTitle>
+                                                                        {error && <ErrorIcon error={error}/>}
+                                                                    
+                                                                        <SumCountNum>{data && data.summaryCountTeams ? data.summaryCountTeams : <NotInterested/>}</SumCountNum>
+                                                                    
+                                                                </SumWrapper>
 
-                                            <Col xl={4}>
-                                                <SumWrapper>
-                                                    <SumCountTitle>Total Volunteers</SumCountTitle>
-                                                   
-                                                </SumWrapper>
-                                            </Col>
+                                                            )}
+                                                        </Query>
+                                                        </Col>
 
-                                            <Col xl={4}>
-                                                <SumWrapper>
-                                                    <SumCountTitle>Total Targets</SumCountTitle>
-                                                    {targetCount.error && <ErrorIcon error={targetCount.error}/>}
-                                                    <SumCountNum>{targetCount && targetCount.data && targetCount.data.summaryCountAllTargets ? targetCount.data.summaryCountAllTargets : <NotInterested/>}</SumCountNum>
-                                                    
-                                                </SumWrapper>
-                                            </Col>
-                                       
-                                            <Col xl={4}>
-                                                <H3> Actions Completed: 5 / 10</H3>
-                                                <ProgressBar percent={"50%"}/>
-                                                <small>Not currently dynamic</small>
-                                            </Col>
+                                                        <Col xl={3}>
+                                                        <Query query={ADMIN_VOLS_COUNT} fetchPolicy={'cache-and-network'}>
+                                                                {({data, error,loading}) => (
+                                                                <SumWrapper>
+                                                                    <SumCountTitle>Users</SumCountTitle>
+                                                                    {error && <ErrorIcon error={error}/>}
+                                                                        <SumCountNum>{data && data.summaryCountAllUsers ? data.summaryCountAllUsers : <NotInterested/>}</SumCountNum>
+                                                                    
+                                                                </SumWrapper>
 
-                                            <Col xl={4}>
-                                                <SumWrapper>
-                                                    <SumCountTitle>Total Household Size</SumCountTitle>
-                                                    {householdCount.error && <ErrorIcon error={householdCount.error}/>}
-                                                    <SumCountNum>{householdCount && householdCount.data && householdCount.data.summaryTotalAllHouseholdSize ? householdCount.data.summaryTotalAllHouseholdSize : <NotInterested/>}</SumCountNum>
+                                                                )}
 
-                                                </SumWrapper>
-                                            </Col>
+                                                        </Query>
+                                                        </Col>
 
-                                        </Row>
-                                    )
-                                }}
-                            </SUMS>
+                                                        <Col xl={3}>
+                                                        <Query query={ADMIN_TARGETS_COUNT} fetchPolicy={'cache-and-network'}>
+                                                        {({data, error,loading}) => (
+
+                                                            <SumWrapper>
+                                                                <SumCountTitle>Targets</SumCountTitle>
+                                                                {error && <ErrorIcon error={error}/>}
+                                                                <SumCountNum>{data && data.summaryCountAllTargets ? data.summaryCountAllTargets : <NotInterested/>}</SumCountNum>
+                                                                
+                                                            </SumWrapper>
+                                                        )}
+                                                        </Query>
+                                                        </Col>
+                                                        <Col xl={3}>
+                                                        <Query query={ADMIN_HOUSEHOLD_COUNT} fetchPolicy={'cache-and-network'}>
+                                                        {({data, error,loading}) => (
+
+                                                            <SumWrapper>
+                                                                <SumCountTitle>Household Size</SumCountTitle>
+                                                                {error && <ErrorIcon error={error}/>}
+                                                                <SumCountNum>{data && data.summaryTotalAllHouseholdSize ? data.summaryTotalAllHouseholdSize : <NotInterested/>}</SumCountNum>
+
+                                                            </SumWrapper>
+                                                        )}
+                                                            </Query>
+                                                        </Col>
+                                                        </Row>
+                                                        <HR/>
+                                                        <Row>
+                                                        <Col xl={12}>
+                                                            <Query query={ADMIN_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION'}} fetchPolicy={'cache-and-network'}>
+                                                                {({data, error, loading}) => {
+                                                                    return(
+                                                                       <React.Fragment>
+                                                                           {error && <ErrorMessage error={error}/>}
+                                                                           {data && data.summaryCountAllTibs && <TotalActions actions={data.summaryCountAllTibs} title={'Action Count'}/>}
+                                                                       </React.Fragment>
+                                                                    )
+                                                                }}
+                                                            </Query>
+                                                        </Col>
+
+                                                </Row>
+
+                                <HR/>
+
+                                <Row>
+                                    <Col md={6}>
+                                        <H3 uppercase>Questions</H3>
+                                        <Query query={ADMIN_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION'}}>
+                                          {({data, loading, error}) => {
+                                              console.log(data);
+                                              return(
+                                                <React.Fragment>
+                                                    {error && <ErrorMessage error={error}/>}
+                                                    {data && data.summaryCountAllTibs &&
+                                                      data.summaryCountAllTibs.map((item, idx) => {
+                                                          return(
+                                                              <SingleQuestionProgress tib={item} key={idx}/>
+                                                          )
+                                                      })
+                                                    }
+                                                </React.Fragment>
+                                              )
+                                          }}
+                                      </Query>   
+                                    </Col>
+
+                                    <Col md={6}>
+                                      <H3 uppercase>Actions</H3>
+                                      <Query query={ADMIN_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION'}}>
+                                          {({data, loading, error}) => {
+                                              console.log(data);
+                                              return(
+                                                <React.Fragment>
+                                                    {error && <ErrorMessage error={error}/>}
+                                                    {data && data.summaryCountAllTibs &&
+                                                      data.summaryCountAllTibs.map((item, idx) => {
+                                                          return(
+                                                              <SingleActionProgress tib={item} key={idx}/>
+                                                          )
+                                                      })
+                                                    }
+                                                </React.Fragment>
+                                              )
+                                          }}
+                                      </Query>                         
+                                    </Col>
+                                </Row>
+
+                    
 
                         </Box>
                     </Col>
