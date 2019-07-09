@@ -12,7 +12,6 @@ export class ContactCompletions extends React.Component {
         let actionTibs = _.filter(target.tibs, {tibType: 'ACTION'}).length;
         let completeActionTibs = _.filter(target.tibs, {tibType: 'ACTION', isApplied:true}).length;
         let completionPercent = (completeActionTibs / actionTibs) * 100;
-        console.log(completionPercent);
         return(
             <div>
                 <H2 uppercase>Progress</H2>

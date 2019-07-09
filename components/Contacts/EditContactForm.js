@@ -36,6 +36,7 @@ export const EDIT_TARGET = gql`
                 twitterHandle
                 facebookProfile
                 householdSize
+                retainAddress
                 tibs {
                     id
                     text
@@ -66,7 +67,7 @@ export const EditContactForm = (props) => {
                             twitterHandle: target.twitterHandle ? target.twitterHandle : "",
                             facebookProfile: target.facebookProfile ? target.facebookProfile : "",
                             householdSize: target.householdSize ? target.householdSize : "",
-                            retainAddress: true
+                            retainAddress: target.retainAddress,
                         }
                 
                     }
@@ -83,6 +84,7 @@ export const EditContactForm = (props) => {
                             twitterHandle: Yup.string(),
                             facebookProfile: Yup.string(),
                             householdSize: Yup.number().positive(),
+
 
                         })
                     }
@@ -127,7 +129,7 @@ export const EditContactForm = (props) => {
                                 twitterHandle: result.item.twitterHandle ? result.item.twitterHandle : "",
                                 facebookProfile: result.item.facebookProfile ? result.item.facebookProfile : "",
                                 householdSize: result.item.householdSize ? result.item.householdSize : "",
-                                retainAddress: values.retainAddress,
+                                retainAddress: result.item.retainAddress,
                             }
                             actions.resetForm(currentVals);
 

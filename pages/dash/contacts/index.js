@@ -43,6 +43,7 @@ export const GET_USER_TARGETS = gql`
                 facebookProfile
                 householdSize
                 active
+                retainAddress
             }
         }
     }

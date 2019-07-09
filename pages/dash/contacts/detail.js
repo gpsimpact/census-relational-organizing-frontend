@@ -33,6 +33,7 @@ export const GET_TARGET = gql`
             twitterHandle
             facebookProfile
             householdSize
+            retainAddress
             tibs {
                 id
                 text
@@ -61,28 +62,18 @@ class DashContactDetail extends React.Component {
                         <Col md={12}>
                             <Query query={GET_TARGET} variables={{id:this.props.query.target}} fetchPolicy={'network-only'}>
                                 {({data,loading,error}) => {
-                                    let target = data && data.target ? data.target : {};
-                                     if(loading){
-                                         return(
-                                             <Box>
-                                                  <H1 uppercase> Household Contact</H1>
-                                                  <LoadingBar active={loading}/>
-                                                  {error && <ErrorMessage error={error}/>}
-
-                                             </Box>
-                                         )
-                                     }
+                            
                                      return(
                                         <Box>
-                                        <H1>{target.firstName} {target.lastName} </H1>
+                                        {data && data.target && <H1>{data.target.firstName} {data.target.lastName} </H1> }
                                         <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
                                             <Row>
                                                 <Col md={8}>
-                                                        {target && <EditContactForm target={target}/>}
+                                                        {data && data.target && <EditContactForm target={data.target}/>}
                                                 </Col>
                                                 <Col md={4}>
-                                                        <ContactCompletions  target={target}/>
+                                                       {data && data.target && <ContactCompletions  target={data.target}/>}
 
                                                 </Col>
                                             </Row>
@@ -90,7 +81,7 @@ class DashContactDetail extends React.Component {
 
                                             <Row>
                                                 <Col md={12}>
-                                                        <EditContactTibs target={target}/>
+                                                        {data && data.target && <EditContactTibs target={data.target}/>}
                                                
                                                 </Col>
                                             </Row>

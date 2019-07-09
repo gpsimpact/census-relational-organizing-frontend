@@ -85,6 +85,9 @@ export const TeamVolCard = (props) => {
                                         }
                                     });
                                     return;
+                                } else {
+                                    actions.resetForm({permission: values.permission});
+
                                 }
                             }}
                             render={props => (
@@ -101,6 +104,10 @@ export const TeamVolCard = (props) => {
                                         loading={loading}
                                     value={loading ? "Saving" : "Save"}
                                 />
+                                
+                                {props && props.dirty &&
+                                    <DirtyFormMessage> This form has unsaved changes </DirtyFormMessage>
+                                }
 
                         
                                 </Form>
