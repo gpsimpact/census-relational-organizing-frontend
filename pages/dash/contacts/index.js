@@ -66,6 +66,7 @@ class DashContactIndex extends React.Component {
                         <Col md={12}>
                             <Query
                                 query={GET_USER_TARGETS}
+                                fetchPolicy="cache-and-network"
                                 variables={{
                                     teamId: currentTeam.id,
                                     input: {

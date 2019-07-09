@@ -69,7 +69,7 @@ export class SingleTTIB extends React.Component{
                                                     toggleTTIB();
                                                 }}
                                             >
-                                                <span class="checkem">
+                                                <span className="checkem">
                                                     <Check/>
                                                 </span>
                                             </ToggleButton>

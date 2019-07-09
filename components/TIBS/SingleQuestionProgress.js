@@ -7,7 +7,11 @@ import Col from 'react-bootstrap/Col';
 
 
 export const SingleQuestionProgress = ({tib}) => {
-    const truePercent = (tib.appliedCount / tib.unappliedCount) * 100;
+    let total = tib.appliedCount + tib.unappliedCount;
+    let truePercent = 0;
+    if(tib.appliedCount > 0){
+        truePercent = (tib.appliedCount / total) * 100;
+    }
     const falsePercent = 100 - truePercent;
 
     return(

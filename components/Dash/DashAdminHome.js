@@ -125,7 +125,7 @@ export class DashAdminHome extends React.Component {
                             <Row>
                                     <Col md={6}>
                                         <H3 uppercase>Team Questions</H3>
-                                        <Query query={TEAM_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION', teamId: currentTeam.id}}>
+                                        <Query query={TEAM_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION', teamId: currentTeam.id}} fetchPolicy="cache-and-network">
                                           {({data, loading, error}) => {
                                               return(
                                                 <React.Fragment>
@@ -145,7 +145,7 @@ export class DashAdminHome extends React.Component {
 
                                     <Col md={6}>
                                       <H3 uppercase>Team Actions</H3>
-                                      <Query query={TEAM_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}}>
+                                      <Query query={TEAM_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}} fetchPolicy="cache-and-network">
                                           {({data, loading, error}) => {
                                               return(
                                                 <React.Fragment>
