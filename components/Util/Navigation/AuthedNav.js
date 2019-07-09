@@ -13,7 +13,7 @@ import redirect from '../../../lib/redirect';
 export class AuthedNav extends React.Component {
     logout = apolloClient => () => {
         document.cookie = cookie.serialize('token', '', {
-          maxAge: -1 // Expire the cookie immediately
+          maxAge: Date.now()
         })
     
         // Force a reload of all the current queries now that the user is

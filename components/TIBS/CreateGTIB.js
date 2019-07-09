@@ -75,8 +75,8 @@ export const CreateGTIB = ({tibType}) => {
                                 <Field
                                     id="text"
                                     name="text"
-                                    label="GTIB Text"
-                                    placeholder="GTIB Text"
+                                    label={`${tibType} Text`}
+                                    placeholder={`${tibType} Text`}
                                     component={TextField}/>
                                 </Col>
                                 <Col xs={2}>

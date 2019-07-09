@@ -82,8 +82,8 @@ export const CreateTTIB = ({teamId, tibType}) => {
                                     <Field 
                                         id="text"
                                         name="text"
-                                        label="TTIB Text"
-                                        placeholder="TTIB Text"
+                                        label={`${tibType} Text`}
+                                        placeholder={`${tibType} Text`}
                                         component={TextField}
                                     />
                                 </Col>
