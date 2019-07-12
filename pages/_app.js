@@ -12,16 +12,19 @@ class Application extends App {
     static async getInitialProps({Component, ctx}) {
         let pageProps = {};
         let nextPage;
+
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx);
         }
+
         if(ctx.query){
             pageProps.query = ctx.query;
-          }
-          nextPage = pageProps.nextPage;
-          if(nextPage){
+        }
+
+        nextPage = pageProps.nextPage;
+        if(nextPage){
             redirect(ctx, `${nextPage}`);
-          }
+        }
         return { pageProps };
       
     }
