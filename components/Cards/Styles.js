@@ -41,6 +41,11 @@ export const CardTitle = styled('h2')`
     margin-top: 0rem;
     margin-bottom: 0rem;
     line-height: 1.65rem;
+    svg {
+        float: right;
+        max-width: 100%;
+        width: 30px;
+    }
 `;
 export const CardSubTitle = styled('h4')`
     background-color: ${props => props.theme.colors.secondary};

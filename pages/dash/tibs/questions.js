@@ -48,11 +48,11 @@ class DashQuestionsIndex extends React.Component {
                                 const ttibs = tTibs && tTibs.data && tTibs.data.ttibs ? tTibs.data.ttibs : [];
                                 return(
                                   <Box>
-                                      <H1 uppercase>Target Intake Booleans</H1>
+                                      <H1 uppercase>Household Contact Intake Booleans</H1>
                                       <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
-                                        <Info>These fields will be present for all targets.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
-                                            {gtibs && <H3>Default Target Intake Questions</H3>}
+                                        <Info>These fields will be present for all household contacts.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
+                                            {gtibs && <H3>Default Household Contact Intake Questions</H3>}
                                             {gtibs && gtibs.map((item, idx) =>{
                                                 const inTTIBS = false;
                                                 return(
@@ -67,7 +67,7 @@ class DashQuestionsIndex extends React.Component {
                                                     )
                                                 })
                                             }
-                                            <H3>Additional Target Intake Questions</H3>
+                                            <H3>Additional Household Contact Intake Questions</H3>
 
                                             {ttibs && ttibs.map((item, idx) =>{
                                                     return(

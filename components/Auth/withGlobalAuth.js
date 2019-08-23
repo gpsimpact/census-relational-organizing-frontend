@@ -1,6 +1,7 @@
 import React from "react";
 import { GetCurrentUser } from '../../lib/serverQueries/CurrentUser';
 import { CurrentUser } from '../../lib/constructors/UserConstructor';
+import { GetCurrentTeam } from '../../lib/serverQueries/CurrentTeam';
 
 export const withGlobalAuth = (Component, baseGlobalPermission) => {
     return class AuthComponent extends React.Component {
@@ -9,6 +10,7 @@ export const withGlobalAuth = (Component, baseGlobalPermission) => {
       }) {
         const { currentUser } = await GetCurrentUser(ctx.apolloClient);
         let nextPage;
+        const teamSlug = ctx.query.team || null;
         const userProps = {currentUser: currentUser};
 
         if(!currentUser || !currentUser.me) {
@@ -19,6 +21,11 @@ export const withGlobalAuth = (Component, baseGlobalPermission) => {
         let authedUser = CurrentUser(userProps);
         if(baseGlobalPermission && !authedUser.hasGlobalPermission(baseGlobalPermission)){
           nextPage = '/'
+        }
+
+        if(teamSlug){
+          let { currentTeam } = await GetCurrentTeam(ctx.apolloClient, teamSlug);
+          return { currentUser, currentTeam, nextPage };
         }
     
 

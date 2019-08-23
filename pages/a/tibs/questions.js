@@ -37,12 +37,12 @@ class AdminTibQuestions extends React.Component {
                         {({data,loading,error}) => {
                             return(
                                 <Box>
-                                    <H1>Global Target Intake Questions</H1>
+                                    <H1>Global Household Contact Intake Questions</H1>
                                     <LoadingBar active={loading}/>
                                     {error && <ErrorMessage error={error}/>}
 
 
-                                    <Info>These fields will be present for all targets.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
+                                    <Info>These fields will be present for all household contacts.  Checked fields are active. Deactivate to temporarily hold or delete to remove permanently.</Info>
                                     
                                     {data && data.gtibs &&
                                         data.gtibs.map((item, idx) => {

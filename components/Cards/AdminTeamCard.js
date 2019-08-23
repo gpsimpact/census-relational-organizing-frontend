@@ -5,6 +5,8 @@ import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSu
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { DashPaths, AdminPaths } from '../../paths';
+import {Edit} from 'styled-icons/fa-solid/Edit';
+
 
 export const AdminTeamCard = (props) => {
     const { team } = props;
@@ -29,7 +31,23 @@ export const AdminTeamCard = (props) => {
             </CardHeader>
 
             <CardInner>
-                <CardTitle>{team.name}</CardTitle>
+                <CardTitle>
+                <Link href={{pathname: `${AdminPaths.teams.detail}`, query: { team: team.slug}}}>
+                    <a href={`${AdminPaths.teams.detail}?team=${team.slug}`}>
+                        <Row bsPrefix={'row align-items-center'}>
+                            <Col xs={9}>
+                                 {team.name}
+
+                            </Col>
+                            <Col xs={3}>
+                                 <Edit/>
+
+                            </Col>
+                        </Row>
+                    </a>
+                    </Link>
+
+                </CardTitle>
                 <CardParagraph>{team.description}</CardParagraph>
 
                 <CardSubTitle> Users </CardSubTitle>

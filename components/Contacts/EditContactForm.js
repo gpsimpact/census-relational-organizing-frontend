@@ -198,7 +198,7 @@ export const EditContactForm = (props) => {
                                     />
                                 </Col>
                                 <Col md={12} lg={5}>
-                                <FormDisclaimer>Retain address dislcaimer/explainer</FormDisclaimer>
+                                <FormDisclaimer>Address will not be saved, we will use for census tract.</FormDisclaimer>
 
                                     <Field
                                         id="retainAddress"

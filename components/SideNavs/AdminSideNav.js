@@ -3,11 +3,13 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { AdminPaths } from '../../paths';
+import { H3 } from '../Util/Typography';
 
 export const AdminSideNav = (props) => {
     const { currentUser } = props;
     return(
         <React.Fragment>
+            <H3 uppercase primary> Global Admin Dashboard</H3>
             {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.index}>
                     <Nav.Link href={AdminPaths.index}>

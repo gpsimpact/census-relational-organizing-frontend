@@ -3,11 +3,14 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { DashPaths } from '../../paths';
+import { H3 } from '../Util/Typography';
 
 export const DashSideNav = (props) => {
     const { currentUser, currentTeam } = props;
     return(
         <React.Fragment>
+                        <H3 uppercase primary>Team Dashboard</H3>
+
             {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'MEMBER')) && 
                 <Link href={{pathname: `${DashPaths.index}`, query: {team: currentTeam.slug}}}>
