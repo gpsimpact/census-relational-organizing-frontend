@@ -21,6 +21,27 @@ export const TOGGLE_TEAM_PERMISSION = gql`
             code
             success
             message
+            item {
+                id
+                firstName
+                lastName
+                email
+                address
+                city
+                state
+                zip5
+                phone
+                active
+                globalPermissions
+                teamPermissions {
+                    team {
+                        id
+                        name
+                    }
+                    permissions
+                }
+            
+            }
         }
     }
 `;
@@ -53,7 +74,9 @@ export const TeamVolCard = (props) => {
 
     return(
 
-                <Mutation mutation={TOGGLE_TEAM_PERMISSION}>
+                <Mutation mutation={TOGGLE_TEAM_PERMISSION}
+                >
+                    
                     {(mutation, {data, loading, error}) => (
         <Card>
             <CardInner>
