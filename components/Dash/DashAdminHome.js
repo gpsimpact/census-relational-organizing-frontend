@@ -83,7 +83,7 @@ export class DashAdminHome extends React.Component {
                             <Query query={TEAM_TARGETS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, error, loading}) => (
                                     <SumWrapper>
-                                        <SumCountTitle>Total Targets</SumCountTitle>
+                                        <SumCountTitle>Total Contacts</SumCountTitle>
                                         {error && <ErrorIcon error={error}/>}
                                             <SumCountNum>{data && data.summaryCountAllTeamTargets ? data.summaryCountAllTeamTargets : <NotInterested/>}</SumCountNum>
                                     </SumWrapper>

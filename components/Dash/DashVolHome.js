@@ -67,7 +67,7 @@ export class DashVolHome extends React.Component {
                         <Query query={MY_TARGETS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                             {({data, loading, error}) => (
                             <SumWrapper >
-                                <SumCountTitle>Total Targets</SumCountTitle>
+                                <SumCountTitle>Total Contacts</SumCountTitle>
                                 {error && <ErrorIcon error={error}/>}
                                 <SumCountNum>{data && data.summaryCountMyTeamTargets ? data.summaryCountMyTeamTargets : <NotInterested/>}</SumCountNum>
 

@@ -5,7 +5,7 @@ import { ProgressBar } from '../Util/Layout';
 import _ from 'lodash';
 
 
-export class ContactCompletions extends React.Component {
+export class ActionProgress extends React.Component {
 
     render(){
         let { target } = this.props;
@@ -14,7 +14,6 @@ export class ContactCompletions extends React.Component {
         let completionPercent = (completeActionTibs / actionTibs) * 100;
         return(
             <div>
-                <H2 uppercase>Progress</H2>
                 <H3> Actions Completed: {completeActionTibs} / {actionTibs}</H3>
                 <ProgressBar percent={`${completionPercent}%`}/>
             </div>
@@ -23,6 +22,6 @@ export class ContactCompletions extends React.Component {
 }
 
 
-ContactCompletions.propTypes = {
+ActionProgress.propTypes = {
     target: PropTypes.object.isRequired,
 }

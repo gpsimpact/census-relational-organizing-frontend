@@ -9,14 +9,17 @@ import Col from 'react-bootstrap/Col';
 
 
 import { Box } from '../../../components/Util/Layout';
-import { H1 } from '../../../components/Util/Typography';
+import { H1, H2 } from '../../../components/Util/Typography';
 import Page from "../../../components/Page";
 import { Query } from 'react-apollo';
 import { ErrorMessage } from '../../../components/Util/Loading';
 import { gql } from "apollo-boost";
 import { LoadingBar } from '../../../components/Util/Loading';
-import { EditContactForm, EditContactTibs, ContactCompletions } from '../../../components/Contacts';
-import { HR } from '../../../components/Util/Layout';
+import { EditContactForm, EditContactTibs, ActionProgress } from '../../../components/Contacts';
+import { ListContactAttempts } from '../../../components/Contacts/ContactAttempts';
+import { ListNotes } from '../../../components/Contacts/Notes';
+
+import { HR, Collapser } from '../../../components/Util/Layout';
 
 export const GET_TARGET = gql`
     query getTarget($id: String!){
@@ -68,25 +71,51 @@ class DashContactDetail extends React.Component {
                                         {data && data.target && <H1>{data.target.firstName} {data.target.lastName} </H1> }
                                         <LoadingBar active={loading}/>
                                         {error && <ErrorMessage error={error}/>}
-                                            <Row>
-                                                <Col md={8}>
-                                                        {data && data.target && <EditContactForm target={data.target}/>}
-                                                </Col>
-                                                <Col md={4}>
-                                                       {data && data.target && <ContactCompletions  target={data.target}/>}
+                                         <Row bsPrefix="row pt-4">
+                                             <Col md={12}>
+                                                    <Collapser title="General Information" open={false}>
+                                                        <Row>
+                                                            <Col md={8}>    
+                                                                {data && data.target && <EditContactForm target={data.target}/>}
+                                                            </Col>
+                                                            <Col md={4}>
+                                                                {data && data.target && <ActionProgress  target={data.target}/>}
+                                                            </Col>
+                                                        </Row>
+                                                    </Collapser>
+                                                    <HR/>
+
+                                                    <Collapser title="Questions & Actions" open={false}>
+                                                        <Row>
+                                                            <Col md={12}>
+                                                                    {data && data.target && <EditContactTibs target={data.target}/>}
+                                                            </Col>
+                                                        </Row>
+                                                    </Collapser>
+                                                
+                                                    <HR/>
+                                                <Collapser title="Contact Attempts" open={false}>
+                                                    <Row>
+                                                        <Col md={12}>
+                                                            {data && data.target && <ListContactAttempts target={data.target}/>}
+
+                                                       </Col>
+                                                    </Row>
+                                                </Collapser>
+
+                                                <HR/>
+                                                <Collapser title="Notes" open={true}>
+                                                    <Row>
+                                                        <Col md={12}>
+                                                        {data && data.target && <ListNotes target={data.target}/>}
+
+                                                       </Col>
+                                                    </Row>
+                                                </Collapser>
+
 
                                                 </Col>
                                             </Row>
-                                            <HR/>
-
-                                            <Row>
-                                                <Col md={12}>
-                                                        {data && data.target && <EditContactTibs target={data.target}/>}
-                                               
-                                                </Col>
-                                            </Row>
-
-
                                         </Box>
                                      )
                                 }}
