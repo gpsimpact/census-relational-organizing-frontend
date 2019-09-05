@@ -5,9 +5,10 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { FormError, FormSuccess, TextAreaField, SelectField, SubmitButton, FormIcon, CheckBox, DirtyFormMessage } from '../../Util/Forms';
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
-import { DeleteNote } from './DeleteNote';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { GET_CONTACT_NOTES } from './ListNotes';
+import { PrimaryButton, SecondaryButton } from '../../Util/Typography';
 
 
 export const UPDATE_NOTE = gql`
@@ -41,39 +42,64 @@ export const EditNote = (props) => {
     const TN = props.TN;
 
     return(
-        <Mutation mutation={UPDATE_NOTE}>
+        <Mutation mutation={UPDATE_NOTE}
+        refetchQueries={[
+            {
+                query: GET_CONTACT_NOTES,
+                variables: {
+                    input: {
+                        targetId: target.id,
+                        where: {
+                            AND: [
+                                {active: {eq: true}}
+                            ]
+                        },
+
+                    }
+                }
+            }
+        ]}
+        >
             {(mutation, {data, loading, error}) => (
                 <Formik 
                     initialValues={
                         {
+                            edit: true,
                             content:TN.content ? TN.content : ""
                         }
                     }
                     validationSchema={
                         Yup.object().shape({
-                            content: Yup.string().required('Required')
+                            content: Yup.string().when('edit', {
+                                is: true,
+                                then: Yup.string().required('required'),
+                                otherwise: Yup.string().notRequired()
+                            })
                         })
                     }
                     onSubmit={ async (values, actions) => {
-                        let payload = {
-                            id: TN.id,
-                            input: {
-                                content: values.content
-                            }
-                        }
-                        let response = await submitMutation( mutation, payload);
-                        let result = await marshallMutationResponse(response, 'updateTargetNote');
-
-                        if(!result.success){
-                            actions.setStatus({
-                                form: {
-                                    code: result.code,
-                                    message: result.message
+                            let payload = {
+                                id: TN.id,
+                                input: {
+                                    content: values.content
                                 }
-                            });
-                            return;
-                        }
-                        actions.resetForm({content:""});
+                            }
+                            if(values.edit === false) {
+                                payload.input.active = false;
+                            }
+                       
+                            let response = await submitMutation( mutation, payload);
+                            let result = await marshallMutationResponse(response, 'updateTargetNote');
+    
+                            if(!result.success){
+                                actions.setStatus({
+                                    form: {
+                                        code: result.code,
+                                        message: result.message
+                                    }
+                                });
+                                return;
+                            }
                     }}
                     render={props => (
                         <Form noValidate>
@@ -94,13 +120,24 @@ export const EditNote = (props) => {
                                         />
                                         </Col>
                                         <Col md={6}>
-                                            <SubmitButton 
-                                                loading={loading}
-                                                value={loading ? "Saving" : "Save"}
-                                            />
+                                            <PrimaryButton
+                                                type="button" 
+                                               
+                                                onClick={() => {
+                                                    props.setFieldValue('edit', true, false)
+                                                    props.handleSubmit();
+                                                }}
+                                            > {loading ? "Saving" : "Save" } </PrimaryButton>
                                         </Col>
                                         <Col md={6}>
-                                            <DeleteNote TN={TN} target={target}/>
+                                            <SecondaryButton 
+                                                type="button"
+                                                value="Delete"
+                                                onClick={() => {
+                                                    props.setFieldValue('edit', false, false);
+                                                    props.handleSubmit();
+                                                }}
+                                            > {loading ? "Deleting" : "Delete" }</SecondaryButton>
                                         </Col>
                                     </Row>
                         </Form>

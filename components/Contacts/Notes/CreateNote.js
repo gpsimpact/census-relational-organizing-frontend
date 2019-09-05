@@ -37,7 +37,6 @@ export const CREATE_NOTE = gql`
 
 export const CreateNote = (props) => {
     const target = props.target;
-    const TN = props.TN;
     return(
         <Mutation mutation={CREATE_NOTE}
         refetchQueries={[
@@ -51,9 +50,6 @@ export const CreateNote = (props) => {
                                 {active: {eq: true}}
                             ]
                         },
-                        sort: {
-                            updatedAt: "DESC"
-                        }
 
                     }
                 }

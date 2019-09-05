@@ -56,9 +56,6 @@ export const CreateContactAttempt = (props) => {
                             AND: [
                                 {active: {eq: true}}
                             ]
-                        },
-                        sort: {
-                            updatedAt: "DESC"
                         }
 
                     }

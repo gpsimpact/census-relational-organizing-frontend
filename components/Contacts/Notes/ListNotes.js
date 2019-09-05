@@ -4,6 +4,7 @@ import { gql } from 'apollo-boost';
 import { HR } from '../../Util/Layout';
 import { H4 } from '../../Util/Typography';
 import { EditNote } from './EditNote';
+import { CreateNote } from './CreateNote'; 
 
 export const GET_CONTACT_NOTES = gql`
     query targetNotes($input: TargetNotesInput!){
@@ -29,45 +30,43 @@ export const GET_CONTACT_NOTES = gql`
         }
     }
 `;
-
-export const ListNotes = (props) => {
-    return(
-        <Query query={GET_CONTACT_NOTES}
-                variables={{
-                    input: {
-                        targetId: props.target.id,
-                        where: {
-                            AND: [
-                                {active: {eq: true}}
-                            ]
-                        },
-                        sort:{
-                            updatedAt: "DESC"
-                        }
-                    }
+export class ListNotes extends React.Component {
+    render(){
+        const { target } = this.props;
+        return(
+            <Query query={GET_CONTACT_NOTES}
+                            variables={{
+                                    input: {
+                                        targetId: target.id,
+                                        where: {
+                                            AND: [
+                                                {active: {eq: true}}
+                                            ]
+                                        },
+                                
+                                    }
+                                }}
+            >
+                {({data, loading, error}) => {
+                    
+                    return(
+                        <div>
+                            <CreateNote target={target}/>
+                           { 
+                               data && data.targetNotes && data.targetNotes.items && data.targetNotes.items.length > 0
+                               && data.targetNotes.items.map((TN, idx) => {
+                                    return(
+                                        <div key={idx}>
+                                            <HR/>
+                                            <EditNote target={target} TN={TN}/>
+                                        </div>
+                                    )
+                               })
+                           }
+                        </div>
+                    )
                 }}
-        >
-            {({data, loading, error}) => {
-                return(
-                    <div>
-                    {data && data.targetNotes && data.targetNotes.items && data.targetNotes.items.length > 0 
-                    && data.targetNotes.items.map((TN, idx) => {
-                        return(
-                            <div key={idx}>
-                              <HR/>
-                                <EditNote target={props.target} TN={TN}/>
-                            </div>
-                        )
-                    })
-                    }
-                    {data && data.targetNotes && data.targetNotes.items && data.targetNotes.items.length <= 0 
-                    && 
-                    <H4>No logged notes</H4>
-                    }
-                </div>
-                )
-            }}
-            
-        </Query>
-    )
+            </Query>
+        )
+    }
 }

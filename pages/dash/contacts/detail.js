@@ -16,8 +16,8 @@ import { ErrorMessage } from '../../../components/Util/Loading';
 import { gql } from "apollo-boost";
 import { LoadingBar } from '../../../components/Util/Loading';
 import { EditContactForm, EditContactTibs, ActionProgress } from '../../../components/Contacts';
-import { CreateContactAttempt, ListContactAttempts } from '../../../components/Contacts/ContactAttempts';
-import { CreateNote, ListNotes } from '../../../components/Contacts/Notes';
+import { ListContactAttempts } from '../../../components/Contacts/ContactAttempts';
+import { ListNotes } from '../../../components/Contacts/Notes';
 
 import { HR, Collapser } from '../../../components/Util/Layout';
 
@@ -97,7 +97,6 @@ class DashContactDetail extends React.Component {
                                                 <Collapser title="Contact Attempts" open={false}>
                                                     <Row>
                                                         <Col md={12}>
-                                                            {data && data.target && <CreateContactAttempt target={data.target}/>}
                                                             {data && data.target && <ListContactAttempts target={data.target}/>}
 
                                                        </Col>
@@ -108,7 +107,6 @@ class DashContactDetail extends React.Component {
                                                 <Collapser title="Notes" open={true}>
                                                     <Row>
                                                         <Col md={12}>
-                                                        {data && data.target && <CreateNote target={data.target}/>}
                                                         {data && data.target && <ListNotes target={data.target}/>}
 
                                                        </Col>

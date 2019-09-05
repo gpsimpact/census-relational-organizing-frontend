@@ -8,7 +8,9 @@ import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 import { methodOptions, dispositionOptions } from './Options';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { DeleteContactAttempt } from './DeleteContactAttempt';
+import { GET_CONTACT_ATTEMPTS } from './ListContactAttempts';
+import { PrimaryButton, SecondaryButton } from '../../Util/Typography';
+
 
 export const UPDATE_CONTACT_ATTEMPT = gql`
     mutation updateTargetContactAttempt($id: String!, $input:UpdateTargetContactAttemptInput!){
@@ -44,11 +46,29 @@ export const EditContactAttempt = (props) => {
 
 
     return (
-        <Mutation mutation={UPDATE_CONTACT_ATTEMPT}>
+        <Mutation mutation={UPDATE_CONTACT_ATTEMPT}
+        refetchQueries={[
+            {
+                query: GET_CONTACT_ATTEMPTS,
+                variables: {
+                    input: {
+                        targetId: target.id,
+                        where: {
+                            AND: [
+                                {active: {eq: true}}
+                            ]
+                        },
+
+                    }
+                }
+            }
+        ]}
+        >
             {(mutation, {data, loading, error}) => (
                 <Formik 
                     initialValues={
                         {
+                            edit: false,
                             content: props.CA.content,
                             disposition: props.CA.disposition,
                             method: props.CA.method
@@ -56,9 +76,22 @@ export const EditContactAttempt = (props) => {
                     }
                     validationSchema={
                         Yup.object().shape({
-                            content: Yup.string().required('Required'),
-                            disposition: Yup.string().required('Required'),
-                            method: Yup.string().required('Required')
+                            content: Yup.string().when('edit', {
+                                is: true,
+                                then: Yup.string().required('required'),
+                                otherwise: Yup.string().notRequired()
+                            }),
+                            disposition: Yup.string().when('edit', {
+                                is: true,
+                                then: Yup.string().required('required'),
+                                otherwise: Yup.string().notRequired()
+                            }),
+                            method: Yup.string().when('edit', {
+                                is: true,
+                                then: Yup.string().required('required'),
+                                otherwise: Yup.string().notRequired()
+                            })
+                    
                         })
                     }
                     onSubmit={ async (values, actions) => {
@@ -69,6 +102,9 @@ export const EditContactAttempt = (props) => {
                                 disposition: values.disposition,
                                 method: values.method,
                             }
+                        }
+                        if(values.edit === false) {
+                            payload.input.active = false;
                         }
                         let response = await submitMutation( mutation, payload);
                         let result = await marshallMutationResponse(response, 'updateTargetContactAttempt');
@@ -126,15 +162,25 @@ export const EditContactAttempt = (props) => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md={6}>
-                                            <SubmitButton 
-                                                loading={loading}
-                                                value={loading ? "Saving" : "Save"}
-                                            />
-                                            
+                                    <Col md={6}>
+                                            <PrimaryButton
+                                                type="button" 
+                                               
+                                                onClick={() => {
+                                                    props.setFieldValue('edit', true, false)
+                                                    props.handleSubmit();
+                                                }}
+                                            > {loading ? "Saving" : "Save" } </PrimaryButton>
                                         </Col>
                                         <Col md={6}>
-                                            <DeleteContactAttempt CA={CA} target={target}/>
+                                            <SecondaryButton 
+                                                type="button"
+                                                value="Delete"
+                                                onClick={() => {
+                                                    props.setFieldValue('edit', false, false);
+                                                    props.handleSubmit();
+                                                }}
+                                            > {loading ? "Deleting" : "Delete" }</SecondaryButton>
                                         </Col>
                                         <Col md={12}>
                                             {props && props.dirty &&

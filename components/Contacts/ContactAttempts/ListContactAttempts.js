@@ -5,6 +5,8 @@ import { HR } from '../../Util/Layout';
 import { H4 } from '../../Util/Typography';
 
 import { EditContactAttempt } from './EditContactAttempt';
+import { CreateContactAttempt } from './CreateContactAttempt';
+
 export const GET_CONTACT_ATTEMPTS = gql`
     query targetContactAttempts($input: TargetContactAttemptsInput!){
         targetContactAttempts(input:$input){
@@ -30,43 +32,42 @@ export const GET_CONTACT_ATTEMPTS = gql`
         }
     }
 `;
-
-export const ListContactAttempts = (props) => {
-    return (
-        <Query query={GET_CONTACT_ATTEMPTS}
-            variables={{input:{
-                targetId: props.target.id,
-                where: {
-                    AND: [
-                        {active: {eq: true}}
-                    ]
-                },
-                sort: {
-                    updatedAt: "DESC"
-                }
-            }}}
-        >
-            {({data,loading,error}) => {
-                return(
-                    <div>
-                        {data && data.targetContactAttempts && data.targetContactAttempts.items && data.targetContactAttempts.items.length > 0 
-                        && data.targetContactAttempts.items.map((CA, idx) => {
-                            return(
-                                <div key={idx}>
-                                  <HR/>
-                                    <EditContactAttempt target={props.target} CA={CA}/>
-                                </div>
-                            )
-                        })
+export class ListContactAttempts extends React.Component {
+    render(){
+        const { target } = this.props;
+        return(
+            <Query query={GET_CONTACT_ATTEMPTS}
+                    variables={{
+                        input: {
+                            targetId: target.id,
+                            where: {
+                                AND: [
+                                    {active: {eq: true}}
+                                ]
+                            },
+                    
                         }
-                        {data && data.targetContactAttempts && data.targetContactAttempts.items && data.targetContactAttempts.items.length <= 0 
-                        && 
-                        <H4>No logged contact attempts</H4>
-                        }
-                    </div>
-                )
-            }}
+                    }}
+                >
+                    {({data, loading, error}) => {
+                        return(
+                            <div>
+                                <CreateContactAttempt target={target}/>
+                                {data && data.targetContactAttempts && data.targetContactAttempts.items && data.targetContactAttempts.items.length > 0 
+                                    && data.targetContactAttempts.items.map((CA, idx) => {
+                                        return(
+                                            <div key={idx}>
+                                                <HR/>
+                                                <EditContactAttempt target={target} CA={CA}/>
+                                            </div>
+                                        )
+                                    })
+                                    }
+                            </div>
+                        )
+                    }}
 
-        </Query>
-    )
+            </Query>
+        )
+    }
 }
