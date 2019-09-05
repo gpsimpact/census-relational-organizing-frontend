@@ -11,7 +11,8 @@
     "test_watch": "NODE_ENV=test jest --watch",
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production next start -p $PORT"
+    "start": "NODE_ENV=production next start -p $PORT",
+    "heroku-postbuild": "next build"
   },
   "dependencies": {
     "@material-ui/core": "^4.1.3",
