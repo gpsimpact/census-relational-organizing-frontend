@@ -142,7 +142,6 @@ export const EditContactForm = (props) => {
                                 props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
                             }
                           
-                            <H2 uppercase>General Information</H2>
                             <Row bsPrefix={'row align-items-center'}>
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                                     <FormIcon icon={<Person/>}/>

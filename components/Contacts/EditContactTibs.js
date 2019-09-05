@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBoxBlock, CheckBox,DirtyFormMessage } from '../Util/Forms';
 import { Formik, Form, Field, FieldArray } from "formik";
-import { H2, Info } from '../Util/Typography';
+import { H3, Info } from '../Util/Typography';
 
 const UPDATE_TARGET_TIBS = gql`
     mutation updateTarget($id: String!, $input: UpdateTargetInput!){
@@ -78,7 +78,7 @@ export class EditContactTibs extends React.Component {
                                 <Row>
                                     <Col md={6}>
 
-                                        <H2 uppercase>About</H2>
+                                        <H3 uppercase tertiary>About</H3>
                                         <Info>Please check all of the statements below that you know are true about {target.firstName}</Info>
                                             {questionTibs.map((tib, idx) => {
                                             return(
@@ -94,7 +94,7 @@ export class EditContactTibs extends React.Component {
 
                                     <Col md={6}>
 
-                                        <H2 uppercase>Actions</H2>
+                                        <H3 uppercase tertiary>Actions</H3>
                                         <Info>Please mark if you have completed the following actions for {target.firstName}</Info>
                                             {actionTibs.map((tib, idx) => {
                                             return(

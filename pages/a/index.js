@@ -96,7 +96,7 @@ class AdminDash extends React.Component {
                                                         <Query query={ADMIN_TEAM_COUNTS} fetchPolicy={'cache-and-network'}>
                                                             {({data, error, loading}) => (
                                                                 <SumWrapper>
-                                                                    <SumCountTitle>Teams</SumCountTitle>
+                                                                    <SumCountTitle>Total Teams</SumCountTitle>
                                                                         {error && <ErrorIcon error={error}/>}
                                                                     
                                                                         <SumCountNum>{data && data.summaryCountTeams ? data.summaryCountTeams : <NotInterested/>}</SumCountNum>
@@ -111,7 +111,7 @@ class AdminDash extends React.Component {
                                                         <Query query={ADMIN_VOLS_COUNT} fetchPolicy={'cache-and-network'}>
                                                                 {({data, error,loading}) => (
                                                                 <SumWrapper>
-                                                                    <SumCountTitle>Users</SumCountTitle>
+                                                                    <SumCountTitle>Total Users</SumCountTitle>
                                                                     {error && <ErrorIcon error={error}/>}
                                                                         <SumCountNum>{data && data.summaryCountAllUsers ? data.summaryCountAllUsers : <NotInterested/>}</SumCountNum>
                                                                     
@@ -127,7 +127,7 @@ class AdminDash extends React.Component {
                                                         {({data, error,loading}) => (
 
                                                             <SumWrapper>
-                                                                <SumCountTitle>Targets</SumCountTitle>
+                                                                <SumCountTitle>Total Contacts</SumCountTitle>
                                                                 {error && <ErrorIcon error={error}/>}
                                                                 <SumCountNum>{data && data.summaryCountAllTargets ? data.summaryCountAllTargets : <NotInterested/>}</SumCountNum>
                                                                 
