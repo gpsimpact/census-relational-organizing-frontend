@@ -2,9 +2,10 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { HR } from '../../Util/Layout';
-import { H4 } from '../../Util/Typography';
+import { H4, H5 } from '../../Util/Typography';
 import { EditNote } from './EditNote';
 import { CreateNote } from './CreateNote'; 
+import Moment from 'react-moment';
 
 export const GET_CONTACT_NOTES = gql`
     query targetNotes($input: TargetNotesInput!){
@@ -58,6 +59,8 @@ export class ListNotes extends React.Component {
                                     return(
                                         <div key={idx}>
                                             <HR/>
+                                            <H4>Created: <small><Moment fromNow ago>{TN.createdAt}</Moment> ago</small></H4>
+                                            <p className="pb-1">{TN.content}</p>
                                             <EditNote target={target} TN={TN}/>
                                         </div>
                                     )

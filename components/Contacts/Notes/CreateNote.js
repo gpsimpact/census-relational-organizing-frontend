@@ -8,6 +8,8 @@ import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 import { GET_CONTACT_NOTES } from './ListNotes';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { PrimaryButton, SecondaryButton, H3 } from '../../Util/Typography';
+import { CustomModal } from '../../Util/Layout';
 
 export const CREATE_NOTE = gql`
     mutation createTargetNote($input:CreateTargetNoteInput!){
@@ -34,11 +36,18 @@ export const CREATE_NOTE = gql`
         }
     }
 `;
-
-export const CreateNote = (props) => {
-    const target = props.target;
-    return(
-        <Mutation mutation={CREATE_NOTE}
+export class CreateNote extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false
+        }
+    }
+    
+    render(){
+        const { target } = this.props;
+        return(
+<Mutation mutation={CREATE_NOTE}
         refetchQueries={[
             {
                 query: GET_CONTACT_NOTES,
@@ -87,9 +96,21 @@ export const CreateNote = (props) => {
                             });
                             return;
                         }
+                        this.setState({open: false});
                         actions.resetForm({content:""});
                     }}
                     render={props => (
+                        <React.Fragment>
+                        <SecondaryButton uppercase onClick={() =>  this.setState({open: true})}>Create</SecondaryButton>
+                        <CustomModal 
+                            show={this.state.open} 
+                            onHide={() => this.setState({open: false})}
+                            centered
+                        >
+                            <CustomModal.Header closeButton>
+                                <H3 uppercase>Create Contact Attempt</H3>
+                            </CustomModal.Header>
+                            <CustomModal.Body>
                         <Form noValidate>
                                {
                                         props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
@@ -115,9 +136,15 @@ export const CreateNote = (props) => {
                                         </Col>
                                     </Row>
                         </Form>
+                              </CustomModal.Body>
+                              </CustomModal>
+      
+                              </React.Fragment>
                     )}
                 />
             )}
         </Mutation>
-    )
+        )
+    }
 }
+

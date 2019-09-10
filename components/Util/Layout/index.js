@@ -5,3 +5,4 @@ export { HR } from './HR';
 export { ProgressBar } from './ProgressBar';
 export { BooleanBar } from './BooleanBar';
 export { Collapser, CollapserButton } from './Collapser';
+export { CustomModal } from './Modal';

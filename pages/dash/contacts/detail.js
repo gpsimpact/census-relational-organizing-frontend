@@ -73,7 +73,7 @@ class DashContactDetail extends React.Component {
                                         {error && <ErrorMessage error={error}/>}
                                          <Row bsPrefix="row pt-4">
                                              <Col md={12}>
-                                                    <Collapser title="General Information" open={true}>
+                                                    <Collapser title="General Information" open={false}>
                                                         <Row>
                                                             <Col md={8}>    
                                                                 {data && data.target && <EditContactForm target={data.target}/>}
@@ -94,7 +94,7 @@ class DashContactDetail extends React.Component {
                                                     </Collapser>
                                                 
                                                     <HR/>
-                                                <Collapser title="Contact Attempts" open={false}>
+                                                <Collapser title="Contact Attempts" open={true}>
                                                     <Row>
                                                         <Col md={12}>
                                                             {data && data.target && <ListContactAttempts target={data.target}/>}

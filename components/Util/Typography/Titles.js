@@ -18,6 +18,9 @@ export const H1 = styled('h1')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
 `;
 
 export const H2 = styled('h2')`
@@ -38,6 +41,10 @@ export const H2 = styled('h2')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
+    
 `;
 
 export const H3 = styled('h3')`
@@ -58,6 +65,9 @@ export const H3 = styled('h3')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
 
 `;
 
@@ -80,6 +90,9 @@ export const H4 = styled('h4')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
 
 `;
 
@@ -102,6 +115,9 @@ export const H5 = styled('h5')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
 `;
 
 export const H6 = styled('h6')`
@@ -122,4 +138,7 @@ export const H6 = styled('h6')`
      ${props => props.tertiary && ({
         color: `${props.theme.colors.tertiary}`
     })};
+    small {
+        color: ${props => props.theme.colors.tertiary};
+    }
 `;

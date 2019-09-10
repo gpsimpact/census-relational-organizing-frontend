@@ -2,10 +2,13 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { HR } from '../../Util/Layout';
-import { H4 } from '../../Util/Typography';
+import { H4, H5 } from '../../Util/Typography';
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { EditContactAttempt } from './EditContactAttempt';
 import { CreateContactAttempt } from './CreateContactAttempt';
+import Moment from 'react-moment';
 
 export const GET_CONTACT_ATTEMPTS = gql`
     query targetContactAttempts($input: TargetContactAttemptsInput!){
@@ -58,6 +61,11 @@ export class ListContactAttempts extends React.Component {
                                         return(
                                             <div key={idx}>
                                                 <HR/>
+                                                  <H4 uppercase>Created:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H4>
+                                                    <H5 uppercase> Method: <small>{CA.method.replace("_", " ")}</small></H5>
+                                                    <H5 uppercase> Disposition: <small>{CA.disposition.replace("_", " ")}</small></H5>
+                                            
+                                                <p className="pb-1">{CA.content}</p>
                                                 <EditContactAttempt target={target} CA={CA}/>
                                             </div>
                                         )
