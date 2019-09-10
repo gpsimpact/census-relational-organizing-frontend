@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { HR } from '../../Util/Layout';
-import { H4, H5 } from '../../Util/Typography';
+import { H3, H4, H5 } from '../../Util/Typography';
 import { EditNote } from './EditNote';
 import { CreateNote } from './CreateNote'; 
 import Moment from 'react-moment';
@@ -31,7 +31,7 @@ export const GET_CONTACT_NOTES = gql`
         }
     }
 `;
-export class ListNotes extends React.Component {
+export class LatestNote extends React.Component {
     render(){
         const { target } = this.props;
         return(
@@ -44,6 +44,10 @@ export class ListNotes extends React.Component {
                                                 {active: {eq: true}}
                                             ]
                                         },
+                                        limit: 1,
+                                        sort: {
+                                            createdAt: "DESC"
+                                        }
                                 
                                     }
                                 }}
@@ -52,16 +56,16 @@ export class ListNotes extends React.Component {
                     
                     return(
                         <div>
-                            <CreateNote target={target}/>
                            { 
                                data && data.targetNotes && data.targetNotes.items && data.targetNotes.items.length > 0
                                && data.targetNotes.items.map((TN, idx) => {
                                     return(
                                         <div key={idx}>
                                             <HR/>
+                                            <H3 uppercase> Latest Note</H3>
+
                                             <H5 uppercase>Created: <small><Moment fromNow ago>{TN.createdAt}</Moment> ago</small></H5>
                                             <p className="pb-1">{TN.content}</p>
-                                            <EditNote target={target} TN={TN}/>
                                         </div>
                                     )
                                })

@@ -14,7 +14,7 @@ export class ActionProgress extends React.Component {
         let completionPercent = (completeActionTibs / actionTibs) * 100;
         return(
             <div>
-                <H3> Actions Completed: {completeActionTibs} / {actionTibs}</H3>
+                <H3 uppercase> Actions Completed: {completeActionTibs} / {actionTibs}</H3>
                 <ProgressBar percent={`${completionPercent}%`}/>
             </div>
         )

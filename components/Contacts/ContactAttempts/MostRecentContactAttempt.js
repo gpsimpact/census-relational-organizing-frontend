@@ -1,13 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { HR } from '../../Util/Layout';
-import { H4, H5 } from '../../Util/Typography';
-
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { EditContactAttempt } from './EditContactAttempt';
-import { CreateContactAttempt } from './CreateContactAttempt';
+import { H3, H4, H5 } from '../../Util/Typography';
+import { HR } from '../../Util/Layout'
 import Moment from 'react-moment';
 
 export const GET_CONTACT_ATTEMPTS = gql`
@@ -35,7 +30,7 @@ export const GET_CONTACT_ATTEMPTS = gql`
         }
     }
 `;
-export class ListContactAttempts extends React.Component {
+export class MostRecentContactAttempt extends React.Component {
     render(){
         const { target } = this.props;
         return(
@@ -48,6 +43,10 @@ export class ListContactAttempts extends React.Component {
                                     {active: {eq: true}}
                                 ]
                             },
+                            limit: 1,
+                            sort: {
+                                createdAt: "DESC"
+                            }
                     
                         }
                     }}
@@ -55,18 +54,19 @@ export class ListContactAttempts extends React.Component {
                     {({data, loading, error}) => {
                         return(
                             <div>
-                                <CreateContactAttempt target={target}/>
                                 {data && data.targetContactAttempts && data.targetContactAttempts.items && data.targetContactAttempts.items.length > 0 
                                     && data.targetContactAttempts.items.map((CA, idx) => {
                                         return(
                                             <div key={idx}>
                                                 <HR/>
+
+                                                 <H3 uppercase> Latest Contact Attempt</H3>
+
                                                   <H5 uppercase>Created:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
                                                     <H5 uppercase> Method: <small>{CA.method.replace("_", " ")}</small></H5>
                                                     <H5 uppercase> Disposition: <small>{CA.disposition.replace("_", " ")}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
-                                                <EditContactAttempt target={target} CA={CA}/>
                                             </div>
                                         )
                                     })
