@@ -46,6 +46,8 @@ class AdminTasksIndex extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
+                pageTitle={"Global Admin Dashboard"}
+
             >
                 <Container>
                     <Row bsPrefix="row py-5">

@@ -58,6 +58,10 @@ export const TeamVolCard = (props) => {
     
     const permissionOptions = [
         {
+            value: "DENIED",
+            label: "DENIED"
+        },
+        {
             value: 'APPLICANT',
             label: 'APPLICANT'
         },

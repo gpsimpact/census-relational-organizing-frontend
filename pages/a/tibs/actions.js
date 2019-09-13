@@ -28,10 +28,12 @@ class AdminTibActions extends React.Component {
                 padTop
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
+                pageTitle={"Global Admin Dashboard"}
+
             >
                 <Container>
                     <Row bsPrefix={'row justify-content-center py-5'}>
-                        <Col md={8}>
+                        <Col md={12}>
                         <Query query={GET_GTIBS} variables={{input:{active:true, tibType:'ACTION'}}}>
                         {({data,loading,error}) => {
                             return(

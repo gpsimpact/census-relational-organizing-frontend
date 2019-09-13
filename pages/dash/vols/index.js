@@ -61,6 +61,8 @@ class DashVolIndex extends React.Component {
             <Page
             currentUser={currentUser}
             sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+            pageTitle={`${currentTeam.name} Dashboard`}
+
             >
                 <Container>
                     <Row bsPrefix="row py-5">
@@ -75,7 +77,7 @@ class DashVolIndex extends React.Component {
                                     offset: currentQuery.offset,
                                     where: currentQuery.where,
                                     sort: currentQuery.sort,
-                                    includePermissions: ['ADMIN', 'MEMBER', 'APPLICANT'],
+                                    includePermissions: ['ADMIN', 'MEMBER', 'APPLICANT', 'DENIED'],
                                     teamId: currentTeam.id,
                                 }
                             }}

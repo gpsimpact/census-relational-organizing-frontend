@@ -9,52 +9,52 @@ export const DashSideNav = (props) => {
     const { currentUser, currentTeam } = props;
     return(
         <React.Fragment>
-                        <H3 uppercase primary>Team Dashboard</H3>
+            <H3 uppercase primary> {currentTeam.name} Dashboard </H3>
 
             {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'MEMBER')) && 
-                <Link href={{pathname: `${DashPaths.index}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.index}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')) && 
+                <Link href={{pathname: `${DashPaths.index}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.index}?team=${currentTeam.id}`}>
                         Dashboard
                     </Nav.Link>
                 </Link>
             }
              {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'MEMBER')) && 
-                <Link href={{pathname: `${DashPaths.contacts.index}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.contacts.index}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')) && 
+                <Link href={{pathname: `${DashPaths.contacts.index}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.contacts.index}?team=${currentTeam.id}`}>
                         Household Contacts
                     </Nav.Link>
                 </Link>
             }
               {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) && 
-                <Link href={{pathname: `${DashPaths.vols.index}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.vols.index}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.id}`}>
                         Volunteers
                     </Nav.Link>
                 </Link>
             }
             {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) && 
-                <Link href={{pathname: `${DashPaths.tibs.questions}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.tibs.questions}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.tibs.questions}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.tibs.questions}?team=${currentTeam.id}`}>
                         Questions
                     </Nav.Link>
                 </Link>
             }
             {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) && 
-                <Link href={{pathname: `${DashPaths.tibs.actions}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.tibs.actions}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.tibs.actions}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.tibs.actions}?team=${currentTeam.id}`}>
                         Actions
                     </Nav.Link>
                 </Link>
             }
             {
-            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) && 
-                <Link href={{pathname: `${DashPaths.tasks.index}`, query: {team: currentTeam.slug}}}>
-                    <Nav.Link href={`${DashPaths.tasks.index}?team=${currentTeam.slug}`}>
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.tasks.index}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.tasks.index}?team=${currentTeam.id}`}>
                         Tasks
                     </Nav.Link>
                 </Link>

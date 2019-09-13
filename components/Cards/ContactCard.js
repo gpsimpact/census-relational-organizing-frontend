@@ -36,7 +36,7 @@ export const ContactCard = ( props ) => {
     return(
         <Card>
             <CardHeader>
-                    <Link href={{pathname: `${DashPaths.contacts.detail}`, query: { team: team.slug, target:target.id}}}><IconLink href={`${DashPaths.contacts.detail}?team=${team.slug}&target=${target.id}`}><i className="fas fa-user"></i> Profile </IconLink></Link>
+                    <Link href={{pathname: `${DashPaths.contacts.detail}`, query: { team: team.id, target:target.id}}}><IconLink href={`${DashPaths.contacts.detail}?team=${team.id}&target=${target.id}`}><i className="fas fa-user"></i> Profile </IconLink></Link>
             </CardHeader>
 
             <CardInner>

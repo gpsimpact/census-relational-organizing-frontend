@@ -8,7 +8,11 @@ import { FormError, FormSuccess,TextField,SubmitButton, TextAreaField } from '..
 import { LoadingBar } from '../Util/Loading';
 import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { AdminPaths } from '../../paths';
 
+import {PrimaryButton, SecondaryButton } from '../Util/Typography';
 
 export const UPDATE_TEAM_ADMIN_MUTATION = gql`
     mutation updateTeamAdmin($id: String!, $input: UpdateTeamInput!){
@@ -34,7 +38,13 @@ export const AdminEditTeamForm = (props) => {
         <Mutation mutation={UPDATE_TEAM_ADMIN_MUTATION}>
             {(mutation, { data, loading, error}) => (
                 <Formik 
-                    initialValues={{name:team.name ? team.name : "",description:team.description ? team.description: ""}}
+                    initialValues={
+                        {
+                            edit: true,
+                            name:team.name ? team.name : "",
+                            description:team.description ? team.description: ""
+                        }
+                    }
                     validationSchema={
                         Yup.object().shape({
                             name: Yup.string().required('I need a name'),
@@ -49,6 +59,9 @@ export const AdminEditTeamForm = (props) => {
                                 description: values.description,
                             }
                         };
+                        if(values.edit === false){
+                            payload.input.active = false;
+                        }
                         let response = await submitMutation(mutation, payload);
                         const result = await marshallMutationResponse(response, 'updateTeam');
 
@@ -61,22 +74,27 @@ export const AdminEditTeamForm = (props) => {
                             });
                             return;
                         }
-                        actions.setStatus({
-                            form: {
-                                code: "Success",
-                                message: "Team Updated"
-                            }
-                        })                        
+                        if(values.edit === false) {
+                            redirect({}, `${AdminPaths.teams.index}`);                        
+
+                        } else {
+                            actions.setStatus({
+                                form: {
+                                    code: "Success",
+                                    message: "Team Updated"
+                                }
+                            })                        
+                        }
 
                     }}
-                    render={({status}) => (
+                    render={props => (
                         <Form noValidate>
                             <LoadingBar active={loading}/>
                             {
-                                status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
+                                props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
                             }
                             {
-                                status && status.form && status.form.code === 'Success' && <FormSuccess message={status.form}/>
+                                props.status && props.status.form && props.status.form.code === 'Success' && <FormSuccess message={props.status.form}/>
                             }
                                 <Field
                                     id="name"
@@ -92,10 +110,30 @@ export const AdminEditTeamForm = (props) => {
                                     placeholder="Team Description"
                                     component={TextAreaField}
                                 />
-                                <SubmitButton 
-                                    loading={loading}
-                                    value="Edit Team"
-                                />
+                                <Row>
+                                    <Col md={6}>
+                                    <PrimaryButton
+                                        type="button" 
+                                        
+                                        onClick={() => {
+                                            props.setFieldValue('edit', true, false)
+                                            props.handleSubmit();
+                                        }}
+                                        > {loading ? "Saving" : "Save" } 
+                                    </PrimaryButton>
+                                    </Col>
+                                    <Col md={6}>
+                                    <SecondaryButton 
+                                                    type="button"
+                                                    value="Delete"
+                                                    onClick={() => {
+                                                        props.setFieldValue('edit', false, false);
+                                                        props.handleSubmit();
+                                                    }}
+                                                    > {loading ? "Deleting" : "Delete" }</SecondaryButton>
+                                    </Col>
+                                </Row>
+                                
                         </Form>
                     )}
                 />

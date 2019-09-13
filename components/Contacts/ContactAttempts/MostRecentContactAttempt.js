@@ -5,7 +5,7 @@ import { H3, H4, H5 } from '../../Util/Typography';
 import { HR } from '../../Util/Layout'
 import Moment from 'react-moment';
 
-export const GET_CONTACT_ATTEMPTS = gql`
+export const GET_CONTACT_ATTEMPT = gql`
     query targetContactAttempts($input: TargetContactAttemptsInput!){
         targetContactAttempts(input:$input){
             hasMore
@@ -34,7 +34,7 @@ export class MostRecentContactAttempt extends React.Component {
     render(){
         const { target } = this.props;
         return(
-            <Query query={GET_CONTACT_ATTEMPTS}
+            <Query query={GET_CONTACT_ATTEMPT}
                     variables={{
                         input: {
                             targetId: target.id,

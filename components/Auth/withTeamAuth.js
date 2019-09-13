@@ -15,7 +15,7 @@ export const withTeamAuth = (Component, permissions) => {
             const { currentUser } = await GetCurrentUser(ctx.apolloClient);
          
             let nextPage;
-            let teamSlug = ctx.query.team || null;
+            let teamID = ctx.query.team || null;
             let userProps = { currentUser: currentUser };
             let authed = false; 
 
@@ -27,7 +27,7 @@ export const withTeamAuth = (Component, permissions) => {
             let authedUser = CurrentUser(userProps);
             if(permissions.team && permissions.team.length > 0){
                 permissions.team.forEach((perm) => {
-                    if(authedUser && authedUser.hasTeamPermission(teamSlug, perm)){
+                    if(authedUser && authedUser.hasTeamPermission(teamID, perm)){
                         authed = true;
                     };
                 });
@@ -42,7 +42,7 @@ export const withTeamAuth = (Component, permissions) => {
             };
 
             if(authed) {
-                let { currentTeam } = await GetCurrentTeam(ctx.apolloClient, teamSlug);
+                let { currentTeam } = await GetCurrentTeam(ctx.apolloClient, teamID);
                 if(!currentTeam.active) {
                     nextPage = '/'
                     return { nextPage };

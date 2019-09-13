@@ -7,6 +7,7 @@ import { FormError, FormSuccess, TextAreaField, SelectField, SubmitButton, FormI
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 import { methodOptions, dispositionOptions } from './Options';
 import { GET_CONTACT_ATTEMPTS } from './ListContactAttempts';
+import { GET_CONTACT_ATTEMPT } from './MostRecentContactAttempt';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -66,6 +67,24 @@ export class CreateContactAttempt extends React.Component {
                                 ]
                             }
     
+                        }
+                    }
+                },
+                {
+                    query: GET_CONTACT_ATTEMPT,
+                    variables:{
+                        input: {
+                            targetId: target.id,
+                            where: {
+                                AND: [
+                                    {active: {eq: true}}
+                                ]
+                            },
+                            limit: 1,
+                            sort: {
+                                createdAt: "DESC"
+                            }
+                    
                         }
                     }
                 }

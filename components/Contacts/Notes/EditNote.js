@@ -8,6 +8,7 @@ import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { GET_CONTACT_NOTES } from './ListNotes';
+import { GET_CONTACT_NOTE } from './LatestNote';
 import { PrimaryButton, SecondaryButton, H3 } from '../../Util/Typography';
 import { CustomModal } from '../../Util/Layout';
 
@@ -63,6 +64,24 @@ export class EditNote extends React.Component {
                                 ]
                             },
 
+                        }
+                    }
+                },
+                {
+                    query: GET_CONTACT_NOTE,
+                    variables: {
+                        input: {
+                            targetId: target.id,
+                            where: {
+                                AND: [
+                                    {active: {eq: true}}
+                                ]
+                            },
+                            limit: 1,
+                            sort: {
+                                createdAt: "DESC"
+                            }
+                    
                         }
                     }
                 }

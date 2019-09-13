@@ -27,13 +27,13 @@ export const AdminTeamCard = (props) => {
     return(
         <Card>
             <CardHeader>
-                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.slug}}}><IconLink href={`${DashPaths.index}?team=${team.slug}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
+                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
             </CardHeader>
 
             <CardInner>
                 <CardTitle>
-                <Link href={{pathname: `${AdminPaths.teams.detail}`, query: { team: team.slug}}}>
-                    <a href={`${AdminPaths.teams.detail}?team=${team.slug}`}>
+                <Link href={{pathname: `${AdminPaths.teams.detail}`, query: { team: team.id}}}>
+                    <a href={`${AdminPaths.teams.detail}?team=${team.id}`}>
                         <Row bsPrefix={'row align-items-center'}>
                             <Col xs={9}>
                                  {team.name}

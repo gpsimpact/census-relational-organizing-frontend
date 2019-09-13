@@ -9,6 +9,7 @@ import { methodOptions, dispositionOptions } from './Options';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { GET_CONTACT_ATTEMPTS } from './ListContactAttempts';
+import { GET_CONTACT_ATTEMPT } from './MostRecentContactAttempt';
 import { PrimaryButton, SecondaryButton, H3 } from '../../Util/Typography';
 import { CustomModal } from '../../Util/Layout';
 
@@ -63,6 +64,24 @@ export class EditContactAttempt extends React.Component {
                                 ]
                             },
     
+                        }
+                    }
+                },
+                {
+                    query: GET_CONTACT_ATTEMPT,
+                    variables:{
+                        input: {
+                            targetId: target.id,
+                            where: {
+                                AND: [
+                                    {active: {eq: true}}
+                                ]
+                            },
+                            limit: 1,
+                            sort: {
+                                createdAt: "DESC"
+                            }
+                    
                         }
                     }
                 }
@@ -128,6 +147,9 @@ export class EditContactAttempt extends React.Component {
                                     method: result.item.method ? result.item.method : "",
                                 }
                                 actions.resetForm(currentVals);
+                                if(values.edit === false) {
+                                    this.setState({open: false});
+                                }
                             }
     
                         }

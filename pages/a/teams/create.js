@@ -21,9 +21,11 @@ class AdminTeamCreate extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
+                pageTitle={"Global Admin Dashboard"}
+
             >
                   <Container>
-                        <Row bsPrefix={'row justify-content-center py-5'}>
+                        <Row bsPrefix={'row py-5'}>
                             <Col md={6}>
                                 <Box>
                                     <H1>Create New Team</H1>

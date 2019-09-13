@@ -3,11 +3,9 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { HR } from '../../Util/Layout';
 import { H3, H4, H5 } from '../../Util/Typography';
-import { EditNote } from './EditNote';
-import { CreateNote } from './CreateNote'; 
 import Moment from 'react-moment';
 
-export const GET_CONTACT_NOTES = gql`
+export const GET_CONTACT_NOTE = gql`
     query targetNotes($input: TargetNotesInput!){
         targetNotes(input:$input){
             hasMore
@@ -35,7 +33,7 @@ export class LatestNote extends React.Component {
     render(){
         const { target } = this.props;
         return(
-            <Query query={GET_CONTACT_NOTES}
+            <Query query={GET_CONTACT_NOTE}
                             variables={{
                                     input: {
                                         targetId: target.id,

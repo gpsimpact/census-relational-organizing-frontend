@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { FormError, FormSuccess, TextAreaField, SelectField, SubmitButton, FormIcon, CheckBox, DirtyFormMessage } from '../../Util/Forms';
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 import { GET_CONTACT_NOTES } from './ListNotes';
+import { GET_CONTACT_NOTE } from './LatestNote';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { PrimaryButton, SecondaryButton, H3 } from '../../Util/Typography';
@@ -60,6 +61,24 @@ export class CreateNote extends React.Component {
                             ]
                         },
 
+                    }
+                }
+            },
+            {
+                query: GET_CONTACT_NOTE,
+                variables: {
+                    input: {
+                        targetId: target.id,
+                        where: {
+                            AND: [
+                                {active: {eq: true}}
+                            ]
+                        },
+                        limit: 1,
+                        sort: {
+                            createdAt: "DESC"
+                        }
+                
                     }
                 }
             }

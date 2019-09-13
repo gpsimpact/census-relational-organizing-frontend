@@ -60,6 +60,8 @@ class DashContactIndex extends React.Component {
                 padTop
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                pageTitle={`${currentTeam.name} Dashboard`}
+
             >
                 <Container>
                     <Row bsPrefix="row py-5">

@@ -30,6 +30,12 @@ export const Footer = styled('footer')`
     }
 `;
 
+export const PageTitle = styled('h1')`
+    margin-bottom: -30px;
+    text-transform: uppercase;
+    color: ${props => props.theme.colors.black};
+`;
+
 
 export default class Page extends React.Component {
     render(){
@@ -40,11 +46,22 @@ export default class Page extends React.Component {
                 <PageContent>
                     {this.props.sideNavComponent ?
                         <Container bsPrefix="container-fluid h-100 no-gutters px-0">
+                            
                             <Row bsPrefix="row h-100 no-gutters">
                                 <Col xs={12} md={3} xl={2}>
                                     <SideNav sideNavComponent={this.props.sideNavComponent}/>
                                 </Col> 
                                 <Col xs={12} md={9} xl={10}>
+                                    {
+                                        this.props.pageTitle &&
+                                        <Container>
+                                            <Row bsPrefix={"row justify-content-center pt-4"}>
+                                                <Col>
+                                                    <PageTitle>{this.props.pageTitle}</PageTitle>
+                                                </Col>
+                                            </Row>
+                                        </Container>
+                                    }
                                     {this.props.children}
                                 </Col>
                             </Row>

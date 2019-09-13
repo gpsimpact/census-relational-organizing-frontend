@@ -34,10 +34,12 @@ class DashQuestionsIndex extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                pageTitle={`${currentTeam.name} Dashboard`}
+
             >
                 <Container>
                  <Row bsPrefix={"row justify-content-center py-5"}>
-                        <Col md={8}>
+                        <Col md={12}>
                         <TIBS teamId={currentTeam.id}>
                             {({gTibs, tTibs}) => {
                                 const loading = (gTibs.loading || tTibs.loading);

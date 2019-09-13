@@ -56,13 +56,17 @@ export const TeamPermissionCard = (props) => {
         <Card>
             <CardHeader>
                 {
-                    currentUser && (currentUser.hasTeamPermission(team.slug, 'MEMBER') || currentUser.hasTeamPermission(team.slug, 'ADMIN'))
+                    currentUser && (currentUser.hasTeamPermission(team.id, 'MEMBER') || currentUser.hasTeamPermission(team.id, 'ADMIN'))
                     ?
-                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.slug}}}><IconLink href={`${DashPaths.index}?team=${team.slug}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
+                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
                     :
-                    currentUser && currentUser.hasTeamPermission(team.slug, 'APPLICANT') 
+                    currentUser && currentUser.hasTeamPermission(team.id, 'APPLICANT') 
                     ?
                     <ApplicationPending>Application Pending.</ApplicationPending>
+                    :
+                    currentUser && currentUser.hasTeamPermission(team.id, 'DENIED')
+                    ?
+                    <ApplicationPending>Unavailable </ApplicationPending>
                     :
                     currentUser
                     ?
@@ -93,7 +97,7 @@ export const TeamPermissionCard = (props) => {
                         
                     </Mutation>
                     :
-                    <Link href={{pathname: `/register`, query: { team: team.slug}}}><IconLink href={`/register?team=${team.slug}`}><i className="fas fa-tachometer-alt"></i> Register </IconLink></Link>
+                    <Link href={{pathname: `/register`, query: { team: team.id}}}><IconLink href={`/register?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Register </IconLink></Link>
                 }
             </CardHeader>
             <CardInner>

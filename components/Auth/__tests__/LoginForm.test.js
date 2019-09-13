@@ -93,6 +93,5 @@ describe('<LoginForm/>', () => {
         wrapper.find('form').simulate('submit');
         await wait();
         wrapper.update();
-        console.log(wrapper.debug());
     });
 });

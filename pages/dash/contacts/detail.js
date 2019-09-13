@@ -15,7 +15,7 @@ import { Query } from 'react-apollo';
 import { ErrorMessage } from '../../../components/Util/Loading';
 import { gql } from "apollo-boost";
 import { LoadingBar } from '../../../components/Util/Loading';
-import { EditContactForm, EditContactTibs, ActionProgress } from '../../../components/Contacts';
+import { EditContactForm, EditContactTibs, ActionProgress, CensusTract } from '../../../components/Contacts';
 import { ListContactAttempts, MostRecentContactAttempt } from '../../../components/Contacts/ContactAttempts';
 import { ListNotes, LatestNote } from '../../../components/Contacts/Notes';
 
@@ -44,6 +44,7 @@ export const GET_TARGET = gql`
                 tibType
             }
             active
+            censusTract
         }
     }
 `;
@@ -59,6 +60,8 @@ class DashContactDetail extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                pageTitle={`${currentTeam.name} Dashboard`}
+
             >
                 <Container>
                     <Row bsPrefix={'row justify-content-center py-5'}>
@@ -79,6 +82,7 @@ class DashContactDetail extends React.Component {
                                                                 {data && data.target && <EditContactForm target={data.target}/>}
                                                             </Col>
                                                             <Col md={4}>
+                                                                {data && data.target && <CensusTract target={data.target}/>}
                                                                 {data && data.target && <ActionProgress  target={data.target}/>}
                                                                 {data && data.target && <MostRecentContactAttempt target={data.target}/>}
                                                                 {data && data.target && <LatestNote target={data.target}/>}

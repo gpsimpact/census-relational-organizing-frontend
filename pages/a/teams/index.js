@@ -6,6 +6,7 @@ import Link from "next/link";
 import Page from "../../../components/Page";
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
 import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
+import { InjectMiddleWhere } from '../../../lib/constructors/InjectMiddleWhere';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -54,6 +55,7 @@ class AdminTeamIndex extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
+                pageTitle={"Global Admin Dashboard"}
             >
                 <Container>
                     <Row bsPrefix="row py-5">
@@ -65,12 +67,14 @@ class AdminTeamIndex extends React.Component {
                                         input: {
                                             limit: currentQuery.perPage,
                                             offset: currentQuery.offset,
-                                            where: currentQuery.where,
+                                            where: InjectMiddleWhere(currentQuery.where, {'active': {'eq': true}}),
                                             sort: currentQuery.sort,
                                         }
                                     }}
+                                    fetchPolicy="cache-and-network"
                                     >
                                     {({data, loading, error}) => {
+                                        console.log(data)
                                         return(
                                             <React.Fragment>
                                             <Box>

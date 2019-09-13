@@ -12,6 +12,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
+import { InjectMiddleWhere } from '../lib/constructors/InjectMiddleWhere';
 
 
 import { Box } from '../components/Util/Layout';
@@ -60,7 +61,7 @@ class Teams extends React.Component {
                                     input: {
                                         limit: currentQuery.perPage,
                                         offset: currentQuery.offset,
-                                        where: currentQuery.where,
+                                        where: InjectMiddleWhere(currentQuery.where, {'active': {'eq': true}}),
                                         sort: currentQuery.sort,
                                     }
                                 }}
@@ -71,7 +72,7 @@ class Teams extends React.Component {
                                 <Box>
                                 <Row bsPrefix="row align-items-center">
                                     <Col xl={3}>
-                                         <H1> Teams </H1>
+                                         <H1 uppercase> Teams </H1>
                                     </Col>
                                     <Col xl={6}>
                                     {data && data.teams && 

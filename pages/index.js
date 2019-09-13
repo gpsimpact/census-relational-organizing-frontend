@@ -84,7 +84,7 @@ class Index extends React.Component {
                                  input: {
                                      limit: currentQuery.perPage,
                                      offset: currentQuery.offset,
-                                     where: InjectMiddleWhere(currentQuery.where, {'id': {'in': currentUser.getTeamIDs()}}),
+                                     where: InjectMiddleWhere(currentQuery.where, {'id': {'in': currentUser.getTeamIDs()}, "active": {"eq": true}}),
                                      sort: currentQuery.sort,
                                  }
                              }}

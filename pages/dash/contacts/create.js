@@ -32,6 +32,8 @@ class DashContactCreate extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
+                pageTitle={`${currentTeam.name} Dashboard`}
+
             >
                 <Container>
                     <Row bsPrefix={'row justify-content-center py-5'}>
