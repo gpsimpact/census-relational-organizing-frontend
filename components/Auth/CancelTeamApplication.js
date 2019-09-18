@@ -36,6 +36,9 @@ export const CancelTeamApplication = (props) => {
             variables={{
                 teamId: team.id
             }}
+            onCompleted={() => {
+                window.location.reload();
+            }}
         >
             {(mutation, { data, loading, error}) => (
                 <CancelButton onClick={() => mutation()}>Cancel</CancelButton>
