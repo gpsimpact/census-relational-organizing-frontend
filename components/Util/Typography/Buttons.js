@@ -3,7 +3,7 @@ import { darken } from 'polished';
 
 
 
-const Button = styled('button')`
+export const Button = styled('button')`
     position: relative;
     padding: 10px 30px;
     min-height: 40px;

@@ -8,15 +8,16 @@ import { gql } from "apollo-boost";
 
 import { Mutation } from 'react-apollo';
 import { ErrorMessage } from '../Util/Loading';
+import { CancelTeamApplication } from '../Auth/CancelTeamApplication';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-
-
-const ApplicationPending = styled('h4')`
+const ApplicationUnavailable = styled('h4')`
     text-align: center;
     background-color: ${props => props.theme.colors.tertiary};
     text-transform: uppercase;
     font-style: italic;
-    padding: 14px 30px;
+    padding: 12px 25px;
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};
@@ -27,13 +28,25 @@ const SuccessPending = styled('h4')`
     background-color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
     font-style: italic;
-    padding: 14px 30px;
+    padding: 12px 25px;
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};
 `;
 
-
+export const ApplicationPending = styled('div')`
+    background-color: ${props => props.theme.colors.tertiary};
+    h4 {
+        text-align: center;
+    background-color: ${props => props.theme.colors.tertiary};
+    text-transform: uppercase;
+    font-style: italic;
+    padding: 12px 25px;
+    font-weight: 700;
+    font-size: .8rem;
+    color: ${props => props.theme.colors.white};
+    }
+`;
 
 export const REQUEST_TEAM_MEMBERSHIP_PUBLIC = gql`
     mutation requestTeamMembershipPublic($teamId: String!){
@@ -62,11 +75,22 @@ export const TeamPermissionCard = (props) => {
                     :
                     currentUser && currentUser.hasTeamPermission(team.id, 'APPLICANT') 
                     ?
-                    <ApplicationPending>Application Pending.</ApplicationPending>
+                    <ApplicationPending>
+                        <Row>
+                            <Col md={6}>
+                                <h4>Application Pending.</h4>
+
+                            </Col>
+                            <Col md={6}>
+                                <CancelTeamApplication team={team}/>
+
+                            </Col>
+                        </Row>
+                    </ApplicationPending>
                     :
                     currentUser && currentUser.hasTeamPermission(team.id, 'DENIED')
                     ?
-                    <ApplicationPending>Unavailable </ApplicationPending>
+                    <ApplicationUnavailable>Unavailable </ApplicationUnavailable>
                     :
                     currentUser
                     ?
@@ -79,7 +103,18 @@ export const TeamPermissionCard = (props) => {
                         )
                         if(data && data.requestTeamMembership && data.requestTeamMembership.success) {
                             return(
-                                <SuccessPending>{data.requestTeamMembership.message ? data.requestTeamMembership.message : "Application Pending."}</SuccessPending>
+                                <ApplicationPending>
+                                        <Row>
+                                        <Col md={6}>
+                                            <h4>{data.requestTeamMembership.message ? data.requestTeamMembership.message : "Application Pending."}</h4>
+
+                                        </Col>
+                                        <Col md={6}>
+                                            <CancelTeamApplication team={team}/>
+
+                                        </Col>
+                                    </Row>
+                                </ApplicationPending>
 
                             )
                         }
