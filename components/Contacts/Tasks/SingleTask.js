@@ -13,13 +13,12 @@ const SingleTaskContainer = styled('div')`
     margin-bottom: 30px;
     padding-bottom: 15px;
     border-bottom: 1px solid ${props => props.theme.colors.g2};
-
 `;
 
 export class SingleTask extends React.Component {
 
     render(){
-        const { target, task } = this.props;
+        const { target, task, currentUser } = this.props;
         return(
             <SingleTaskContainer>
                 <Row bsPrefix={"row "}>
@@ -38,11 +37,10 @@ export class SingleTask extends React.Component {
                             }
                     </Col>
                     <Col md={3}>
-                        <H4 tertiary uppercase className="pb-1">Availability</H4>
                         <TaskDates task={task}/>
                     </Col>
                     <Col md={3}>
-                        <SingleTaskForm task={task} target={target}/>
+                        <SingleTaskForm task={task} target={target} currentUser={currentUser}/>
                     </Col>
                 </Row>
                 
@@ -60,7 +58,7 @@ const TaskDates = (props) => {
     if(taskStart && !taskEnd){
         return(
             <>
-            <H5 uppercase>Task Start Date:</H5>
+            <H4 tertiary uppercase className="pb-1">Task Start Date</H4>
             <H6 secondary><Moment format="MM/DD">{taskStart}</Moment></H6>
             </>
 
@@ -69,7 +67,7 @@ const TaskDates = (props) => {
     if(taskEnd && !taskStart){
         return(
             <>
-            <H5 uppercase>Task End Date:</H5>
+            <H4 tertiary uppercase className="pb-1">Task End Date</H4>
             <H6 secondary><Moment format="MM/DD">{taskEnd}</Moment></H6>
             </>
 
@@ -78,17 +76,17 @@ const TaskDates = (props) => {
     if(taskStart && taskEnd){
         return(
             <>
-            <H5 uppercase> Task Dates: </H5>
+            <H4 tertiary uppercase className="pb-1">Task Dates</H4>
             <H6 secondary><Moment format="MM/DD">{taskStart}</Moment> - <Moment format="MM/DD">{taskEnd}</Moment></H6>
             </>
 
         )
     }
     return(
-        <>
-        <H5 uppercase>Task Dates: </H5>
-        <H6 secondary>No date requirements</H6>
-        </>
+            <>
+            <H4 tertiary uppercase className="pb-1">Task Dates</H4>
+            <H6 secondary>No date requirements</H6>
+            </>
     )
     
 }

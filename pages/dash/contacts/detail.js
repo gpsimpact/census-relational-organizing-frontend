@@ -93,7 +93,7 @@ class DashContactDetail extends React.Component {
                                                     <Collapser title="Tasks" open={true}>
                                                         <Row>
                                                             <Col md={12}>
-                                                               {data && data.target && <TargetTaskList target={data.target}/>}
+                                                               {data && data.target && <TargetTaskList target={data.target} currentUser={currentUser}/>}
                                                             </Col>
                                                         </Row>
                                                     

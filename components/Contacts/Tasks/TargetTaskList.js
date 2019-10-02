@@ -16,6 +16,7 @@ export const GET_TARGET_TASKS = gql`
                     title
                     buttonText
                     redirectRoute
+                    description
                     fields {
                         label
                         type
@@ -51,19 +52,18 @@ export const GET_TARGET_TASKS = gql`
 export class TargetTaskList extends React.Component {
 
     render(){
-        const { target } = this.props; 
+        const { target, currentUser } = this.props; 
         return(
             <Query query={GET_TARGET_TASKS}
             variables={{targetId: target.id}}>
             {({data, loading, error}) => {
-                console.log(data);
                 return(
                     <div>
                         {error && <ErrorMessage error={error}/>}
                         {data && data.targetTasks && data.targetTasks.length > 0 &&
                             data.targetTasks.map((task, idx) => {
                                 return(
-                                    <SingleTask key={idx} task={task} target={target} />
+                                    <SingleTask key={idx} task={task} target={target} currentUser={currentUser}/>
                                 )
                             })
                         }
