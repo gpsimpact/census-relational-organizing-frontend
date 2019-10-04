@@ -101,6 +101,10 @@ export const CheckBoxLabel = styled(`label`)`
                 opacity: 1;
             `}
         }
+    
+    ${({smallMarg}) => smallMarg && `
+        margin: 10px 0px;
+    `}
 
 
 `;
@@ -152,5 +156,109 @@ export const CheckBoxToggler = styled('div')`
         ${({checked}) => checked && `
             transform: translateX(26px);
         `}
+    }
+`;
+
+export const RadioButtonContainer = styled('div')`
+    
+`;
+
+export const RadioGroupContainer = styled('div')`
+    width: 100%;
+    position: relative;
+    padding-left: .5rem;
+    margin-bottom: 30px;
+
+    legend {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Raleway',sans-serif;
+        font-weight: 900;
+    }
+    label {
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: .7rem;
+        padding-left: .5rem;
+    }
+`;
+
+export const LinearButtonContainer = styled('div')`
+    legend {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Raleway',sans-serif;
+        font-weight: 900;
+    }
+  label {
+        width: 100%;
+        cursor: pointer;
+
+    }
+    
+      display: inline-block;
+      ${({width, theme}) => width && `
+            width: ${width};
+        `}
+        
+`;
+export const LinearButtonInner = styled('div')`
+    display: flex; 
+    flex-direction: column;
+    border: 4px solid ${props => props.theme.colors.g3};
+    min-height: 81px;
+    padding: 5px;
+    position: relative;
+  
+    input {
+        display: block;
+        margin: 5px auto;
+    }
+  
+    .linear-label {
+        margin-top: 10px;
+        font-size: .7rem;
+        line-height: .8rem;
+        text-align: center;
+    }
+    ${({checked, theme}) => checked && `
+            border-color: ${theme.colors.primary};
+    `}
+ 
+`;
+
+export const LinearGroupContainer = styled('div')`
+    legend {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Raleway',sans-serif;
+        font-weight: 900;
+    }
+    width: 100%;
+    position: relative;
+    padding-left: .5rem;
+    margin-bottom: 30px;
+    label {
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: .7rem;
+        padding-left: .5rem;
+    }
+`;
+
+export const CheckBoxGroupContainer = styled('div')`
+   legend {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Raleway',sans-serif;
+        font-weight: 900;
     }
 `;

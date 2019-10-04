@@ -18,7 +18,7 @@ import { LoadingBar } from '../../../components/Util/Loading';
 import { EditContactForm, EditContactTibs, ActionProgress, CensusTract } from '../../../components/Contacts';
 import { ListContactAttempts, MostRecentContactAttempt } from '../../../components/Contacts/ContactAttempts';
 import { ListNotes, LatestNote } from '../../../components/Contacts/Notes';
-
+import { TargetTaskList } from '../../../components/Contacts/Tasks';
 import { HR, Collapser } from '../../../components/Util/Layout';
 
 export const GET_TARGET = gql`
@@ -76,7 +76,7 @@ class DashContactDetail extends React.Component {
                                         {error && <ErrorMessage error={error}/>}
                                          <Row bsPrefix="row pt-4">
                                              <Col md={12}>
-                                                    <Collapser title="General Information" open={true}>
+                                                    <Collapser title="General Information" open={false}>
                                                         <Row>
                                                             <Col md={8}>    
                                                                 {data && data.target && <EditContactForm target={data.target}/>}
@@ -88,6 +88,15 @@ class DashContactDetail extends React.Component {
                                                                 {data && data.target && <LatestNote target={data.target}/>}
                                                             </Col>
                                                         </Row>
+                                                    </Collapser>
+                                                    <HR/>
+                                                    <Collapser title="Tasks" open={true}>
+                                                        <Row>
+                                                            <Col md={12}>
+                                                               {data && data.target && <TargetTaskList target={data.target} currentUser={currentUser}/>}
+                                                            </Col>
+                                                        </Row>
+                                                    
                                                     </Collapser>
                                                     <HR/>
 
