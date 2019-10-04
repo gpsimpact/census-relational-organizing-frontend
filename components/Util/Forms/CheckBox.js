@@ -82,13 +82,16 @@ export const CheckBox = ({
           <fieldset>
             <legend>{label}</legend>
             {React.Children.map(children, child => {
-              return React.cloneElement(child, {
-                field: {
-                  value: value.includes(child.props.id),
-                  onChange: this.handleChange,
-                  onBlur: this.handleBlur
-                }
-              });
+              if(value) {
+                return React.cloneElement(child, {
+                  field: {
+                    value: value.includes(child.props.id),
+                    onChange: this.handleChange,
+                    onBlur: this.handleBlur
+                  }
+                });
+              }
+              return null;
             })}
           {touched && <ErrorContainer>{error}</ErrorContainer>}
           </fieldset>

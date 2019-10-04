@@ -58,6 +58,7 @@ const UPDATE_TARGET_TASK = gql`
                 complete(targetId: $targetId)
                 notAvailableBeforeTs
                 notAvailableAfterTs
+                sortValue
             }
         }
     }
@@ -88,12 +89,8 @@ export class SingleTaskForm extends React.Component {
                 let value = field.value ? field.value : "";
                 try {
                     value = JSON.parse(value);
-                    // console.log('PARSING');
-                    // console.log(value);
                 }
                 catch(e){
-                    // console.log('NOT JSON')
-                    // console.log(value)
                 }
                 initialValues[field.name] = value;
               
@@ -109,8 +106,6 @@ export class SingleTaskForm extends React.Component {
             ];
             transformedValidation = transformAll(schema);
         }
-
-        console.log(initialValues);
 
 
         return(
@@ -132,7 +127,7 @@ export class SingleTaskForm extends React.Component {
                     <CustomModal.Body>
                         
                         {
-                            taskForm &&
+                            taskForm && this.state.open &&
                             
                             <Formik 
                             initialValues={initialValues}
@@ -183,9 +178,9 @@ export class SingleTaskForm extends React.Component {
                                     });
                                     
                                     actions.resetForm(currentVals);
-                                    if(currentVals.complete === true){
-                                        this.setState({open: false});
-                                    }
+                                    
+                                    this.setState({open: false});
+                                    
                                 }
                                 
                             }}

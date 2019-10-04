@@ -4,6 +4,8 @@ import {gql} from 'apollo-boost';
 import { LoadingBar,ErrorMessage } from '../../Util/Loading';
 import { H4 } from "../../Util/Typography";
 import { SingleTask } from './SingleTask';
+import _ from 'lodash';
+
 export const GET_TARGET_TASKS = gql`
     query targetTasks($targetId: String!){
         targetTasks(targetId: $targetId){
@@ -46,6 +48,7 @@ export const GET_TARGET_TASKS = gql`
             complete(targetId: $targetId)
             notAvailableBeforeTs
             notAvailableAfterTs
+            sortValue
         }
     }
 `;
@@ -57,21 +60,32 @@ export class TargetTaskList extends React.Component {
             <Query query={GET_TARGET_TASKS}
             variables={{targetId: target.id}}>
             {({data, loading, error}) => {
-                return(
-                    <div>
-                        {error && <ErrorMessage error={error}/>}
-                        {data && data.targetTasks && data.targetTasks.length > 0 &&
-                            data.targetTasks.map((task, idx) => {
-                                return(
-                                    <SingleTask key={idx} task={task} target={target} currentUser={currentUser}/>
-                                )
-                            })
-                        }
-                         {data && data.targetTasks && data.targetTasks.length <= 0 &&
-                            <H4 primary>{target.firstName} {target.lastName} does not have any available tasks.</H4>
-                        }
-                    </div>
-                )
+                const tasksRaw = data && data.targetTasks ? data.targetTasks : null;
+                let tasks;
+                if(tasksRaw){
+                    tasks = _.orderBy(_.orderBy(_.orderBy(tasksRaw, ['sortValue']), [(e)=>{return e.available.available}], ['desc']), ['complete']);
+                    console.log(tasks);
+                    return(
+                        <div>
+                            {error && <ErrorMessage error={error}/>}
+                            {tasks && tasks.length > 0 &&
+                                tasks.map((task, idx) => {
+                                    return(
+                                        <SingleTask key={idx} task={task} target={target} currentUser={currentUser}/>
+                                    )
+                                })
+                            }
+                             {data && data.targetTasks && data.targetTasks.length <= 0 &&
+                                <H4 primary>{target.firstName} {target.lastName} does not have any available tasks.</H4>
+                            }
+                        </div>
+                    )
+                }
+                if(loading){
+                    return "loading ..."
+                }
+                return null;
+            
             }}
 
             </Query>

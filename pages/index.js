@@ -45,9 +45,11 @@ class Index extends React.Component {
     static async getInitialProps({...ctx}) {
         const { currentUser } = await GetCurrentUser(ctx.apolloClient);
         let nextPage;
-    
-        if(currentUser && currentUser.me && currentUser.me.teamPermissions === null){
-           nextPage='/teams';
+        const teamPerms = currentUser && currentUser.me && currentUser.me.teamPermissions ? currentUser.me.teamPermissions : null;
+        if(currentUser && currentUser.me){
+           if(!teamPerms || teamPerms.length < 1){
+               nextPage='/teams';
+           }
         };
         return { currentUser, nextPage };
       }

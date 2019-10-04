@@ -10,7 +10,13 @@ import { H1 } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
 import { DashSideNav } from '../../components/SideNavs';
 import { withTeamAuth } from '../../components/Auth';
+import { ActionNav } from '../../components/Util/Navigation'
+import Nav from 'react-bootstrap/Nav';
+import { DashPaths } from "../../paths";
+import Link from "next/link";
+
 import { DashAdminHome, DashVolHome } from "../../components/Dash";
+
 
 class TeamDashboard extends React.Component {
     render(){
@@ -28,7 +34,21 @@ class TeamDashboard extends React.Component {
                 <Row bsPrefix="row py-5">
                     <Col md={12}>
                         <Box>
-                            <H1 uppercase>{currentTeam.name}</H1>
+                            <Row>
+                                <Col md={9}>
+                                    <H1 uppercase>{currentTeam.name}</H1>
+                                </Col>
+                                <Col md={3}>
+                                    <ActionNav className='justify-content-end'>
+                                                <Link href={{pathname:`${DashPaths.contacts.create}`, query: {team: currentTeam.id}}}>
+                                                    <Nav.Link href={`${DashPaths.contacts.create}?team=${currentTeam.id}`}> New Contact </Nav.Link>
+                                                </Link>
+                                                  
+
+                                    </ActionNav>
+                                </Col>
+
+                            </Row>
                             <LoadingBar/>
                             {
                                 (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&
