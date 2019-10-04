@@ -13,6 +13,8 @@ export const Label = styled('label')`
     text-transform: uppercase;
     font-size: .75rem;
     padding-left: .5rem;
+    white-space: normal; 
+
 `;
 
 export const TextInput = styled('input')`
@@ -176,12 +178,16 @@ export const RadioGroupContainer = styled('div')`
         font-weight: bold;
         font-family: 'Raleway',sans-serif;
         font-weight: 900;
+        white-space: normal; 
+
     }
     label {
         display: inline-block;
         text-transform: uppercase;
         font-size: .7rem;
         padding-left: .5rem;
+        white-space: normal; 
+
     }
 `;
 
@@ -193,10 +199,14 @@ export const LinearButtonContainer = styled('div')`
         font-weight: bold;
         font-family: 'Raleway',sans-serif;
         font-weight: 900;
+        white-space: normal; 
+
     }
   label {
         width: 100%;
         cursor: pointer;
+        white-space: normal; 
+
 
     }
     
@@ -224,6 +234,8 @@ export const LinearButtonInner = styled('div')`
         font-size: .7rem;
         line-height: .8rem;
         text-align: center;
+        white-space: normal; 
+
     }
     ${({checked, theme}) => checked && `
             border-color: ${theme.colors.primary};
@@ -239,6 +251,8 @@ export const LinearGroupContainer = styled('div')`
         font-weight: bold;
         font-family: 'Raleway',sans-serif;
         font-weight: 900;
+        white-space: normal; 
+
     }
     width: 100%;
     position: relative;
@@ -260,5 +274,7 @@ export const CheckBoxGroupContainer = styled('div')`
         font-weight: bold;
         font-family: 'Raleway',sans-serif;
         font-weight: 900;
+        white-space: normal; 
+
     }
 `;
