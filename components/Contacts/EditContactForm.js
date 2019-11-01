@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { H2,FormDisclaimer } from '../Util/Typography';
-import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage } from '../Util/Forms';
+import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField } from '../Util/Forms';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +15,7 @@ import Email from '@material-ui/icons/Email';
 import Place from '@material-ui/icons/Place';
 import Phone from '@material-ui/icons/Phone';
 import Home from '@material-ui/icons/Home';
-
+import Accessibility from '@material-ui/icons/Accessibility'
 
 export const EDIT_TARGET = gql`
     mutation updateTarget($id:String!, $input:UpdateTargetInput!){
@@ -43,6 +43,14 @@ export const EDIT_TARGET = gql`
                     isApplied
                 }
                 active
+                genderIdentity
+                sexualOrientation
+                raceEthnicity
+                isNameAlias
+                householdMembers {
+                    relationship
+                    name
+                }
             }
         }
     }
@@ -50,6 +58,40 @@ export const EDIT_TARGET = gql`
 
 export const EditContactForm = (props) => {
     let {target} = props;
+    const sexualOrientationOptions = [
+        {
+            value: "TBD1",
+            label: "TBD1"
+        },
+        {
+            value: 'TBD2',
+            label: 'TBD2'
+        },
+     
+    ]
+    const genderIdentityOptions = [
+        {
+            value: "TBD1",
+            label: "TBD1"
+        },
+        {
+            value: 'TBD2',
+            label: 'TBD2'
+        },
+     
+    ]
+    const raceEthnicityOptions = [
+        {
+            value: "TBD1",
+            label: "TBD1"
+        },
+        {
+            value: 'TBD2',
+            label: 'TBD2'
+        },
+     
+    ]
+
     return(
         <Mutation mutation={EDIT_TARGET}>
             {(mutation, {data, loading, error}) => (
@@ -68,6 +110,10 @@ export const EditContactForm = (props) => {
                             facebookProfile: target.facebookProfile ? target.facebookProfile : "",
                             householdSize: target.householdSize ? target.householdSize : "",
                             retainAddress: target.retainAddress,
+                            isNameAlias: target.isNameAlias,
+                            genderIdentity: target.genderIdentity ? target.genderIdentity : 'TBD1',
+                            sexualOrientation: target.sexualOrientation ? target.sexualOrientation : 'TBD1',
+                            raceEthnicity: target.raceEthnicity ? target.raceEthnicity : 'TBD1'
                         }
                 
                     }
@@ -104,6 +150,10 @@ export const EditContactForm = (props) => {
                                 facebookProfile: values.facebookProfile,
                                 householdSize: values.householdSize,
                                 retainAddress: values.retainAddress,
+                                isNameAlias: values.isNameAlias,
+                                genderIdentity: values.genderIdentity,
+                                sexualOrientation: values.sexualOrientation,
+                                raceEthnicity: values.raceEthnicity
                             }
                         }
                         let response = await submitMutation( mutation, payload);
@@ -130,6 +180,10 @@ export const EditContactForm = (props) => {
                                 facebookProfile: result.item.facebookProfile ? result.item.facebookProfile : "",
                                 householdSize: result.item.householdSize ? result.item.householdSize : "",
                                 retainAddress: result.item.retainAddress,
+                                isNameAlias: result.item.isNameAlias,
+                                genderIdentity: result.item.genderIdentity ? result.item.genderIdentity : 'TBD1',
+                                sexualOrientation: result.item.sexualOrientation ? result.item.sexualOrientation : 'TBD1',
+                                raceEthnicity: result.item.raceEthnicity ? result.item.raceEthnicity : 'TBD1'
                             }
                             actions.resetForm(currentVals);
 
@@ -146,7 +200,7 @@ export const EditContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                                     <FormIcon icon={<Person/>}/>
                                 </Col>
-                                <Col md={12} lg={5}>
+                                <Col md={12} lg={4}>
                                     <Field
                                         id="firstName"
                                         name="firstName"
@@ -154,18 +208,30 @@ export const EditContactForm = (props) => {
                                         placeholder="First Name"
                                         component={TextField}
                                     />
+                                
                                 </Col>
-                                <Col md={12} lg={6}>
+                                <Col md={12} lg={4}>
                                     <Field
                                         id="lastName"
                                         name="lastName"
                                         label="Last Name"
                                         placeholder="Last Name"
                                         component={TextField}
-                                    />
+                                    /> 
                                 </Col>
-                            </Row>
+                                <Col md={12} lg={3}>
+                                    <FormDisclaimer>This is not the contact's real name.</FormDisclaimer>
+                                    <Field
+                                        id="isNameAlias"
+                                        name="isNameAlias"
+                                        label="Name Alias"
+                                        component={CheckBox}
+                                    />
 
+                                </Col>
+                               
+                            </Row>
+                       
         
 
                             <Row bsPrefix={'row align-items-center'}>
@@ -294,6 +360,44 @@ export const EditContactForm = (props) => {
                                     />
                                 </Col>
                               
+                            </Row>
+
+                            <Row bsPrefix={"row align-items-center"}>
+                                <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                    <FormIcon icon={<Accessibility/>}/>
+                                </Col>
+                                <Col lg={3} md={12}>
+                                      <Field 
+                                        id="sexualOrientation"
+                                        label={"Sexual Orientation"} 
+                                        name={"sexualOrientation"}
+                                        placeholderOption="-- Select --"
+                                        options={sexualOrientationOptions}
+                                        component={SelectField}
+                                    />
+                                </Col>
+                                <Col lg={4} md={12}>
+                                      <Field 
+                                        id="genderIdentity"
+                                        label={"Gender Identity"} 
+                                        name={"genderIdentity"}
+                                        placeholderOption="-- Select --"
+                                        options={genderIdentityOptions}
+                                        component={SelectField}
+                                    />
+                                </Col>
+                                <Col lg={4} md={12}>
+                                      <Field 
+                                        id="raceEthnicity"
+                                        label={"Race / Ethnicity"} 
+                                        name={"raceEthnicity"}
+                                        placeholderOption="-- Select --"
+                                        options={raceEthnicityOptions}
+                                        component={SelectField}
+                                    />
+                                </Col>
+
+                          
                             </Row>
                             <SubmitButton 
                                     loading={loading}

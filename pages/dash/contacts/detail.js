@@ -45,6 +45,14 @@ export const GET_TARGET = gql`
             }
             active
             censusTract
+            genderIdentity
+            sexualOrientation
+            raceEthnicity
+            isNameAlias
+            householdMembers {
+                relationship
+                name
+            }
         }
     }
 `;
@@ -78,10 +86,10 @@ class DashContactDetail extends React.Component {
                                              <Col md={12}>
                                                     <Collapser title="General Information" open={false}>
                                                         <Row>
-                                                            <Col md={8}>    
+                                                            <Col md={9}>    
                                                                 {data && data.target && <EditContactForm target={data.target}/>}
                                                             </Col>
-                                                            <Col md={4}>
+                                                            <Col md={3}>
                                                                 {data && data.target && <CensusTract target={data.target}/>}
                                                                 {data && data.target && <ActionProgress  target={data.target}/>}
                                                                 {data && data.target && <MostRecentContactAttempt target={data.target}/>}

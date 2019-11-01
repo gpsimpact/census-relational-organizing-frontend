@@ -51,7 +51,8 @@ export const CreateContactForm = (props) => {
                             facebookProfile:"",
                             householdSize:1,
                             tibIds:[],
-                            retainAddress: true
+                            retainAddress: true,
+                            isNameAlias: false,
                         }
                     }
                     validationSchema={
@@ -86,7 +87,9 @@ export const CreateContactForm = (props) => {
                                 householdSize: values.householdSize,
                                 activeTibs: values.tibIds,
                                 retainAddress: values.retainAddress,
+                                isNameAlias: values.isNameAlias,
                                 teamId: team.id,
+
                             }
                         }
                         let response = await submitMutation(mutation, payload);
@@ -118,7 +121,7 @@ export const CreateContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                                     <FormIcon icon={<Person/>}/>
                                 </Col>
-                                <Col md={12} lg={5}>
+                                <Col md={12} lg={4}>
                                     <Field
                                         id="firstName"
                                         name="firstName"
@@ -127,7 +130,7 @@ export const CreateContactForm = (props) => {
                                         component={TextField}
                                     />
                                 </Col>
-                                <Col md={12} lg={6}>
+                                <Col md={12} lg={4}>
                                     <Field
                                         id="lastName"
                                         name="lastName"
@@ -135,6 +138,16 @@ export const CreateContactForm = (props) => {
                                         placeholder="Last Name"
                                         component={TextField}
                                     />
+                                </Col>
+                                <Col md={12} lg={3}>
+                                <FormDisclaimer>This is not the contact's real name.</FormDisclaimer>
+                                    <Field
+                                        id="isNameAlias"
+                                        name="isNameAlias"
+                                        label="Name Alias"
+                                        component={CheckBox}
+                                    />
+
                                 </Col>
                             </Row>
 

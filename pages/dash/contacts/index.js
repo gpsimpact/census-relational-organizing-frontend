@@ -44,6 +44,14 @@ export const GET_USER_TARGETS = gql`
                 householdSize
                 active
                 retainAddress
+                genderIdentity
+                sexualOrientation
+                raceEthnicity
+                isNameAlias
+                householdMembers {
+                    relationship
+                    name
+                }
             }
         }
     }

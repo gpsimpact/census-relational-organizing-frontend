@@ -37,7 +37,7 @@ class DashContactCreate extends React.Component {
             >
                 <Container>
                     <Row bsPrefix={'row justify-content-center py-5'}>
-                        <Col md={8}>
+                        <Col md={12}>
                             <Box>
                                 <H1 uppercase>Create New Household Contact</H1>
                                 <TIBS teamId={currentTeam.id}>
