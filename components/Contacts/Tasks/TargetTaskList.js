@@ -49,6 +49,18 @@ export const GET_TARGET_TASKS = gql`
             notAvailableBeforeTs
             notAvailableAfterTs
             sortValue
+            supplementalFields {
+                label
+                type
+                name
+                value(targetId: $targetId)
+                selectOptions {
+                    value
+                    label
+                }
+                placeholder
+                validationTests
+            }
         }
     }
 `;
@@ -63,8 +75,7 @@ export class TargetTaskList extends React.Component {
                 const tasksRaw = data && data.targetTasks ? data.targetTasks : null;
                 let tasks;
                 if(tasksRaw){
-                    tasks = _.orderBy(_.orderBy(_.orderBy(tasksRaw, ['sortValue']), [(e)=>{return e.available.available}], ['desc']), ['complete']);
-                    console.log(tasks);
+                    tasks = _.orderBy(tasksRaw, ['sortValue']);
                     return(
                         <div>
                             {error && <ErrorMessage error={error}/>}

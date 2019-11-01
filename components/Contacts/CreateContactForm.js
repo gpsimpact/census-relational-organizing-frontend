@@ -100,7 +100,8 @@ export const CreateContactForm = (props) => {
                             });
                             return;
                         }
-                        redirect({}, `${DashPaths.contacts.detail}?team=${team.slug}&target=${result.item.id}`)                        
+                       
+                        redirect({}, `${DashPaths.contacts.detail}?team=${team.id}&target=${result.item.id}`)                        
 
                     }}
                     render={({status}) => (
@@ -271,7 +272,6 @@ export const CreateContactForm = (props) => {
                             <H3>To the best of your knowledge mark all that are true</H3>
 
                             {tibs.map((tib, idx) => {
-                                console.log(tib);
                                 return(
                                     <Row key={idx}>
                                         <Col>

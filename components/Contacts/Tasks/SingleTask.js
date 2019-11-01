@@ -37,7 +37,6 @@ export class SingleTask extends React.Component {
         const { target, task, currentUser } = this.props;
         const complete = task && task.complete;
         const available = task && task.available && task.available.available;
-
         return(
             <SingleTaskContainer complete={complete ? 1 : 0} available={available ? 1 : 0}>
                 <Row bsPrefix={"row "}>

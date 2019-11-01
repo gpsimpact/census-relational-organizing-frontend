@@ -2,6 +2,7 @@ import React from "react";
 import { gql } from "apollo-boost";
 import { Query } from 'react-apollo';
 import Link from "next/link";
+import _ from 'lodash';
 
 import Page from "../../../components/Page";
 import { CurrentUser } from '../../../lib/constructors/UserConstructor';
@@ -51,6 +52,10 @@ class AdminTeamIndex extends React.Component {
     render(){
         let currentUser = CurrentUser(this.props);
         let currentQuery = CurrentQuery(this.props);
+        let sort = currentQuery.sort;
+        if(_.isEmpty(sort)){
+            sort = {"name": "ASC"}
+        }
         return(
             <Page 
                 currentUser={currentUser}
@@ -68,13 +73,13 @@ class AdminTeamIndex extends React.Component {
                                             limit: currentQuery.perPage,
                                             offset: currentQuery.offset,
                                             where: InjectMiddleWhere(currentQuery.where, {'active': {'eq': true}}),
-                                            sort: currentQuery.sort,
+                                            sort: sort,
                                         }
                                     }}
                                     fetchPolicy="cache-and-network"
                                     >
                                     {({data, loading, error}) => {
-                                        console.log(data)
+                                        console.log(data);
                                         return(
                                             <React.Fragment>
                                             <Box>

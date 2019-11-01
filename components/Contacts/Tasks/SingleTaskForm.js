@@ -9,6 +9,7 @@ import { gql } from "apollo-boost";
 import { transformAll } from '@overgear/yup-ast';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import * as Yup from "yup";
 
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
 
@@ -59,6 +60,18 @@ const UPDATE_TARGET_TASK = gql`
                 notAvailableBeforeTs
                 notAvailableAfterTs
                 sortValue
+                supplementalFields {
+                    label
+                    type
+                    name
+                    value(targetId: $targetId)
+                    selectOptions {
+                        value
+                        label
+                    }
+                    placeholder
+                    validationTests
+                }
             }
         }
     }
@@ -69,23 +82,26 @@ export class SingleTaskForm extends React.Component {
         super(props);
         this.state = {
             open: false,
-            changed: false,
         }
     }
     render(){
         const { target, task, currentUser } = this.props;
       
         let transformedValidation = null;
-
+        
         const taskForm = task && task.definition && task.definition.form ? task.definition.form : null;
         let initialValues = { 
             complete: task && task.complete ? task.complete : false,
         };
-        const taskFields = task && task.definition && task.definition.form && task.definition.form.fields ? task.definition.form.fields : [];
+        const formFields = task && task.definition && task.definition.form && task.definition.form.fields ? task.definition.form.fields : [];
+        const supplementalFields = task.supplementalFields ? task.supplementalFields : [];
+        const taskFields = [...formFields, ...supplementalFields];
+
+    
         if(taskFields.length > 0) {
             let shape = {};
-            
-            task.definition.form.fields.map(field => {                
+
+            taskFields.map(field => {                
                 let value = field.value ? field.value : "";
                 try {
                     value = JSON.parse(value);
@@ -97,28 +113,37 @@ export class SingleTaskForm extends React.Component {
 
                 if(field.validationTests){
                     const vTest = JSON.parse(field.validationTests);
+
                     shape[field.name] = vTest;
                 }
+                if(field.validationTests){
+                        const vTest = JSON.parse(field.validationTests);
+                        shape[field.name] = vTest;
+                    }
             });
+
+
+            
+
             let schema = [
                 ["yup.object"],
                 ["yup.shape", shape]
             ];
-            transformedValidation = transformAll(schema);
+
+            transformedValidation = transformAll(schema)
+
+            
         }
-
-
         return(
             <Mutation mutation={UPDATE_TARGET_TASK}>
             {(mutation, {data, loading, error}) => (
                 <React.Fragment>
                 <PrimaryButton uppercase onClick={() =>  this.setState({open: true})}>Edit</PrimaryButton>
                 <CustomModal 
-                show={this.state.open} 
-                onHide={() => this.setState({open: false})}
-                centered
-                size="lg"
-
+                    show={this.state.open} 
+                    onHide={() => this.setState({open: false})}
+                    centered
+                    size="lg"
                 >
                     <CustomModal.Header closeButton>
                         <H3 uppercase>{task && task.definition && task.definition.form && task.definition.form.title ? task.definition.form.title : "Task"}</H3>
@@ -133,7 +158,7 @@ export class SingleTaskForm extends React.Component {
                             initialValues={initialValues}
                             validationSchema={transformedValidation}
                             onSubmit={ async (values, actions) => {
-                                
+
                                 let payload = {
                                     taskAssignmentId: task.id,
                                     targetId: target.id,
@@ -176,6 +201,11 @@ export class SingleTaskForm extends React.Component {
                                         currentVals[field.name] = value;
                                         
                                     });
+                                    result.item.supplementalFields.map(field => {
+                                        const value = field.value ? field.value : "";
+                                        currentVals[field.name] = value;
+
+                                    })
                                     
                                     actions.resetForm(currentVals);
                                     
@@ -184,7 +214,7 @@ export class SingleTaskForm extends React.Component {
                                 }
                                 
                             }}
-                            render={props => {
+                            render={(props) => {
                                 return(
                                     <Form noValidate>
                                             {
@@ -192,8 +222,8 @@ export class SingleTaskForm extends React.Component {
                                             <p>{taskForm.description}</p>
                                             }
                                              {
-                                                 taskForm.fields && taskForm.fields.length > 0 &&
-                                                 taskForm.fields.map((fieldDef, idx) => {
+                                                 taskFields && taskFields.length > 0 &&
+                                                 taskFields.map((fieldDef, idx) => {
                                                      switch(fieldDef.type){
                                                          case "instruction":
                                                              return null;
@@ -204,8 +234,8 @@ export class SingleTaskForm extends React.Component {
                                                                     }
                                                                     
                                                                 })
-                                                            }
-
+                                            }
+                                          
                                                 <HR/>
                                                 <Row>
                                                     <Col md={12}>
@@ -224,6 +254,7 @@ export class SingleTaskForm extends React.Component {
                                                     type="button" 
                                                     
                                                     onClick={() => {
+                                                       
                                                         props.handleSubmit();
                                                     }}
                                                     > {loading ? "Saving" : "Save" } </PrimaryButton>
