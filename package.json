@@ -56,5 +56,9 @@
   },
   "devDependencies": {
     "faker": "^4.1.0"
+  },
+  "engines": {
+    "node": "11.10.1"
   }
+
 }
