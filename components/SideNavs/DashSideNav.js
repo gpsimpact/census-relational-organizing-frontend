@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { DashPaths } from '../../paths';
 import { H3 } from '../Util/Typography';
+import { SendGlobalAdminEmail } from '../Auth';
+import { SendTeamAdminEmail } from '../Auth';
 
 export const DashSideNav = (props) => {
     const { currentUser, currentTeam } = props;
@@ -59,6 +61,19 @@ export const DashSideNav = (props) => {
                     </Nav.Link>
                 </Link>
             }
+
+            {
+                currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')
+                ?
+                <SendGlobalAdminEmail/>
+                :
+                currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')
+                ?
+                <SendTeamAdminEmail team={currentTeam}/>
+                :
+                null
+            }
+
 
 
             

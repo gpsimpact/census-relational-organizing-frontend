@@ -27,6 +27,9 @@ export const CheckBox = ({
   }) => {
     return (
       <CheckBoxWrapper>
+                {props && props.labelTop 
+                  && touched && <ErrorContainer>{errors[name]}</ErrorContainer>
+                }
               <CheckBoxLabel smallMarg={props.smallMarg ? 1 : 0} htmlFor={id} checked={value} inline={props.inline ? props.inline : false}>
 
         <input
@@ -42,8 +45,7 @@ export const CheckBox = ({
 
         <span>{label}</span>
         </CheckBoxLabel>
-
-        {touched && <ErrorContainer>{ errors[name]}</ErrorContainer>}
+        {props && !props.labelTop && touched && <ErrorContainer>{ errors[name]}</ErrorContainer>}
       </CheckBoxWrapper>
     );
   };

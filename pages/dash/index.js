@@ -9,7 +9,7 @@ import { Box, HR } from '../../components/Util/Layout';
 import { H1 } from '../../components/Util/Typography';
 import { LoadingBar } from '../../components/Util/Loading';
 import { DashSideNav } from '../../components/SideNavs';
-import { withTeamAuth } from '../../components/Auth';
+import { withTeamAuth, AcceptTeamTOS } from '../../components/Auth';
 import { ActionNav } from '../../components/Util/Navigation'
 import Nav from 'react-bootstrap/Nav';
 import { DashPaths } from "../../paths";
@@ -22,7 +22,7 @@ class TeamDashboard extends React.Component {
     render(){
         let currentUser = CurrentUser(this.props);
         let currentTeam = this.props.currentTeam ? this.props.currentTeam : null;
-
+        console.log(currentUser);
         return(
             <Page
                 currentUser={currentUser}
@@ -30,6 +30,10 @@ class TeamDashboard extends React.Component {
                 pageTitle={`${currentTeam.name} Dashboard`}
 
             >
+                {
+                    !currentUser.hasAcceptedTOS(currentTeam.id)
+                    && <AcceptTeamTOS team={currentTeam} currentUser={currentUser}/>
+                }
             <Container>
                 <Row bsPrefix="row py-5">
                     <Col md={12}>

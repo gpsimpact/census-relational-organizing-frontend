@@ -24,6 +24,7 @@ query Me{
               slug
           }
           permissions
+          acceptedTos
       }
 
     }

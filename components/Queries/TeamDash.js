@@ -14,6 +14,7 @@ export const GET_TEAM_DASHBOARD_QUERY= gql`
                 permission
                 count
             }
+            tos
         }
     }
 `;
