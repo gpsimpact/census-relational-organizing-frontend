@@ -36,7 +36,8 @@ export const DashPaths = {
     contacts: {
         index: '/dash/contacts',
         create: '/dash/contacts/create',
-        detail: '/dash/contacts/detail'
+        detail: '/dash/contacts/detail',
+        all: '/dash/contacts/all'
     },
     tibs:{
         questions: '/dash/tibs/questions',

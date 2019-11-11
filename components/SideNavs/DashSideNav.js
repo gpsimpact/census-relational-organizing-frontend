@@ -25,7 +25,21 @@ export const DashSideNav = (props) => {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')) && 
                 <Link href={{pathname: `${DashPaths.contacts.index}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.contacts.index}?team=${currentTeam.id}`}>
-                        Household Contacts
+                        {
+                            currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')
+                            ?
+                            <span> My Contacts </span>
+                            :
+                            <span>Household Contacts</span>
+                        }
+                    </Nav.Link>
+                </Link>
+            }
+                   {
+            (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
+                <Link href={{pathname: `${DashPaths.contacts.all}`, query: {team: currentTeam.id}}}>
+                    <Nav.Link href={`${DashPaths.contacts.all}?team=${currentTeam.id}`}>
+                        All Contacts
                     </Nav.Link>
                 </Link>
             }
