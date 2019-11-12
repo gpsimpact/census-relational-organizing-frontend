@@ -1,11 +1,11 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { H2,FormDisclaimer } from '../Util/Typography';
-import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField } from '../Util/Forms';
+import { H4,FormDisclaimer } from '../Util/Typography';
+import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField, AddContactButton, RemoveContactButton } from '../Util/Forms';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,6 +16,8 @@ import Place from '@material-ui/icons/Place';
 import Phone from '@material-ui/icons/Phone';
 import Home from '@material-ui/icons/Home';
 import Accessibility from '@material-ui/icons/Accessibility'
+import AddCircle from '@material-ui/icons/AddCircle';
+import RemoveCircle from '@material-ui/icons/RemoveCircle';
 
 export const EDIT_TARGET = gql`
     mutation updateTarget($id:String!, $input:UpdateTargetInput!){
@@ -92,6 +94,29 @@ export const EditContactForm = (props) => {
      
     ]
 
+    const householdRelationOptions = [
+        {
+            value: "",
+            label: "-- Select --"
+        },
+        {
+            value: "PRIMARY",
+            label: "Primary"
+        },
+        {
+            value: 'CHILD',
+            label: 'Child'
+        },
+             {
+            value: "ELDER",
+            label: "Elder"
+        },
+        {
+            value: 'SIBLING',
+            label: 'Sibling'
+        },
+    ]
+
     return(
         <Mutation mutation={EDIT_TARGET}>
             {(mutation, {data, loading, error}) => (
@@ -113,7 +138,8 @@ export const EditContactForm = (props) => {
                             isNameAlias: target.isNameAlias,
                             genderIdentity: target.genderIdentity ? target.genderIdentity : 'TBD1',
                             sexualOrientation: target.sexualOrientation ? target.sexualOrientation : 'TBD1',
-                            raceEthnicity: target.raceEthnicity ? target.raceEthnicity : 'TBD1'
+                            raceEthnicity: target.raceEthnicity ? target.raceEthnicity : 'TBD1',
+                            householdMembers: target.householdMembers ? target.householdMembers : [],
                         }
                 
                     }
@@ -130,7 +156,6 @@ export const EditContactForm = (props) => {
                             twitterHandle: Yup.string(),
                             facebookProfile: Yup.string(),
                             householdSize: Yup.number().positive(),
-
 
                         })
                     }
@@ -153,9 +178,13 @@ export const EditContactForm = (props) => {
                                 isNameAlias: values.isNameAlias,
                                 genderIdentity: values.genderIdentity,
                                 sexualOrientation: values.sexualOrientation,
-                                raceEthnicity: values.raceEthnicity
+                                raceEthnicity: values.raceEthnicity,
                             }
                         }
+                        if(values.householdMembers && values.householdMembers.length > 0){
+                            payload.input.householdMembers = values.householdMembers.map(member => ({name: member.name, relationship: member.relationship}))
+                        }
+
                         let response = await submitMutation( mutation, payload);
                         let result = await marshallMutationResponse(response, 'updateTarget');
                         if(!result.success){
@@ -183,7 +212,8 @@ export const EditContactForm = (props) => {
                                 isNameAlias: result.item.isNameAlias,
                                 genderIdentity: result.item.genderIdentity ? result.item.genderIdentity : 'TBD1',
                                 sexualOrientation: result.item.sexualOrientation ? result.item.sexualOrientation : 'TBD1',
-                                raceEthnicity: result.item.raceEthnicity ? result.item.raceEthnicity : 'TBD1'
+                                raceEthnicity: result.item.raceEthnicity ? result.item.raceEthnicity : 'TBD1',
+                                householdMembers: result.item.householdMembers ? result.item.householdMembers : [],
                             }
                             actions.resetForm(currentVals);
 
@@ -230,6 +260,64 @@ export const EditContactForm = (props) => {
 
                                 </Col>
                                
+                            </Row>
+
+                            <Row>
+                                <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                </Col>
+
+                                <Col md={12} lg={11}>
+                                    <H4 uppercase>Additional Household Members</H4>
+                                    <FieldArray
+                                        name="householdMembers"
+                                        render={arrayHelpers => (
+                                            <div>
+                                                {props.values.householdMembers && props.values.householdMembers.length > 0 
+                                                &&
+                                                (
+                                                    props.values.householdMembers.map((member, idx) => (
+                                                        <Row bsPrefix={'row align-items-center py-1'} key={idx}>
+                                                            <Col md={1}>
+                                                                <RemoveContactButton onClick={() => arrayHelpers.remove(idx)}>
+                                                                    <RemoveCircle/>
+                                                                </RemoveContactButton>
+                                                            </Col>
+                                                            <Col md={5}>
+                                                                <Field 
+                                                                    name={`householdMembers.${idx}.name`}
+                                                                    label="Household Member's Name"
+                                                                    placeholder="Household Member's Name"
+                                                                    component={TextField}
+                                                                />
+                                                            </Col>
+                                                            <Col md={5}>
+                                                                <Field
+                                                                    id={`householdMembers.${idx}.relationship`}
+                                                                    name={`householdMembers.${idx}.relationship`}
+                                                                    label="Household Member's Relationship"
+                                                                    placeholder="Household Member's Relationship"
+                                                                    options={householdRelationOptions}
+                                                                    component={SelectField}
+                                                                />
+                                                            </Col>
+                                                            
+                                                        </Row>
+                                                    ))
+                                                   
+                                                ) }
+                                                <Row>
+                                                        <Col md={12}>
+                                                            <AddContactButton onClick={() => arrayHelpers.push({relationship: "", name:""})}>
+                                                                <AddCircle/>  <span>Add a household member</span>
+                                                            </AddContactButton>
+                                                        </Col>
+                                                        
+                                                    </Row>
+                                            </div>
+                                        )}
+                                        />
+                                </Col>
+                                
                             </Row>
                        
         

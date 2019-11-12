@@ -278,3 +278,36 @@ export const CheckBoxGroupContainer = styled('div')`
 
     }
 `;
+
+export const AddContactButton = styled('span')`
+    display: inline-block;
+    text-transform: uppercase;
+    color: ${props => props.theme.colors.primary};  
+    cursor: pointer;
+    margin: 0px 5px 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    span {
+        display: inline-block;
+    text-transform: uppercase;
+    font-size: .75rem;
+    padding-left: .5rem;
+    white-space: normal; 
+    }
+`;
+
+export const RemoveContactButton = styled('span')`
+display: inline-block;
+  color: ${props => props.theme.colors.secondary};  
+  cursor: pointer;
+  margin: 20px 5px 10px;
+  font-size: 1.2rem;
+  margin-left: 20px;
+  span {
+        display: inline-block;
+    text-transform: uppercase;
+    font-size: .75rem;
+    padding-left: .5rem;
+    white-space: normal; 
+    }
+`;

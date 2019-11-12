@@ -13,3 +13,4 @@ export { DirtyFormMessage } from './DirtyFormMessage';
 export { DynamicField } from './DynamicField';
 export { RadioButton, RadioButtonGroup } from './RadioField';
 export { LinearButton, LinearButtonGroup } from './LinearField';
+export { AddContactButton, RemoveContactButton } from './Styles';
