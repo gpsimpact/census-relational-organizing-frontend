@@ -24,6 +24,7 @@ import { FilterForm, FilterToggler } from "../components/Filters";
 import {TeamsWhere, TeamsSort } from '../lib/filters';
 import { TeamPermissionCard } from '../components/Cards';
 
+import { i18n, withTranslation } from '../lib/i18'
 
 
 export const GET_USER_TEAMS = gql`
@@ -51,13 +52,12 @@ class Index extends React.Component {
                nextPage='/teams';
            }
         };
-        return { currentUser, nextPage };
+        return { currentUser, nextPage, namespacesRequired: ['common'],};
       }
 
     render(){
         let currentUser = CurrentUser(this.props);
         let currentQuery = CurrentQuery(this.props);
-
         return(
             <Page
                 currentUser={currentUser}
@@ -174,4 +174,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index
+export default withTranslation('common')(Index)

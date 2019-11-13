@@ -9,9 +9,9 @@
   "scripts": {
     "test": "NODE_ENV=test jest",
     "test_watch": "NODE_ENV=test jest --watch",
-    "dev": "next",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "NODE_ENV=production next start -p $PORT",
+    "start": "NODE_ENV=production node server/index.js",
     "heroku-postbuild": "next build"
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
+    "express": "^4.17.1",
     "formik": "^1.5.7",
     "graphql": "^14.4.0",
     "https-proxy-agent": "^2.2.1",
@@ -40,6 +41,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "next": "^8.1.0",
+    "next-i18next": "^2.0.0",
     "nookies": "^2.0.6",
     "polished": "^3.4.1",
     "react": "^16.8.6",
@@ -55,10 +57,10 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
     "faker": "^4.1.0"
   },
   "engines": {
     "node": "11.10.1"
   }
-
 }
