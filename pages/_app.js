@@ -7,6 +7,7 @@ import { Normalize } from 'styled-normalize';
 import { ThemeProvider } from 'styled-components';
 import { theme, AddGlobals } from '../styles/Theme';
 import { Meta } from '../lib/siteMeta';
+import { appWithTranslation } from '../lib/i18'
 
 class Application extends App {
     static async getInitialProps({Component, ctx}) {
@@ -49,4 +50,4 @@ class Application extends App {
     }
 }
 
-export default withApollo(Application);
+export default appWithTranslation(withApollo(Application));
