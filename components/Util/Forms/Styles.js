@@ -267,6 +267,8 @@ export const LinearGroupContainer = styled('div')`
 `;
 
 export const CheckBoxGroupContainer = styled('div')`
+    padding-left: .5rem;
+
    legend {
         display: block;
         text-transform: uppercase;
@@ -311,3 +313,17 @@ display: inline-block;
     white-space: normal; 
     }
 `;
+
+export const DynamicCheckboxLabel = styled('label')`
+    width: 100%;
+    input {
+        margin-right: 5px;
+    }
+    span {
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: .75rem;
+        padding-left: .5rem;
+    }
+
+`

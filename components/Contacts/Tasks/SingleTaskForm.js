@@ -181,7 +181,6 @@ export class SingleTaskForm extends React.Component {
                                         })
                                     }
                                 })
-
                                 let response = await submitMutation(mutation, payload);
                                 let result = await marshallMutationResponse(response, 'updateTargetTask');
                                 if(!result.success){
