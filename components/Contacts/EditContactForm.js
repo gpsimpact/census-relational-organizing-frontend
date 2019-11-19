@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { H4,FormDisclaimer } from '../Util/Typography';
 import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField, AddContactButton, RemoveContactButton } from '../Util/Forms';
-
+import { CheckBoxGroupContainer, DynamicCheckboxLabel } from '../Util/Forms/Styles';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -58,39 +58,105 @@ export const EDIT_TARGET = gql`
     }
 `;
 
+
 export const EditContactForm = (props) => {
     let {target} = props;
     const sexualOrientationOptions = [
         {
-            value: "TBD1",
-            label: "TBD1"
+            value: "CHOOSE_NOT_TO_IDENTIFY",
+            label: "Choose Not To Identify"
         },
         {
-            value: 'TBD2',
-            label: 'TBD2'
+            value: 'STRAIGHT',
+            label: 'Straight'
         },
-     
+        {
+            value: "GAY",
+            label: "Gay"
+        },
+        {
+            value: "BISEXUAL",
+            label: "Bisexual"
+        },
+        {
+            value: "ASEXUAL",
+            label: "Asexual"
+        },
+        {
+            value: "QUEER",
+            label: "Queer"
+        }
     ]
+
     const genderIdentityOptions = [
         {
-            value: "TBD1",
-            label: "TBD1"
+            value: "CHOOSE_NOT_TO_IDENTIFY",
+            label: "Choose Not To Identify"
         },
         {
-            value: 'TBD2',
-            label: 'TBD2'
+            value: "WOMAN",
+            label: "Woman"
         },
+        {
+            value: "MAN",
+            label: "Man"
+        },
+        {
+            value: "TRANSGENDER",
+            label: "Transgender"
+        },
+        {
+            value: "CIS_MAN",
+            label: "Cis Man"
+        },
+        {
+            value: "CIS_WOMAN",
+            label: "Cis Woman"
+        },
+        {
+            value: "GENDER_NONCONFORMING",
+            label: "Gender Non Conforming"
+        },
+        {
+            value: "TRANS_MAN",
+            label: "Trans Man"
+        },
+        {
+            value: "TRANS_WOMAN",
+            label: "Trans Woman"
+        }
      
     ]
+
     const raceEthnicityOptions = [
         {
-            value: "TBD1",
-            label: "TBD1"
+            value: "AMERICAN_INDIAN_OR_ALASKA_NATIVE",
+            label: "American Indian or Alaska Native"
         },
         {
-            value: 'TBD2',
-            label: 'TBD2'
+            value: 'ASIAN',
+            label: 'Asian'
         },
+        {
+            value: "BLACK_OR_AFRICAN_AMERICAN",
+            label: "Black or African American"
+        },
+        {
+            value: "HISPANIC",
+            label: "Hispanic"
+        },
+        {
+            value: "LATINO",
+            label: "Latino"
+        },
+        {
+            value: "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER",
+            label: "Native Hawaiin or Other Pacific Islander"
+        },
+        {
+            value: "WHITE",
+            label: "White"
+        }
      
     ]
 
@@ -136,9 +202,9 @@ export const EditContactForm = (props) => {
                             householdSize: target.householdSize ? target.householdSize : "",
                             retainAddress: target.retainAddress,
                             isNameAlias: target.isNameAlias,
-                            genderIdentity: target.genderIdentity ? target.genderIdentity : 'TBD1',
-                            sexualOrientation: target.sexualOrientation ? target.sexualOrientation : 'TBD1',
-                            raceEthnicity: target.raceEthnicity ? target.raceEthnicity : 'TBD1',
+                            genderIdentity: target.genderIdentity ? target.genderIdentity : 'CHOOSE_NOT_TO_IDENTIFY',
+                            sexualOrientation: target.sexualOrientation ? target.sexualOrientation : 'CHOOSE_NOT_TO_IDENTIFY',
+                            raceEthnicity: target.raceEthnicity ? target.raceEthnicity : [],
                             householdMembers: target.householdMembers ? target.householdMembers : [],
                         }
                 
@@ -184,7 +250,7 @@ export const EditContactForm = (props) => {
                         if(values.householdMembers && values.householdMembers.length > 0){
                             payload.input.householdMembers = values.householdMembers.map(member => ({name: member.name, relationship: member.relationship}))
                         }
-
+                       
                         let response = await submitMutation( mutation, payload);
                         let result = await marshallMutationResponse(response, 'updateTarget');
                         if(!result.success){
@@ -210,9 +276,9 @@ export const EditContactForm = (props) => {
                                 householdSize: result.item.householdSize ? result.item.householdSize : "",
                                 retainAddress: result.item.retainAddress,
                                 isNameAlias: result.item.isNameAlias,
-                                genderIdentity: result.item.genderIdentity ? result.item.genderIdentity : 'TBD1',
-                                sexualOrientation: result.item.sexualOrientation ? result.item.sexualOrientation : 'TBD1',
-                                raceEthnicity: result.item.raceEthnicity ? result.item.raceEthnicity : 'TBD1',
+                                genderIdentity: result.item.genderIdentity ? result.item.genderIdentity : 'CHOOSE_NOT_TO_IDENTIFY',
+                                sexualOrientation: result.item.sexualOrientation ? result.item.sexualOrientation : 'CHOOSE_NOT_TO_IDENTIFY',
+                                raceEthnicity: result.item.raceEthnicity ? result.item.raceEthnicity : [],
                                 householdMembers: result.item.householdMembers ? result.item.householdMembers : [],
                             }
                             actions.resetForm(currentVals);
@@ -454,7 +520,7 @@ export const EditContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                                     <FormIcon icon={<Accessibility/>}/>
                                 </Col>
-                                <Col lg={3} md={12}>
+                                <Col lg={5} md={12}>
                                       <Field 
                                         id="sexualOrientation"
                                         label={"Sexual Orientation"} 
@@ -464,7 +530,7 @@ export const EditContactForm = (props) => {
                                         component={SelectField}
                                     />
                                 </Col>
-                                <Col lg={4} md={12}>
+                                <Col lg={5} md={12}>
                                       <Field 
                                         id="genderIdentity"
                                         label={"Gender Identity"} 
@@ -474,18 +540,49 @@ export const EditContactForm = (props) => {
                                         component={SelectField}
                                     />
                                 </Col>
-                                <Col lg={4} md={12}>
-                                      <Field 
-                                        id="raceEthnicity"
-                                        label={"Race / Ethnicity"} 
-                                        name={"raceEthnicity"}
-                                        placeholderOption="-- Select --"
-                                        options={raceEthnicityOptions}
-                                        component={SelectField}
-                                    />
-                                </Col>
+                               
 
                           
+                            </Row>
+                            <Row bsPrefix={"row align-items-center"}>
+                            <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                </Col>
+                            <Col lg={11} md={12}>
+                                <FieldArray
+                                    name={"raceEthnicity"}
+                                    render={arrayHelpers => {
+                                        return(
+                                            <CheckBoxGroupContainer>
+                                                <fieldset>
+                                                    <legend>Race / Ethnicity</legend>
+                                                    {raceEthnicityOptions.map((option, idx) => {
+                                                        return(
+                                                            <DynamicCheckboxLabel key={idx}>
+                                                            <input
+                                                                name={"raceEthnicity"}
+                                                                type="checkbox"
+                                                                checked={props.values.raceEthnicity.includes(option.value)}
+                                                                onChange={e=> {
+                                                                    if(e.target.checked){
+                                                                        arrayHelpers.push(option.value)
+                                                                    } else {
+                                                                        const idx = props.values.raceEthnicity.indexOf(option.value);
+                                                                        arrayHelpers.remove(idx);
+                                                                    }
+                                                                }}
+                                                                />
+                                                            <span>{option.label}</span>
+            
+                                                        </DynamicCheckboxLabel>
+                                                        )
+                                                    })}
+                                                </fieldset>
+                                            </CheckBoxGroupContainer>
+                                        )
+                                    }}
+                                />
+                               
+                                </Col>
                             </Row>
                             <SubmitButton 
                                     loading={loading}
