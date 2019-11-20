@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { FormError, FormSuccess, TextAreaField, SelectField, SubmitButton, FormIcon, CheckBox, DirtyFormMessage } from '../../Util/Forms';
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
-import { methodOptions, dispositionOptions } from './Options';
+import { methodOptions, inPersonOptions, phoneOptions } from './Options';
 import { GET_CONTACT_ATTEMPTS } from './ListContactAttempts';
 import { GET_CONTACT_ATTEMPT } from './MostRecentContactAttempt';
 
@@ -167,7 +167,7 @@ export class CreateContactAttempt extends React.Component {
                                                     label={"Contact Disposition"} 
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
-                                                    options={dispositionOptions}
+                                                    options={props.values.method === 'IN_PERSON' ? inPersonOptions : phoneOptions}
                                                     component={SelectField}
                                                 />
                                             </Col>

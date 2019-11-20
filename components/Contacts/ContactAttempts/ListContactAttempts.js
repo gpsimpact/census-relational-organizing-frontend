@@ -62,8 +62,8 @@ export class ListContactAttempts extends React.Component {
                                             <div key={idx}>
                                                 <HR/>
                                                   <H5 uppercase>Created:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
-                                                    <H5 uppercase> Method: <small>{CA.method.replace("_", " ")}</small></H5>
-                                                    <H5 uppercase> Disposition: <small>{CA.disposition.replace("_", " ")}</small></H5>
+                                                    <H5 uppercase> Method: <small>{CA.method.replace(/_/g, " ")}</small></H5>
+                                                    <H5 uppercase> Disposition: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
                                                 <EditContactAttempt target={target} CA={CA}/>

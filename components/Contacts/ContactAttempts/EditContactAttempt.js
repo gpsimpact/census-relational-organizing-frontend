@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { FormError, FormSuccess, TextAreaField, SelectField, SubmitButton, FormIcon, CheckBox, DirtyFormMessage } from '../../Util/Forms';
 import { submitMutation, marshallMutationResponse } from '../../../lib/helpers';
-import { methodOptions, dispositionOptions } from './Options';
+import { methodOptions, inPersonOptions, phoneOptions } from './Options';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { GET_CONTACT_ATTEMPTS } from './ListContactAttempts';
@@ -190,7 +190,7 @@ export class EditContactAttempt extends React.Component {
                                                     label={"Contact Disposition"} 
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
-                                                    options={dispositionOptions}
+                                                    options={props.values.method === 'IN_PERSON' ? inPersonOptions : phoneOptions}
                                                     component={SelectField}
                                                 />
                                             </Col>
