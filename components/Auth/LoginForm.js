@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import Link from 'next/link';
 
-import { H2, BlockAnchor } from '../Util/Typography';
+import { H2, BlockAnchor, SecondaryButton, PrimaryButton } from '../Util/Typography';
 import { LoadingBar } from '../Util/Loading';
 import { TextField, SubmitButton, FormError } from '../Util/Forms';
 import { Box } from '../Util/Layout';
@@ -66,14 +66,21 @@ export const LoginForm = (props) => {
                           
                                 <Row>
                                     <Col>
-                                        <SubmitButton 
+                                    
+                                        <PrimaryButton
+                                            type="submit" 
                                             loading={loading}
-                                            value="Login"
-                                        />
+                                            full
+                                            small
+                                        >
+                                            {loading ? "Logging In" : "Login"}
+                                            </PrimaryButton>
+                                       </Col>
+                                       <Col>                           
+                                        <Link href="/register"><SecondaryButton full small>Register</SecondaryButton></Link>
+                                    
                                     </Col>
-                                    <Col>                                
-                                        <Link href="/register"><BlockAnchor>Need to register?</BlockAnchor></Link>
-                                    </Col>
+                                   
 
                                 </Row>
                             </Box>

@@ -12,6 +12,7 @@ export const Button = styled('button')`
     font-weight: 700;
     ${({full}) => full && `width: 100%;`};
     ${({small}) => small && `font-size: .8rem;`}; 
+    ${({marginBot}) => marginBot && `margin-bottom: ${marginBot}px;`}
     span {
         display: inline-block;
         height: 15px;
