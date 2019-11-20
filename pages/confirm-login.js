@@ -36,6 +36,7 @@ class Confirm extends React.Component {
                                     mutation={CONFIRM_LOGIN_MUTATION} 
                                     variables={{token:this.props.query.token}}
                                     onCompleted={async data => {
+                                        console.log(data);
                                         if(data && data.confirmLogin && data.confirmLogin.token && data.confirmLogin.success){
                                         document.cookie = cookie.serialize('token', data.confirmLogin.token, {
                                             maxAge: 30 * 24 * 60 * 60 // 30 days
@@ -48,6 +49,10 @@ class Confirm extends React.Component {
                                         }
                                         this.props.client.cache.reset().then(() => {
                                             redirect({}, nextPage);
+                                        })
+                                        } else {
+                                            this.props.client.cache.reset().then(() => {
+                                                redirect({}, '/')
                                         })
                                         }
                                     }}
