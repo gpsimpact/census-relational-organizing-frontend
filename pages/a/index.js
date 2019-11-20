@@ -24,6 +24,9 @@ import { ErrorIcon } from '../../components/Util/Loading';
 import NotInterested from '@material-ui/icons/NotInterested';
 import { TotalActions, SingleActionProgress, SingleQuestionProgress } from '../../components/TIBS';
 
+import { i18n, withTranslation } from '../../lib/i18'
+
+
 export const ADMIN_TEAM_COUNTS= gql`
     query adminGetTeamCounts{
         summaryCountTeams
@@ -174,7 +177,6 @@ class AdminDash extends React.Component {
                                         <H3 uppercase>Questions</H3>
                                         <Query query={ADMIN_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION'}}>
                                           {({data, loading, error}) => {
-                                              console.log(data);
                                               return(
                                                 <React.Fragment>
                                                     {error && <ErrorMessage error={error}/>}
@@ -195,7 +197,6 @@ class AdminDash extends React.Component {
                                       <H3 uppercase>Actions</H3>
                                       <Query query={ADMIN_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION'}}>
                                           {({data, loading, error}) => {
-                                              console.log(data);
                                               return(
                                                 <React.Fragment>
                                                     {error && <ErrorMessage error={error}/>}
@@ -226,4 +227,4 @@ class AdminDash extends React.Component {
 
 }
 
-export default withGlobalAuth(AdminDash, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminDash, 'ADMIN'));

@@ -25,6 +25,7 @@ import { ErrorMessage } from '../components/Util/Loading';
 import { TeamPermissionCard } from '../components/Cards';
 import { ActionNav } from '../components/Util/Navigation'
 
+import { i18n, withTranslation } from '../lib/i18'
 
 export const GET_USER_TEAMS = gql`
     query getUserTeams($input: TeamsInput!){
@@ -45,7 +46,7 @@ export const GET_USER_TEAMS = gql`
 class Teams extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
-    return { currentUser };
+    return { currentUser, namespacesRequired:['common'] };
   }
 
   render(){
@@ -160,4 +161,4 @@ class Teams extends React.Component {
   }
 }
 
-export default Teams;
+export default withTranslation('common')(Teams);

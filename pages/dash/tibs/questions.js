@@ -19,6 +19,7 @@ import { GET_TTIBS } from '../../../components/Queries/TTIBS';
 import { Info } from '../../../components/Util/Typography';
 import { SingleTIBContainer, SingleTTIB, CreateTTIB, DefaultTib } from '../../../components/TIBS';
 
+import { i18n, withTranslation } from '../../../lib/i18'
 
 const TIBS = adopt({
         gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, tibType:'QUESTION'}}}>{render}</Query>,
@@ -93,4 +94,4 @@ class DashQuestionsIndex extends React.Component {
     }
 }
 
-export default withTeamAuth(DashQuestionsIndex, {team:['ADMIN'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashQuestionsIndex, {team:['ADMIN'], global:['ADMIN']}));

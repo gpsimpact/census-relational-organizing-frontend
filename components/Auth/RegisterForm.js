@@ -88,7 +88,7 @@ export const RegisterForm = ({teamSlug}) => {
                             }
                             <fieldset>
                             <Row>
-                                <Col classNames={'col-md-6'}>
+                                <Col bsPrefix={'col-md-6'}>
                                     <Field
                                         id="firstName"
                                         name="firstName"
@@ -97,7 +97,7 @@ export const RegisterForm = ({teamSlug}) => {
                                         component={TextField}
                                     />
                                 </Col>
-                                <Col classNames={'col-md-6'}>
+                                <Col bsPrefix={'col-md-6'}>
                                     <Field
                                             id="lastName"
                                             name="lastName"
@@ -135,7 +135,7 @@ export const RegisterForm = ({teamSlug}) => {
                             </Row>
 
                             <Row>
-                                <Col classNames={'col-md-5'}>
+                                <Col bsPrefix={'col-md-5'}>
                                 <Field
                                         id="city"
                                         name="city"
@@ -145,7 +145,7 @@ export const RegisterForm = ({teamSlug}) => {
                                     />
                                 </Col>
 
-                                <Col classNames={'col-md-3'}>
+                                <Col bsPrefix={'col-md-3'}>
                                 <Field
                                         id="state"
                                         name="state"
@@ -155,7 +155,7 @@ export const RegisterForm = ({teamSlug}) => {
                                     />
                                 </Col>
 
-                                <Col classNames={'col-md-4'}>
+                                <Col bsPrefix={'col-md-4'}>
                                 <Field
                                         id="zip5"
                                         name="zip5"

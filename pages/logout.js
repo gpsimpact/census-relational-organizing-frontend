@@ -12,6 +12,7 @@ import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import { Box } from '../components/Util/Layout';
 import redirect from "../lib/redirect";
 
+import { i18n, withTranslation } from '../lib/i18'
 
 class Logout extends React.Component {
   static async getInitialProps({...ctx}) {
@@ -20,7 +21,7 @@ class Logout extends React.Component {
         // Redirect to a more useful page when signed out
         redirect({}, '/')
       })
-    return {};
+    return { namespacesRequired:['common']};
   }
 
   render(){
@@ -41,4 +42,4 @@ class Logout extends React.Component {
   }
 }
 
-export default Logout;
+export default withTranslation('common')(Logout);

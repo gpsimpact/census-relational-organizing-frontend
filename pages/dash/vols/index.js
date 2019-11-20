@@ -22,6 +22,9 @@ import { FilterForm, FilterToggler } from "../../../components/Filters";
 import { ActionNav } from '../../../components/Util/Navigation'
 import { TeamVolCard } from '../../../components/Cards';
 
+import { i18n, withTranslation } from '../../../lib/i18'
+
+
 export const GET_USERS_TEAM_DASH_QUERY = gql`
     query getTeamUsers($input: TeamUsersInput!){
         teamUsers(input:$input){
@@ -167,4 +170,4 @@ class DashVolIndex extends React.Component {
     }
 }
 
-export default withTeamAuth(DashVolIndex, {team:['ADMIN'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashVolIndex, {team:['ADMIN'], global:['ADMIN']}));

@@ -16,6 +16,7 @@ import { H1, Info } from '../../../components/Util/Typography';
 import { LoadingBar } from '../../../components/Util/Loading';
 import { AdminSideNav } from '../../../components/SideNavs';
 import { withGlobalAuth } from "../../../components/Auth";
+import { i18n, withTranslation } from '../../../lib/i18'
 
 export const GET_TEAMS_ADMIN_QUERY = gql`
     query getTeamsAdmin($input: TeamsInput){
@@ -67,4 +68,4 @@ class AdminTasksIndex extends React.Component {
 
 }
 
-export default withGlobalAuth(AdminTasksIndex, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminTasksIndex, 'ADMIN'));

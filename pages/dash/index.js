@@ -16,13 +16,13 @@ import { DashPaths } from "../../paths";
 import Link from "next/link";
 
 import { DashAdminHome, DashVolHome } from "../../components/Dash";
+import { i18n, withTranslation } from '../../lib/i18'
 
 
 class TeamDashboard extends React.Component {
     render(){
         let currentUser = CurrentUser(this.props);
         let currentTeam = this.props.currentTeam ? this.props.currentTeam : null;
-        console.log(currentUser);
         return(
             <Page
                 currentUser={currentUser}
@@ -78,4 +78,4 @@ class TeamDashboard extends React.Component {
     }
 }
 
-export default withTeamAuth(TeamDashboard, {team:['ADMIN', 'MEMBER'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(TeamDashboard, {team:['ADMIN', 'MEMBER'], global:['ADMIN']}));

@@ -17,6 +17,7 @@ import { GET_TTIBS } from '../../../components/Queries/TTIBS';
 import { GET_GTIBS } from '../../../components/Queries/GTIBS';
 import { ErrorMessage } from '../../../components/Util/Loading';
 import { adopt } from 'react-adopt';
+import { i18n, withTranslation } from '../../../lib/i18'
 
 const TIBS = adopt({
     gTibs: ({render}) => <Query query={GET_GTIBS} variables={{input:{active:true, visible:true, tibType:"QUESTION"}}}>{render}</Query>,
@@ -70,4 +71,4 @@ class DashContactCreate extends React.Component {
     }
 }
 
-export default withTeamAuth(DashContactCreate, {team:['ADMIN', 'MEMBER'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashContactCreate, {team:['ADMIN', 'MEMBER'], global:['ADMIN']}));

@@ -23,6 +23,7 @@ import { FilterForm, FilterToggler } from "../../../components/Filters";
 import {TargetsWhere, TargetsSort } from '../../../lib/filters';
 import { ContactCard } from '../../../components/Cards';
 import { ActionNav } from '../../../components/Util/Navigation'
+import { i18n, withTranslation } from '../../../lib/i18'
 
 export const GET_USER_TARGETS = gql`
     query getUserTargets($userId: String, $teamId: String!, $input:TargetsInput){
@@ -162,4 +163,4 @@ class DashContactIndex extends React.Component {
     }
 }
 
-export default withTeamAuth(DashContactIndex, {team:['ADMIN', 'MEMBER'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashContactIndex, {team:['ADMIN', 'MEMBER'], global:['ADMIN']}));

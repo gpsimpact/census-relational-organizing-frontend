@@ -12,6 +12,7 @@ import { AdminCreateTeamForm, AdminEditTeamForm } from '../../../components/Admi
 import { Box } from '../../../components/Util/Layout';
 import { H1 } from '../../../components/Util/Typography';
 import { withGlobalAuth } from "../../../components/Auth";
+import { i18n, withTranslation } from '../../../lib/i18'
 
 class AdminTeamDetail extends React.Component {
     render(){
@@ -42,4 +43,4 @@ class AdminTeamDetail extends React.Component {
     }
 }
 
-export default withGlobalAuth(AdminTeamDetail, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminTeamDetail, 'ADMIN'));

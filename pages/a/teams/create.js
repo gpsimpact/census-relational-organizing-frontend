@@ -13,6 +13,7 @@ import { Box } from '../../../components/Util/Layout';
 import { H1 } from '../../../components/Util/Typography';
 import { withGlobalAuth } from "../../../components/Auth";
 
+import { i18n, withTranslation } from '../../../lib/i18'
 
 class AdminTeamCreate extends React.Component {
     render(){
@@ -42,4 +43,4 @@ class AdminTeamCreate extends React.Component {
     }
 }
 
-export default withGlobalAuth(AdminTeamCreate, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminTeamCreate, 'ADMIN'));

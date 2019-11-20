@@ -7,12 +7,13 @@ import { RegisterForm } from '../components/Auth/RegisterForm';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { i18n, withTranslation } from '../lib/i18'
 
 
 class Index extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
-    return { currentUser };
+    return { currentUser, namespacesRequired:['common'] };
   }
 
   render(){
@@ -21,8 +22,6 @@ class Index extends React.Component {
     if(this.props.query && this.props.query.team){
         teamSlug = this.props.query.team
     }
-    console.log(teamSlug)
-
     return(
       <Page padTop currentUser={currentUser}>  
         <Container>
@@ -38,4 +37,4 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default withTranslation('common')(Index);

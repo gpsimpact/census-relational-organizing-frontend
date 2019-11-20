@@ -18,6 +18,7 @@ import { Info } from '../../../components/Util/Typography';
 import { GET_GTIBS } from '../../../components/Queries/GTIBS';
 
 
+import { i18n, withTranslation } from '../../../lib/i18'
 
 
 
@@ -70,4 +71,4 @@ class AdminTibQuestions extends React.Component {
         )
     }
 }
-export default withGlobalAuth(AdminTibQuestions, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminTibQuestions, 'ADMIN'));

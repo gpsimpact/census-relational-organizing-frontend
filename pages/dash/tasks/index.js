@@ -14,6 +14,7 @@ import Col from 'react-bootstrap/Col';
 import { Box } from '../../../components/Util/Layout';
 import { H1, Info } from '../../../components/Util/Typography';
 import { LoadingBar } from '../../../components/Util/Loading';
+import { i18n, withTranslation } from '../../../lib/i18'
 
 class  DashTasksIndex extends React.Component {
     render(){
@@ -45,4 +46,4 @@ class  DashTasksIndex extends React.Component {
 
 }
 
-export default withTeamAuth(DashTasksIndex, {team:['ADMIN'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashTasksIndex, {team:['ADMIN'], global:['ADMIN']}));

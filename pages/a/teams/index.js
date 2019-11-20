@@ -26,6 +26,7 @@ import { AdminTeamCard } from '../../../components/Cards';
 import {TeamsWhere, TeamsSort } from '../../../lib/filters';
 import { FilterForm, FilterToggler } from "../../../components/Filters";
 import { ActionNav } from '../../../components/Util/Navigation'
+import { i18n, withTranslation } from '../../../lib/i18'
 
 export const GET_TEAMS_ADMIN_QUERY = gql`
     query getTeamsAdmin($input: TeamsInput){
@@ -79,7 +80,6 @@ class AdminTeamIndex extends React.Component {
                                     fetchPolicy="cache-and-network"
                                     >
                                     {({data, loading, error}) => {
-                                        console.log(data);
                                         return(
                                             <React.Fragment>
                                             <Box>
@@ -168,4 +168,4 @@ class AdminTeamIndex extends React.Component {
 
 }
 
-export default withGlobalAuth(AdminTeamIndex, 'ADMIN');
+export default withTranslation('common')(withGlobalAuth(AdminTeamIndex, 'ADMIN'));

@@ -13,6 +13,9 @@ import { FormError } from "../components/Util/Forms";
 import redirect from '../lib/redirect';
 import Page from "../components/Page";
 
+
+import { i18n, withTranslation } from '../lib/i18'
+
 export const CONFIRM_LOGIN_MUTATION = gql`
 mutation confirmLogin($token: String!) {
   confirmLogin(token: $token) {
@@ -24,6 +27,9 @@ mutation confirmLogin($token: String!) {
 }
 `;
 class Confirm extends React.Component {
+    static async getInitialProps({...ctx}){
+        return { namespacesRequired:['common']}
+    }
     render(){
         return(
             <Page>
@@ -36,7 +42,6 @@ class Confirm extends React.Component {
                                     mutation={CONFIRM_LOGIN_MUTATION} 
                                     variables={{token:this.props.query.token}}
                                     onCompleted={async data => {
-                                        console.log(data);
                                         if(data && data.confirmLogin && data.confirmLogin.token && data.confirmLogin.success){
                                         document.cookie = cookie.serialize('token', data.confirmLogin.token, {
                                             maxAge: 30 * 24 * 60 * 60 // 30 days
@@ -77,4 +82,4 @@ class Confirm extends React.Component {
     }
 }
 
-export default withApollo(Confirm);
+export default withTranslation('common')(withApollo(Confirm));

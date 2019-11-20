@@ -47,7 +47,7 @@ export const withTeamAuth = (Component, permissions) => {
                     nextPage = '/'
                     return { nextPage };
                 }
-                return { currentUser, currentTeam };
+                return { currentUser, currentTeam, namespacesRequired:['common'] };
             } else {
                 nextPage='/';
                 return { nextPage };

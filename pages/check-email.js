@@ -8,11 +8,12 @@ import { MainTitle, H1, H3 } from '../components/Util/Typography';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { i18n, withTranslation } from '../lib/i18'
 
 class CheckEmail extends React.Component {
     static async getInitialProps({...ctx}) {
         const { currentUser } = await GetCurrentUser(ctx.apolloClient);
-        return { currentUser };
+        return { currentUser,namespacesRequired: ['common'] };
       }
     render(){
         let currentUser = CurrentUser(this.props);
@@ -40,4 +41,4 @@ class CheckEmail extends React.Component {
     
 }
 
-export default CheckEmail
+export default withTranslation('common')(CheckEmail)

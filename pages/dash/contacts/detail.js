@@ -20,6 +20,7 @@ import { ListContactAttempts, MostRecentContactAttempt } from '../../../componen
 import { ListNotes, LatestNote } from '../../../components/Contacts/Notes';
 import { TargetTaskList } from '../../../components/Contacts/Tasks';
 import { HR, Collapser } from '../../../components/Util/Layout';
+import { i18n, withTranslation } from '../../../lib/i18'
 
 export const GET_TARGET = gql`
     query getTarget($id: String!){
@@ -152,4 +153,4 @@ class DashContactDetail extends React.Component {
     }
 }
 
-export default withTeamAuth(DashContactDetail, {team:['ADMIN', 'MEMBER'], global:['ADMIN']});
+export default withTranslation('common')(withTeamAuth(DashContactDetail, {team:['ADMIN', 'MEMBER'], global:['ADMIN']}));

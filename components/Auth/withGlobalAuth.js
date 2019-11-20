@@ -29,7 +29,7 @@ export const withGlobalAuth = (Component, baseGlobalPermission) => {
         }
     
 
-        return { currentUser, nextPage };
+        return { currentUser, nextPage, namespacesRequired:['common'] };
       }
   
       render() {

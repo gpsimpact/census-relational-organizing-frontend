@@ -69,7 +69,6 @@ export const LoginForm = (props) => {
                                     
                                         <PrimaryButton
                                             type="submit" 
-                                            loading={loading}
                                             full
                                             small
                                         >

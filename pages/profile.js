@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { i18n, withTranslation } from '../lib/i18'
+
 class Index extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
@@ -15,7 +17,7 @@ class Index extends React.Component {
         nextPage = `/`;
         return { nextPage };
     }
-    return { currentUser };
+    return { currentUser, namespacesRequired:['common'] };
   }
 
   render(){
@@ -35,4 +37,4 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default withTranslation('common')(Index);
