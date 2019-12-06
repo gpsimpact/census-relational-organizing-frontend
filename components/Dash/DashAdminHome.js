@@ -105,64 +105,9 @@ export class DashAdminHome extends React.Component {
                             </Query>
                             </Col>
                             </Row>
+                           
                             <HR/>
-                            <Row>
-                                
-                            <Col xl={12}>
-                                <Query query={TEAM_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}} fetchPolicy={'cache-and-network'}>
-                                    {({data, error, loading}) => {
-                                        return(
-                                            <React.Fragment>
-                                                {error && <ErrorMessage error={error}/>}
-                                                {data && data.summaryCountAllTeamTibs && <TotalActions actions={data.summaryCountAllTeamTibs} title={'Team Action Count'}/>}
-                                            </React.Fragment>
-                                        )
-                                    }}
-                                </Query>
-                            </Col>
-                            </Row>
-                            <HR/>
-                            <Row>
-                                    <Col md={6}>
-                                        <H3 uppercase>Team Questions</H3>
-                                        <Query query={TEAM_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION', teamId: currentTeam.id}} fetchPolicy="cache-and-network">
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountAllTeamTibs &&
-                                                      data.summaryCountAllTeamTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleQuestionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>   
-                                    </Col>
-
-                                    <Col md={6}>
-                                      <H3 uppercase>Team Actions</H3>
-                                      <Query query={TEAM_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}} fetchPolicy="cache-and-network">
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountAllTeamTibs &&
-                                                      data.summaryCountAllTeamTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleActionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>                         
-                                    </Col>
-                                </Row>
+                            
                           
                         </React.Fragment>
                    
