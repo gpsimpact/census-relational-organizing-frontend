@@ -92,7 +92,6 @@ class DashContactDetail extends React.Component {
                                                             </Col>
                                                             <Col md={3}>
                                                                 {data && data.target && <CensusTract target={data.target}/>}
-                                                                {data && data.target && <ActionProgress  target={data.target}/>}
                                                                 {data && data.target && <MostRecentContactAttempt target={data.target}/>}
                                                                 {data && data.target && <LatestNote target={data.target}/>}
                                                             </Col>

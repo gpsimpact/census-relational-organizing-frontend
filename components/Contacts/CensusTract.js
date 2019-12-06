@@ -11,7 +11,6 @@ export class CensusTract extends React.Component {
             <div>
                 <H3 uppercase> Census Tract:</H3>
                 <H5 secondary> {target.censusTract ? target.censusTract : "N/A"} </H5>
-                <HR/>
             </div>
         )
     }

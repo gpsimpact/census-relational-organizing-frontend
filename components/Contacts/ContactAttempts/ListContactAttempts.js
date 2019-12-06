@@ -48,6 +48,7 @@ export class ListContactAttempts extends React.Component {
                                     {active: {eq: true}}
                                 ]
                             },
+                            sort: {createdAt: 'DESC'}
                     
                         }
                     }}

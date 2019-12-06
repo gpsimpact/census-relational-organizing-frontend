@@ -63,6 +63,8 @@ export class EditContactAttempt extends React.Component {
                                     {active: {eq: true}}
                                 ]
                             },
+                            sort: {createdAt: 'DESC'}
+
     
                         }
                     }

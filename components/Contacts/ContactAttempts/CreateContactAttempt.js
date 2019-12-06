@@ -65,7 +65,8 @@ export class CreateContactAttempt extends React.Component {
                                 AND: [
                                     {active: {eq: true}}
                                 ]
-                            }
+                            },
+                            sort: {createdAt: 'DESC'}
     
                         }
                     }
