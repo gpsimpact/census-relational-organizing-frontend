@@ -29,9 +29,10 @@ export const AdminPaths = {
 }
 
 export const DashPaths = {
+    
     index: '/dash',
     vols: {
-        index: '/dash/vols'
+        index: '/dash/messengers'
     },
     contacts: {
         index: '/dash/contacts',
