@@ -554,7 +554,7 @@ export const EditContactForm = (props) => {
                                         return(
                                             <CheckBoxGroupContainer>
                                                 <fieldset>
-                                                    <legend>Race / Ethnicity</legend>
+                                                    <legend>Race / Ethnicity <small> (check all that apply) </small></legend>
                                                     {raceEthnicityOptions.map((option, idx) => {
                                                         return(
                                                             <DynamicCheckboxLabel key={idx}>
