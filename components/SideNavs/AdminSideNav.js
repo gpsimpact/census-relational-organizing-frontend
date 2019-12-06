@@ -24,7 +24,7 @@ export const AdminSideNav = (props) => {
                     </Nav.Link>
                 </Link>
             }
-            {currentUser.hasGlobalPermission('ADMIN') &&
+            {/* {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.tibs.questions}>
                     <Nav.Link href={AdminPaths.tibs.questions}>
                         Questions
@@ -37,7 +37,7 @@ export const AdminSideNav = (props) => {
                         Actions
                     </Nav.Link>
                 </Link>
-            }
+            } */}
               {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.tasks.index}>
                     <Nav.Link href={AdminPaths.tasks.index}>

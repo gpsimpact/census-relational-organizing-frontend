@@ -51,7 +51,7 @@ export const DashSideNav = (props) => {
                     </Nav.Link>
                 </Link>
             }
-            {
+            {/* {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
                 <Link href={{pathname: `${DashPaths.tibs.questions}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.tibs.questions}?team=${currentTeam.id}`}>
@@ -66,15 +66,15 @@ export const DashSideNav = (props) => {
                         Actions
                     </Nav.Link>
                 </Link>
-            }
-            {
+            } */}
+            {/* {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
                 <Link href={{pathname: `${DashPaths.tasks.index}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.tasks.index}?team=${currentTeam.id}`}>
                         Tasks
                     </Nav.Link>
                 </Link>
-            }
+            } */}
 
             {
                 currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')
