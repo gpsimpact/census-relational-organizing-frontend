@@ -47,7 +47,7 @@ export const DashSideNav = (props) => {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
                 <Link href={{pathname: `${DashPaths.vols.index}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.id}`}>
-                        Volunteers
+                        Messengers
                     </Nav.Link>
                 </Link>
             }
