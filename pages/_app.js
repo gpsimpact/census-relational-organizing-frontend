@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme, AddGlobals } from '../styles/Theme';
 import { Meta } from '../lib/siteMeta';
 import { appWithTranslation } from '../lib/i18'
+import  MMode  from '../components/MMode';
 
 class Application extends App {
     static async getInitialProps({Component, ctx}) {
@@ -40,6 +41,9 @@ class Application extends App {
                                 <Normalize/>
                                 <AddGlobals/>
                                 <Meta/>
+                                {process.env.WARN_STAGING 
+                                    && <MMode/>
+                                }
                                 <Component { ...pageProps} />
                                 
                             </React.Fragment>
