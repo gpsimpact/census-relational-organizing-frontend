@@ -6,6 +6,9 @@ export const InputContainer = styled('div')`
     width: 100%;
     padding-bottom:.5rem;;
     margin-bottom: 1rem;
+    ${({hidden, theme}) => hidden && `
+        display: none;
+    `}
 `;
 
 export const Label = styled('label')`
