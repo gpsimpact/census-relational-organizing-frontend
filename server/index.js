@@ -2,6 +2,7 @@
 const express = require('express')
 const next = require('next')
 const nextI18NextMiddleware = require('next-i18next/middleware').default
+var sslRedirect = require('heroku-ssl-redirect');
 
 const nextI18next = require('../lib/i18');
 
@@ -12,6 +13,10 @@ const handle = app.getRequestHandler();
 (async () => {
   await app.prepare()
   const server = express()
+
+  if(process.env.NODE_ENV === 'production'){
+    app.use(sslRedirect());
+  }
 
   server.use(nextI18NextMiddleware(nextI18next))
 
