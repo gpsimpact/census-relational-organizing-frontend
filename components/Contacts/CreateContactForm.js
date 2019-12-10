@@ -53,6 +53,7 @@ export const CreateContactForm = (props) => {
                             tibIds:[],
                             retainAddress: true,
                             isNameAlias: false,
+                            isPhoneMobile: true,
                         }
                     }
                     validationSchema={
@@ -88,6 +89,7 @@ export const CreateContactForm = (props) => {
                                 activeTibs: values.tibIds,
                                 retainAddress: values.retainAddress,
                                 isNameAlias: values.isNameAlias,
+                                isPhoneMobile: values.isPhoneMobile,
                                 teamId: team.id,
 
                             }
@@ -233,7 +235,7 @@ export const CreateContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                         <FormIcon icon={<Phone/>}/>
                                 </Col>
-                                <Col lg={11} md={12}>
+                                <Col lg={6} md={12}>
                                     <Field
                                         id="phone"
                                         name="phone"
@@ -241,6 +243,16 @@ export const CreateContactForm = (props) => {
                                         placeholder="Phone"
                                         component={PhoneField}
                                     />
+                                </Col>
+                                <Col lg={5} md={12}>
+                                      <FormDisclaimer>This is a mobile phone.</FormDisclaimer>
+                                    <Field
+                                        id="isPhoneMobile"
+                                        name="isPhoneMobile"
+                                        label="Mobile Phone"
+                                        component={CheckBox}
+                                    />
+
                                 </Col>
                               
                             </Row>

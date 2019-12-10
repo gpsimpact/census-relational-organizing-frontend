@@ -50,6 +50,7 @@ export const EDIT_TARGET = gql`
                 sexualOrientation
                 raceEthnicity
                 isNameAlias
+                isPhoneMobile
                 householdMembers {
                     relationship
                     name
@@ -226,6 +227,7 @@ export const EditContactForm = (props) => {
     const genderIdentity = getOtherValue(genderIdentityOptions, target.genderIdentity);
     const sexualOrientation = getOtherValue(sexualOrientationOptions, target.sexualOrientation);
     const additionalRaceEthnicityArray = extractAdditionalRaceEthnicity(target.raceEthnicity);
+
     return(
         <Mutation mutation={EDIT_TARGET}>
             {(mutation, {data, loading, error}) => (
@@ -245,6 +247,7 @@ export const EditContactForm = (props) => {
                             householdSize: target.householdSize ? target.householdSize : "",
                             retainAddress: target.retainAddress,
                             isNameAlias: target.isNameAlias,
+                            isPhoneMobile: target.isPhoneMobile,
                             tempGenderIdentity: genderIdentity,
                             genderIdentity: target.genderIdentity,
                             tempSexualOrientation: sexualOrientation,
@@ -292,6 +295,7 @@ export const EditContactForm = (props) => {
                                 householdSize: values.householdSize,
                                 retainAddress: values.retainAddress,
                                 isNameAlias: values.isNameAlias,
+                                isPhoneMobile: values.isPhoneMobile,
                                 genderIdentity: values.genderIdentity,
                                 sexualOrientation: values.sexualOrientation,
                                 raceEthnicity: raceE,
@@ -326,6 +330,7 @@ export const EditContactForm = (props) => {
                                 householdSize: result.item.householdSize ? result.item.householdSize : "",
                                 retainAddress: result.item.retainAddress,
                                 isNameAlias: result.item.isNameAlias,
+                                isPhoneMobile: result.item.isPhoneMobile,
                                 tempGenderIdentity: getOtherValue(genderIdentityOptions, result.item.genderIdentity),
                                 genderIdentity: result.item.genderIdentity,
                                 tempSexualOrientation: getOtherValue(sexualOrientationOptions, result.item.sexualOrientation),
@@ -519,7 +524,7 @@ export const EditContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                         <FormIcon icon={<Phone/>}/>
                                 </Col>
-                                <Col lg={11} md={12}>
+                                <Col lg={6} md={12}>
                                     <Field
                                         id="phone"
                                         name="phone"
@@ -527,6 +532,16 @@ export const EditContactForm = (props) => {
                                         placeholder="Phone"
                                         component={PhoneField}
                                     />
+                                </Col>
+                                <Col lg={5} md={12}>
+                                      <FormDisclaimer>This is a mobile phone.</FormDisclaimer>
+                                    <Field
+                                        id="isPhoneMobile"
+                                        name="isPhoneMobile"
+                                        label="Mobile Phone"
+                                        component={CheckBox}
+                                    />
+
                                 </Col>
                               
                             </Row>

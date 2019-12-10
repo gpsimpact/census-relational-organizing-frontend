@@ -50,6 +50,7 @@ export const GET_TARGET = gql`
             sexualOrientation
             raceEthnicity
             isNameAlias
+            isPhoneMobile
             householdMembers {
                 relationship
                 name
