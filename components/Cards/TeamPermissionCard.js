@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import _ from "lodash";
-import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
+import { Card, CardHeader, CardInner, CardFooter, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
 import { DashPaths, AdminPaths } from '../../paths';
 import styled from 'styled-components';
 import { gql } from "apollo-boost";
@@ -68,7 +68,24 @@ export const TeamPermissionCard = (props) => {
     return(
         <Card>
             <CardHeader>
-                {
+ 
+            </CardHeader>
+            <CardInner>
+                <CardTitle>
+                    {
+                        currentUser && (currentUser.hasTeamPermission(team.id, 'MEMBER') || currentUser.hasTeamPermission(team.id, 'ADMIN'))
+                        ?
+                        <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}>{team.name}</Link>
+                        :
+                        <span>{team.name}</span>
+                    }
+                </CardTitle>
+                <CardParagraph>{team.description}</CardParagraph>
+
+            </CardInner>
+
+            <CardFooter>
+               {
                     currentUser && (currentUser.hasTeamPermission(team.id, 'MEMBER') || currentUser.hasTeamPermission(team.id, 'ADMIN'))
                     ?
                     <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
@@ -134,12 +151,7 @@ export const TeamPermissionCard = (props) => {
                     :
                     <Link href={{pathname: `/register`, query: { team: team.id}}}><IconLink href={`/register?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Register </IconLink></Link>
                 }
-            </CardHeader>
-            <CardInner>
-                <CardTitle>{team.name}</CardTitle>
-                <CardParagraph>{team.description}</CardParagraph>
-
-            </CardInner>
+            </CardFooter>
         </Card>
     )
 }

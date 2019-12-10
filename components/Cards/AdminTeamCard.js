@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import _ from "lodash";
-import { Card, CardHeader, CardInner, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
+import { Card, CardHeader, CardInner, CardFooter, CardTitle, IconLink, CardParagraph, CardSubTitle, PermContainer, PermTitle, PermCount } from './Styles';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { DashPaths, AdminPaths } from '../../paths';
@@ -27,7 +27,6 @@ export const AdminTeamCard = (props) => {
     return(
         <Card>
             <CardHeader>
-                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
             </CardHeader>
 
             <CardInner>
@@ -69,6 +68,10 @@ export const AdminTeamCard = (props) => {
                             })}
                 </PermContainer>
             </CardInner>
+            <CardFooter>
+                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
+
+            </CardFooter>
 
     
      
