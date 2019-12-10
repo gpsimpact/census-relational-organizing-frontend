@@ -5,7 +5,7 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
 import { H4,FormDisclaimer } from '../Util/Typography';
-import { FormError,TextField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField, AddContactButton, RemoveContactButton } from '../Util/Forms';
+import { FormError,TextField,PhoneField,SubmitButton, FormIcon, CheckBox,DirtyFormMessage, SelectField, AddContactButton, RemoveContactButton } from '../Util/Forms';
 import { CheckBoxGroupContainer, DynamicCheckboxLabel } from '../Util/Forms/Styles';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -74,14 +74,20 @@ const getOtherValue = (options, value) => {
 
 const extractAdditionalRaceEthnicity = (values) => {
     const optionsArray = ['AMERICAN INDIAN OR ALASKA NATIVE', 'ASIAN', 'BLACK OR AFRICAN AMERICAN', 'HISPANIC', 'LATINO', 'NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER', 'WHITE']
-    const extraArray = values.filter(e => !optionsArray.includes(e));
-    return extraArray.join(', ');
+    if(values){
+        const extraArray = values.filter(e => !optionsArray.includes(e));
+        return extraArray.join(', ');
+    }
+    return [];
 }
 
 const cleanRaceEthnicityArray = (values) => {
     const optionsArray = ['AMERICAN INDIAN OR ALASKA NATIVE', 'ASIAN', 'BLACK OR AFRICAN AMERICAN', 'HISPANIC', 'LATINO', 'NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER', 'WHITE']
-    const cleanArray = values.filter(e => optionsArray.includes(e));
-    return cleanArray;
+    if(values){
+        const cleanArray = values.filter(e => optionsArray.includes(e));
+        return cleanArray;
+    }
+    return [];
 }
 
 export const EditContactForm = (props) => {
@@ -267,7 +273,7 @@ export const EditContactForm = (props) => {
                     }
                     onSubmit={ async (values, actions) => {
                         let raceE = values.raceEthnicity;
-                        if(values.additionalRaceEthnicity){
+                        if(values.additionalRaceEthnicity && values.additionalRaceEthnicity.length > 0){
                             raceE.push(values.additionalRaceEthnicity);
                         }
                         let payload = {
@@ -280,7 +286,7 @@ export const EditContactForm = (props) => {
                                 city: values.city,
                                 state: values.state,
                                 zip5: values.zip5,
-                                phone: values.phone,
+                                phone: values.phone.replace(/\D/g,''),
                                 twitterHandle: values.twitterHandle,
                                 facebookProfile: values.facebookProfile,
                                 householdSize: values.householdSize,
@@ -294,7 +300,7 @@ export const EditContactForm = (props) => {
                         if(values.householdMembers && values.householdMembers.length > 0){
                             payload.input.householdMembers = values.householdMembers.map(member => ({name: member.name, relationship: member.relationship}))
                         }
-                       
+                   
                         let response = await submitMutation( mutation, payload);
                         let result = await marshallMutationResponse(response, 'updateTarget');
                         if(!result.success){
@@ -519,7 +525,7 @@ export const EditContactForm = (props) => {
                                         name="phone"
                                         label="Phone"
                                         placeholder="Phone"
-                                        component={TextField}
+                                        component={PhoneField}
                                     />
                                 </Col>
                               
