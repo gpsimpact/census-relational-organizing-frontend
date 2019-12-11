@@ -3,22 +3,24 @@ import styled from "styled-components";
 export const Card = styled('div')`
     background: ${props => props.theme.colors.white};
     width: 100%;
-    margin-bottom: 1rem;
     border: 1px solid ${props => props.theme.colors.g2};
     border-bottom: 2px solid ${props => props.theme.colors.g2};
+    margin-bottom: 30px;
+    @media(max-width: 768px){
+        margin-bottom: 50px;
+    }
 `;
 
 export const CardHeader = styled('div')`
 
 `;
-
 export const CardInner = styled('div')`
     padding: 30px 30px; 
 
 `;
 
 export const CardFooter = styled('div')`
-
+  
 `;
 
 export const PermContainer = styled('div')`
@@ -69,7 +71,7 @@ export const IconLink = styled('a')`
     padding: 10px 30px;
     background-color: ${props => props.theme.colors.g0};
     color: ${props => props.theme.colors.tertiary};
-    border-bottom: 1px solid ${props => props.theme.colors.g2};
+    border: 1px solid ${props => props.theme.colors.g2};
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;

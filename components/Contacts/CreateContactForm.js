@@ -4,7 +4,7 @@ import { Mutation } from "react-apollo";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBox } from '../Util/Forms';
+import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBox, PhoneField } from '../Util/Forms';
 import { LoadingBar } from '../Util/Loading';
 import { H2, H3, FormDisclaimer } from '../Util/Typography';
 import redirect from '../../lib/redirect'
@@ -53,6 +53,7 @@ export const CreateContactForm = (props) => {
                             tibIds:[],
                             retainAddress: true,
                             isNameAlias: false,
+                            isPhoneMobile: true,
                         }
                     }
                     validationSchema={
@@ -81,13 +82,14 @@ export const CreateContactForm = (props) => {
                                 city: values.city,
                                 state: values.state,
                                 zip5: values.zip5,
-                                phone: values.phone,
+                                phone: values.phone.replace(/\D/g,''),
                                 twitterHandle: values.twitterHandle,
                                 facebookProfile: values.facebookProfile,
                                 householdSize: values.householdSize,
                                 activeTibs: values.tibIds,
                                 retainAddress: values.retainAddress,
                                 isNameAlias: values.isNameAlias,
+                                isPhoneMobile: values.isPhoneMobile,
                                 teamId: team.id,
 
                             }
@@ -233,14 +235,24 @@ export const CreateContactForm = (props) => {
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                         <FormIcon icon={<Phone/>}/>
                                 </Col>
-                                <Col lg={11} md={12}>
+                                <Col lg={6} md={12}>
                                     <Field
                                         id="phone"
                                         name="phone"
                                         label="Phone"
                                         placeholder="Phone"
-                                        component={TextField}
+                                        component={PhoneField}
                                     />
+                                </Col>
+                                <Col lg={5} md={12}>
+                                      <FormDisclaimer>This is a mobile phone.</FormDisclaimer>
+                                    <Field
+                                        id="isPhoneMobile"
+                                        name="isPhoneMobile"
+                                        label="Mobile Phone"
+                                        component={CheckBox}
+                                    />
+
                                 </Col>
                               
                             </Row>

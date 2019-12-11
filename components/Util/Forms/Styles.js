@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import MaskedInput from "react-text-mask";
 
 
 export const InputContainer = styled('div')`
@@ -6,6 +7,9 @@ export const InputContainer = styled('div')`
     width: 100%;
     padding-bottom:.5rem;;
     margin-bottom: 1rem;
+    ${({hidden, theme}) => hidden && `
+        display: none;
+    `}
 `;
 
 export const Label = styled('label')`
@@ -18,6 +22,26 @@ export const Label = styled('label')`
 `;
 
 export const TextInput = styled('input')`
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    border: none;
+    border-left: 3px solid ${props => props.theme.colors.g1};
+    border-bottom: 2px solid ${props => props.theme.colors.g3};
+    background: ${props => props.theme.colors.g1};
+    :focus {
+        background: ${props => props.theme.colors.g2};
+        border-left: 3px solid ${props => props.theme.colors.g3};
+        border-bottom: 2px solid ${props => props.theme.colors.g3};
+
+    }
+    ${({ error, theme }) => error && `
+            border-left: 3px solid ${theme.colors.secondary};
+            border-bottom: 2px solid ${theme.colors.secondary};
+    `}
+`;
+
+export const PhoneInput = styled(MaskedInput)`
     display: block;
     width: 100%;
     padding: .5rem;

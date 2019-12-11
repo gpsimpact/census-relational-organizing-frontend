@@ -13,6 +13,8 @@ import { H3 } from '../Util/Typography';
 import NotInterested from '@material-ui/icons/NotInterested';
 import { TotalActions, SingleActionProgress, SingleQuestionProgress } from '../../components/TIBS';
 import { HR } from '../Util/Layout';
+import { SingleTaskMetric } from './SingleTaskMetric';
+
 
 const MY_TARGETS_COUNT = gql`
 query summaryCountMyTeamTargets($teamId: String!){
@@ -26,25 +28,16 @@ const MY_HOUSEHOLD_COUNT = gql`
     }
 `;
 
-const MY_TIBS_ACTION_COUNT = gql`
-    query summaryCountMyTeamTibs($tibType: TibType, $teamId: String!){
-        summaryCountMyTeamTibs(tibType:$tibType, teamId: $teamId){
-            id
-            appliedCount
-            unappliedCount
-            text
-            tibType
-        }
-    }
-`;
-const MY_TIBS_QUESTION_COUNT = gql`
-    query summaryCountMyTeamTibs($tibType: TibType, $teamId: String!){
-        summaryCountMyTeamTibs(tibType:$tibType, teamId: $teamId){
-            id
-            appliedCount
-            unappliedCount
-            text
-            tibType
+
+const GET_MY_TASK_COMPLETIONS = gql`
+    query summaryCountMyTeamTasks($teamId: String!){
+        summaryCountMyTeamTasks(teamId: $teamId){
+            languageVariations {
+                title
+                language
+            }
+            countComplete
+            teamTargetsCount
         }
     }
 `;
@@ -90,68 +83,37 @@ export class DashVolHome extends React.Component {
                             </Query>
                         </Col>
                         </Row>
+
+
                         <HR/>
-
                         <Row>
-                        <Col xl={12}>
-                                <Query query={MY_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}} fetchPolicy={'cache-and-network'}>
-                                    {({data, error, loading}) => {
-                                        return(
-                                            <React.Fragment>
-                                                {error && <ErrorMessage error={error}/>}
-                                                {data && data.summaryCountMyTeamTibs && <TotalActions actions={data.summaryCountMyTeamTibs} title={'My Action Count'}/>}
-                                            </React.Fragment>
-                                        )
-                                    }}
-                                </Query>
+                            <Col md={12}>
+                                <H3 uppercase> My Tasks </H3>
                             </Col>
-                        
-                    </Row>
-                    <HR/>
-                            <Row>
-                                    <Col md={6}>
-                                        <H3 uppercase>My Questions</H3>
-                                        <Query query={MY_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION', teamId: currentTeam.id}}>
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountMyTeamTibs &&
-                                                      data.summaryCountMyTeamTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleQuestionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>   
-                                    </Col>
+                            <Query query={GET_MY_TASK_COMPLETIONS} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
+                                {({data, loading, error}) => (
+                                    <>
+                                        {error && <ErrorIcon error={error}/>}
+                                        {data && data.summaryCountMyTeamTasks && data.summaryCountMyTeamTasks.length > 0 
+                                            && data.summaryCountMyTeamTasks.map((task, idx) => {
+                                                return(
+                                                    <Col md={12} key={idx}>
+                                                        <SingleTaskMetric task={task} currentUser={currentUser}/>
+                                                    </Col>
+                                                )
+                                            })
+                                        }
 
-                                    <Col md={6}>
-                                      <H3 uppercase>My Actions</H3>
-                                      <Query query={MY_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION', teamId: currentTeam.id}}>
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountMyTeamTibs &&
-                                                      data.summaryCountMyTeamTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleActionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>                         
-                                    </Col>
-                                </Row>
+                                    </>
+                                )}
+                            </Query>
+                        </Row>
+
+                       
                     </React.Fragment>
                 
          
         )
     }
 }
+

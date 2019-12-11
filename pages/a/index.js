@@ -154,66 +154,10 @@ class AdminDash extends React.Component {
                                                         </Col>
                                                         </Row>
                                                         <HR/>
-                                                        <Row>
-                                                        <Col xl={12}>
-                                                            <Query query={ADMIN_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION'}} fetchPolicy={'cache-and-network'}>
-                                                                {({data, error, loading}) => {
-                                                                    return(
-                                                                       <React.Fragment>
-                                                                           {error && <ErrorMessage error={error}/>}
-                                                                           {data && data.summaryCountAllTibs && <TotalActions actions={data.summaryCountAllTibs} title={'Action Count'}/>}
-                                                                       </React.Fragment>
-                                                                    )
-                                                                }}
-                                                            </Query>
-                                                        </Col>
+                    
 
-                                                </Row>
 
-                                <HR/>
-
-                                <Row>
-                                    <Col md={6}>
-                                        <H3 uppercase>Questions</H3>
-                                        <Query query={ADMIN_TIBS_QUESTION_COUNT} variables={{tibType: 'QUESTION'}}>
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountAllTibs &&
-                                                      data.summaryCountAllTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleQuestionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>   
-                                    </Col>
-
-                                    <Col md={6}>
-                                      <H3 uppercase>Actions</H3>
-                                      <Query query={ADMIN_TIBS_ACTION_COUNT} variables={{tibType: 'ACTION'}}>
-                                          {({data, loading, error}) => {
-                                              return(
-                                                <React.Fragment>
-                                                    {error && <ErrorMessage error={error}/>}
-                                                    {data && data.summaryCountAllTibs &&
-                                                      data.summaryCountAllTibs.map((item, idx) => {
-                                                          return(
-                                                              <SingleActionProgress tib={item} key={idx}/>
-                                                          )
-                                                      })
-                                                    }
-                                                </React.Fragment>
-                                              )
-                                          }}
-                                      </Query>                         
-                                    </Col>
-                                </Row>
-
+                          
                     
 
                         </Box>

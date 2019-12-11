@@ -91,7 +91,7 @@ class DashVolIndex extends React.Component {
                                     <Box>
                                         <Row bsPrefix="row align-items-center">
                                             <Col md={3}>
-                                                <H1 uppercase> Volunteers </H1>
+                                                <H1 uppercase> Messengers </H1>
                                             </Col>
                                             <Col md={6}>
                                                 {data && data.teamUsers &&
