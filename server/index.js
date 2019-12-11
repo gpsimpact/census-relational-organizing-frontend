@@ -15,7 +15,7 @@ const handle = app.getRequestHandler();
   const server = express()
 
   if(process.env.NODE_ENV === 'production'){
-    app.use(sslRedirect());
+    server.use(sslRedirect());
   }
 
   server.use(nextI18NextMiddleware(nextI18next))
