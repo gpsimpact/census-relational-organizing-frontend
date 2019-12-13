@@ -18,7 +18,7 @@ export default class MMode extends React.Component {
             <MModeContainer>
                     <div className="row justify-content-center">
                     <div className="col-md-6">
-                    <div class="inner-wrap">
+                    <div className="inner-wrap">
                     <H1 uppercase> Attention: </H1>
                     <p> This is a staging application. Please visit <a href="https://civicpromotor.org"> https://civicpromotor.org </a> to access the site.</p>
                     </div>

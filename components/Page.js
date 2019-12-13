@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
+import  MMode  from './MMode';
 
 export const PageContainer = styled('div')`
     margin: 0 0;
@@ -41,6 +41,9 @@ export default class Page extends React.Component {
     render(){
         return(
             <PageContainer>
+                {process.env.WARN_STAGING 
+                                    && <MMode/>
+                                }
                 <MainNavigation currentUser={this.props.currentUser}/>
 
                 <PageContent>
