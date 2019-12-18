@@ -58,7 +58,7 @@ export const AdminCreateTeamForm = () => {
                             });
                             return;
                         }
-                        redirect({}, `${DashPaths.tibs.questions}?team=${result.item.id}`);                        
+                        redirect({}, `${DashPaths.index}?team=${result.item.id}`);                        
 
                     }}
                     render={({status}) => (
