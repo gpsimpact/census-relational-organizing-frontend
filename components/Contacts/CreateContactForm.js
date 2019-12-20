@@ -294,17 +294,7 @@ export const CreateContactForm = (props) => {
                                 </Col>
                               
                             </Row>
-                            <H3>To the best of your knowledge mark all that are true</H3>
-
-                            {tibs.map((tib, idx) => {
-                                return(
-                                    <Row key={idx}>
-                                        <Col>
-                                            <CheckBoxArrayField id={tib.id} name="tibIds" value={tib.id} label={tib.text}/>
-                                        </Col>
-                                    </Row>
-                                )
-                            })}
+                       
 
                                 <SubmitButton 
                                     loading={loading}
