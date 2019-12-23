@@ -50,7 +50,6 @@ export const CreateContactForm = (props) => {
                             twitterHandle:"",
                             facebookProfile:"",
                             householdSize:1,
-                            tibIds:[],
                             retainAddress: true,
                             isNameAlias: false,
                             isPhoneMobile: true,
@@ -86,7 +85,6 @@ export const CreateContactForm = (props) => {
                                 twitterHandle: values.twitterHandle,
                                 facebookProfile: values.facebookProfile,
                                 householdSize: values.householdSize,
-                                activeTibs: values.tibIds,
                                 retainAddress: values.retainAddress,
                                 isNameAlias: values.isNameAlias,
                                 isPhoneMobile: values.isPhoneMobile,
@@ -298,7 +296,8 @@ export const CreateContactForm = (props) => {
 
                                 <SubmitButton 
                                     loading={loading}
-                                    value="Create"
+                                    value={loading ? "Creating" : "Create"}
+
                                 />
                         
 
