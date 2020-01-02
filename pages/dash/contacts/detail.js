@@ -15,7 +15,7 @@ import { Query } from 'react-apollo';
 import { ErrorMessage } from '../../../components/Util/Loading';
 import { gql } from "apollo-boost";
 import { LoadingBar } from '../../../components/Util/Loading';
-import { EditContactForm, EditContactTibs, ActionProgress, CensusTract } from '../../../components/Contacts';
+import { EditContactForm, ActionProgress, CensusTract } from '../../../components/Contacts';
 import { ListContactAttempts, MostRecentContactAttempt } from '../../../components/Contacts/ContactAttempts';
 import { ListNotes, LatestNote } from '../../../components/Contacts/Notes';
 import { TargetTaskList } from '../../../components/Contacts/Tasks';
@@ -109,15 +109,8 @@ class DashContactDetail extends React.Component {
                                                     </Collapser>
                                                     <HR/>
 
-                                                    <Collapser title="Questions & Actions" open={false}>
-                                                        <Row>
-                                                            <Col md={12}>
-                                                                    {data && data.target && <EditContactTibs target={data.target}/>}
-                                                            </Col>
-                                                        </Row>
-                                                    </Collapser>
-                                                
-                                                    <HR/>
+                                                 
+                                    
                                                 <Collapser title="Contact Attempts" open={false}>
                                                     <Row>
                                                         <Col md={12}>

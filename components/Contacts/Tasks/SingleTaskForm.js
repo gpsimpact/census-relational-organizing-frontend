@@ -52,10 +52,6 @@ const UPDATE_TARGET_TASK = gql`
                     available
                     nonAvailableCode
                 }
-                availableTo{
-                    role
-                    available
-                }
                 complete(targetId: $targetId)
                 notAvailableBeforeTs
                 notAvailableAfterTs

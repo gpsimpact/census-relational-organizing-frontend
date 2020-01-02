@@ -41,10 +41,6 @@ export const GET_TARGET_TASKS = gql`
                 available
                 nonAvailableCode
             }
-            availableTo{
-                role
-                available
-            }
             complete(targetId: $targetId)
             notAvailableBeforeTs
             notAvailableAfterTs
