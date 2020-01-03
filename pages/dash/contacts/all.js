@@ -49,6 +49,12 @@ export const GET_TEAM_TARGETS = gql`
                 sexualOrientation
                 raceEthnicity
                 isNameAlias
+                user {
+                    id
+                    firstName
+                    lastName
+                    email
+                }
                 householdMembers {
                     relationship
                     name
@@ -133,7 +139,7 @@ class DashContactIndex extends React.Component {
                                                 data.teamTargets.items.map((item, idx) => {
                                                     return(
                                                         <Col lg={4} key={idx}>
-                                                            <ContactCard target={item} team={currentTeam}/>
+                                                            <ContactCard target={item} team={currentTeam} currentUser={currentUser}/>
                                                         </Col>
                                                     )
                                                 })

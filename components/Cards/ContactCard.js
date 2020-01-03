@@ -10,10 +10,10 @@ import Phone from '@material-ui/icons/Phone';
 import Email from '@material-ui/icons/Email';
 import Place from '@material-ui/icons/Place';
 import Home from '@material-ui/icons/Home';
-
+import RecordVoiceOver from '@material-ui/icons/RecordVoiceOver';
 
 export const ContactCard = ( props ) => {
-    const { target, team } = props;
+    const { target, team, currentUser } = props;
 
     let address = ' -- ';
     if(target.address){
@@ -45,6 +45,10 @@ export const ContactCard = ( props ) => {
                 <CardInfoPoint icon={<Email/>} infoPoint={target.email ? target.email : ' -- '}/>
                 <CardInfoPoint icon={<Place/>} infoPoint={address} infoPoint2={`${city}, ${state} ${zip5}`}/>
                 <CardInfoPoint icon={<Home/>} infoPoint={target.householdSize ? `${target.householdSize} in Household` : ' -- '}/>
+                {
+                    currentUser && (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && target && target.user &&
+                    <CardInfoPoint icon={<RecordVoiceOver/>} infoPoint={`${target.user.firstName} ${target.user.lastName} ${target.user.email}`}/>
+                }
             </CardInner>
 
         </Card>
