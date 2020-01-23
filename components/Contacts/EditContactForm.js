@@ -191,7 +191,7 @@ export const EditContactForm = (props) => {
         },
         {
             value: "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER",
-            label: "Native Hawaiin or Other Pacific Islander"
+            label: "Native Hawaiian or Other Pacific Islander"
         },
         {
             value: "WHITE",
