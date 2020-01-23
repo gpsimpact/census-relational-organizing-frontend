@@ -80,7 +80,7 @@ class DashVolIndex extends React.Component {
                                     offset: currentQuery.offset,
                                     where: currentQuery.where,
                                     sort: currentQuery.sort,
-                                    includePermissions: ['ADMIN', 'MEMBER', 'APPLICANT', 'DENIED'],
+                                    includePermissions: ['ADMIN', 'MEMBER', 'APPLICANT'],
                                     teamId: currentTeam.id,
                                 }
                             }}

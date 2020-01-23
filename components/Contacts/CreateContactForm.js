@@ -1,12 +1,12 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { submitMutation, marshallMutationResponse } from '../../lib/helpers';
-import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBox, PhoneField } from '../Util/Forms';
+import { FormError, FormSuccess,TextField,SubmitButton, CheckBoxArrayField, FormIcon, CheckBox, PhoneField, SelectField, AddContactButton, RemoveContactButton } from '../Util/Forms';
 import { LoadingBar } from '../Util/Loading';
-import { H2, H3, FormDisclaimer } from '../Util/Typography';
+import { H2, H3, H4, FormDisclaimer } from '../Util/Typography';
 import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
 import Row from 'react-bootstrap/Row';
@@ -17,6 +17,13 @@ import Email from '@material-ui/icons/Email';
 import Place from '@material-ui/icons/Place';
 import Phone from '@material-ui/icons/Phone';
 import Home from '@material-ui/icons/Home';
+import Accessibility from '@material-ui/icons/Accessibility';
+import AddCircle from '@material-ui/icons/AddCircle';
+import RemoveCircle from '@material-ui/icons/RemoveCircle';
+import { CheckBoxGroupContainer, DynamicCheckboxLabel } from '../Util/Forms/Styles';
+
+import { sexualOrientationOptions, genderIdentityOptions, raceEthnicityOptions,householdRelationOptions, cleanRaceEthnicityArray, extractAdditionalRaceEthnicity } from './Options';
+
 
 export const CREATE_CONTACT = gql`
     mutation createContact($input:CreateTargetInput!){
@@ -32,6 +39,8 @@ export const CREATE_CONTACT = gql`
 `;
 export const CreateContactForm = (props) => {
     const { team, currentUser, tibs } = props;
+    const raceEthnicity = cleanRaceEthnicityArray([]);
+    const additionalRaceEthnicityArray = extractAdditionalRaceEthnicity([]);
 
     return(
         <Mutation mutation={CREATE_CONTACT}>
@@ -53,6 +62,13 @@ export const CreateContactForm = (props) => {
                             retainAddress: true,
                             isNameAlias: false,
                             isPhoneMobile: true,
+                            householdMembers: [],
+                            sexualOrientation: '',
+                            tempSexualOrientation: '',
+                            genderIdentity: '',
+                            tempGenderIdentity: '',
+                            raceEthnicity: raceEthnicity,
+                            additionalRaceEthnicity: additionalRaceEthnicityArray,
                         }
                     }
                     validationSchema={
@@ -72,6 +88,11 @@ export const CreateContactForm = (props) => {
                         })
                     }
                     onSubmit={ async (values, actions) => {
+                        let raceE = values.raceEthnicity;
+                        if(values.additionalRaceEthnicity && values.additionalRaceEthnicity.length > 0){
+                            raceE.push(values.additionalRaceEthnicity);
+                        }
+
                         let payload = {
                             input: {
                                 firstName: values.firstName,
@@ -89,6 +110,10 @@ export const CreateContactForm = (props) => {
                                 isNameAlias: values.isNameAlias,
                                 isPhoneMobile: values.isPhoneMobile,
                                 teamId: team.id,
+                                householdMembers: values.householdMembers,
+                                sexualOrientation: values.sexualOrientation,
+                                genderIdentity: values.genderIdentity,
+                                raceEthnicity: raceE,
 
                             }
                         }
@@ -107,14 +132,14 @@ export const CreateContactForm = (props) => {
                         redirect({}, `${DashPaths.contacts.detail}?team=${team.id}&target=${result.item.id}`)                        
 
                     }}
-                    render={({status}) => (
+                    render={props => (
                         <Form noValidate>
                             <LoadingBar active={loading}/>
                             {
-                                status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
+                                props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
                             }
                             {
-                                status && status.form && status.form.code === 'Success' && <FormSuccess message={status.form}/>
+                                props.status && props.status.form && props.status.form.code === 'Success' && <FormSuccess message={props.status.form}/>
                             }
                             <H2>General Information</H2>
                             <Row bsPrefix={'row align-items-center'}>
@@ -148,6 +173,63 @@ export const CreateContactForm = (props) => {
                                         component={CheckBox}
                                     />
 
+                                </Col>
+                            </Row>
+
+                                      <Row>
+                                <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                </Col>
+
+                                <Col md={12} lg={11}>
+                                    <H4 uppercase>Additional Household Members</H4>
+                                    <FieldArray
+                                        name="householdMembers"
+                                        render={arrayHelpers => (
+                                            <div>
+                                                {props.values.householdMembers && props.values.householdMembers.length > 0 
+                                                &&
+                                                (
+                                                    props.values.householdMembers.map((member, idx) => (
+                                                        <Row bsPrefix={'row align-items-center py-1'} key={idx}>
+                                                            <Col md={1}>
+                                                                <RemoveContactButton onClick={() => arrayHelpers.remove(idx)}>
+                                                                    <RemoveCircle/>
+                                                                </RemoveContactButton>
+                                                            </Col>
+                                                            <Col md={5}>
+                                                                <Field 
+                                                                    name={`householdMembers.${idx}.name`}
+                                                                    label="Household Member's Name"
+                                                                    placeholder="Household Member's Name"
+                                                                    component={TextField}
+                                                                />
+                                                            </Col>
+                                                            <Col md={5}>
+                                                                <Field
+                                                                    id={`householdMembers.${idx}.relationship`}
+                                                                    name={`householdMembers.${idx}.relationship`}
+                                                                    label="Household Member's Relationship"
+                                                                    placeholder="Household Member's Relationship"
+                                                                    options={householdRelationOptions}
+                                                                    component={SelectField}
+                                                                />
+                                                            </Col>
+                                                            
+                                                        </Row>
+                                                    ))
+                                                   
+                                                ) }
+                                                <Row>
+                                                        <Col md={12}>
+                                                            <AddContactButton onClick={() => arrayHelpers.push({relationship: "", name:""})}>
+                                                                <AddCircle/>  <span>Add a household member</span>
+                                                            </AddContactButton>
+                                                        </Col>
+                                                        
+                                                    </Row>
+                                            </div>
+                                        )}
+                                        />
                                 </Col>
                             </Row>
 
@@ -291,6 +373,122 @@ export const CreateContactForm = (props) => {
                                     />
                                 </Col>
                               
+                            </Row>
+
+                                      <Row bsPrefix={"row align-items-center"}>
+                                <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                    <FormIcon icon={<Accessibility/>}/>
+                                </Col>
+                                <Col lg={5} md={12}>
+                                      <Field 
+                                        id="tempSexualOrientation"
+                                        label={"Sexual Orientation"} 
+                                        name={"tempSexualOrientation"}
+                                        placeholderOption="-- Select --"
+                                        onChange={(e) => {
+                                            props.setFieldValue('tempSexualOrientation', e.target.value);
+                                            if(e.target.value !== 'OTHER'){
+                                                props.setFieldValue('sexualOrientation', e.target.value);
+                                            } else {
+                                                props.setFieldValue('sexualOrientation', '');
+                                            }
+                                        }}
+                                        options={sexualOrientationOptions}
+                                        component={SelectField}
+                                    />
+                                 
+                                </Col>
+                             
+                                <Col lg={5} md={12}>
+                                 <Field 
+                                        id="sexualOrientation"
+                                        label={"Please Specify: Sexual Orientation"}
+                                        name={"sexualOrientation"}
+                                        component={TextField}
+                                        hidden={props.values.tempSexualOrientation !== 'OTHER' ? 1 : 0}
+                                    />
+
+                                </Col>
+
+                            </Row>
+
+                                                        <Row bsPrefix={"row align-items-center"}>
+                                <Col bsPrefix={"col-lg-1 d-none d-lg-block"}></Col>
+                                    <Col lg={5} md={12}>
+                                    <Field 
+                                            id="tempGenderIdentity"
+                                            label={"Gender Identity"} 
+                                            name={"tempGenderIdentity"}
+                                            placeholderOption="-- Select --"
+                                            onChange={(e) => {
+                                                props.setFieldValue('tempGenderIdentity', e.target.value);
+                                                if(e.target.value !== 'OTHER'){
+                                                    props.setFieldValue('genderIdentity', e.target.value);
+                                                } else {
+                                                    props.setFieldValue('genderIdentity', '');
+                                                }
+                                            }}
+                                            options={genderIdentityOptions}
+                                            component={SelectField}
+                                        />
+                                    </Col>
+                                    <Col lg={6} md={12}>
+                                      <Field 
+                                        id="genderIdentity"
+                                        label={"Please Specify: Gender Identity"}
+                                        name={"genderIdentity"}
+                                        component={TextField}
+                                        hidden={props.values.tempGenderIdentity !== 'OTHER' ? 1 : 0}
+
+                                    />
+                                    </Col>
+                            </Row>
+
+                                <Row bsPrefix={"row align-items-center"}>
+                            <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
+                                </Col>
+                            <Col lg={11} md={12}>
+                                <FieldArray
+                                    name={"raceEthnicity"}
+                                    render={arrayHelpers => {
+                                        return(
+                                            <CheckBoxGroupContainer>
+                                                <fieldset>
+                                                    <legend>Race / Ethnicity <small> (check all that apply) </small></legend>
+                                                    {raceEthnicityOptions.map((option, idx) => {
+                                                        return(
+                                                            <DynamicCheckboxLabel key={idx}>
+                                                            <input
+                                                                name={"raceEthnicity"}
+                                                                type="checkbox"
+                                                                checked={props.values.raceEthnicity.includes(option.value)}
+                                                                onChange={e=> {
+                                                                    if(e.target.checked){
+                                                                        arrayHelpers.push(option.value)
+                                                                    } else {
+                                                                        const idx = props.values.raceEthnicity.indexOf(option.value);
+                                                                        arrayHelpers.remove(idx);
+                                                                    }
+                                                                }}
+                                                                />
+                                                            <span>{option.label}</span>
+            
+                                                        </DynamicCheckboxLabel>
+                                                        )
+                                                    })}
+                                                </fieldset>
+                                            </CheckBoxGroupContainer>
+                                        )
+                                    }}
+                                />
+                                    <Field 
+                                        id="additionalRaceEthnicity"
+                                        label={"Please Specify: Race/Ethnicity"}
+                                        name={"additionalRaceEthnicity"}
+                                        component={TextField}
+                                    />
+                               
+                                </Col>
                             </Row>
                        
 
