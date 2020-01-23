@@ -119,6 +119,9 @@ export const SideNavbar = styled(Navbar)`
             margin-top: -4px;
         }
     }
+    @media(min-width: 768px){
+        position: fixed;
+    }
 `;
 
 export const SideCNav = styled(Nav)`
