@@ -125,7 +125,7 @@ class DashContactIndex extends React.Component {
                                                 sortFilters={TargetsSort}
                                                 path={DashPaths.contacts.index}
                                                 currentQuery={currentQuery}
-                                                teamSlug={currentTeam.slug}
+                                                teamSlug={currentTeam.id}
                                             />
                                         </Box>
                                         <Row>

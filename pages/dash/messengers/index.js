@@ -122,7 +122,7 @@ class DashVolIndex extends React.Component {
                                                 sortFilters={UsersSort}
                                                 path={DashPaths.vols.index}
                                                 currentQuery={currentQuery}
-                                                teamSlug={currentTeam.slug}
+                                                teamSlug={currentTeam.id}
 
                                             />
 
