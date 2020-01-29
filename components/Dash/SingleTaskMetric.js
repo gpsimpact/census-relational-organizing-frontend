@@ -26,12 +26,14 @@ export class SingleTaskMetric extends React.Component {
     const { task, currentUser } = this.props;
     const language = currentUser.getLanguage();
     let content = _.find(task.languageVariations, f => f.language === language);
-    
+    if(!content){
+        content = _.find(task.languageVariations, f => f.language === 'EN');
+    }
+
     const complete = task.countComplete;
     const total = task.teamTargetsCount;
 
     const completionPercentage = Math.round((complete/total) * 100);
-
         return(
             <TaskMetricContainer>
                 <H4 uppercase>{content.title}</H4>
