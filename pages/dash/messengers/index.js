@@ -8,6 +8,7 @@ import { CurrentQuery } from '../../../lib/constructors/BaseQueryConstructor';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
 
 import { gql } from "apollo-boost";
 import { Query } from 'react-apollo';
@@ -107,7 +108,9 @@ class DashVolIndex extends React.Component {
                                             </Col>
                                             <Col md={3}>
                                                 <ActionNav className='justify-content-end'>
-                                                  
+                                                     <Link href={{pathname:`${DashPaths.vols.denied}`, query: {team: currentTeam.id}}}>
+                                                        <Nav.Link href={`${DashPaths.vols.denied}?team=${currentTeam.id}`}> Denied Applicants </Nav.Link>
+                                                    </Link>
                                                     <FilterToggler />
 
                                                 </ActionNav>

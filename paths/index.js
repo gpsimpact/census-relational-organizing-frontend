@@ -32,7 +32,8 @@ export const DashPaths = {
     
     index: '/dash',
     vols: {
-        index: '/dash/messengers'
+        index: '/dash/messengers',
+        denied: '/dash/messengers/denied',
     },
     contacts: {
         index: '/dash/contacts',
