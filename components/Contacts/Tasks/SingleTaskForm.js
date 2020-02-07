@@ -131,7 +131,6 @@ export class SingleTaskForm extends React.Component {
                     }
             });
 
-
             let schema = [
                 ["yup.object"],
                 ["yup.shape", shape]
