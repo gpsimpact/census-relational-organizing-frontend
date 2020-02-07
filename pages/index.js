@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
-
+import _ from 'lodash';
 import Page from '../components/Page';
 import { Hero } from '../components/Util/Layout';
 import { H1 } from '../components/Util/Typography';
@@ -58,6 +58,10 @@ class Index extends React.Component {
     render(){
         let currentUser = CurrentUser(this.props);
         let currentQuery = CurrentQuery(this.props);
+        let sort = currentQuery.sort;
+        if(_.isEmpty(sort)){
+            sort = {"name": "ASC"}
+        }
         return(
             <Page
                 currentUser={currentUser}
@@ -87,7 +91,7 @@ class Index extends React.Component {
                                      limit: currentQuery.perPage,
                                      offset: currentQuery.offset,
                                      where: InjectMiddleWhere(currentQuery.where, {'id': {'in': currentUser.getTeamIDs()}, "active": {"eq": true}}),
-                                     sort: currentQuery.sort,
+                                     sort: sort,
                                  }
                              }}
                      >

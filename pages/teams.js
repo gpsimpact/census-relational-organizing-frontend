@@ -6,6 +6,7 @@ import Page from '../components/Page';
 import { gql } from "apollo-boost";
 import { Query } from 'react-apollo';
 import Link from "next/link";
+import _ from 'lodash';
 
 import { CurrentQuery } from '../lib/constructors/BaseQueryConstructor';
 import Nav from 'react-bootstrap/Nav';
@@ -52,6 +53,10 @@ class Teams extends React.Component {
   render(){
     let currentUser = CurrentUser(this.props);
     let currentQuery = CurrentQuery(this.props);
+    let sort = currentQuery.sort;
+        if(_.isEmpty(sort)){
+            sort = {"name": "ASC"}
+        }
       return(
         <Page currentUser={currentUser}>
             <Container>
@@ -63,7 +68,7 @@ class Teams extends React.Component {
                                         limit: currentQuery.perPage,
                                         offset: currentQuery.offset,
                                         where: InjectMiddleWhere(currentQuery.where, {'active': {'eq': true}}),
-                                        sort: currentQuery.sort,
+                                        sort: sort,
                                     }
                                 }}
                         >
