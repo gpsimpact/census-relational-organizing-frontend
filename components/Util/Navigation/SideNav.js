@@ -9,9 +9,11 @@ const SideNavContainer = styled('div')`
     overflow-y: scroll;
     overflow-x: hidden;
     background: ${props => props.theme.colors.tertiary};
+    position: relative;
     @media (min-width: 1200px){
         min-height: 80vh;
     }
+   
 
 `;
 

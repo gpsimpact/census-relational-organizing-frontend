@@ -119,9 +119,17 @@ export const SideNavbar = styled(Navbar)`
             margin-top: -4px;
         }
     }
-    @media(min-width: 768px){
+     @media(min-width: 768px){
         position: fixed;
+        max-width: 180px;
     }
+    @media(min-width: 992px){
+        max-width: 190px;
+    }
+    @media(min-width: 1200px){
+        max-width: 200px;
+    }
+  
 `;
 
 export const SideCNav = styled(Nav)`
