@@ -107,7 +107,6 @@ export class DashAdminHome extends React.Component {
                                 </Col>
                                 <Query query={GET_TEAM_TASK_COMPLETIONS} variables={{teamId:currentTeam.id}} fetchPolicy="cache-and-network">
                                     {({data, loading, error}) => {
-                                        console.log(data);
                                         return(
                                         <>
                                             {error && <ErrorIcon error={error}/>}

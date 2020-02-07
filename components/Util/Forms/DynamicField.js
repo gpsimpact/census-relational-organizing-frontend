@@ -18,6 +18,18 @@ export class DynamicField extends React.Component {
                     />
 
                 );
+            case "date":
+                return(
+                    <Field 
+                        id={fieldDef.name} 
+                        name={fieldDef.name}
+                        label={fieldDef.label}
+                        placeholder={fieldDef.label}
+                        component={TextField}
+                        type="date"
+                    />
+
+                );
             case "radio": 
                 return (
                     <RadioButtonGroup

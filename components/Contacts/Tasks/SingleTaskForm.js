@@ -93,6 +93,16 @@ export class SingleTaskForm extends React.Component {
         const supplementalFields = task.supplementalFields ? task.supplementalFields : [];
         const taskFields = [...formFields, ...supplementalFields];
 
+        if(initialValues && !initialValues.date_completed){
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            const yyyy = today.getFullYear();
+            // initialValues.date_completed = today;
+        }
+
+      
+
     
         if(taskFields.length > 0) {
             let shape = {};
@@ -105,7 +115,10 @@ export class SingleTaskForm extends React.Component {
                 catch(e){
                 }
                 initialValues[field.name] = value;
-              
+
+                if(field.type === 'date' && !field.value) {
+                    field.value = new Date().toISOString().substring(0, 10);
+                }            
 
                 if(field.validationTests){
                     const vTest = JSON.parse(field.validationTests);
@@ -118,8 +131,6 @@ export class SingleTaskForm extends React.Component {
                     }
             });
 
-
-            
 
             let schema = [
                 ["yup.object"],
