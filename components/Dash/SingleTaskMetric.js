@@ -22,38 +22,38 @@ const TaskMetricInner = styled('div')`
 `;
 
 export class SingleTaskMetric extends React.Component {
-    render(){
-    const { task, currentUser } = this.props;
-    const language = currentUser.getLanguage();
-    let content = _.find(task.languageVariations, f => f.language === language);
-    if(!content){
-        content = _.find(task.languageVariations, f => f.language === 'EN');
-    }
+    render() {
+        const { task, currentUser, dataFromParent0 } = this.props;
+        const language = currentUser.getLanguage();
+        let content = _.find(task.languageVariations, f => f.language === language);
+        if (!content) {
+            content = _.find(task.languageVariations, f => f.language === 'EN');
+        }
 
-    const complete = task.countComplete;
-    const total = task.teamTargetsCount;
+        const complete = task.countComplete;
+        const total = task.teamTargetsCount;
 
-    const completionPercentage = Math.round((complete/total) * 100);
-        return(
+        const completionPercentage = Math.round((complete / total) * 100);
+        return (
             <TaskMetricContainer>
                 <H4 uppercase>{content.title}</H4>
                 <TaskMetricInner>
                     <Row bsPrefix={'row align-items-center'}>
                         <Col md={3}>
-                            <H5 uppercase> Completion Rate: </H5>
-                                <Row>
-                                    <Col md={6}>
-                                         <H6> {complete} / {total}</H6>
-                                    </Col>
-                                    <Col md={6}>
-                                        <H6> {completionPercentage}% </H6>
-                                    </Col>
-                                </Row>
-                           
+                            <H5 uppercase>{dataFromParent0('COMPLETION_RATE_')}</H5>
+                            <Row>
+                                <Col md={6}>
+                                    <H6> {complete} / {total}</H6>
+                                </Col>
+                                <Col md={6}>
+                                    <H6> {completionPercentage}% </H6>
+                                </Col>
+                            </Row>
+
                         </Col>
                         <Col md={9}>
-                            <H5 uppercase> Progress: </H5>
-                            <ProgressBar percent={`${completionPercentage}%`}/>
+                            <H5 uppercase> {dataFromParent0('PROGRESS')}: </H5>
+                            <ProgressBar percent={`${completionPercentage}%`} />
                         </Col>
                     </Row>
                 </TaskMetricInner>

@@ -5,6 +5,7 @@ import { Card, CardHeader, CardInner, CardFooter, CardTitle, IconLink, CardParag
 import { DashPaths, AdminPaths } from '../../paths';
 import styled from 'styled-components';
 import { gql } from "apollo-boost";
+import { useTranslation } from 'react-i18next';
 
 import { Mutation } from 'react-apollo';
 import { ErrorMessage } from '../Util/Loading';
@@ -13,17 +14,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const ApplicationUnavailable = styled('h4')`
-    text-align: center;
-    background-color: ${props => props.theme.colors.tertiary};
-    text-transform: uppercase;
-    font-style: italic;
+text-align: center;
+background-color: ${props => props.theme.colors.tertiary};
+text-transform: uppercase;
+font-style: italic;
     padding: 12px 25px;
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};
-`;
-
-const SuccessPending = styled('h4')`
+    `;
+    
+    const SuccessPending = styled('h4')`
     text-align: center;
     background-color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
@@ -32,23 +33,23 @@ const SuccessPending = styled('h4')`
     font-weight: 700;
     font-size: .8rem;
     color: ${props => props.theme.colors.white};
-`;
-
-export const ApplicationPending = styled('div')`
+    `;
+    
+    export const ApplicationPending = styled('div')`
     background-color: ${props => props.theme.colors.tertiary};
     h4 {
         text-align: center;
-    background-color: ${props => props.theme.colors.tertiary};
-    text-transform: uppercase;
-    font-style: italic;
-    padding: 12px 25px;
-    font-weight: 700;
-    font-size: .8rem;
-    color: ${props => props.theme.colors.white};
+        background-color: ${props => props.theme.colors.tertiary};
+        text-transform: uppercase;
+        font-style: italic;
+        padding: 12px 25px;
+        font-weight: 700;
+        font-size: .8rem;
+        color: ${props => props.theme.colors.white};
     }
-`;
-
-export const REQUEST_TEAM_MEMBERSHIP_PUBLIC = gql`
+    `;
+    
+    export const REQUEST_TEAM_MEMBERSHIP_PUBLIC = gql`
     mutation requestTeamMembershipPublic($teamId: String!){
         requestTeamMembership(teamId: $teamId){
             code
@@ -63,8 +64,9 @@ export const TeamPermissionCard = (props) => {
     if(!props.team){
         return null;
     }
+    const { t } = useTranslation();
     const { team, currentUser } = props;
-
+    
     return(
         <Card>
             <CardHeader>
@@ -88,7 +90,7 @@ export const TeamPermissionCard = (props) => {
                {
                     currentUser && (currentUser.hasTeamPermission(team.id, 'MEMBER') || currentUser.hasTeamPermission(team.id, 'ADMIN'))
                     ?
-                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
+                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> {t('DASHBOARD')} </IconLink></Link>
                     :
                     currentUser && currentUser.hasTeamPermission(team.id, 'APPLICANT') 
                     ?
@@ -142,7 +144,7 @@ export const TeamPermissionCard = (props) => {
                         }
                         return(
                             <IconLink onClick={() => mutate()}>
-                                Apply for membership
+                                {t('APPLY_FOR__MEMBERSHIP')}
                             </IconLink>
                         )
                     }}

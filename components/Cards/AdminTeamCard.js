@@ -7,8 +7,11 @@ import Col from 'react-bootstrap/Col';
 import { DashPaths, AdminPaths } from '../../paths';
 import {Edit} from 'styled-icons/fa-solid/Edit';
 
+import { useTranslation } from 'react-i18next';
+
 
 export const AdminTeamCard = (props) => {
+    const { t } = useTranslation();
     const { team } = props;
     const allowedPerms = ["APPLICANT", "MEMBER", "ADMIN"]
 
@@ -69,7 +72,7 @@ export const AdminTeamCard = (props) => {
                 </PermContainer>
             </CardInner>
             <CardFooter>
-                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> Dashboard </IconLink></Link>
+                    <Link href={{pathname: `${DashPaths.index}`, query: { team: team.id}}}><IconLink href={`${DashPaths.index}?team=${team.id}`}><i className="fas fa-tachometer-alt"></i> {t('DASHBOARD')} </IconLink></Link>
 
             </CardFooter>
 

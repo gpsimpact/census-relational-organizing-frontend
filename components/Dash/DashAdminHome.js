@@ -49,20 +49,21 @@ const GET_TEAM_TASK_COMPLETIONS = gql`
 
 export class DashAdminHome extends React.Component {
     render(){
-        const {currentTeam, currentUser } = this.props;
+        const {currentTeam, currentUser, dataFromParent } = this.props;
+        
         return(
           
                         <React.Fragment>
                         <Row>
                             <Col md={12}>
-                                <H3 uppercase>Team Counts</H3>
+                                <H3 uppercase>{dataFromParent('TEAM_COUNTS')}</H3>
                             </Col>
                         
                             <Col lg={4}>
                             <Query query={TEAM_VOLS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, error, loading}) => (
                                 <SumWrapper>
-                                    <SumCountTitle>Total Volunteers</SumCountTitle>
+                                    <SumCountTitle>{dataFromParent('TOTAL_VOLUNTEERS')}</SumCountTitle>
                                     {error && <ErrorIcon error={error}/>}
                                     <SumCountNum>{data && data.summaryCountAllTeamUsers ? data.summaryCountAllTeamUsers : <NotInterested/>}</SumCountNum>
 
@@ -76,7 +77,7 @@ export class DashAdminHome extends React.Component {
                             <Query query={TEAM_TARGETS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, error, loading}) => (
                                     <SumWrapper>
-                                        <SumCountTitle>Total Contacts</SumCountTitle>
+                                        <SumCountTitle>{dataFromParent('TOTAL_CONTACTS')}</SumCountTitle>
                                         {error && <ErrorIcon error={error}/>}
                                             <SumCountNum>{data && data.summaryCountAllTeamTargets ? data.summaryCountAllTeamTargets : <NotInterested/>}</SumCountNum>
                                     </SumWrapper>
@@ -90,7 +91,7 @@ export class DashAdminHome extends React.Component {
                             {({data, error, loading}) => (
 
                                 <SumWrapper>
-                                    <SumCountTitle>Total Household Size</SumCountTitle>
+                                    <SumCountTitle>{dataFromParent('TOTAL_HOUSEHOLD_SIZE')}</SumCountTitle>
                                     {error && <ErrorIcon error={error}/>}
                                         <SumCountNum>{data && data.summaryTotalAllTeamHouseholdSize ? data.summaryTotalAllTeamHouseholdSize : <NotInterested/>}</SumCountNum>
                                 </SumWrapper>
@@ -103,7 +104,7 @@ export class DashAdminHome extends React.Component {
 
                             <Row>
                                 <Col md={12}>
-                                    <H3 uppercase> Team Tasks</H3>
+                                    <H3 uppercase>{dataFromParent('TEAM_TASKS')}</H3>
                                 </Col>
                                 <Query query={GET_TEAM_TASK_COMPLETIONS} variables={{teamId:currentTeam.id}} fetchPolicy="cache-and-network">
                                     {({data, loading, error}) => {
@@ -114,7 +115,7 @@ export class DashAdminHome extends React.Component {
                                                 && data.summaryCountAllTeamTasks.map((task, idx) => {
                                                     return(
                                                         <Col md={12} key={idx}>
-                                                            <SingleTaskMetric task={task} currentUser={currentUser}/>
+                                                            <SingleTaskMetric task={task} currentUser={currentUser} dataFromParent0={dataFromParent}/>
                                                         </Col>
                                                     )
                                                 })

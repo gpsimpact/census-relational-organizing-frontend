@@ -2,6 +2,7 @@ import { Mutation, withApollo } from 'react-apollo'
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { TextField, SubmitButton, FormError } from '../Util/Forms';
 import { Box } from '../Util/Layout';
@@ -23,6 +24,7 @@ export const REGISTER_MUTATION = gql`
     }  
 `;
 export const RegisterForm = ({teamSlug}) => {
+    const { t } = useTranslation();
     return(
         <Mutation mutation={REGISTER_MUTATION}>
         {(mutation, { data, loading, error}) => (
@@ -92,8 +94,8 @@ export const RegisterForm = ({teamSlug}) => {
                                     <Field
                                         id="firstName"
                                         name="firstName"
-                                        label="First Name"
-                                        placeholder="First Name"
+                                        label={t('FIRST_NAME')}
+                                        placeholder={t('FIRST_NAME')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -101,8 +103,8 @@ export const RegisterForm = ({teamSlug}) => {
                                     <Field
                                             id="lastName"
                                             name="lastName"
-                                            label="Last Name"
-                                            placeholder="Last Name"
+                                            label={t('LAST_NAME(S)')}
+                                            placeholder={t('LAST_NAME(S)')}
                                             component={TextField}
                                         />
                                 </Col>
@@ -113,8 +115,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="email"
                                         name="email"
-                                        label="Email"
-                                        placeholder="Email"
+                                        label={t('EMAIL')}
+                                        placeholder={t('EMAIL')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -127,8 +129,8 @@ export const RegisterForm = ({teamSlug}) => {
                                     <Field
                                         id="address"
                                         name="address"
-                                        label="Address"
-                                        placeholder="Address"
+                                        label={t('ADDRESS')}
+                                        placeholder={t('ADDRESS')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -139,8 +141,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="city"
                                         name="city"
-                                        label="City"
-                                        placeholder="City"
+                                        label={t('CITY')}
+                                        placeholder={t('CITY')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -149,8 +151,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="state"
                                         name="state"
-                                        label="State"
-                                        placeholder="State"
+                                        label={t('STATE')}
+                                        placeholder={t('STATE')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -159,8 +161,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="zip5"
                                         name="zip5"
-                                        label="Zip Code"
-                                        placeholder="Zip Code"
+                                        label={t('ZIP_CODE')}
+                                        placeholder={t('ZIP_CODE')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -171,8 +173,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="phone"
                                         name="phone"
-                                        label="Phone"
-                                        placeholder="Phone"
+                                        label={t('PHONE')}
+                                        placeholder={t('PHONE')}
                                         component={TextField}
                                     />
                                 </Col>

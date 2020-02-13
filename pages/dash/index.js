@@ -16,10 +16,22 @@ import { DashPaths } from "../../paths";
 import Link from "next/link";
 
 import { DashAdminHome, DashVolHome } from "../../components/Dash";
-import { i18n, withTranslation } from '../../lib/i18'
+import { i18n, withTranslation } from '../../lib/i18';
 
 
 class TeamDashboard extends React.Component {
+    static async getInitialProps({...ctx}) {
+        const { currentUser } = await GetCurrentUser(ctx.apolloClient);
+        let nextPage;
+        const teamPerms = currentUser && currentUser.me && currentUser.me.teamPermissions ? currentUser.me.teamPermissions : null;
+        if(currentUser && currentUser.me){
+           if(!teamPerms || teamPerms.length < 1){
+               nextPage='/teams';
+           }
+        };
+        return { currentUser, nextPage, namespacesRequired: ['common'],};
+      }
+
     render(){
         let currentUser = CurrentUser(this.props);
         let currentTeam = this.props.currentTeam ? this.props.currentTeam : null;
@@ -57,13 +69,13 @@ class TeamDashboard extends React.Component {
                             {
                                 (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.slug, 'ADMIN')) &&
                                 <React.Fragment>
-                                    <DashAdminHome currentTeam={currentTeam} currentUser={currentUser}/>
+                                    <DashAdminHome currentTeam={currentTeam} currentUser={currentUser} dataFromParent={ this.props.t }/>
                                     <HR/>
                                 </React.Fragment>
 
                             }
 
-                            <DashVolHome currentTeam={currentTeam} currentUser={currentUser}/>
+                            <DashVolHome currentTeam={currentTeam} currentUser={currentUser} dataFromParent={ this.props.t } />
                             
 
                         </Box>

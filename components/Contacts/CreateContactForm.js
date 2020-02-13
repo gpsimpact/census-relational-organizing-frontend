@@ -11,6 +11,7 @@ import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useTranslation } from 'react-i18next';
 
 import Person from '@material-ui/icons/Person';
 import Email from '@material-ui/icons/Email';
@@ -38,15 +39,16 @@ export const CREATE_CONTACT = gql`
     }
 `;
 export const CreateContactForm = (props) => {
+    const { t } = useTranslation();
     const { team, currentUser, tibs } = props;
     const raceEthnicity = cleanRaceEthnicityArray([]);
     const additionalRaceEthnicityArray = extractAdditionalRaceEthnicity([]);
-
+    
     return(
         <Mutation mutation={CREATE_CONTACT}>
             {(mutation, { data, loading, error}) => (
                 <Formik
-                    initialValues={
+                initialValues={
                         {
                             firstName:"", 
                             lastName:"",
@@ -150,8 +152,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="firstName"
                                         name="firstName"
-                                        label="First Name"
-                                        placeholder="First Name"
+                                        label={t('FIRST_NAME')}
+                                        placeholder={t('FIRST_NAME')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -159,8 +161,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="lastName"
                                         name="lastName"
-                                        label="Last Name"
-                                        placeholder="Last Name"
+                                        label={t('LAST_NAME(S)')}
+                                        placeholder={t('LAST_NAME(S)')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -169,7 +171,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="isNameAlias"
                                         name="isNameAlias"
-                                        label="Name Alias"
+                                        label={t('NAME_ALIAS')}
                                         component={CheckBox}
                                     />
 
@@ -243,8 +245,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="email"
                                         name="email"
-                                        label="Email"
-                                        placeholder="Email"
+                                        label={t('EMAIL')}
+                                        placeholder={t('EMAIL')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -258,8 +260,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="address"
                                         name="address"
-                                        label="Address"
-                                        placeholder="Address"
+                                        label={t('ADDRESS')}
+                                        placeholder={t('ADDRESS')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -268,7 +270,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="retainAddress"
                                         name="retainAddress"
-                                        label="Retain Address"
+                                        label={t('RETAIN_ADDRESS')}
                                         component={CheckBox}
                                     />
 
@@ -285,8 +287,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="city"
                                         name="city"
-                                        label="City"
-                                        placeholder="City"
+                                        label={t('CITY')}
+                                        placeholder={t('CITY')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -294,8 +296,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="state"
                                         name="state"
-                                        label="State"
-                                        placeholder="State"
+                                        label={t('STATE')}
+                                        placeholder={t('STATE')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -303,8 +305,8 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="zip5"
                                         name="zip5"
-                                        label="Zip Code"
-                                        placeholder="Zip Code"
+                                        label={t('ZIP_CODE')}
+                                        placeholder={t('ZIP_CODE')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -319,13 +321,13 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="phone"
                                         name="phone"
-                                        label="Phone"
-                                        placeholder="Phone"
+                                        label={t('PHONE')}
+                                        placeholder={t('PHONE')}
                                         component={PhoneField}
                                     />
                                 </Col>
                                 <Col lg={5} md={12}>
-                                      <FormDisclaimer>This is a mobile phone.</FormDisclaimer>
+                                      <FormDisclaimer>{t('THIS_IS_A_MOBILE_PHONE')}</FormDisclaimer>
                                     <Field
                                         id="isPhoneMobile"
                                         name="isPhoneMobile"
@@ -345,7 +347,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="householdSize"
                                         name="householdSize"
-                                        label="Household Size"
+                                        label={t('HOUSEHOLD_SIZE')}
                                         placeholder="#"
                                         type="number"
                                         component={TextField}
@@ -356,7 +358,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="twitterHandle"
                                         name="twitterHandle"
-                                        label="Twitter Handle"
+                                        label={t('TWITTER_HANDLE')}
                                         placeholder="@"
                                         component={TextField}
                                     />
@@ -367,7 +369,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="facebookProfile"
                                         name="facebookProfile"
-                                        label="Facebook Profile"
+                                        label={t('FACEBOOK_PROFILE')}
                                         placeholder="Facebook URL"
                                         component={TextField}
                                     />
@@ -382,7 +384,7 @@ export const CreateContactForm = (props) => {
                                 <Col lg={5} md={12}>
                                       <Field 
                                         id="tempSexualOrientation"
-                                        label={"Sexual Orientation"} 
+                                        label={t('SEXUAL_ORIENTATION')}
                                         name={"tempSexualOrientation"}
                                         placeholderOption="-- Select --"
                                         onChange={(e) => {
@@ -402,7 +404,7 @@ export const CreateContactForm = (props) => {
                                 <Col lg={5} md={12}>
                                  <Field 
                                         id="sexualOrientation"
-                                        label={"Please Specify: Sexual Orientation"}
+                                        label={t('PLEASE_SPECIFY') + ': ' + t('SEXUAL_ORIENTATION')}
                                         name={"sexualOrientation"}
                                         component={TextField}
                                         hidden={props.values.tempSexualOrientation !== 'OTHER' ? 1 : 0}
@@ -417,7 +419,7 @@ export const CreateContactForm = (props) => {
                                     <Col lg={5} md={12}>
                                     <Field 
                                             id="tempGenderIdentity"
-                                            label={"Gender Identity"} 
+                                            label={t('GENDER_IDENTITY')}
                                             name={"tempGenderIdentity"}
                                             placeholderOption="-- Select --"
                                             onChange={(e) => {
@@ -435,7 +437,7 @@ export const CreateContactForm = (props) => {
                                     <Col lg={6} md={12}>
                                       <Field 
                                         id="genderIdentity"
-                                        label={"Please Specify: Gender Identity"}
+                                        label={t('PLEASE_SPECIFY') + ': ' + t('GENDER_IDENTITY')}
                                         name={"genderIdentity"}
                                         component={TextField}
                                         hidden={props.values.tempGenderIdentity !== 'OTHER' ? 1 : 0}
@@ -454,7 +456,7 @@ export const CreateContactForm = (props) => {
                                         return(
                                             <CheckBoxGroupContainer>
                                                 <fieldset>
-                                                    <legend>Race / Ethnicity <small> (check all that apply) </small></legend>
+                                                    <legend>Race / Ethnicity <small> ({t('CHECK_ALL_THAT_APPLY')}) </small></legend>
                                                     {raceEthnicityOptions.map((option, idx) => {
                                                         return(
                                                             <DynamicCheckboxLabel key={idx}>
@@ -483,7 +485,7 @@ export const CreateContactForm = (props) => {
                                 />
                                     <Field 
                                         id="additionalRaceEthnicity"
-                                        label={"Please Specify: Race/Ethnicity"}
+                                        label={t('PLEASE_SPECIFY') + ': ' + t('RACE_/_ETHNICITY')}
                                         name={"additionalRaceEthnicity"}
                                         component={TextField}
                                     />

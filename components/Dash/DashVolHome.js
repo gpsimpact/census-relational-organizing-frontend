@@ -45,14 +45,14 @@ const GET_MY_TASK_COMPLETIONS = gql`
 
 export class DashVolHome extends React.Component {
     render(){
-        const {currentTeam, currentUser } = this.props;
+        const {currentTeam, currentUser, dataFromParent } = this.props;
 
         return(
       
                     <React.Fragment>
                     <Row>
                         <Col md={12}>
-                            <H3 uppercase>My Counts</H3>
+                            <H3 uppercase>{dataFromParent('MY_COUNTS')}</H3>
                         </Col>
                     
                      
@@ -60,7 +60,7 @@ export class DashVolHome extends React.Component {
                         <Query query={MY_TARGETS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                             {({data, loading, error}) => (
                             <SumWrapper >
-                                <SumCountTitle>Total Contacts</SumCountTitle>
+                                <SumCountTitle>{dataFromParent('TOTAL_CONTACTS')}</SumCountTitle>
                                 {error && <ErrorIcon error={error}/>}
                                 <SumCountNum>{data && data.summaryCountMyTeamTargets ? data.summaryCountMyTeamTargets : <NotInterested/>}</SumCountNum>
 
@@ -74,7 +74,7 @@ export class DashVolHome extends React.Component {
                         {({data, loading, error}) => (
 
                             <SumWrapper>
-                                <SumCountTitle>Total Household Size</SumCountTitle>
+                                <SumCountTitle>{dataFromParent('TOTAL_HOUSEHOLD_SIZE')}</SumCountTitle>
                                 {error && <ErrorIcon error={error}/>}
                                 <SumCountNum>{data && data.summaryTotalMyTeamHouseholdSize ? data.summaryTotalMyTeamHouseholdSize : <NotInterested/>}</SumCountNum>
 
@@ -88,7 +88,7 @@ export class DashVolHome extends React.Component {
                         <HR/>
                         <Row>
                             <Col md={12}>
-                                <H3 uppercase> My Tasks </H3>
+                                <H3 uppercase>{dataFromParent('MY_TASKS')}</H3>
                             </Col>
                             <Query query={GET_MY_TASK_COMPLETIONS} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, loading, error}) => (
