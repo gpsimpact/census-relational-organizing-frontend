@@ -6,18 +6,20 @@ import { DashPaths } from '../../paths';
 import { H3 } from '../Util/Typography';
 import { SendGlobalAdminEmail } from '../Auth';
 import { SendTeamAdminEmail } from '../Auth';
+import { useTranslation } from 'react-i18next';
 
 export const DashSideNav = (props) => {
+    const { t } = useTranslation();
     const { currentUser, currentTeam } = props;
     return(
         <React.Fragment>
-            <H3 uppercase primary> {currentTeam.name} Dashboard </H3>
+            <H3 uppercase primary> {currentTeam.name} {t('DASHBOARD')} </H3>
 
             {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')) && 
                 <Link href={{pathname: `${DashPaths.index}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.index}?team=${currentTeam.id}`}>
-                        Dashboard
+                    {t('DASHBOARD')}
                     </Nav.Link>
                 </Link>
             }
@@ -79,11 +81,11 @@ export const DashSideNav = (props) => {
             {
                 currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')
                 ?
-                <SendGlobalAdminEmail/>
+                <SendGlobalAdminEmail dataFromParent={ t }/>
                 :
                 currentUser.hasTeamPermission(currentTeam.id, 'MEMBER')
                 ?
-                <SendTeamAdminEmail team={currentTeam}/>
+                <SendTeamAdminEmail team={currentTeam} dataFromParent={ t }/>
                 :
                 null
             }

@@ -32,7 +32,9 @@ class  DashTasksIndex extends React.Component {
                     <Row bsPrefix="row py-5">
                         <Col>
                         <Box>
-                            <H1>Tasks</H1>
+                            <H1>
+                                {this.props.t('TASKS')}
+                            </H1>
                             <LoadingBar />
                             <Info> Tasks coming soon.  Example below.</Info>
                             <img src="https://civic-promotor.s3-us-west-2.amazonaws.com/images/TaskExample_yellow.png"/>

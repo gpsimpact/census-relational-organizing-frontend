@@ -37,7 +37,7 @@ export const GET_CONTACT_ATTEMPTS = gql`
 `;
 export class ListContactAttempts extends React.Component {
     render(){
-        const { target } = this.props;
+        const { target, dataFromParent } = this.props;
         return(
             <Query query={GET_CONTACT_ATTEMPTS}
                     variables={{
@@ -56,18 +56,18 @@ export class ListContactAttempts extends React.Component {
                     {({data, loading, error}) => {
                         return(
                             <div>
-                                <CreateContactAttempt target={target}/>
+                                <CreateContactAttempt target={target} dataFromParent0={dataFromParent} />
                                 {data && data.targetContactAttempts && data.targetContactAttempts.items && data.targetContactAttempts.items.length > 0 
                                     && data.targetContactAttempts.items.map((CA, idx) => {
                                         return(
                                             <div key={idx}>
                                                 <HR/>
-                                                  <H5 uppercase>Created:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
-                                                    <H5 uppercase> Method: <small>{CA.method.replace(/_/g, " ")}</small></H5>
-                                                    <H5 uppercase> Disposition: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
+                                                  <H5 uppercase>{dataFromParent('CREATED')}:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
+                                                    <H5 uppercase>{dataFromParent('METHOD')}: <small>{CA.method.replace(/_/g, " ")}</small></H5>
+                                                    <H5 uppercase>{dataFromParent('CONTACT_DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
-                                                <EditContactAttempt target={target} CA={CA}/>
+                                                <EditContactAttempt target={target} CA={CA} dataFromParent0={dataFromParent} />
                                             </div>
                                         )
                                     })

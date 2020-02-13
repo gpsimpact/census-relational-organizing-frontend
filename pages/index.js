@@ -24,7 +24,8 @@ import { FilterForm, FilterToggler } from "../components/Filters";
 import {TeamsWhere, TeamsSort } from '../lib/filters';
 import { TeamPermissionCard } from '../components/Cards';
 
-import { i18n, withTranslation } from '../lib/i18'
+import { i18n, withTranslation } from '../lib/i18';
+
 
 
 export const GET_USER_TEAMS = gql`
@@ -68,7 +69,9 @@ class Index extends React.Component {
                     <Container>
                         <Row>
                             <Col lg={8}>
-                                <H1 uppercase>Welcome to Civic Promotor</H1>
+                                <H1 uppercase>
+                                    {this.props.t('WELCOME_TO_CIVIC_PROMOTOR')}
+                                </H1>
                                 
                             </Col>
                             <Col lg={4}>
@@ -113,7 +116,9 @@ class Index extends React.Component {
                                         <Col xl={3}>
                                             <ActionNav className='justify-content-end'>
                                                 <Link href={PublicPaths.teams}>
-                                                    <Nav.Link href={PublicPaths.teams}> All Teams </Nav.Link>
+                                                    <Nav.Link href={PublicPaths.teams}> 
+                                                        {this.props.t('ALL_TEAMS')} 
+                                                    </Nav.Link>
                                                 </Link>
                                                 <FilterToggler />
 

@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FormError, FormSuccess, TextAreaField, TextField, SubmitButton } from '../Util/Forms';
+import { i18n, withTranslation } from '../../lib/i18';
+import { useTranslation } from 'react-i18next';
 
 import { H3, H4 } from '../Util/Typography';
 import { CustomModal } from '../Util/Layout/Modal';
@@ -31,6 +33,8 @@ export class SendGlobalAdminEmail extends React.Component {
     }
 
     render(){
+        const {dataFromParent} = this.props;
+
         return(
 
             <Mutation mutation={SEND_GLOBAL_ADMIN_EMAIL}>
@@ -68,14 +72,14 @@ export class SendGlobalAdminEmail extends React.Component {
                 }}
                 render={props =>(
                     <React.Fragment>
-                            <a className="nav-link" onClick={() =>  this.setState({open: true})}>Help</a>
+                <a className="nav-link" onClick={() =>  this.setState({open: true})}>{dataFromParent('HELP')}</a>
                             <CustomModal 
                                 show={this.state.open}
                                 onHide={() => this.setState({open:false})}
                                 centered
                             >
                                 <Modal.Header closeButton>
-                                    <H3 uppercase>Help</H3>
+                                    <H3 uppercase>{dataFromParent('HELP')}</H3>
                                 </Modal.Header>
 
                                 <Modal.Body>

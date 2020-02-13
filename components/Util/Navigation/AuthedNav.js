@@ -10,23 +10,23 @@ import { AdminPaths,PublicPaths } from '../../../paths';
 export class AuthedNav extends React.Component {
 
     render(){
-        const { currentUser } = this.props;
+        const { currentUser, dataFromParent } = this.props;
         
         return(
             <React.Fragment>
                 {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.index}>
                     <Nav.Link href={AdminPaths.index}>
-                        Admin
+                        {dataFromParent('ADMIN')}
                     </Nav.Link>
                 </Link>
                 }
                 <CNavDropdown id="account" title="Account">
                     <Link href={PublicPaths.profile}>
-                        <NavDropdown.Item href={PublicPaths.profile}> Profile </NavDropdown.Item>
+                        <NavDropdown.Item href={PublicPaths.profile}>{dataFromParent('PROFILE')}</NavDropdown.Item>
                     </Link>
                     <Link href="/logout">
-                        <NavDropdown.Item href={'/logout'}>Logout</NavDropdown.Item>
+                        <NavDropdown.Item href={'/logout'}>{dataFromParent('LOGOUT')}</NavDropdown.Item>
                     </Link>
 
                 </CNavDropdown>

@@ -90,7 +90,9 @@ class Teams extends React.Component {
                                         <ActionNav className='justify-content-end'>
                                              {currentUser && 
                                                 <Link href={'/'}>
-                                                    <Nav.Link href={'/'}> My Teams </Nav.Link>
+                                                    <Nav.Link href={'/'}> 
+                                                        {this.props.t('MY_TEAMS')}
+                                                    </Nav.Link>
                                                 </Link>
                                             }
                                                 <FilterToggler />

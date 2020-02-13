@@ -8,6 +8,7 @@ import { FormError, FormSuccess,TextField,SubmitButton, TextAreaField } from '..
 import { LoadingBar } from '../Util/Loading';
 import redirect from '../../lib/redirect'
 import { DashPaths } from '../../paths';
+import { useTranslation } from 'react-i18next';
 
 
 export const CREATE_TEAM_ADMIN_MUTATION = gql`
@@ -28,6 +29,8 @@ export const CREATE_TEAM_ADMIN_MUTATION = gql`
 
 
 export const AdminCreateTeamForm = () => {
+    const { t } = useTranslation();
+    
     return(
         <Mutation mutation={CREATE_TEAM_ADMIN_MUTATION}>
             {(mutation, { data, loading, error}) => (

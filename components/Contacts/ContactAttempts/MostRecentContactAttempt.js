@@ -32,7 +32,7 @@ export const GET_CONTACT_ATTEMPT = gql`
 `;
 export class MostRecentContactAttempt extends React.Component {
     render(){
-        const { target } = this.props;
+        const { target, dataFromParent } = this.props;
         return(
             <Query query={GET_CONTACT_ATTEMPT}
                     variables={{
@@ -62,9 +62,9 @@ export class MostRecentContactAttempt extends React.Component {
 
                                                  <H3 uppercase> Latest Contact Attempt</H3>
 
-                                                  <H5 uppercase>Created:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
-                                                    <H5 uppercase> Method: <small>{CA.method.replace("_", " ")}</small></H5>
-                                                    <H5 uppercase> Disposition: <small>{CA.disposition.replace("_", " ")}</small></H5>
+                                                  <H5 uppercase>{dataFromParent('CREATED')}:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
+                                                    <H5 uppercase>{dataFromParent('METHOD')}: <small>{CA.method.replace("_", " ")}</small></H5>
+                                                    <H5 uppercase>{dataFromParent('CONTACT_DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
                                             </div>

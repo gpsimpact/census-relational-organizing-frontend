@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { AdminPaths } from '../../paths';
 import { H3 } from '../Util/Typography';
+import { useTranslation } from 'react-i18next';
 
 export const AdminSideNav = (props) => {
+    const { t } = useTranslation();
     const { currentUser } = props;
     return(
         <React.Fragment>
@@ -13,14 +15,14 @@ export const AdminSideNav = (props) => {
             {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.index}>
                     <Nav.Link href={AdminPaths.index}>
-                        Admin
+                        {t('ADMIN')}
                     </Nav.Link>
                 </Link>
             }
             {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.teams.index}>
                     <Nav.Link href={AdminPaths.teams.index}>
-                        Teams
+                        {t("TEAMS")}
                     </Nav.Link>
                 </Link>
             }
@@ -41,7 +43,7 @@ export const AdminSideNav = (props) => {
               {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.tasks.index}>
                     <Nav.Link href={AdminPaths.tasks.index}>
-                        Tasks
+                        {t('TASKS')}
                     </Nav.Link>
                 </Link>
             }
