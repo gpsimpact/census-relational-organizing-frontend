@@ -29,9 +29,10 @@ export class SendTeamAdminEmail extends React.Component {
             open:false
         }
     }
-
+    
     render(){
         const {team} = this.props;
+        const {dataFromParent} = this.props;
 
         return(
 
@@ -71,14 +72,14 @@ export class SendTeamAdminEmail extends React.Component {
                 }}
                 render={props =>(
                     <React.Fragment>
-                            <a className="nav-link" onClick={() =>  this.setState({open: true})}>Help</a>
+                            <a className="nav-link" onClick={() =>  this.setState({open: true})}>{dataFromParent('HELP')}</a>
                             <CustomModal 
                                 show={this.state.open}
                                 onHide={() => this.setState({open:false})}
                                 centered
                             >
                                 <Modal.Header closeButton>
-                                    <H3 uppercase>Help</H3>
+                                    <H3 uppercase>{dataFromParent('HELP')}</H3>
                                 </Modal.Header>
 
                                 <Modal.Body>

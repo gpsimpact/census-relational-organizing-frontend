@@ -51,7 +51,7 @@ export class CreateContactAttempt extends React.Component {
     }
     
     render(){
-        const { target } = this.props;
+        const { target, dataFromParent0 } = this.props;
 
         return(
             <Mutation mutation={CREATE_CONTACT_ATTEMPT}
@@ -165,7 +165,7 @@ export class CreateContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <Field 
                                                     id="disposition"
-                                                    label={"Contact Disposition"} 
+                                                    label={dataFromParent0('CONTACT_DISPOSITION')}
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
                                                     options={props.values.method === 'IN_PERSON' ? inPersonOptions : phoneOptions}
@@ -177,7 +177,7 @@ export class CreateContactAttempt extends React.Component {
                                     <Col md={12}>
                                     <Field 
                                             id="content"
-                                            label={"Contact Note"} 
+                                            label={dataFromParent0('CONTACT_NOTE')}
                                             name={"content"}
                                             placeholderOption="-- Select --"
                                             component={TextAreaField}

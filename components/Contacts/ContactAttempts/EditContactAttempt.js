@@ -49,7 +49,7 @@ export class EditContactAttempt extends React.Component {
     }
 
     render(){
-        const { target, CA } = this.props;
+        const { target, CA, dataFromParent0 } = this.props;
         return(
             <Mutation mutation={UPDATE_CONTACT_ATTEMPT}
             refetchQueries={[
@@ -189,7 +189,7 @@ export class EditContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <Field 
                                                     id="disposition"
-                                                    label={"Contact Disposition"} 
+                                                    label={dataFromParent0('CONTACT_DISPOSITION')}
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
                                                     options={props.values.method === 'IN_PERSON' ? inPersonOptions : phoneOptions}
@@ -201,7 +201,7 @@ export class EditContactAttempt extends React.Component {
                                     <Col md={12}>
                                     <Field 
                                             id="content"
-                                            label={"Contact Note"} 
+                                            label={dataFromParent0('CONTACT_NOTE')}
                                             name={"content"}
                                             placeholderOption="-- Select --"
                                             component={TextAreaField}

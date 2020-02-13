@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 import { H2, BlockAnchor, SecondaryButton, PrimaryButton } from '../Util/Typography';
 import { LoadingBar } from '../Util/Loading';
@@ -28,6 +29,7 @@ mutation requestLogin($email: String!, $nextPage: String) {
 
 
 export const LoginForm = (props) => {
+    const { t } = useTranslation();
     return(
         <Mutation mutation={LOGIN_MUTATION}>
             {(mutation, { data, loading, error }) => (
@@ -62,7 +64,12 @@ export const LoginForm = (props) => {
                                         status && status.form && <FormError error={status.form}/>
                                     }
 
-                                <Field id="email" name="email" label={"Email"}component={TextField}/>
+                                <Field 
+                                id="email" 
+                                name="email" 
+                                label={t('EMAIL')}
+                                component={TextField}
+                                />
                           
                                 <Row>
                                     <Col>

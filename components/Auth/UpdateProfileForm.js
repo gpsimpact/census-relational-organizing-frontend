@@ -2,6 +2,7 @@ import { Mutation } from 'react-apollo'
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { TextField, SubmitButton, FormError, FormSuccess } from '../Util/Forms';
 import { Box } from '../Util/Layout';
@@ -29,6 +30,8 @@ mutation updateMe($input: UpdateUserInput!) {
 `;
 
 export const UpdateProfileForm = ({currentUser}) => {
+    const { t } = useTranslation();
+
     return(
         <Mutation mutation={UPDATE_ME_MUTATION} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
         {(mutation, {data, loading, error}) => (
@@ -86,7 +89,7 @@ export const UpdateProfileForm = ({currentUser}) => {
             render={({status}) => (
                 <Form noValidate className="py-5">
                 <Box>
-                    <H1> Profile </H1>
+                    <H1> {t('PROFILE')} </H1>
                     <LoadingBar active={loading}/>
                         {
                             status && status.form && status.form.code != 'Success' && <FormError error={status.form}/>
@@ -100,8 +103,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                             <Field
                                 id="firstName"
                                 name="firstName"
-                                label="First Name"
-                                placeholder="First Name"
+                                label={t('FIRST_NAME')}
+                                placeholder={t('FIRST_NAME')}
                                 component={TextField}
                             />
                         </Col>
@@ -109,8 +112,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                             <Field
                                     id="lastName"
                                     name="lastName"
-                                    label="Last Name"
-                                    placeholder="Last Name"
+                                    label={t('LAST_NAME(S)')}
+                                    placeholder={t('LAST_NAME(S)')}
                                     component={TextField}
                                 />
                         </Col>
@@ -121,8 +124,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                             <Field
                                 id="address"
                                 name="address"
-                                label="Address"
-                                placeholder="Address"
+                                label={t('ADDRESS')}                                
+                                placeholder={t('ADDRESS')}                                
                                 component={TextField}
                             />
                         </Col>
@@ -133,8 +136,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                         <Field
                                 id="city"
                                 name="city"
-                                label="City"
-                                placeholder="City"
+                                label={t('CITY')}
+                                placeholder={t('CITY')}
                                 component={TextField}
                             />
                         </Col>
@@ -143,8 +146,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                         <Field
                                 id="state"
                                 name="state"
-                                label="State"
-                                placeholder="State"
+                                label={t('STATE')}
+                                placeholder={t('STATE')}
                                 component={TextField}
                             />
                         </Col>
@@ -153,8 +156,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                         <Field
                                 id="zip5"
                                 name="zip5"
-                                label="Zip Code"
-                                placeholder="Zip Code"
+                                label={t('ZIP_CODE')}
+                                placeholder={t('ZIP_CODE')}
                                 component={TextField}
                             />
                         </Col>
@@ -165,8 +168,8 @@ export const UpdateProfileForm = ({currentUser}) => {
                         <Field
                                 id="phone"
                                 name="phone"
-                                label="Phone"
-                                placeholder="Phone"
+                                label={t('PHONE')}
+                                placeholder={t('PHONE')}
                                 component={TextField}
                             />
                         </Col>

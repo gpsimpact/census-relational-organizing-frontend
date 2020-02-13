@@ -93,7 +93,7 @@ class DashContactDetail extends React.Component {
                                                             </Col>
                                                             <Col md={3}>
                                                                 {data && data.target && <CensusTract target={data.target}/>}
-                                                                {data && data.target && <MostRecentContactAttempt target={data.target}/>}
+                                                                {data && data.target && <MostRecentContactAttempt target={data.target} dataFromParent={this.props.t}/>}
                                                                 {data && data.target && <LatestNote target={data.target}/>}
                                                             </Col>
                                                         </Row>
@@ -114,7 +114,7 @@ class DashContactDetail extends React.Component {
                                                 <Collapser title="Contact Attempts" open={false}>
                                                     <Row>
                                                         <Col md={12}>
-                                                            {data && data.target && <ListContactAttempts target={data.target}/>}
+                                                            {data && data.target && <ListContactAttempts target={data.target} dataFromParent={this.props.t}/>}
 
                                                        </Col>
                                                     </Row>
