@@ -40,7 +40,7 @@ export class SingleTaskMetric extends React.Component {
                 <TaskMetricInner>
                     <Row bsPrefix={'row align-items-center'}>
                         <Col md={3}>
-                            <H5 uppercase>{dataFromParent0('COMPLETION_RATE_')}</H5>
+                            <H5 uppercase>{dataFromParent0('COMPLETION RATE_')}</H5>
                             <Row>
                                 <Col md={6}>
                                     <H6> {complete} / {total}</H6>

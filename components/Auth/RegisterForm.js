@@ -94,8 +94,8 @@ export const RegisterForm = ({teamSlug}) => {
                                     <Field
                                         id="firstName"
                                         name="firstName"
-                                        label={t('FIRST_NAME')}
-                                        placeholder={t('FIRST_NAME')}
+                                        label={t('FIRST NAME')}
+                                        placeholder={t('FIRST NAME')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -103,8 +103,8 @@ export const RegisterForm = ({teamSlug}) => {
                                     <Field
                                             id="lastName"
                                             name="lastName"
-                                            label={t('LAST_NAME(S)')}
-                                            placeholder={t('LAST_NAME(S)')}
+                                            label={t('LAST NAME(S)')}
+                                            placeholder={t('LAST NAME(S)')}
                                             component={TextField}
                                         />
                                 </Col>
@@ -161,8 +161,8 @@ export const RegisterForm = ({teamSlug}) => {
                                 <Field
                                         id="zip5"
                                         name="zip5"
-                                        label={t('ZIP_CODE')}
-                                        placeholder={t('ZIP_CODE')}
+                                        label={t('ZIP CODE')}
+                                        placeholder={t('ZIP CODE')}
                                         component={TextField}
                                     />
                                 </Col>

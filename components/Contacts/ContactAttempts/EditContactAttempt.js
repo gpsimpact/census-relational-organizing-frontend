@@ -189,10 +189,10 @@ export class EditContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <Field 
                                                     id="disposition"
-                                                    label={dataFromParent0('CONTACT_DISPOSITION')}
+                                                    label={dataFromParent0('CONTACT DISPOSITION')}
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
-                                                    options={props.values.method === 'IN_PERSON' ? inPersonOptions : phoneOptions}
+                                                    options={props.values.method === 'IN PERSON' ? inPersonOptions : phoneOptions}
                                                     component={SelectField}
                                                 />
                                             </Col>
@@ -201,7 +201,7 @@ export class EditContactAttempt extends React.Component {
                                     <Col md={12}>
                                     <Field 
                                             id="content"
-                                            label={dataFromParent0('CONTACT_NOTE')}
+                                            label={dataFromParent0('CONTACT NOTE')}
                                             name={"content"}
                                             placeholderOption="-- Select --"
                                             component={TextAreaField}
