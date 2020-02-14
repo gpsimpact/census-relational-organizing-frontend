@@ -1,6 +1,6 @@
 export const methodOptions = [
     {
-        value: 'IN PERSON',
+        value: 'IN_PERSON',
         label: 'IN PERSON'
     },
     {
