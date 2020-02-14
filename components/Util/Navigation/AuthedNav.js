@@ -25,6 +25,10 @@ export class AuthedNav extends React.Component {
                     <Link href={PublicPaths.profile}>
                         <NavDropdown.Item href={PublicPaths.profile}>{dataFromParent('PROFILE')}</NavDropdown.Item>
                     </Link>
+                    <Link href={PublicPaths.language}>
+                        <NavDropdown.Item href={PublicPaths.language}>{dataFromParent('LANGUAGE')}</NavDropdown.Item>
+
+                    </Link>
                     <Link href="/logout">
                         <NavDropdown.Item href={'/logout'}>{dataFromParent('LOGOUT')}</NavDropdown.Item>
                     </Link>

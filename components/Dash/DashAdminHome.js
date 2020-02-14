@@ -115,7 +115,7 @@ export class DashAdminHome extends React.Component {
                                                 && data.summaryCountAllTeamTasks.map((task, idx) => {
                                                     return(
                                                         <Col md={12} key={idx}>
-                                                            <SingleTaskMetric task={task} currentUser={currentUser} dataFromParent0={dataFromParent}/>
+                                                            <SingleTaskMetric task={task} currentUser={currentUser} dataFromParent={dataFromParent}/>
                                                         </Col>
                                                     )
                                                 })

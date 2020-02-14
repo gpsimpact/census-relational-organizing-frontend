@@ -23,7 +23,8 @@ const TaskMetricInner = styled('div')`
 
 export class SingleTaskMetric extends React.Component {
     render() {
-        const { task, currentUser, dataFromParent0 } = this.props;
+        const { task, currentUser, dataFromParent } = this.props;
+       
         const language = currentUser.getLanguage();
         let content = _.find(task.languageVariations, f => f.language === language);
         if (!content) {
@@ -40,7 +41,7 @@ export class SingleTaskMetric extends React.Component {
                 <TaskMetricInner>
                     <Row bsPrefix={'row align-items-center'}>
                         <Col md={3}>
-                            <H5 uppercase>{dataFromParent0('COMPLETION RATE_')}</H5>
+                            <H5 uppercase>{dataFromParent && dataFromParent('COMPLETION RATE')}</H5>
                             <Row>
                                 <Col md={6}>
                                     <H6> {complete} / {total}</H6>
@@ -52,7 +53,7 @@ export class SingleTaskMetric extends React.Component {
 
                         </Col>
                         <Col md={9}>
-                            <H5 uppercase> {dataFromParent0('PROGRESS')}: </H5>
+                            <H5 uppercase> {dataFromParent && dataFromParent('PROGRESS')}: </H5>
                             <ProgressBar percent={`${completionPercentage}%`} />
                         </Col>
                     </Row>

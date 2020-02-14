@@ -2,6 +2,7 @@ export const PublicPaths = {
     register: '/register',
     profile: '/profile',
     teams: '/teams',
+    language: "/language",
 }
 
 export const AdminPaths = {

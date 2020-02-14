@@ -98,7 +98,7 @@ export class DashVolHome extends React.Component {
                                             && data.summaryCountMyTeamTasks.map((task, idx) => {
                                                 return(
                                                     <Col md={12} key={idx}>
-                                                        <SingleTaskMetric task={task} currentUser={currentUser}/>
+                                                        <SingleTaskMetric task={task} currentUser={currentUser} dataFromParent={dataFromParent}/>
                                                     </Col>
                                                 )
                                             })

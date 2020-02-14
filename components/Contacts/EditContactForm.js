@@ -436,8 +436,8 @@ export const EditContactForm = (props) => {
                                 <Col lg={5} md={12}>
                                       <Field 
                                         id="tempSexualOrientation"
-                                        label={"Sexual Orientation"} 
-                                        name={t('SEXUAL ORIENTATION')}
+                                        label={t('SEXUAL ORIENTATION')} 
+                                        name={"tempSexualOrientation"}
                                         placeholderOption="-- Select --"
                                         onChange={(e) => {
                                             props.setFieldValue('tempSexualOrientation', e.target.value);
