@@ -203,8 +203,8 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="firstName"
                                         name="firstName"
-                                        label={t('FIRST_NAME')}
-                                        placeholder={t('FIRST_NAME')}
+                                        label={t('FIRST NAME')}
+                                        placeholder={t('FIRST NAME')}
                                         component={TextField}
                                     />
                                 
@@ -213,17 +213,17 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="lastName"
                                         name="lastName"
-                                        label={t('LAST_NAME(S)')}
-                                        placeholder={t('LAST_NAME(S)')}
+                                        label={t('LAST NAME(S)')}
+                                        placeholder={t('LAST NAME(S)')}
                                         component={TextField}
                                     /> 
                                 </Col>
                                 <Col md={12} lg={3}>
-                                    <FormDisclaimer>This is not the contact's real name.</FormDisclaimer>
+                                    <FormDisclaimer>{t('THIS IS NOT  THE CONTACTS REAL NAME')}</FormDisclaimer>
                                     <Field
                                         id="isNameAlias"
                                         name="isNameAlias"
-                                        label={t('NAME_ALIAS')}
+                                        label={t('NAME ALIAS')}
                                         component={CheckBox}
                                     />
 
@@ -320,12 +320,12 @@ export const EditContactForm = (props) => {
                                     />
                                 </Col>
                                 <Col md={12} lg={5}>
-                                <FormDisclaimer>Address will not be saved, we will use for census tract.</FormDisclaimer>
+                                <FormDisclaimer>{t('Address will not be saved we will use for census tract')}</FormDisclaimer>
 
                                     <Field
                                         id="retainAddress"
                                         name="retainAddress"
-                                        label={t('RETAIN_ADDRESS')}
+                                        label={t('RETAIN ADDRESS')}
                                         component={CheckBox}
                                     />
                                 </Col>
@@ -357,8 +357,8 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="zip5"
                                         name="zip5"
-                                        label={t('ZIP_CODE')}
-                                        placeholder={t('ZIP_CODE')}
+                                        label={t('ZIP CODE')}
+                                        placeholder={t('ZIP CODE')}
                                         component={TextField}
                                     />
                                 </Col>
@@ -379,7 +379,7 @@ export const EditContactForm = (props) => {
                                     />
                                 </Col>
                                 <Col lg={5} md={12}>
-                                    <FormDisclaimer>{t('THIS_IS_A_MOBILE_PHONE')}</FormDisclaimer>
+                                    <FormDisclaimer>{t('THIS IS A MOBILE PHONE')}</FormDisclaimer>
                                     <Field
                                         id="isPhoneMobile"
                                         name="isPhoneMobile"
@@ -410,7 +410,7 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="twitterHandle"
                                         name="twitterHandle"
-                                        label={t('TWITTER_HANDLE')}
+                                        label={t('TWITTER HANDLE')}
                                         placeholder="@"
                                         component={TextField}
                                     />
@@ -421,7 +421,7 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="facebookProfile"
                                         name="facebookProfile"
-                                        label={t('FACEBOOK_PROFILE')}
+                                        label={t('FACEBOOK PROFILE')}
                                         placeholder="Facebook URL"
                                         component={TextField}
                                     />
@@ -437,7 +437,7 @@ export const EditContactForm = (props) => {
                                       <Field 
                                         id="tempSexualOrientation"
                                         label={"Sexual Orientation"} 
-                                        name={t('SEXUAL_ORIENTATION')}
+                                        name={t('SEXUAL ORIENTATION')}
                                         placeholderOption="-- Select --"
                                         onChange={(e) => {
                                             props.setFieldValue('tempSexualOrientation', e.target.value);
@@ -456,7 +456,7 @@ export const EditContactForm = (props) => {
                                 <Col lg={5} md={12}>
                                  <Field 
                                         id="sexualOrientation"
-                                        label={t('PLEASE_SPECIFY') + ': ' + t('SEXUAL_ORIENTATION')}
+                                        label={t('PLEASE SPECIFY') + ': ' + t('SEXUAL ORIENTATION')}
                                         name={"sexualOrientation"}
                                         component={TextField}
                                         hidden={props.values.tempSexualOrientation !== 'OTHER' ? 1 : 0}
@@ -470,7 +470,7 @@ export const EditContactForm = (props) => {
                                     <Col lg={5} md={12}>
                                     <Field 
                                             id="tempGenderIdentity"
-                                            label={t('GENDER_IDENTITY')}
+                                            label={t('GENDER IDENTITY')}
                                             name={"tempGenderIdentity"}
                                             placeholderOption="-- Select --"
                                             onChange={(e) => {
@@ -488,7 +488,7 @@ export const EditContactForm = (props) => {
                                     <Col lg={6} md={12}>
                                       <Field 
                                         id="genderIdentity"
-                                        label={t('PLEASE_SPECIFY') + ': ' + t('GENDER_IDENTITY')}
+                                        label={t('PLEASE SPECIFY') + ': ' + t('GENDER IDENTITY')}
                                         name={"genderIdentity"}
                                         component={TextField}
                                         hidden={props.values.tempGenderIdentity !== 'OTHER' ? 1 : 0}
@@ -506,7 +506,7 @@ export const EditContactForm = (props) => {
                                         return(
                                             <CheckBoxGroupContainer>
                                                 <fieldset>
-                                                    <legend>{t('RACE_/_ETHNICITY')}<small> ({t('CHECK_ALL_THAT_APPLY')}) </small></legend>
+                                                    <legend>{t('RACE / ETHNICITY')}<small> ({t('CHECK ALL THAT APPLY')}) </small></legend>
                                                     {raceEthnicityOptions.map((option, idx) => {
                                                         return(
                                                             <DynamicCheckboxLabel key={idx}>
@@ -535,7 +535,7 @@ export const EditContactForm = (props) => {
                                 />
                                     <Field 
                                         id="additionalRaceEthnicity"
-                                        label={t('PLEASE_SPECIFY') + ': ' + t('RACE_/_ETHNICITY')}
+                                        label={t('PLEASE SPECIFY') + ': ' + t('RACE / ETHNICITY')}
                                         name={"additionalRaceEthnicity"}
                                         component={TextField}
                                     />

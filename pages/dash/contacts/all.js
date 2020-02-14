@@ -117,7 +117,7 @@ class DashContactIndex extends React.Component {
                                                 <ActionNav className='justify-content-end'>
                                                 <Link href={{pathname:`${DashPaths.contacts.create}`, query: {team: currentTeam.id}}}>
                                                     <Nav.Link href={`${DashPaths.contacts.create}?team=${currentTeam.id}`}>
-                                                        {this.props.t('NEW_CONTACT')}
+                                                        {this.props.t('NEW CONTACT')}
                                                     </Nav.Link>
                                                 </Link>
                                                   

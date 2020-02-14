@@ -96,7 +96,7 @@ class Teams extends React.Component {
                                              {currentUser && 
                                                 <Link href={'/'}>
                                                     <Nav.Link href={'/'}> 
-                                                        {this.props.t('MY_TEAMS')}
+                                                        {this.props.t('MY TEAMS')}
                                                     </Nav.Link>
                                                 </Link>
                                             }

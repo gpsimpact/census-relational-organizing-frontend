@@ -64,7 +64,7 @@ export class MostRecentContactAttempt extends React.Component {
 
                                                   <H5 uppercase>{dataFromParent('CREATED')}:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
                                                     <H5 uppercase>{dataFromParent('METHOD')}: <small>{CA.method.replace("_", " ")}</small></H5>
-                                                    <H5 uppercase>{dataFromParent('CONTACT_DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
+                                                    <H5 uppercase>{dataFromParent('CONTACT DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
                                             </div>

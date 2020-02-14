@@ -144,7 +144,7 @@ export const TeamPermissionCard = (props) => {
                         }
                         return(
                             <IconLink onClick={() => mutate()}>
-                                {t('APPLY_FOR__MEMBERSHIP')}
+                                {t('APPLY FOR  MEMBERSHIP')}
                             </IconLink>
                         )
                     }}

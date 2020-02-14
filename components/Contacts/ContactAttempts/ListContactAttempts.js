@@ -64,7 +64,7 @@ export class ListContactAttempts extends React.Component {
                                                 <HR/>
                                                   <H5 uppercase>{dataFromParent('CREATED')}:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
                                                     <H5 uppercase>{dataFromParent('METHOD')}: <small>{CA.method.replace(/_/g, " ")}</small></H5>
-                                                    <H5 uppercase>{dataFromParent('CONTACT_DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
+                                                    <H5 uppercase>{dataFromParent('CONTACT DISPOSITION')}: <small>{CA.disposition.replace(/_/g, " ").replace('INPERSON', '').replace('PHONE', '')}</small></H5>
                                             
                                                 <p className="pb-1">{CA.content}</p>
                                                 <EditContactAttempt target={target} CA={CA} dataFromParent0={dataFromParent} />

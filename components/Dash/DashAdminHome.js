@@ -56,14 +56,14 @@ export class DashAdminHome extends React.Component {
                         <React.Fragment>
                         <Row>
                             <Col md={12}>
-                                <H3 uppercase>{dataFromParent('TEAM_COUNTS')}</H3>
+                                <H3 uppercase>{dataFromParent('TEAM COUNTS')}</H3>
                             </Col>
                         
                             <Col lg={4}>
                             <Query query={TEAM_VOLS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, error, loading}) => (
                                 <SumWrapper>
-                                    <SumCountTitle>{dataFromParent('TOTAL_VOLUNTEERS')}</SumCountTitle>
+                                    <SumCountTitle>{dataFromParent('TOTAL VOLUNTEERS')}</SumCountTitle>
                                     {error && <ErrorIcon error={error}/>}
                                     <SumCountNum>{data && data.summaryCountAllTeamUsers ? data.summaryCountAllTeamUsers : <NotInterested/>}</SumCountNum>
 
@@ -77,7 +77,7 @@ export class DashAdminHome extends React.Component {
                             <Query query={TEAM_TARGETS_COUNT} variables={{teamId:currentTeam.id}} fetchPolicy={'cache-and-network'}>
                                 {({data, error, loading}) => (
                                     <SumWrapper>
-                                        <SumCountTitle>{dataFromParent('TOTAL_CONTACTS')}</SumCountTitle>
+                                        <SumCountTitle>{dataFromParent('TOTAL CONTACTS')}</SumCountTitle>
                                         {error && <ErrorIcon error={error}/>}
                                             <SumCountNum>{data && data.summaryCountAllTeamTargets ? data.summaryCountAllTeamTargets : <NotInterested/>}</SumCountNum>
                                     </SumWrapper>
@@ -91,7 +91,7 @@ export class DashAdminHome extends React.Component {
                             {({data, error, loading}) => (
 
                                 <SumWrapper>
-                                    <SumCountTitle>{dataFromParent('TOTAL_HOUSEHOLD_SIZE')}</SumCountTitle>
+                                    <SumCountTitle>{dataFromParent('TOTAL HOUSEHOLD SIZE')}</SumCountTitle>
                                     {error && <ErrorIcon error={error}/>}
                                         <SumCountNum>{data && data.summaryTotalAllTeamHouseholdSize ? data.summaryTotalAllTeamHouseholdSize : <NotInterested/>}</SumCountNum>
                                 </SumWrapper>
@@ -104,7 +104,7 @@ export class DashAdminHome extends React.Component {
 
                             <Row>
                                 <Col md={12}>
-                                    <H3 uppercase>{dataFromParent('TEAM_TASKS')}</H3>
+                                    <H3 uppercase>{dataFromParent('TEAM TASKS')}</H3>
                                 </Col>
                                 <Query query={GET_TEAM_TASK_COMPLETIONS} variables={{teamId:currentTeam.id}} fetchPolicy="cache-and-network">
                                     {({data, loading, error}) => {

@@ -74,7 +74,7 @@ class Index extends React.Component {
                         <Row>
                             <Col lg={8}>
                                 <H1 uppercase>
-                                    {this.props.t('WELCOME_TO_CIVIC_PROMOTOR')}
+                                    {this.props.t('WELCOME TO CIVIC PROMOTOR')}
                                 </H1>
                                 
                             </Col>
@@ -121,7 +121,7 @@ class Index extends React.Component {
                                             <ActionNav className='justify-content-end'>
                                                 <Link href={PublicPaths.teams}>
                                                     <Nav.Link href={PublicPaths.teams}> 
-                                                        {this.props.t('ALL_TEAMS')} 
+                                                        {this.props.t('ALL TEAMS')} 
                                                     </Nav.Link>
                                                 </Link>
                                                 <FilterToggler />
