@@ -1,6 +1,7 @@
 import { Mutation, Query } from 'react-apollo';
 import { FILTERS_OPEN_QUERY, TOGGLE_FILTERS_OPEN_MUTATION } from '../Queries/FilterContainer';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const Toggle = styled('a')`
         -webkit-transition: .25s ease-in-out;
@@ -26,6 +27,8 @@ const Toggle = styled('a')`
 `;
 
 export const FilterToggler = (props) => {
+    const { t } = useTranslation();
+
     return(
         <Mutation mutation={TOGGLE_FILTERS_OPEN_MUTATION}>
             {(toggleFilters) => {
@@ -34,7 +37,7 @@ export const FilterToggler = (props) => {
                         {({data: {filtersOpen}}) => {
                             return(
                                 <Toggle onClick={() => toggleFilters()} open={filtersOpen}>
-                                    <i className="fas fa-filter"></i> Filter
+                                    <i className="fas fa-filter"></i> {t('FILTER')}
                                 </Toggle>
                             )
                         }}

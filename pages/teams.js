@@ -78,7 +78,7 @@ class Teams extends React.Component {
                                 <Box>
                                 <Row bsPrefix="row align-items-center">
                                     <Col xl={3}>
-                                         <H1 uppercase> Teams </H1>
+                                         <H1 uppercase> {this.props.t ? this.props.t('TEAMS') : 'Teams'} </H1>
                                     </Col>
                                     <Col xl={6}>
                                     {data && data.teams && 
@@ -87,6 +87,7 @@ class Teams extends React.Component {
                                             currentPage={currentQuery.pageNumber}
                                             perPage={currentQuery.perPage}
                                             path={'/teams'}
+                                            trans={this.props.t ? this.props.t : null}
                                         />
                                     }
                                     </Col>

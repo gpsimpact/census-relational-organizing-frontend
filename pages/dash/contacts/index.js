@@ -63,7 +63,7 @@ class DashContactIndex extends React.Component {
         let currentUser = CurrentUser(this.props);
         let currentQuery = CurrentQuery(this.props);
         let currentTeam = this.props.currentTeam ? this.props.currentTeam : null;
-
+        
         return(
             <Page
                 padTop
@@ -104,7 +104,7 @@ class DashContactIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.contacts.index}
                                                         teamSlug={currentTeam.slug}
-
+                                                        trans={this.props.t ? this.props.t : null}
                                                     />
                                             </Col>
                                             <Col md={3}>
@@ -115,7 +115,7 @@ class DashContactIndex extends React.Component {
                                                     </Nav.Link>
                                                 </Link>
                                                   
-                                                  <FilterToggler />
+                                                  <FilterToggler trans={this.props.t ? this.props.t : null}/>
 
                                               </ActionNav>
                                             </Col>
@@ -128,6 +128,7 @@ class DashContactIndex extends React.Component {
                                                 path={DashPaths.contacts.index}
                                                 currentQuery={currentQuery}
                                                 teamSlug={currentTeam.id}
+                                                trans={this.props.t ? this.props.t : null}
                                             />
                                         </Box>
                                         <Row>
@@ -135,7 +136,10 @@ class DashContactIndex extends React.Component {
                                                 data.userTargets.items.map((item, idx) => {
                                                     return(
                                                         <Col lg={4} key={idx}>
-                                                            <ContactCard target={item} team={currentTeam}/>
+                                                            <ContactCard target={item} team={currentTeam}
+                                                             trans={this.props.t ? this.props.t : null}
+
+                                                            />
                                                         </Col>
                                                     )
                                                 })
@@ -149,6 +153,8 @@ class DashContactIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.contacts.index}
                                                         teamSlug={currentTeam.slug}
+                                                        trans={this.props.t ? this.props.t : null}
+
                                                     />
                                         </Box>
                                         </React.Fragment>

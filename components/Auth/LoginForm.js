@@ -58,7 +58,7 @@ export const LoginForm = (props) => {
                         
                         <Form noValidate>
                             <Box>
-                                <H2 uppercase black>Login</H2>
+                                <H2 uppercase black>{t('LOGIN')}</H2>
                                 <LoadingBar active={loading}/>
                                     {
                                         status && status.form && <FormError error={status.form}/>
@@ -79,11 +79,12 @@ export const LoginForm = (props) => {
                                             full
                                             small
                                         >
-                                            {loading ? "Logging In" : "Login"}
+                                            {loading ? t("LOGGING IN") : t('LOGIN')}
                                             </PrimaryButton>
                                        </Col>
-                                       <Col>                           
-                                        <Link href="/register"><SecondaryButton full small>Register</SecondaryButton></Link>
+                                       <Col> 
+                                       <br/>                          
+                                        <Link href="/register"><SecondaryButton full small>{t('NEED TO REGISTER?')}</SecondaryButton></Link>
                                     
                                     </Col>
                                    

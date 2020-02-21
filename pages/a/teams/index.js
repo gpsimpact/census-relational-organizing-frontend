@@ -94,6 +94,7 @@ class AdminTeamIndex extends React.Component {
                                                         currentPage={currentQuery.pageNumber}
                                                         perPage={currentQuery.perPage}
                                                         path={AdminPaths.teams.index}
+                                                        trans={this.props.t ? this.props.t : null}
                                                     />
                                                 }
                                                 </Col>
@@ -103,7 +104,9 @@ class AdminTeamIndex extends React.Component {
                                                             <Link href={AdminPaths.teams.create}>
                                                                 <Nav.Link href={AdminPaths.teams.create}> New Team </Nav.Link>
                                                             </Link>
-                                                            <FilterToggler />
+                                                            <FilterToggler 
+                                                            trans={this.props.t ? this.props.t : null}
+                                                            />
 
                                                         </ActionNav>
 
@@ -120,6 +123,7 @@ class AdminTeamIndex extends React.Component {
                                                 sortFilters={TeamsSort}
                                                 path={AdminPaths.teams.index}
                                                 currentQuery={currentQuery}
+                                                trans={this.props.t ? this.props.t : null}
                                             />
 
 
@@ -131,7 +135,7 @@ class AdminTeamIndex extends React.Component {
                                                         data.teams.items.map((item,idx) => {
                                                             return(
                                                                 <Col lg={4} key={idx}>
-                                                                    <AdminTeamCard team={item}/>
+                                                                    <AdminTeamCard team={item} trans={this.props.t ? this.props.t : null}/>
                                                                 </Col>
                                                             )
                                                         })
@@ -146,6 +150,7 @@ class AdminTeamIndex extends React.Component {
                                                         currentPage={currentQuery.pageNumber}
                                                         perPage={currentQuery.perPage}
                                                         path={AdminPaths.teams.index}
+                                                        trans={this.props.t ? this.props.t : null}
                                                     />
                                                 }
 

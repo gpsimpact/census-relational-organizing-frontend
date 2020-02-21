@@ -102,6 +102,7 @@ class DashVolIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.vols.index}
                                                         teamSlug={currentTeam.slug}
+                                                        trans={this.props.t ? this.props.t : null}
 
                                                     />
                                                 }
@@ -111,7 +112,9 @@ class DashVolIndex extends React.Component {
                                                      <Link href={{pathname:`${DashPaths.vols.denied}`, query: {team: currentTeam.id}}}>
                                                         <Nav.Link href={`${DashPaths.vols.denied}?team=${currentTeam.id}`}> Denied Applicants </Nav.Link>
                                                     </Link>
-                                                    <FilterToggler />
+                                                    <FilterToggler 
+                                                    trans={this.props.t ? this.props.t : null}
+                                                    />
 
                                                 </ActionNav>
                                             </Col>
@@ -126,6 +129,7 @@ class DashVolIndex extends React.Component {
                                                 path={DashPaths.vols.index}
                                                 currentQuery={currentQuery}
                                                 teamSlug={currentTeam.id}
+                                                trans={this.props.t ? this.props.t : null}
 
                                             />
 
@@ -151,6 +155,7 @@ class DashVolIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.vols.index}
                                                         teamSlug={currentTeam.slug}
+                                                        trans={this.props.t ? this.props.t : null}
 
                                                     />
                                                 }

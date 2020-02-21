@@ -79,7 +79,7 @@ class Index extends React.Component {
                                 
                             </Col>
                             <Col lg={4}>
-                                    <LoginForm />
+                                    <LoginForm trans={this.props.t ? this.props.t : null}/>
                             </Col>
 
                         </Row>
@@ -113,6 +113,7 @@ class Index extends React.Component {
                                             currentPage={currentQuery.pageNumber}
                                             perPage={currentQuery.perPage}
                                             path={'/'}
+                                            trans={this.props.t ? this.props.t : null}
                                         />
                                     }
                                         </Col>
@@ -124,7 +125,9 @@ class Index extends React.Component {
                                                         {this.props.t('ALL TEAMS')} 
                                                     </Nav.Link>
                                                 </Link>
-                                                <FilterToggler />
+                                                <FilterToggler 
+                                                trans={this.props.t ? this.props.t : null}
+                                                />
 
                                             </ActionNav>
                                         </Col>
@@ -137,6 +140,7 @@ class Index extends React.Component {
                                         sortFilters={TeamsSort}
                                         path={'/'}
                                         currentQuery={currentQuery}
+                                        trans={this.props.t ? this.props.t : null}
                                     />
                          
                                 </Box>

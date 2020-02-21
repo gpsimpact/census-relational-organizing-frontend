@@ -110,6 +110,7 @@ class DashContactIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.contacts.index}
                                                         teamSlug={currentTeam.slug}
+                                                        trans={this.props.t ? this.props.t : null}
 
                                                     />
                                             </Col>
@@ -121,7 +122,9 @@ class DashContactIndex extends React.Component {
                                                     </Nav.Link>
                                                 </Link>
                                                   
-                                                  <FilterToggler />
+                                                  <FilterToggler 
+                                                  trans={this.props.t ? this.props.t : null}
+                                                  />
 
                                               </ActionNav>
                                             </Col>
@@ -134,6 +137,7 @@ class DashContactIndex extends React.Component {
                                                 path={DashPaths.contacts.index}
                                                 currentQuery={currentQuery}
                                                 teamSlug={currentTeam.id}
+                                                trans={this.props.t ? this.props.t : null}
                                             />
                                         </Box>
                                         <Row>
@@ -155,6 +159,7 @@ class DashContactIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.contacts.index}
                                                         teamSlug={currentTeam.slug}
+                                                        trans={this.props.t ? this.props.t : null}
                                                     />
                                         </Box>
                                         </React.Fragment>
