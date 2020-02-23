@@ -22,14 +22,14 @@ class AdminTeamCreate extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
-                pageTitle={"Global Admin Dashboard"}
+                pageTitle={"Global Admin " + this.props.t('DASHBOARD')}
 
             >
                   <Container>
                         <Row bsPrefix={'row py-5'}>
                             <Col md={6}>
                                 <Box>
-                                    <H1>Create New Team</H1>
+                                    <H1>Create {this.props.t('NEW TEAM')}</H1>
                                     <AdminCreateTeamForm/>
                                 </Box>
 

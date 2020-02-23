@@ -11,7 +11,7 @@ export const AdminSideNav = (props) => {
     const { currentUser } = props;
     return(
         <React.Fragment>
-              <H3 uppercase primary> Global Admin Dashboard</H3>
+              <H3 uppercase primary> Global Admin {t('DASHBOARD')}</H3>
             {currentUser.hasGlobalPermission('ADMIN') &&
                 <Link href={AdminPaths.index}>
                     <Nav.Link href={AdminPaths.index}>

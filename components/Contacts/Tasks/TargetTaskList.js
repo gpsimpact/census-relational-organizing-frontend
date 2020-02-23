@@ -63,7 +63,7 @@ export const GET_TARGET_TASKS = gql`
 export class TargetTaskList extends React.Component {
 
     render(){
-        const { target, currentUser } = this.props; 
+        const { target, currentUser, t } = this.props; 
         return(
             <Query query={GET_TARGET_TASKS}
             variables={{targetId: target.id}}>
@@ -78,7 +78,7 @@ export class TargetTaskList extends React.Component {
                             {tasks && tasks.length > 0 &&
                                 tasks.map((task, idx) => {
                                     return(
-                                        <SingleTask key={idx} task={task} target={target} currentUser={currentUser}/>
+                                        <SingleTask key={idx} task={task} target={target} currentUser={currentUser} t={t} />
                                     )
                                 })
                             }

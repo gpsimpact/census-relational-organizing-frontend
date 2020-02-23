@@ -82,13 +82,13 @@ class AdminDash extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
-                pageTitle={"Global Admin Dashboard"}
+                pageTitle={"Global Admin " + this.props.t('DASHBOARD')}
             >
                 <Container>
                 <Row bsPrefix={"row justify-content-center py-5"}>
                     <Col>
                         <Box>
-                            <H1>Admin</H1>
+                            <H1>{this.props.t('ADMIN')}</H1>
                             <LoadingBar active={false}/>
 
                     
@@ -100,7 +100,7 @@ class AdminDash extends React.Component {
                                                         <Query query={ADMIN_TEAM_COUNTS} fetchPolicy={'cache-and-network'}>
                                                             {({data, error, loading}) => (
                                                                 <SumWrapper>
-                                                                    <SumCountTitle>Total Teams</SumCountTitle>
+                                                                    <SumCountTitle>{this.props.t('TOTAL TEAMS')}</SumCountTitle>
                                                                         {error && <ErrorIcon error={error}/>}
                                                                     
                                                                         <SumCountNum>{data && data.summaryCountTeams ? data.summaryCountTeams : <NotInterested/>}</SumCountNum>
@@ -115,7 +115,7 @@ class AdminDash extends React.Component {
                                                         <Query query={ADMIN_VOLS_COUNT} fetchPolicy={'cache-and-network'}>
                                                                 {({data, error,loading}) => (
                                                                 <SumWrapper>
-                                                                    <SumCountTitle>Total Users</SumCountTitle>
+                                                                    <SumCountTitle>{this.props.t('TOTAL USERS')}</SumCountTitle>
                                                                     {error && <ErrorIcon error={error}/>}
                                                                         <SumCountNum>{data && data.summaryCountAllUsers ? data.summaryCountAllUsers : <NotInterested/>}</SumCountNum>
                                                                     
@@ -131,7 +131,7 @@ class AdminDash extends React.Component {
                                                         {({data, error,loading}) => (
 
                                                             <SumWrapper>
-                                                                <SumCountTitle>Total Contacts</SumCountTitle>
+                                                                <SumCountTitle>{this.props.t('TOTAL CONTACTS')}</SumCountTitle>
                                                                 {error && <ErrorIcon error={error}/>}
                                                                 <SumCountNum>{data && data.summaryCountAllTargets ? data.summaryCountAllTargets : <NotInterested/>}</SumCountNum>
                                                                 
@@ -144,7 +144,7 @@ class AdminDash extends React.Component {
                                                         {({data, error,loading}) => (
 
                                                             <SumWrapper>
-                                                                <SumCountTitle>Household Size</SumCountTitle>
+                                                                <SumCountTitle>{this.props.t('HOUSEHOLD SIZE')}</SumCountTitle>
                                                                 {error && <ErrorIcon error={error}/>}
                                                                 <SumCountNum>{data && data.summaryTotalAllHouseholdSize ? data.summaryTotalAllHouseholdSize : <NotInterested/>}</SumCountNum>
 

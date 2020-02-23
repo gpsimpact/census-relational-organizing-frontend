@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { PrimaryButton, SecondaryButton, H3 } from '../../Util/Typography';
 import { CustomModal } from '../../Util/Layout';
+import { useTranslation } from 'react-i18next';
 
 export const CREATE_NOTE = gql`
     mutation createTargetNote($input:CreateTargetNoteInput!){
@@ -46,6 +47,7 @@ export class CreateNote extends React.Component {
     }
     
     render(){
+        const { t } = useTranslation();
         const { target } = this.props;
         return(
 <Mutation mutation={CREATE_NOTE}
@@ -141,7 +143,7 @@ export class CreateNote extends React.Component {
                                         <Col md={12}>
                                         <Field 
                                             id="content"
-                                            label={"Contact Note"} 
+                                            label={t('CONTACT NOTE')} 
                                             name={"content"}
                                             placeholderOption="-- Select --"
                                             component={TextAreaField}

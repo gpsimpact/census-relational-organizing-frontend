@@ -143,7 +143,7 @@ export const CreateContactForm = (props) => {
                             {
                                 props.status && props.status.form && props.status.form.code === 'Success' && <FormSuccess message={props.status.form}/>
                             }
-                            <H2>General Information</H2>
+                            <H2>{t('GENERAL INFORMATION')}</H2>
                             <Row bsPrefix={'row align-items-center'}>
                                 <Col bsPrefix={'col-lg-1 d-none d-lg-block'}>
                                     <FormIcon icon={<Person/>}/>
@@ -456,7 +456,7 @@ export const CreateContactForm = (props) => {
                                         return(
                                             <CheckBoxGroupContainer>
                                                 <fieldset>
-                                                    <legend>Race / Ethnicity <small> ({t('CHECK ALL THAT APPLY')}) </small></legend>
+                                                    <legend>{t('RACE / ETHNICITY')} <small> ({t('CHECK ALL THAT APPLY')}) </small></legend>
                                                     {raceEthnicityOptions.map((option, idx) => {
                                                         return(
                                                             <DynamicCheckboxLabel key={idx}>

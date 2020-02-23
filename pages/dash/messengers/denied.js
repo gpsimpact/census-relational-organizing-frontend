@@ -65,7 +65,7 @@ class DeniedVolIndex extends React.Component {
             <Page
             currentUser={currentUser}
             sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-            pageTitle={`${currentTeam.name} Dashboard`}
+            pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 <Container>
@@ -92,7 +92,7 @@ class DeniedVolIndex extends React.Component {
                                     <Box>
                                         <Row bsPrefix="row align-items-center">
                                             <Col md={3}>
-                                                <H1 uppercase> Messengers </H1>
+                                                <H1 uppercase> {this.props.t('MESSENGERS')} </H1>
                                             </Col>
                                             <Col md={6}>
                                                 {data && data.teamUsers &&
@@ -102,14 +102,14 @@ class DeniedVolIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.vols.index}
                                                         teamSlug={currentTeam.slug}
-
+                                                        t={this.props.t}
                                                     />
                                                 }
                                             </Col>
                                             <Col md={3}>
                                                 <ActionNav className='justify-content-end'>
                                                      <Link href={{pathname:`${DashPaths.vols.index}`, query: {team: currentTeam.id}}}>
-                                                        <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.id}`}> Applicants </Nav.Link>
+                                                        <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.id}`}> {this.props.t('APPLICANTS')} </Nav.Link>
                                                     </Link>
                                                     <FilterToggler />
 
@@ -151,7 +151,7 @@ class DeniedVolIndex extends React.Component {
                                                         perPage={currentQuery.perPage}
                                                         path={DashPaths.vols.index}
                                                         teamSlug={currentTeam.slug}
-
+                                                        t={this.props.t}
                                                     />
                                                 }
                                     </Box>

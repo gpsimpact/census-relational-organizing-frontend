@@ -383,7 +383,7 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="isPhoneMobile"
                                         name="isPhoneMobile"
-                                        label="Mobile Phone"
+                                        label={t('MOBILE PHONE')}
                                         component={CheckBox}
                                     />
 
@@ -399,7 +399,7 @@ export const EditContactForm = (props) => {
                                     <Field
                                         id="householdSize"
                                         name="householdSize"
-                                        label="Household Size"
+                                        label={t('HOUSEHOLD SIZE')}
                                         placeholder="#"
                                         type="number"
                                         component={TextField}

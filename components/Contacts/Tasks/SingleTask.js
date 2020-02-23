@@ -34,7 +34,7 @@ const SingleTaskContainer = styled('div')`
 export class SingleTask extends React.Component {
 
     render(){
-        const { target, task, currentUser } = this.props;
+        const { target, task, currentUser, t } = this.props;
         const complete = task && task.complete;
         const available = task && task.available && task.available.available;
         return(
@@ -70,7 +70,7 @@ export class SingleTask extends React.Component {
                     </Col>
                     <Col md={2}>
                         { available &&
-                            <SingleTaskForm task={task} target={target} currentUser={currentUser}/>
+                            <SingleTaskForm task={task} target={target} currentUser={currentUser} t={t}/>
                         }
                     </Col>
                 </Row>

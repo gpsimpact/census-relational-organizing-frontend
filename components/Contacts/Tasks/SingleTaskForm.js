@@ -81,7 +81,7 @@ export class SingleTaskForm extends React.Component {
         }
     }
     render(){
-        const { target, task, currentUser } = this.props;
+        const { target, task, currentUser, t } = this.props;
       
         let transformedValidation = null;
         
@@ -144,7 +144,7 @@ export class SingleTaskForm extends React.Component {
             <Mutation mutation={UPDATE_TARGET_TASK}>
             {(mutation, {data, loading, error}) => (
                 <React.Fragment>
-                <PrimaryButton uppercase onClick={() =>  this.setState({open: true})}>Edit</PrimaryButton>
+                <PrimaryButton uppercase onClick={() =>  this.setState({open: true})}>{t('EDIT')}</PrimaryButton>
                 <CustomModal 
                     show={this.state.open} 
                     onHide={() => this.setState({open: false})}

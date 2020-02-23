@@ -60,7 +60,7 @@ export class MostRecentContactAttempt extends React.Component {
                                             <div key={idx}>
                                                 <HR/>
 
-                                                 <H3 uppercase> Latest Contact Attempt</H3>
+                                        <H3 uppercase>{dataFromParent('LAST CONTACT ATTEMPT')}</H3>
 
                                                   <H5 uppercase>{dataFromParent('CREATED')}:  <small><Moment fromNow ago>{CA.createdAt}</Moment> ago</small></H5>
                                                     <H5 uppercase>{dataFromParent('METHOD')}: <small>{CA.method.replace("_", " ")}</small></H5>

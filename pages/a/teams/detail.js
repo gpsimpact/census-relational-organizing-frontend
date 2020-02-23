@@ -22,7 +22,7 @@ class AdminTeamDetail extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
-                pageTitle={"Global Admin Dashboard"}
+                pageTitle={"Global Admin " + this.props.t('DASHBOARD')}
 
             >
                   <Container>

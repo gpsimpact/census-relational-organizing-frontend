@@ -69,7 +69,7 @@ class DashContactIndex extends React.Component {
                 padTop
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-                pageTitle={`${currentTeam.name} Dashboard`}
+                pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 <Container>
@@ -94,7 +94,7 @@ class DashContactIndex extends React.Component {
                                         <Box>
                                             <Row bsPrefix="row align-items-center">
                                             <Col md={3}>
-                                                <H2 uppercase> Household Contacts</H2>
+                                    <H2 uppercase>{this.props.t('HOUSEHOLD CONTACTS')}</H2>
                                             </Col>
                                             <Col md={6}>
                     

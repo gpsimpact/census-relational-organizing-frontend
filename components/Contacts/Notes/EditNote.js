@@ -157,7 +157,7 @@ export class EditNote extends React.Component {
                                             <Col md={12}>
                                             <Field 
                                                 id="content"
-                                                label={"Contact Note"} 
+                                                label={t('CONTACT NOTE')}
                                                 name={"content"}
                                                 placeholderOption="-- Select --"
                                                 component={TextAreaField}

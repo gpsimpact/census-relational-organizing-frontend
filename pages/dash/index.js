@@ -39,7 +39,7 @@ class TeamDashboard extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-                pageTitle={`${currentTeam.name} Dashboard`}
+                pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 {
@@ -57,7 +57,7 @@ class TeamDashboard extends React.Component {
                                 <Col md={3}>
                                     <ActionNav className='justify-content-end'>
                                                 <Link href={{pathname:`${DashPaths.contacts.create}`, query: {team: currentTeam.id}}}>
-                                                    <Nav.Link href={`${DashPaths.contacts.create}?team=${currentTeam.id}`}> New Contact </Nav.Link>
+                                                    <Nav.Link href={`${DashPaths.contacts.create}?team=${currentTeam.id}`}> {this.props.t('NEW CONTACT')} </Nav.Link>
                                                 </Link>
                                                   
 

@@ -3,6 +3,7 @@ import _ from "lodash";
 import { Mutation } from 'react-apollo'
 import { gql } from "apollo-boost";
 import { Formik, Form, Field } from "formik";
+import { useTranslation } from 'react-i18next';
 
 import { SelectField, SubmitButton, DirtyFormMessage } from '../Util/Forms';
 
@@ -53,25 +54,25 @@ export const TeamVolCard = (props) => {
     //find team perm
     const teamPerms = _.find(vol.teamPermissions, {team:{id:props.team.id}});
     let currentPerm = teamPerms.permissions[0];
-
+    const { t } = useTranslation();
 
     
     const permissionOptions = [
         {
             value: "DENIED",
-            label: "DENIED"
+            label: `${t('DENIED')}`
         },
         {
             value: 'APPLICANT',
-            label: 'APPLICANT'
+            label: `${t('APPLICANT')}`
         },
         {
             value: 'MEMBER',
-            label: 'MEMBER',
+            label: `${t('MEMBER')}`,
         },
         {
             value: 'ADMIN',
-            label: 'ADMINISTRATOR'
+            label: `${t('ADMIN')}`
         }
     ]
 

@@ -70,7 +70,7 @@ class DashContactDetail extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-                pageTitle={`${currentTeam.name} Dashboard`}
+                pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 <Container>
@@ -86,7 +86,7 @@ class DashContactDetail extends React.Component {
                                         {error && <ErrorMessage error={error}/>}
                                          <Row bsPrefix="row pt-4">
                                              <Col md={12}>
-                                                    <Collapser title="General Information" open={false}>
+                                                    <Collapser title={`${this.props.t('GENERAL INFORMATION')}`} open={false}>
                                                         <Row>
                                                             <Col md={9}>    
                                                                 {data && data.target && <EditContactForm target={data.target}/>}
@@ -94,15 +94,15 @@ class DashContactDetail extends React.Component {
                                                             <Col md={3}>
                                                                 {data && data.target && <CensusTract target={data.target}/>}
                                                                 {data && data.target && <MostRecentContactAttempt target={data.target} dataFromParent={this.props.t}/>}
-                                                                {data && data.target && <LatestNote target={data.target}/>}
+                                                                {data && data.target && <LatestNote target={data.target} dataFromParent={this.props.t}/>}
                                                             </Col>
                                                         </Row>
                                                     </Collapser>
                                                     <HR/>
-                                                    <Collapser title="Tasks" open={true}>
+                                                    <Collapser title={`${this.props.t('TASKS')}`} open={true}>
                                                         <Row>
                                                             <Col md={12}>
-                                                               {data && data.target && <TargetTaskList target={data.target} currentUser={currentUser}/>}
+                                                               {data && data.target && <TargetTaskList target={data.target} currentUser={currentUser} t={this.props.t} />}
                                                             </Col>
                                                         </Row>
                                                     
@@ -111,7 +111,7 @@ class DashContactDetail extends React.Component {
 
                                                  
                                     
-                                                <Collapser title="Contact Attempts" open={false}>
+                                                <Collapser title={`${this.props.t('CONTACT ATTEMPTS')}`} open={false}>
                                                     <Row>
                                                         <Col md={12}>
                                                             {data && data.target && <ListContactAttempts target={data.target} dataFromParent={this.props.t}/>}
@@ -121,10 +121,10 @@ class DashContactDetail extends React.Component {
                                                 </Collapser>
 
                                                 <HR/>
-                                                <Collapser title="Notes" open={false}>
+                                                <Collapser title={`${this.props.t('NOTES')}`} open={false}>
                                                     <Row>
                                                         <Col md={12}>
-                                                        {data && data.target && <ListNotes target={data.target}/>}
+                                                        {data && data.target && <ListNotes target={data.target} dataFromParent={this.props.t} />}
 
                                                        </Col>
                                                     </Row>

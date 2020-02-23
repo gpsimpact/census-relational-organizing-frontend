@@ -30,7 +30,7 @@ export const DashSideNav = (props) => {
                         {
                             currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')
                             ?
-                            <span> My Contacts </span>
+                            <span> {t('MY CONTACTS')} </span>
                             :
                             <span>Household Contacts</span>
                         }
@@ -41,7 +41,7 @@ export const DashSideNav = (props) => {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
                 <Link href={{pathname: `${DashPaths.contacts.all}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.contacts.all}?team=${currentTeam.id}`}>
-                        All Contacts
+                        {t('ALL CONTACTS')}
                     </Nav.Link>
                 </Link>
             }

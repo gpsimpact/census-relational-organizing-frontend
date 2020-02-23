@@ -61,7 +61,7 @@ class AdminTeamIndex extends React.Component {
             <Page 
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
-                pageTitle={"Global Admin Dashboard"}
+                pageTitle={"Global Admin " + this.props.t('DASHBOARD')}
             >
                 <Container>
                     <Row bsPrefix="row py-5">
@@ -85,7 +85,7 @@ class AdminTeamIndex extends React.Component {
                                             <Box>
                                             <Row bsPrefix="row align-items-center">
                                                 <Col md={3}>
-                                                     <H1> Teams </H1>
+                                                     <H1>{this.props.t('TEAMS')}</H1>
                                                 </Col>
                                                 <Col md={6}>
                                                 {data && data.teams && 
@@ -102,7 +102,7 @@ class AdminTeamIndex extends React.Component {
                                          
                                                         <ActionNav className='justify-content-end'>
                                                             <Link href={AdminPaths.teams.create}>
-                                                                <Nav.Link href={AdminPaths.teams.create}> New Team </Nav.Link>
+                                                                <Nav.Link href={AdminPaths.teams.create}> {this.props.t('NEW TEAM')} </Nav.Link>
                                                             </Link>
                                                             <FilterToggler 
                                                             trans={this.props.t ? this.props.t : null}

@@ -31,7 +31,7 @@ export const GET_CONTACT_NOTE = gql`
 `;
 export class LatestNote extends React.Component {
     render(){
-        const { target } = this.props;
+        const { target, dataFromParent } = this.props;
         return(
             <Query query={GET_CONTACT_NOTE}
                             variables={{
@@ -60,9 +60,9 @@ export class LatestNote extends React.Component {
                                     return(
                                         <div key={idx}>
                                             <HR/>
-                                            <H3 uppercase> Latest Note</H3>
+                                    <H3 uppercase>{dataFromParent('LATEST NOTE')}</H3>
 
-                                            <H5 uppercase>Created: <small><Moment fromNow ago>{TN.createdAt}</Moment> ago</small></H5>
+                                            <H5 uppercase>{dataFromParent('CREATED')}: <small><Moment fromNow ago>{TN.createdAt}</Moment> ago</small></H5>
                                             <p className="pb-1">{TN.content}</p>
                                         </div>
                                     )

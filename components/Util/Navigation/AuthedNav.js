@@ -21,7 +21,7 @@ export class AuthedNav extends React.Component {
                     </Nav.Link>
                 </Link>
                 }
-                <CNavDropdown id="account" title="Account">
+                <CNavDropdown id="account" title={`${dataFromParent('ACCOUNT')}`}>
                     <Link href={PublicPaths.profile}>
                         <NavDropdown.Item href={PublicPaths.profile}>{dataFromParent('PROFILE')}</NavDropdown.Item>
                     </Link>

@@ -33,7 +33,7 @@ class DashContactCreate extends React.Component {
             <Page
                 currentUser={currentUser}
                 sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-                pageTitle={`${currentTeam.name} Dashboard`}
+                pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 <Container>

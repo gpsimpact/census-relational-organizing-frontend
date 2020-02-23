@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 export const AdminTeamCard = (props) => {
     const { t } = useTranslation();
     const { team } = props;
-    const allowedPerms = ["APPLICANT", "MEMBER", "ADMIN"]
+    const allowedPerms = [`${t('APPLICANT')}`, `${t('MEMBER')}`, `${t('ADMIN')}`]
 
     // functional lookup
     const defaultToZero = collection => permission => ({
@@ -52,7 +52,7 @@ export const AdminTeamCard = (props) => {
                 </CardTitle>
                 <CardParagraph>{team.description}</CardParagraph>
 
-                <CardSubTitle> Users </CardSubTitle>
+                <CardSubTitle> {t('USERS')} </CardSubTitle>
                 <PermContainer>
                         {permCounts.map((perm, idx) => {
                         

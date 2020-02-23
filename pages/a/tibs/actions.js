@@ -29,7 +29,7 @@ class AdminTibActions extends React.Component {
                 padTop
                 currentUser={currentUser}
                 sideNavComponent={<AdminSideNav currentUser={currentUser}/>}
-                pageTitle={"Global Admin Dashboard"}
+                pageTitle={"Global Admin " + this.props.t('DASHBOARD')}
 
             >
                 <Container>

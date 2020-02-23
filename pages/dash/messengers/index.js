@@ -65,7 +65,7 @@ class DashVolIndex extends React.Component {
             <Page
             currentUser={currentUser}
             sideNavComponent={<DashSideNav currentUser={currentUser} currentTeam={currentTeam}/>}
-            pageTitle={`${currentTeam.name} Dashboard`}
+            pageTitle={`${currentTeam.name} ${this.props.t('DASHBOARD')}`}
 
             >
                 <Container>
@@ -92,7 +92,7 @@ class DashVolIndex extends React.Component {
                                     <Box>
                                         <Row bsPrefix="row align-items-center">
                                             <Col md={3}>
-                                                <H1 uppercase> Messengers </H1>
+                                                <H1 uppercase> {this.props.t('MESSENGERS')} </H1>
                                             </Col>
                                             <Col md={6}>
                                                 {data && data.teamUsers &&
