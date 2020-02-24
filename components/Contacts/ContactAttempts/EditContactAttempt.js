@@ -182,7 +182,7 @@ export class EditContactAttempt extends React.Component {
                                                     label={dataFromParent0('CONTACT METHOD')}
                                                     name={"method"}
                                                     placeholderOption="-- Select --"
-                                                    options={methodOptions}
+                                                    options={methodOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
                                             </Col>
@@ -192,7 +192,7 @@ export class EditContactAttempt extends React.Component {
                                                     label={dataFromParent0('CONTACT DISPOSITION')}
                                                     name={"disposition"}
                                                     placeholderOption="-- Select --"
-                                                    options={props.values.method === 'IN PERSON' ? inPersonOptions : phoneOptions}
+                                                    options={props.values.method === 'IN PERSON' ? inPersonOptions(dataFromParent0) : phoneOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
                                             </Col>

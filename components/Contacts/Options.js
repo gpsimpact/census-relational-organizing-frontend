@@ -31,113 +31,120 @@ export const cleanRaceEthnicityArray = (values) => {
     return [];
 }
 
-
-export const sexualOrientationOptions = [
+export const sexualOrientationOptions = (t) => {
+    return [
         {
             value: "CHOOSE NOT TO IDENTIFY",
-            label: "Choose Not To Identify"
+            label: t("CHOOSE NOT TO IDENTIFY")
         },
         {
             value: 'STRAIGHT',
-            label: 'Straight'
+            label: t('STRAIGHT')
         },
         {
             value: "GAY",
-            label: "Gay"
+            label: t('GAY')
         },
         {
             value: "BISEXUAL",
-            label: "Bisexual"
+            label: t('BISEXUAL')
         },
         {
             value: "ASEXUAL",
-            label: "Asexual"
+            label: t("ASEXUAL")
         },
         {
             value: "QUEER",
-            label: "Queer"
+            label: t("QUEER")
         },
         {
             value: "OTHER",
-            label: "Other"
+            label: t("OTHER")
         }
     ]
+}
 
-    export const genderIdentityOptions = [
+    export const genderIdentityOptions = (t) => {
+    return [
         {
             value: "CHOOSE NOT TO IDENTIFY",
-            label: "Choose Not To Identify"
+            label: t("CHOOSE NOT TO IDENTIFY")
         },
         {
             value: "WOMAN",
-            label: "Woman"
+            label: t('WOMAN')
         },
         {
             value: "MAN",
-            label: "Man"
+            label: t("MAN")
         },
         {
             value: "TRANSGENDER",
-            label: "Transgender"
+            label: t("TRANSGENDER"),
         },
         {
             value: "CIS MAN",
-            label: "Cis Man"
+            label: t("CIS MAN")
         },
         {
             value: "CIS WOMAN",
-            label: "Cis Woman"
+            label: t("CIS WOMAN")
         },
         {
             value: "GENDER NONCONFORMING",
-            label: "Gender Non Conforming"
+            label: t("GENDER NONCONFORMING")
         },
         {
             value: "TRANS MAN",
-            label: "Trans Man"
+            label: t("TRANS MAN")
         },
         {
             value: "TRANS WOMAN",
-            label: "Trans Woman"
+            label: t("TRANS WOMAN")
         },
         {
             value: "OTHER",
-            label: "Other"
+            label: t("OTHER")
         }
      
     ]
+    }
+    
 
-    export const raceEthnicityOptions = [
+
+    export const raceEthnicityOptions = (t) => {
+        return [
         {
             value: "AMERICAN INDIAN OR ALASKA NATIVE",
-            label: "American Indian or Alaska Native"
+            label: t('AMERICAN INDIAN OR ALASKA NATIVE')
         },
         {
             value: 'ASIAN',
-            label: 'Asian'
+            label: t('ASIAN')
         },
         {
             value: "BLACK OR AFRICAN AMERICAN",
-            label: "Black or African American"
+            label: t("BLACK OR AFRICAN AMERICAN")
         },
         {
             value: "HISPANIC",
-            label: "Hispanic"
+            label: t("HISPANIC")
         },
         {
             value: "LATINO",
-            label: "Latino"
+            label: t("LATINO")
         },
         {
             value: "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER",
-            label: "Native Hawaiian or Other Pacific Islander"
+            label: t("NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER")
         },
         {
             value: "WHITE",
-            label: "White"
+            label: t("WHITE")
         }
      
     ]
+    }
 
     export const householdRelationOptions = [
         {

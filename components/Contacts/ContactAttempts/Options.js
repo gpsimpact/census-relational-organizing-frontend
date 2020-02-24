@@ -1,56 +1,56 @@
-export const methodOptions = [
+export const methodOptions = (t) => [
     {
         value: 'IN_PERSON',
-        label: 'IN PERSON'
+        label: t("IN PERSON")
     },
     {
         value: 'PHONE',
-        label: 'PHONE',
+        label: t("PHONE")
     }
 ]
 
 
-export const inPersonOptions = [
+export const inPersonOptions = (t) => [
     {
         value: "INPERSON__NOT_HOME",
-        label: "Not Home"
+        label: t("NOT HOME")
     },
     {
         value: "INPERSON__BUSY",
-        label: "Busy"
+        label: t("BUSY")
     },
     {
         value: "INPERSON__CANVASSED",
-        label: "Canvassed"
+        label: t("CANVASSED")
     },
     {
         value: "INPERSON__REFUSED",
-        label: "Refused"
+        label: t("REFUSED")
     },
     {
         value: "INPERSON__NO_CALL_NO_SHOW",
-        label: "No Call No Show"
+        label: t("NO CALL NO SHOW")
     }
 ]
-export const phoneOptions = [
+export const phoneOptions = (t) => [
     {
-        value: "PHONE__NOT_HOME",
-        label: "Not Home"
+        value: "INPERSON__NOT_HOME",
+        label: t("NOT HOME")
     },
     {
-        value: "PHONE__BUSY",
-        label: "Busy"
+        value: "INPERSON__BUSY",
+        label: t("BUSY")
     },
     {
-        value: "PHONE__CANVASSED",
-        label: "Canvassed"
+        value: "INPERSON__CANVASSED",
+        label: t("CANVASSED")
     },
     {
         value: "PHONE__LEFT_MESSAGE",
-        label: "Left Message"
+        label: t("LEFT MESSAGE")
     },
     {
-        value: "PHONE__REFUSED",
-        label: "Refused"
-    }
+        value: "INPERSON__REFUSED",
+        label: t("REFUSED")
+    },
 ]

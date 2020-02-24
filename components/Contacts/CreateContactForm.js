@@ -395,7 +395,7 @@ export const CreateContactForm = (props) => {
                                                 props.setFieldValue('sexualOrientation', '');
                                             }
                                         }}
-                                        options={sexualOrientationOptions}
+                                        options={sexualOrientationOptions(t)}
                                         component={SelectField}
                                     />
                                  
@@ -430,7 +430,7 @@ export const CreateContactForm = (props) => {
                                                     props.setFieldValue('genderIdentity', '');
                                                 }
                                             }}
-                                            options={genderIdentityOptions}
+                                            options={genderIdentityOptions(t)}
                                             component={SelectField}
                                         />
                                     </Col>
@@ -457,7 +457,7 @@ export const CreateContactForm = (props) => {
                                             <CheckBoxGroupContainer>
                                                 <fieldset>
                                                     <legend>{t('RACE / ETHNICITY')} <small> ({t('CHECK ALL THAT APPLY')}) </small></legend>
-                                                    {raceEthnicityOptions.map((option, idx) => {
+                                                    {raceEthnicityOptions(t).map((option, idx) => {
                                                         return(
                                                             <DynamicCheckboxLabel key={idx}>
                                                             <input
