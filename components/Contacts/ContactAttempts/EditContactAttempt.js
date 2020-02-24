@@ -219,7 +219,7 @@ export class EditContactAttempt extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                > {loading ? "Saving" : "Save" } } </PrimaryButton>
+                                                > {loading ? "Saving" : "Save" }  </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 

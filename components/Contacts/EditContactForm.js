@@ -544,7 +544,7 @@ export const EditContactForm = (props) => {
                             </Row>
                             <SubmitButton 
                                     loading={loading}
-                                    value={loading ? "Saving" : "Save" }}
+                                    value={loading ? "Saving" : "Save" }
                                 />
                                  {props && props.dirty &&
                                     <DirtyFormMessage> This form has unsaved changes </DirtyFormMessage>

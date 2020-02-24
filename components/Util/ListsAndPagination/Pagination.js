@@ -102,17 +102,17 @@ export class Pagination extends React.Component {
                 <PaginationLeft>
                         <span className="links">
                             {pages.hasPrevious && <Link href={pages.previousPage}><PaginationAnchor> {trans ? trans('PREV') : "Previous"} </PaginationAnchor></Link>} 
-                            {!pages.hasPrevious && <DisabledPaginationAnchor>  <i className="fas fa-angle-left"></i> {trans ? trans('PREV') : t('PREV')} </DisabledPaginationAnchor>} 
+                            {!pages.hasPrevious && <DisabledPaginationAnchor>  <i className="fas fa-angle-left"></i> {trans ? trans('PREV') : "PREV"} </DisabledPaginationAnchor>} 
                         </span>
-                        <span className="title">{ trans ? trans("TOTAL COUNT") : t('TOTAL COUNT') } <span>{totalCount}</span></span>
+                        <span className="title">{ trans ? trans("TOTAL COUNT") : 'TOTAL COUNT' } <span>{totalCount}</span></span>
 
                 </PaginationLeft>
                 &middot;
                 <PaginationRight>
-                        <span className="title">{ trans ? trans("PAGE") : t('PAGE') } <span>{currentPage} of {pages.totalPages}</span></span>
+                        <span className="title">{ trans ? trans("PAGE") : 'PAGE' } <span>{currentPage} of {pages.totalPages}</span></span>
                         <span className="links">
-                            {pages.hasNext && <Link href={pages.nextPage}><PaginationAnchor> {trans ? trans('NEXT') : t('NEXT')} </PaginationAnchor></Link>} 
-                            {!pages.hasNext && <DisabledPaginationAnchor>  {trans ? trans('NEXT') : t('NEXT')}  <i className="fas fa-angle-right"></i></DisabledPaginationAnchor>}
+                            {pages.hasNext && <Link href={pages.nextPage}><PaginationAnchor> {trans ? trans('NEXT') : 'NEXT'} </PaginationAnchor></Link>} 
+                            {!pages.hasNext && <DisabledPaginationAnchor>  {trans ? trans('NEXT') : 'NEXT'}  <i className="fas fa-angle-right"></i></DisabledPaginationAnchor>}
                         </span>
                 </PaginationRight>
             

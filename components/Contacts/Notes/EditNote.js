@@ -49,7 +49,7 @@ export class EditNote extends React.Component {
     }
     
     render(){
-        const {target, TN } = this.props;
+        const {target, TN, t } = this.props;
         return(
             <Mutation mutation={UPDATE_NOTE}
             refetchQueries={[
@@ -171,7 +171,7 @@ export class EditNote extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Saving" : "Save" } } </PrimaryButton>
+                                                    > {loading ? "Saving" : "Save" }  </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 

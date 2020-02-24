@@ -47,8 +47,7 @@ export class CreateNote extends React.Component {
     }
     
     render(){
-        const { t } = useTranslation();
-        const { target } = this.props;
+        const { target, t } = this.props;
         return(
 <Mutation mutation={CREATE_NOTE}
         refetchQueries={[
