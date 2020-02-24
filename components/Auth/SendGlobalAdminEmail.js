@@ -98,18 +98,18 @@ export class SendGlobalAdminEmail extends React.Component {
                                             <Col md={12}>
                                                 <Field
                                                     id="subject"
-                                                    label="Email Subject"
                                                     name={"subject"}
-                                                    placeHolder={"Email Subject"}
+                                                    label={dataFromParent('EMAIL SUBJECT')}
+                                                    placeHolder={dataFromParent('EMAIL SUBJECT')}
                                                     component={TextField}
                                                 />
                                             </Col>
                                             <Col md={12}>
                                                 <Field
                                                     id="body"
-                                                    label="Email Message"
+                                                    label={dataFromParent('EMAIL MESSAGE')}
                                                     name={"body"}
-                                                    placeHolder={"Email Message"}
+                                                    placeHolder={dataFromParent('EMAIL MESSAGE')}
                                                     component={TextAreaField}
                                                 />
                                             </Col>

@@ -110,7 +110,7 @@ class DashVolIndex extends React.Component {
                                             <Col md={3}>
                                                 <ActionNav className='justify-content-end'>
                                                      <Link href={{pathname:`${DashPaths.vols.denied}`, query: {team: currentTeam.id}}}>
-                                                        <Nav.Link href={`${DashPaths.vols.denied}?team=${currentTeam.id}`}> Denied Applicants </Nav.Link>
+                                                        <Nav.Link href={`${DashPaths.vols.denied}?team=${currentTeam.id}`}> {this.props.t('DENIED APPLICANTS')} </Nav.Link>
                                                     </Link>
                                                     <FilterToggler 
                                                     trans={this.props.t ? this.props.t : null}

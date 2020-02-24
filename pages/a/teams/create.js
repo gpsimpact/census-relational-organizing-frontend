@@ -29,7 +29,7 @@ class AdminTeamCreate extends React.Component {
                         <Row bsPrefix={'row py-5'}>
                             <Col md={6}>
                                 <Box>
-                                    <H1>Create {this.props.t('NEW TEAM')}</H1>
+                                    <H1>{this.props.t('CREATE NEW TEAM')}</H1>
                                     <AdminCreateTeamForm/>
                                 </Box>
 

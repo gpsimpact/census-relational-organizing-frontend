@@ -155,7 +155,7 @@ export class CreateContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <Field 
                                                     id="method"
-                                                    label={"Contact Method"} 
+                                                    label={dataFromParent0('CONTACT METHOD')}
                                                     name={"method"}
                                                     placeholderOption="-- Select --"
                                                     options={methodOptions}

@@ -165,7 +165,7 @@ export class EditContactAttempt extends React.Component {
                                 centered
                             >
                             <CustomModal.Header closeButton>
-                                <H3 uppercase>Edit Contact Attempt</H3>
+                                <H3 uppercase>{dataFromParent0('EDIT CONTACT ATTEMPT')}</H3>
                             </CustomModal.Header>
                             <CustomModal.Body>
                             <Form noValidate>
@@ -179,7 +179,7 @@ export class EditContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <Field 
                                                     id="method"
-                                                    label={"Contact Method"} 
+                                                    label={dataFromParent0('CONTACT METHOD')}
                                                     name={"method"}
                                                     placeholderOption="-- Select --"
                                                     options={methodOptions}
@@ -219,7 +219,7 @@ export class EditContactAttempt extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                > {loading ? "Saving" : "Save" } </PrimaryButton>
+                                                > {loading ? "Saving" : "Save" } } </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 

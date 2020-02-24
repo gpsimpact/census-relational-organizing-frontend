@@ -143,7 +143,7 @@ export class EditNote extends React.Component {
                                 centered
                             >
                         <CustomModal.Header closeButton>
-                            <H3 uppercase>Edit Note</H3>
+                            <H3 uppercase>{t('EDIT NOTE')}</H3>
                         </CustomModal.Header>
                         <CustomModal.Body>
                             <Form noValidate>
@@ -171,7 +171,7 @@ export class EditNote extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Saving" : "Save" } </PrimaryButton>
+                                                    > {loading ? "Saving" : "Save" } } </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 

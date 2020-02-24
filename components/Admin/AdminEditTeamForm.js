@@ -119,7 +119,7 @@ export const AdminEditTeamForm = (props) => {
                                             props.setFieldValue('edit', true, false)
                                             props.handleSubmit();
                                         }}
-                                        > {loading ? "Saving" : "Save" } 
+                                        > {loading ? "Saving" : "Save" } } 
                                     </PrimaryButton>
                                     </Col>
                                     <Col md={6}>

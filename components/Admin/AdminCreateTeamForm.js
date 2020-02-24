@@ -76,15 +76,15 @@ export const AdminCreateTeamForm = () => {
                                 <Field
                                     id="name"
                                     name="name"
-                                    label="Team Name"
-                                    placeholder="Team Name"
+                                    label={t('TEAM NAME')}
+                                    placeholder={t('TEAM NAME')}
                                     component={TextField}
                                 />
                                 <Field
                                     id="description"
                                     name="description"
-                                    label="Team Description"
-                                    placeholder="Team Description"
+                                    label={t('TEAM DESCRIPTION')}
+                                    placeholder={t('TEAM DESCRIPTION')}
                                     component={TextAreaField}
                                 />
                                 <SubmitButton 

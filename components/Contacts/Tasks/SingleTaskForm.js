@@ -262,7 +262,7 @@ export class SingleTaskForm extends React.Component {
                                                        
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Saving" : "Save" } </PrimaryButton>
+                                                    > {loading ? "Saving" : "Save" } } </PrimaryButton>
                                                 </Col>
                                                 <Col md={6}>
                                                     <SecondaryButton 

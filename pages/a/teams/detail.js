@@ -29,7 +29,7 @@ class AdminTeamDetail extends React.Component {
                         <Row bsPrefix={'row py-5'}>
                             <Col md={6}>
                                 <Box>
-                                    <H1>Edit Team</H1>
+                                    <H1>{this.props.t('EDIT TEAM')}</H1>
                                     <AdminEditTeamForm team={currentTeam}/>
                                 </Box>
 

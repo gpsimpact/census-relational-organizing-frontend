@@ -331,7 +331,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="isPhoneMobile"
                                         name="isPhoneMobile"
-                                        label="Mobile Phone"
+                                        label={t('MOBILE PHONE')}
                                         component={CheckBox}
                                     />
 

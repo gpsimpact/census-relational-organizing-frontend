@@ -122,7 +122,7 @@ export const TeamVolCard = (props) => {
                                 <Form noValidate>
                                     <Field 
                                         id="permission"
-                                        label={"Team Permission"} 
+                                        label={t('TEAM PERMISSIONS')}
                                         name={"permission"}
                                         placeholderOption="-- Select --"
                                         options={permissionOptions}
