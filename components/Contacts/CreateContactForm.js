@@ -347,7 +347,7 @@ export const CreateContactForm = (props) => {
                                     <Field
                                         id="householdSize"
                                         name="householdSize"
-                                        label={t('HOUSEHOLD_SIZE')}
+                                        label={t('HOUSEHOLD SIZE')}
                                         placeholder="#"
                                         type="number"
                                         component={TextField}
