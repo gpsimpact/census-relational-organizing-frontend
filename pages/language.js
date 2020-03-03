@@ -13,8 +13,9 @@ import { i18n, withTranslation } from '../lib/i18'
 class Language extends React.Component {
   static async getInitialProps({...ctx}) {
     const { currentUser } = await GetCurrentUser(ctx.apolloClient);
+    
     if(!currentUser || !currentUser.me) {
-        nextPage = `/`;
+        const nextPage = `/`;
         return { nextPage };
     }
     return { currentUser, namespacesRequired:['common'] };

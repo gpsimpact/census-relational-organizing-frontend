@@ -7,13 +7,13 @@ import { SingleTask } from './SingleTask';
 import _ from 'lodash';
 
 export const GET_TARGET_TASKS = gql`
-    query targetTasks($targetId: String!){
+    query targetTasks($targetId: String!, $language: LanguageCodeEnum ){
         targetTasks(targetId: $targetId){
             id
             definition {
                 id
                 active
-                form {
+                form(language: $language) {
                     id
                     title
                     buttonText
@@ -64,9 +64,10 @@ export class TargetTaskList extends React.Component {
 
     render(){
         const { target, currentUser, t } = this.props; 
+        const language = currentUser.getLanguage();
         return(
             <Query query={GET_TARGET_TASKS}
-            variables={{targetId: target.id}}>
+            variables={{targetId: target.id, language: language}}>
             {({data, loading, error}) => {
                 const tasksRaw = data && data.targetTasks ? data.targetTasks : null;
                 let tasks;
