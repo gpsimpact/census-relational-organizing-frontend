@@ -111,7 +111,7 @@ class DashContactDetail extends React.Component {
 
                                                  
                                     
-                                                <Collapser title={`${this.props.t('CONTACT ATTEMPTS')}`} open={false}>
+                                                <Collapser title={`${this.props.t('Contact Attempts')}`} open={false}>
                                                     <Row>
                                                         <Col md={12}>
                                                             {data && data.target && <ListContactAttempts target={data.target} dataFromParent={this.props.t}/>}

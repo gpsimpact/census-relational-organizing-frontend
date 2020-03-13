@@ -32,7 +32,7 @@ export const DashSideNav = (props) => {
                             ?
                             <span> {t('MY CONTACTS')} </span>
                             :
-                            <span>Household Contacts</span>
+                            <span>{t('HOUSEHOLD CONTACTS')}</span>
                         }
                     </Nav.Link>
                 </Link>
@@ -49,7 +49,7 @@ export const DashSideNav = (props) => {
             (currentUser.hasGlobalPermission('ADMIN') || currentUser.hasTeamPermission(currentTeam.id, 'ADMIN')) && 
                 <Link href={{pathname: `${DashPaths.vols.index}`, query: {team: currentTeam.id}}}>
                     <Nav.Link href={`${DashPaths.vols.index}?team=${currentTeam.id}`}>
-                        Messengers
+                        {t('MESSENGERS')}
                     </Nav.Link>
                 </Link>
             }

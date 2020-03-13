@@ -181,7 +181,7 @@ export class EditContactAttempt extends React.Component {
                                                     id="method"
                                                     label={dataFromParent0('CONTACT METHOD')}
                                                     name={"method"}
-                                                    placeholderOption="-- Select --"
+                                                    placeholderOption={dataFromParent0('-- Select --')}
                                                     options={methodOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
@@ -191,7 +191,7 @@ export class EditContactAttempt extends React.Component {
                                                     id="disposition"
                                                     label={dataFromParent0('CONTACT DISPOSITION')}
                                                     name={"disposition"}
-                                                    placeholderOption="-- Select --"
+                                                    placeholderOption={dataFromParent0('-- Select --')}
                                                     options={props.values.method === 'IN PERSON' ? inPersonOptions(dataFromParent0) : phoneOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
@@ -203,7 +203,7 @@ export class EditContactAttempt extends React.Component {
                                             id="content"
                                             label={dataFromParent0('CONTACT NOTE')}
                                             name={"content"}
-                                            placeholderOption="-- Select --"
+                                            placeholderOption={dataFromParent0('-- Select --')}
                                             component={TextAreaField}
                                         />
                                     </Col>
@@ -219,7 +219,7 @@ export class EditContactAttempt extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                > {loading ? "Saving" : "Save" }  </PrimaryButton>
+                                                > {loading ? dataFromParent0("SAVING") : dataFromParent0("SAVE") }  </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 
@@ -229,7 +229,7 @@ export class EditContactAttempt extends React.Component {
                                                         props.setFieldValue('edit', false, false);
                                                         props.handleSubmit();
                                                     }}
-                                                > {loading ? "Deleting" : "Delete" }</SecondaryButton>
+                                                > {loading ? dataFromParent0("DELETING") : dataFromParent0("DELETE") }</SecondaryButton>
                                             </Col>
                                             <Col md={12}>
                                                 {props && props.dirty &&

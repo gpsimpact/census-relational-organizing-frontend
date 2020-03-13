@@ -134,14 +134,14 @@ export class CreateContactAttempt extends React.Component {
                     }
                         render={props => (
                             <React.Fragment>
-                            <SecondaryButton uppercase onClick={() =>  this.setState({open: true})}>Create</SecondaryButton>
+                            <SecondaryButton uppercase onClick={() =>  this.setState({open: true})}>{dataFromParent0("CREATE")}</SecondaryButton>
                             <CustomModal 
                                 show={this.state.open} 
                                 onHide={() => this.setState({open: false})}
                                 centered
                             >
                                 <CustomModal.Header closeButton>
-                                    <H3 uppercase>Create Contact Attempt</H3>
+                                    <H3 uppercase>{dataFromParent0("Create Contact Attempt")}</H3>
                                 </CustomModal.Header>
                                 <CustomModal.Body>
                             <Form noValidate>
@@ -157,7 +157,7 @@ export class CreateContactAttempt extends React.Component {
                                                     id="method"
                                                     label={dataFromParent0('CONTACT METHOD')}
                                                     name={"method"}
-                                                    placeholderOption="-- Select --"
+                                                    placeholderOption={dataFromParent0('-- Select --')}
                                                     options={methodOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
@@ -167,7 +167,7 @@ export class CreateContactAttempt extends React.Component {
                                                     id="disposition"
                                                     label={dataFromParent0('CONTACT DISPOSITION')}
                                                     name={"disposition"}
-                                                    placeholderOption="-- Select --"
+                                                    placeholderOption={dataFromParent0('-- Select --')}
                                                     options={props.values.method === 'IN PERSON' ? inPersonOptions(dataFromParent0) : phoneOptions(dataFromParent0)}
                                                     component={SelectField}
                                                 />
@@ -179,7 +179,7 @@ export class CreateContactAttempt extends React.Component {
                                             id="content"
                                             label={dataFromParent0('CONTACT NOTE')}
                                             name={"content"}
-                                            placeholderOption="-- Select --"
+                                                    placeholderOption={dataFromParent0('-- Select --')}
                                             component={TextAreaField}
                                         />
                                     </Col>
@@ -189,7 +189,7 @@ export class CreateContactAttempt extends React.Component {
                                             <Col md={6}>
                                                 <SubmitButton 
                                                     loading={loading}
-                                                    value={loading ? "Creating" : "Create"}
+                                                    value={loading ? "Creating" : dataFromParent0("CREATE")}
                                                 />
                                             </Col>
     

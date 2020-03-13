@@ -104,7 +104,7 @@ class Index extends React.Component {
                                 <Box>
                                     <Row>
                                         <Col xl={3}>
-                                            <H1 uppercase>Your Teams</H1>
+                                            <H1 uppercase>{this.props.t('YOUR TEAMS')}</H1>
                                         </Col>
                                         <Col xl={6}>
                                         {data && data.teams && 

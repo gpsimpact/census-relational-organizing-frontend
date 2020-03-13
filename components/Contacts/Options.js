@@ -146,10 +146,12 @@ export const sexualOrientationOptions = (t) => {
     ]
     }
 
-    export const householdRelationOptions = [
+    export const householdRelationOptions = (t) => 
+    {
+    return [
         {
             value: "",
-            label: "-- Select --"
+            label: t('--Select--')
         },
         {
             value: "PRIMARY",
@@ -168,3 +170,4 @@ export const sexualOrientationOptions = (t) => {
             label: 'Sibling'
         },
     ]
+    }

@@ -84,7 +84,7 @@ export class SendTeamAdminEmail extends React.Component {
 
                                 <Modal.Body>
                                     <Form noValidate>
-                                        <H4>This form will send a message to the admins of {team.name}</H4>
+                                        <H4>{dataFromParent('This form will send a message to the admins of the website')}.</H4>
                                         <hr/>
                                         {
                                             props.status && props.status.form && props.status.form.code != 'Success' && <FormError error={props.status.form}/>
@@ -116,7 +116,7 @@ export class SendTeamAdminEmail extends React.Component {
                                             <Col md={12}>
                                                  <SubmitButton 
                                                     loading={loading}
-                                                    value={loading ? "Sending" : "Send"}
+                                                    value={loading ? "Sending" : dataFromParent("SEND")}
                                                 />
                                             </Col>
                                         </Row>

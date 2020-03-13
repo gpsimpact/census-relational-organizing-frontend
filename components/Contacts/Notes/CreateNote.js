@@ -121,14 +121,14 @@ export class CreateNote extends React.Component {
                     }}
                     render={props => (
                         <React.Fragment>
-                        <SecondaryButton uppercase onClick={() =>  this.setState({open: true})}>Create</SecondaryButton>
+                        <SecondaryButton uppercase onClick={() =>  this.setState({open: true})}>{t('CREATE')}</SecondaryButton>
                         <CustomModal 
                             show={this.state.open} 
                             onHide={() => this.setState({open: false})}
                             centered
                         >
                             <CustomModal.Header closeButton>
-                                <H3 uppercase>Create Contact Attempt</H3>
+                                <H3 uppercase>{t('Create Contact Attempt')}</H3>
                             </CustomModal.Header>
                             <CustomModal.Body>
                         <Form noValidate>
@@ -144,14 +144,14 @@ export class CreateNote extends React.Component {
                                             id="content"
                                             label={t('CONTACT NOTE')} 
                                             name={"content"}
-                                            placeholderOption="-- Select --"
+                                            placeholderOption={t('-- Select --')}
                                             component={TextAreaField}
                                         />
                                         </Col>
                                         <Col md={12}>
                                             <SubmitButton 
                                                 loading={loading}
-                                                value={loading ? "Creating" : "Create"}
+                                                value={loading ? "Creating" : t("CREATE")}
                                             />
                                         </Col>
                                     </Row>

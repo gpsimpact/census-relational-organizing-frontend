@@ -17,16 +17,17 @@ class CheckEmail extends React.Component {
       }
     render(){
         let currentUser = CurrentUser(this.props);
+        console.log(this.props);
         return(
             <Page currentUser={currentUser} padTop>
                 <Container>
                     <Row bsPrefix="row justify-content-center py-5">
                         <Col md={6}>
                             <Box> 
-                            <H1 uppercase>Welcome</H1>
-                            <p>Check your email to complete your login.</p>
+                            <H1 uppercase>{this.props.t('WELCOME')}</H1>
+                            <p>{this.props.t('Check your email to complete your login')}.</p>
                                 {this.props && this.props.query && this.props.query.code &&
-                                    <H3 uppercase>Verification Code:  <span>{this.props.query.code}</span> </H3>   
+                                    <H3 uppercase>{this.props.t('VERIFICATION CODE')}:  <span>{this.props.query.code}</span> </H3>   
                                 }
 
 

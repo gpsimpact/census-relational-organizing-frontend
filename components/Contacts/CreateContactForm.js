@@ -183,7 +183,7 @@ export const CreateContactForm = (props) => {
                                 </Col>
 
                                 <Col md={12} lg={11}>
-                                    <H4 uppercase>Additional Household Members</H4>
+                                    <H4 uppercase>{t('ADDITIONAL HOUSEHOLD MEMBERS')}</H4>
                                     <FieldArray
                                         name="householdMembers"
                                         render={arrayHelpers => (
@@ -212,7 +212,7 @@ export const CreateContactForm = (props) => {
                                                                     name={`householdMembers.${idx}.relationship`}
                                                                     label="Household Member's Relationship"
                                                                     placeholder="Household Member's Relationship"
-                                                                    options={householdRelationOptions}
+                                                                    options={householdRelationOptions(t)}
                                                                     component={SelectField}
                                                                 />
                                                             </Col>
@@ -224,7 +224,7 @@ export const CreateContactForm = (props) => {
                                                 <Row>
                                                         <Col md={12}>
                                                             <AddContactButton onClick={() => arrayHelpers.push({relationship: "", name:""})}>
-                                                                <AddCircle/>  <span>Add a household member</span>
+                                                                <AddCircle/>  <span>{t('ADD A HOUSEHOLD MEMBER')}</span>
                                                             </AddContactButton>
                                                         </Col>
                                                         
@@ -496,7 +496,7 @@ export const CreateContactForm = (props) => {
 
                                 <SubmitButton 
                                     loading={loading}
-                                    value={loading ? "Creating" : "Create"}
+                                    value={loading ? "Creating" : t("CREATE")}
 
                                 />
                         

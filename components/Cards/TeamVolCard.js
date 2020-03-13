@@ -124,13 +124,13 @@ export const TeamVolCard = (props) => {
                                         id="permission"
                                         label={t('TEAM PERMISSIONS')}
                                         name={"permission"}
-                                        placeholderOption="-- Select --"
+                                            placeholderOption={t('-- Select --')}
                                         options={permissionOptions}
                                         component={SelectField}
                                     />
                                       <SubmitButton 
                                         loading={loading}
-                                    value={loading ? "Saving" : "Save"}
+                                    value={loading ? t("SAVING") : t('SAVE')}
                                 />
                                 
                                 {props && props.dirty &&

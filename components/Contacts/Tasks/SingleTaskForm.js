@@ -248,7 +248,7 @@ export class SingleTaskForm extends React.Component {
                                                                 component={SingleCheckBox}
                                                                 name="complete"
                                                                 id="complete"
-                                                                label="Mark this task as complete?"
+                                                                label={t('MARK THIS TASK AS COMPLETE?')}
                                                             />
 
                                                     </Col>
@@ -262,7 +262,7 @@ export class SingleTaskForm extends React.Component {
                                                        
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Saving" : "Save" }  </PrimaryButton>
+                                                    > {loading ? "Saving" : t("SAVE") }  </PrimaryButton>
                                                 </Col>
                                                 <Col md={6}>
                                                     <SecondaryButton 
@@ -272,13 +272,13 @@ export class SingleTaskForm extends React.Component {
                                                             this.setState({open: false})
                                                         }}
                                                         >
-                                                            Close 
+                                                            {t('Close')} 
                                                     </SecondaryButton>
                                                 </Col>
                                             </Row>
 
                                             {props && props.dirty && 
-                                                    <DirtyFormMessage>This task has unsaved changes </DirtyFormMessage>
+                                                    <DirtyFormMessage>{t('THIS TASK HAS UNSAVED CHANGES')}</DirtyFormMessage>
                                                 }
                                       
 

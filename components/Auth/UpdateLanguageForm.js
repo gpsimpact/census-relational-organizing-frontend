@@ -30,6 +30,7 @@ export const UpdateLanguageForm = ({currentUser}) => {
     ];
     const cookies = parseCookies();
     const lang = cookies && cookies['next-i18next'] ? cookies['next-i18next'] : 'en';
+
     return(
         <Formik 
             initialValues={{ 
@@ -78,7 +79,7 @@ export const UpdateLanguageForm = ({currentUser}) => {
                         <Col>
                         <SubmitButton 
                             loading={false}
-                            value="Update"
+                            value={t('UPDATE')}
                         />
                         </Col>
                     </Row>

@@ -136,7 +136,7 @@ export class EditNote extends React.Component {
                 }}
                 render={props => (
                     <React.Fragment>
-                        <PrimaryButton uppercase onClick={() =>  this.setState({open: true})}>Edit</PrimaryButton>
+                        <PrimaryButton uppercase onClick={() =>  this.setState({open: true})}>{t('EDIT')}</PrimaryButton>
                         <CustomModal 
                                 show={this.state.open} 
                                 onHide={() => this.setState({open: false})}
@@ -159,7 +159,7 @@ export class EditNote extends React.Component {
                                                 id="content"
                                                 label={t('CONTACT NOTE')}
                                                 name={"content"}
-                                                placeholderOption="-- Select --"
+                                                placeholderOption={t('-- Select --')}
                                                 component={TextAreaField}
                                                 />
                                             </Col>
@@ -171,7 +171,7 @@ export class EditNote extends React.Component {
                                                         props.setFieldValue('edit', true, false)
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Saving" : "Save" }  </PrimaryButton>
+                                                    > {loading ? t("SAVING") : t("SAVE") }  </PrimaryButton>
                                             </Col>
                                             <Col md={6}>
                                                 <SecondaryButton 
@@ -181,7 +181,7 @@ export class EditNote extends React.Component {
                                                         props.setFieldValue('edit', false, false);
                                                         props.handleSubmit();
                                                     }}
-                                                    > {loading ? "Deleting" : "Delete" }</SecondaryButton>
+                                                    > {loading ? t("DELETING") : t("DELETE") }</SecondaryButton>
                                             </Col>
                                         </Row>
                                         {props && props.dirty &&
